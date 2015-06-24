@@ -90,59 +90,83 @@ como a referência definitiva acerca do comportamento do shell.
 
 @menu
 * Introduction::		Uma introdução ao shell.
-* Definitions::			Some definitions used in the rest of this
-				manual.
-* Basic Shell Features::	The shell "building blocks".
-* Shell Builtin Commands::	Commands that are a part of the shell.
-* Shell Variables::		Variables used or set by Bash.
-* Bash Features::		Features found only in Bash.
-* Job Control::			What job control is and how Bash allows you
-				to use it.
-* Command Line Editing::	Chapter describing the command line
-				editing features.
-* Using History Interactively::	Command History Expansion
-* Installing Bash::		How to build and install Bash on your system.
-* Reporting Bugs::		How to report bugs in Bash.
-* Major Differences From The Bourne Shell::	A terse list of the differences
-						between Bash and historical
-						versions of /bin/sh.
-* GNU Free Documentation License::	Copying and sharing this documentation.
-* Indexes::			Various indexes for this manual.
+* Definitions::			Algumas definições utilizadas no 
+				restante deste manual.
+* Basic Shell Features::	Os "blocos de construção" do shell.
+* Shell Builtin Commands::	Comandos que são uma parte do shell.
+* Shell Variables::		Variáveis utilizadas ou 
+				configuradas por Bash.
+* Bash Features::		Características encontradas apenas no 
+				Bash.
+* Job Control::			O que é controle de tarefa e como 
+				Bash permite que você o utilize.
+* Command Line Editing::	Capítulo descrevendo as 
+				características de edição de linha de 
+				comando.
+* Using History Interactively::	Expansão do Histórico de Comando
+* Installing Bash::		Como construir e instalar Bash em 
+				seu sistema.
+* Reporting Bugs::		Como relatar bugs no Bash.
+* Major Differences From The Bourne Shell::	Uma lista concisa entre 
+						Bash e versões
+						históricas de 
+						/bin/sh.
+* GNU Free Documentation License::	Copiando e compartilhando esta 
+					documentação.
+* Indexes::			Varios índices para este manual.
 @end menu
 @end ifnottex
 
 @node Introduction
 @chapter Introduction
 @menu
-* What is Bash?::		A short description of Bash.
-* What is a shell?::		A brief introduction to shells.
+* What is Bash?::		Uma breve descrição do Bash.
+* What is a shell?::		Uma breve introdução aos shells.
 @end menu
 
 @node What is Bash?
 @section What is Bash?
 
-Bash is the shell, or command language interpreter,
-for the @sc{gnu} operating system.
-The name is an acronym for the @samp{Bourne-Again SHell},
-a pun on Stephen Bourne, the author of the direct ancestor of
-the current Unix shell @code{sh}, 
-which appeared in the Seventh Edition Bell Labs Research version
-of Unix.
+Bash é o shell, ou interpretador de linguagem de comando, para o sistema 
+operacional @sc{gnu}.
+O nome é um acrônimo para o @samp{Bourne-Again SHell}, uma homenagem a 
+Stephen Bourne, o autor do ancestral direto do shell Unix atual 
+@code{sh}, o qual apareceu na versão do Unix da Sétima Edição do Bell 
+Labs Research.
 
-Bash is largely compatible with @code{sh} and incorporates useful
-features from the Korn shell @code{ksh} and the C shell @code{csh}.
-It is intended to be a conformant implementation of the @sc{ieee}
-@sc{posix} Shell and Tools portion of the @sc{ieee} @sc{posix}
-specification (@sc{ieee} Standard 1003.1).
-It offers functional improvements over @code{sh} for both interactive and
-programming use.
+Bash é largamente compatível com @code{sh} e incorpora características 
+úteis oriundas do shell Korn @code{ksh} e do shell C @code{csh}.
+Ele é entendido para ser uma implementação conforme da porção das 
+Ferramentas e Shell do @sc{ieee} @sc{posix} da especificação @sc{ieee} 
+@sc{posix} (Padrão @sc{ieee} 1003.1).
+Ele oferece melhoramentos funcionais sobre o @code{sh} para ambos 
+uso interativo e programação.
 
-While the @sc{gnu} operating system provides other shells, including
-a version of @code{csh}, Bash is the default shell.
-Like other @sc{gnu} software, Bash is quite portable.  It currently runs
-on nearly every version of Unix and a few other operating systems @minus{}
-independently-supported ports exist for @sc{ms-dos}, @sc{os/2},
-and Windows platforms.
+Ao mesmo tempo em que o sistema operacional @sc{gnu} fornece 
+outros shells, incluindo uma versão do @code{csh}, Bash é o shell 
+padrão.
+Como outros softwares @sc{gnu}, Bash é facilmente portável.   Ele 
+atualmente roda em quase todas as versões de Unix e alguns outros 
+sistemas operacionais @minus{} existem implementações independentemente 
+suportadas para @sc{ms-dos}, @sc{os/2}, e plataformas Windows.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @node What is a shell?
 @section What is a shell?
