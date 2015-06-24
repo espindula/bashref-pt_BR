@@ -291,7 +291,7 @@ grupo de processo.
 
 @item process group ID
 @cindex process group ID
-Um identificador unico que representa um @code{process group} durante 
+Um identificador único que representa um @code{process group} durante 
 seu tempo de vida.
 
 @item reserved word
@@ -342,92 +342,100 @@ Palavras não podem incluir @code{metacharacters} fora de aspas.
 @chapter Basic Shell Features
 @cindex Bourne shell
 
-Bash is an acronym for @samp{Bourne-Again SHell}.
-The Bourne shell is
-the traditional Unix shell originally written by Stephen Bourne.
-All of the Bourne shell builtin commands are available in Bash,
-The rules for evaluation and quoting are taken from the @sc{posix}
-specification for the `standard' Unix shell.
+Bash é um acrônimo para @samp{Bourne-Again SHell}.   O shell Bourne é o 
+shell Unix tradicional originalmente escrito por Stephen Bourne.   Todos 
+os comandos internos do shell Bourne estão disponíveis no Bash.   As 
+regras para avaliação e encapsulamento dentro de aspas são tomadas da 
+especificação @sc{posix} para o shell Unix 'padrão'.
 
-This chapter briefly summarizes the shell's `building blocks':
-commands, control structures, shell functions, shell @i{parameters},
-shell expansions,
-@i{redirections}, which are a way to direct input and output from
-and to named files, and how the shell executes commands.
+Este capítulo sumariza brevemente os 'blocos de construção' do shell: 
+comandos, estruturas de controle, funções de shell, @i{parameters} do 
+shell, expansões do shell, @i{redirections}, os quais são uma forma de 
+direcionar entrada e saída de e para arquivos nomeados, e como o shell 
+executa comandos.
 
 @menu
-* Shell Syntax::		What your input means to the shell.
-* Shell Commands::		The types of commands you can use.
-* Shell Functions::		Grouping commands by name.
-* Shell Parameters::		How the shell stores values.
-* Shell Expansions::		How Bash expands parameters and the various
-				expansions available.
-* Redirections::		A way to control where input and output go.
-* Executing Commands::		What happens when you run a command.
-* Shell Scripts::		Executing files of shell commands.
+* Shell Syntax::		O que sua entrada significa para o 
+				shell.
+* Shell Commands::		Os tipos de comandos que você pode 
+				utilizar.
+* Shell Functions::		Agrupando comandos pelo nome.
+* Shell Parameters::		Como o shell armazena valores.
+* Shell Expansions::		Como Bash expande parâmetros e as 
+				várias expansões disponíveis.
+* Redirections::		Uma forma de controlar para aonde vai 
+				entrada e saída.
+* Executing Commands::		O que acontece quando você executa 
+				um comando.
+* Shell Scripts::		Executando arquivos de comandos do 
+				shell.
 @end menu
 
 @node Shell Syntax
 @section Shell Syntax
 @menu
-* Shell Operation::	The basic operation of the shell.
-* Quoting::		How to remove the special meaning from characters.
-* Comments::		How to specify comments.
+* Shell Operation::	A operação básica do shell.
+* Quoting::		Como remover o significado especial dos 
+			caracteres.
+* Comments::		Como especificar comentários.
 @end menu
 
-When the shell reads input, it proceeds through a
-sequence of operations.  If the input indicates the beginning of a
-comment, the shell ignores the comment symbol (@samp{#}), and the rest
-of that line.
-                                
-Otherwise, roughly speaking,  the shell reads its input and
-divides the input into words and operators, employing the quoting rules
-to select which meanings to assign various words and characters.
+Quando o shell lê entrada, ele percorre uma sequência de operações.   Se 
+a entrada indica o início de um comando, o shell ignora o símbolo de 
+comentário (@samp{#}), e o restante daquela linha.
 
-The shell then parses these tokens into commands and other constructs,
-removes the special meaning of certain words or characters, expands
-others, redirects input and output as needed, executes the specified
-command, waits for the command's exit status, and makes that exit status
-available for further inspection or processing.
+De outro lado, grosseiramente falando, o shell lê sua entrada e divide a 
+entrada em palavras e operadores, empregando as regras de encapsulamento 
+entre aspas para selecionar quais significados atribuir para as várias 
+palavras e caracteres.
+
+O shell então processa esses tokens em comandos e outros construtores, 
+remove o significado especial de certas palavras ou caracteres, expande 
+outros, redireciona entrada e saída conforme necessário, executa o 
+comando especificado, aguarda pelo status de saída do comando, e torna 
+esse status de saída disponível para inspeção posterior ou 
+processamento.
+
 
 @node Shell Operation
 @subsection Shell Operation
 
-The following is a brief description of the shell's operation when it
-reads and executes a command.  Basically, the shell does the
-following:
+O seguinte é uma breve descrição da operação do shell quando ele lê e 
+executa um comando.   Basicamente, o shell faz o seguinte:
 
 @enumerate
 @item
-Reads its input from a file (@pxref{Shell Scripts}), from a string
-supplied as an argument to the @option{-c} invocation option
-(@pxref{Invoking Bash}), or from the user's terminal.
+Lẽ a entrada a partir de um arquivo (@pxref{Shell Scripts}), a 
+partir de uma cadeia de caracteres fornecida como um argumento para 
+a opção de invocação @option{-c} (@pxref{Invoking Bash}), ou a 
+partir do terminal do usuário.
 
 @item
-Breaks the input into words and operators, obeying the quoting rules
-described in @ref{Quoting}.  These tokens are separated by
-@code{metacharacters}.  Alias expansion is performed by this step
-(@pxref{Aliases}).
+Divide a entrada em palavras e operadores, obedecendo às regras de 
+encapsulamento entre aspas descritas em @ref{Quoting}.  Esses tokens 
+são separados por @code{metacharacters}.  A expansão de apelidos é 
+feita por esse passo (@pxref{Aliases}).
 
 @item
-Parses the tokens into simple and compound commands
+Processa os tokens em comandos simples e comandos compostos 
 (@pxref{Shell Commands}).
 
 @item
-Performs the various shell expansions (@pxref{Shell Expansions}), breaking
-the expanded tokens into lists of filenames (@pxref{Filename Expansion})
-and commands and arguments.
+Desempenha as várias expansões de shell (@pxref{Shell Expansions}), 
+dividindo os tokens expandidos em listas de nomes de arquivos 
+(@pxref{Filename Expansion}) e comandos e argumentos.
 
 @item
-Performs any necessary redirections (@pxref{Redirections}) and removes
-the redirection operators and their operands from the argument list.
+Desenpenha quaisquer redireções necessárias (@pxref{Redirections}) e 
+remove os operadores de redireção e seus operandos da lista de 
+argumentos.
 
 @item
-Executes the command (@pxref{Executing Commands}).
+Executa o comando (@pxref{Executing Commands}).
 
 @item
-Optionally waits for the command to complete and collects its exit
-status (@pxref{Exit Status}).
+Opcionalmente aguarda o término da execução do comando e coleta seu 
+status de saída (@pxref{Exit Status}).
 
 @end enumerate
 
@@ -435,126 +443,132 @@ status (@pxref{Exit Status}).
 @subsection Quoting
 @cindex quoting
 @menu
-* Escape Character::	How to remove the special meaning from a single
-			character.
-* Single Quotes::	How to inhibit all interpretation of a sequence
-			of characters.
-* Double Quotes::	How to suppress most of the interpretation of a
-			sequence of characters.
-* ANSI-C Quoting::	How to expand ANSI-C sequences in quoted strings.
-* Locale Translation::	How to translate strings into different languages.
+* Escape Character::	Como remover o significado especial de um 
+			caracter único.
+* Single Quotes::	Como inibir toda a interpretação de uma 
+			sequência de caracteres.
+* Double Quotes::	Como suprimir a maior parte da interpretação 
+			de uma seqência de caracteres.
+* ANSI-C Quoting::	Como expandir sequências ANSI-C em cadeias de 
+			caracteres encapsuladas entre aspas.
+* Locale Translation::	Como traduzir cadeias de caracteres em 
+			idiomas diferentes.
 @end menu
 
-Quoting is used to remove the special meaning of certain
-characters or words to the shell.  Quoting can be used to
-disable special treatment for special characters, to prevent
-reserved words from being recognized as such, and to prevent
-parameter expansion.
+O encapsulamento entre aspas é utilizado para remover o significado 
+especial de determinados caracteres ou palavras para o shell.   O 
+encapsulamento pode ser utilizado para desabilitar o tratamento especial 
+para caracteres especiais, previnir palavras reservadas de serem 
+reconhecidas como tais, e prevenir a expansão de parâmetro.
 
-Each of the shell metacharacters (@pxref{Definitions})
-has special meaning to the shell and must be quoted if it is to
-represent itself.
-When the command history expansion facilities are being used
-(@pxref{History Interaction}), the
-@var{history expansion} character, usually @samp{!}, must be quoted
-to prevent history expansion.  @xref{Bash History Facilities}, for
-more details concerning history expansion.
+Cada um dos metacaracteres do shell (@pxref{Definitions}) tem um 
+significado especial para o shell e devem ser encapsulados caso devam 
+representar eles mesmos.
+Quando as facilidades da expansão de histórico de comandos estão sendo 
+utilizadas (@pxref{History Interaction}), o caracter de @var{history 
+expansion}, em regra @samp{!}, deve ser encapsulado para prevenir a 
+expansão de histórico.   Veja-se @xref{Bash History Facilities}, para 
+mais detalhes acerca da expansão de histórico.
 
-There are three quoting mechanisms: the
-@var{escape character}, single quotes, and double quotes.
+Existem três mecanismos de encapsulamento em aspas: o @var{escape 
+character}, encapsulamento simples, e encapsulamento duplo.
 
 @node Escape Character
 @subsubsection Escape Character
-A non-quoted backslash @samp{\} is the Bash escape character.
-It preserves the literal value of the next character that follows,
-with the exception of @code{newline}.  If a @code{\newline} pair
-appears, and the backslash itself is not quoted, the @code{\newline}
-is treated as a line continuation (that is, it is removed from
-the input stream and effectively ignored).
+Uma barra invertida não encapsulada @samp{\} é o caracter de escape do 
+Bash.   Esse caracter preserva o valor literal do próximo caracter que 
+se segue, com exceção do @code{newline}.   Se um par @code{\newline} 
+aparece, e a própria barra invertida não estiver encapsulada entre 
+aspas, o @code{\newline} é tratado como uma continuação de linha (isto 
+é, ele é removido do fluxo de entrada e efetivamente ignorado).
 
 @node Single Quotes
 @subsubsection Single Quotes
 
-Enclosing characters in single quotes (@samp{'}) preserves the literal value
-of each character within the quotes.  A single quote may not occur
-between single quotes, even when preceded by a backslash.
+Encapsular caracteres em aspas simples (@samp{'}) preserva o valor 
+literal de cada caracter dentro do encapsulamento.   Um encapsulamento 
+simples não deve ocorrer entre aspas simples, ainda que precedido por 
+uma barra invertida.
 
 @node Double Quotes
 @subsubsection Double Quotes
 
-Enclosing characters in double quotes (@samp{"}) preserves the literal value
-of all characters within the quotes, with the exception of
-@samp{$}, @samp{`}, @samp{\},
-and, when history expansion is enabled, @samp{!}.
-The characters @samp{$} and @samp{`}
-retain their special meaning within double quotes (@pxref{Shell Expansions}).
-The backslash retains its special meaning only when followed by one of
-the following characters:
-@samp{$}, @samp{`}, @samp{"}, @samp{\}, or @code{newline}.
-Within double quotes, backslashes that are followed by one of these
-characters are removed.  Backslashes preceding characters without a
-special meaning are left unmodified.
-A double quote may be quoted within double quotes by preceding it with
-a backslash.
-If enabled, history expansion will be performed unless an @samp{!}
-appearing in double quotes is escaped using a backslash.
-The backslash preceding the @samp{!} is not removed.
+Encapsular caracteres em aspas duplas (@samp{"}) preserva o valor 
+literal de todos os caracteres dentro das aspas, com exceção de 
+@samp{$}, @samp{`}, @samp{\}, e, quando a expansão de histórico esteja 
+habilitada, @samp{!}.
+Os caracteres @samp{$} e @samp{`} conservam o significado especial deles 
+quando dentro de aspas duplas (@pxref{Shell Expansions}).
+A barra invertida conserva seu significado especial apenas quando 
+seguida por um dos seguintes caracteres: @samp{$}, @samp{`}, @samp{"}, 
+@samp{\}, ou @code{newline}.
+Dentro de aspas duplas, barras invertidas que são seguidas por um desses 
+caracteres são removidas.   Barras invertidas precedendo caracteres sem 
+um significado especial são deixadas sem modificação.
+Uma aspa dupla pode ser encapsulada em aspas duplas precedendo-se ela 
+com uma barra invertida.
+Se habilitada, a expansão de histórico será feita, a menos que um 
+@samp{!} que esteja aparecendo em aspas duplas seja encapsulado 
+utilizando-se uma barra invertida.
+A barra invertida que precede um @samp{!} não é removido.
 
-The special parameters @samp{*} and @samp{@@} have special meaning
-when in double quotes (@pxref{Shell Parameter Expansion}).
+Os parâmetros especiais @samp{*} e @samp{@@} tem significado 
+especial quando estejam entre aspas duplas (@pxref{Shell Parameter 
+Expansion}).
 
 @node ANSI-C Quoting
 @subsubsection ANSI-C Quoting
 @cindex quoting, ANSI
 
-Words of the form @code{$'@var{string}'} are treated specially.  The
-word expands to @var{string}, with backslash-escaped characters replaced
-as specified by the ANSI C standard.  Backslash escape sequences, if
-present, are decoded as follows:
+Palavras da forma @code{$'@var{string}'} são tratadas especialmente.   A 
+palavra expande para @var{string}, com caracteres encapsulados por 
+barras invertidas sendo substituídos conforme especificado pelo padrão 
+ANSI C.   As sequências de encapsulamento de barra invertida, se 
+presentes, são decodificadas conforme a seguir:
 
 @table @code
 @item \a
-alert (bell)
+alerta (sino)
 @item \b
-backspace
+barra invertida
 @item \e
 @itemx \E
-an escape character (not ANSI C)
+um caracter de encapsulamento (não ANSI C)
 @item \f
-form feed
+alimentação de formulário
 @item \n
-newline
+nova linha
 @item \r
-carriage return
+retorno de carro
 @item \t
-horizontal tab
+tab horizontal
 @item \v
-vertical tab
+tab vertical
 @item \\
-backslash
+barra invertida
 @item \'
-single quote
+aspa simples
 @item \"
-double quote
+aspa dupla
 @item \@var{nnn}
-the eight-bit character whose value is the octal value @var{nnn}
-(one to three digits)
+o caracter de oito bits cujo valor é o valor octal @var{nnn}
+(de um até três dígitos)
 @item \x@var{HH}
-the eight-bit character whose value is the hexadecimal value @var{HH}
-(one or two hex digits)
+o caracter de oito bits cujo valor é o valor hexadecimal @var{HH}
+(um ou dois dígitos hexadecimais)
 @item \u@var{HHHH}
-the Unicode (ISO/IEC 10646) character whose value is the hexadecimal value
-@var{HHHH} (one to four hex digits)
+o caracter Unicode (ISO/IEC 10646) cujo valor é o valor hexadecimal 
+@var{HHHH} (de um até quatro dígitos hexadecimais)
 @item \U@var{HHHHHHHH}
-the Unicode (ISO/IEC 10646) character whose value is the hexadecimal value
-@var{HHHHHHHH} (one to eight hex digits)
+o caracter Unicode (ISO/IEC 10646) cujo valor é o valor hexadecimal 
+@var{HHHHHHHH} (de um até oito dígitos hexadecimais)
 @item \c@var{x}
-a control-@var{x} character
+um caracter control-@var{x}
 @end table
 
 @noindent
-The expanded result is single-quoted, as if the dollar sign had not
-been present.
+O resultado expandido é encapsulado entre aspas simples, como se o sinal 
+de dólar não estivesse presente.
 
 @node Locale Translation
 @subsubsection Locale-Specific Translation
@@ -563,12 +577,12 @@ been present.
 @cindex native languages
 @cindex translation, native languages
 
-A double-quoted string preceded by a dollar sign (@samp{$}) will cause
-the string to be translated according to the current locale.
-If the current locale is @code{C} or @code{POSIX}, the dollar sign
-is ignored.
-If the string is translated and replaced, the replacement is
-double-quoted.
+Uma cadeia de caracteres dentro de um encapsulamento em aspas duplas 
+precedido por um sinal de dólar (@samp{$}) fará com que a cadeia de 
+caracteres seja traduzida conforme o locale atual.
+Se o locale atual é @code{C} ou @code{POSIX}, o sinal de dólar é 
+ignorado.   Se a cadeira de caracteres for traduzida e substituída, o 
+substituto é encapsulado entre aspas duplas.
 
 @vindex LC_MESSAGES
 @vindex TEXTDOMAIN
