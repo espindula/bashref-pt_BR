@@ -26,18 +26,18 @@ Copyright (c) 2015 Jamenson Ferreira Espindula de Almeida Melo.
 
 ************************************************************************
 ************************************************************************
-.								       .
-.			Atenção					       .
-.								       .
-.	Existem os seguintes documentos acerca do GNU Bash:	       .
-.								       .
-.	1 - Manual de Referência do Bash (Bash Reference Manual);      .
-.								       .
-.	2 - Manual de Comandos Gerais (General Commands Manual);       .
-.								       .
-.	3 - A Biblioteca Readline do GNU (The GNU Readline Library);   .
-.								       .
-.	4 - A Biblioteca History do GNU (The GNU History Library).     .
-.								       .
+								       
+			Atenção					       
+								       
+	Existem os seguintes documentos acerca do GNU Bash:	       
+								       
+1. Manual de Referência do Bash (Bash Reference Manual);
+
+2. Manual de Comandos Gerais (General Commands Manual);
+
+3. A Biblioteca Readline do GNU (The GNU Readline Library);
+
+4. A Biblioteca History do GNU (The GNU History Library).
+								       
 ************************************************************************
 ************************************************************************
