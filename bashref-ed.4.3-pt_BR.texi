@@ -254,9 +254,9 @@ Uma sequência de caracteres utilizada para identificar um arquivo.
 
 @item job
 @cindex job
-Um conjunto de tarefas compreendendo um tubo (pipeline), e quaisquer 
-processos que descendam dele, os quais estão todos no mesmo grupo de 
-processos.
+Um conjunto de tarefas compreendendo um canal de comunicação (pipeline), 
+e quaisquer processos que descendam dele, os quais estão todos no mesmo 
+grupo de processos.
 
 @item job control
 @cindex job control
@@ -405,7 +405,7 @@ executa um comando.   Basicamente, o shell faz o seguinte:
 
 @enumerate
 @item
-Lẽ a entrada a partir de um arquivo (@pxref{Shell Scripts}), a 
+Lê a entrada a partir de um arquivo (@pxref{Shell Scripts}), a 
 partir de uma cadeia de caracteres fornecida como um argumento para 
 a opção de invocação @option{-c} (@pxref{Invoking Bash}), ou a 
 partir do terminal do usuário.
@@ -587,135 +587,150 @@ substituto é encapsulado entre aspas duplas.
 @vindex LC_MESSAGES
 @vindex TEXTDOMAIN
 @vindex TEXTDOMAINDIR
-Some systems use the message catalog selected by the @env{LC_MESSAGES}
-shell variable.  Others create the name of the message catalog from the
-value of the @env{TEXTDOMAIN} shell variable, possibly adding a
-suffix of @samp{.mo}.  If you use the @env{TEXTDOMAIN} variable, you
-may need to set the @env{TEXTDOMAINDIR} variable to the location of
-the message catalog files.  Still others use both variables in this
-fashion:
+Alguns sistemas utilizam o catálogo de mensagem selecionado pela 
+variável de shell @env{LC_MESSAGES}.   Outros criam o nome do catálogo 
+de mensagem a partir do valor da variável de shell @env{TEXTDOMAIN}, 
+possivelmente adicionando um sufixo @samp{.mo}.   Se você utiliza a 
+variável @env{TEXTDOMAIN}, você obrigatoriamente precisa configurar a 
+variável @env{TEXTDOMAINDIR} para a localização dos arquivos de catálogo 
+de mensagem.   Outros ainda utilizam ambas as variáveis neste desenho:
 @env{TEXTDOMAINDIR}/@env{LC_MESSAGES}/LC_MESSAGES/@env{TEXTDOMAIN}.mo.
 
 @node Comments
 @subsection Comments
 @cindex comments, shell
 
-In a non-interactive shell, or an interactive shell in which the
-@code{interactive_comments} option to the @code{shopt}
-builtin is enabled (@pxref{The Shopt Builtin}),
-a word beginning with @samp{#}
-causes that word and all remaining characters on that line to
-be ignored.  An interactive shell without the @code{interactive_comments}
-option enabled does not allow comments.  The @code{interactive_comments}
-option is on by default in interactive shells.
-@xref{Interactive Shells}, for a description of what makes
-a shell interactive.
+Em um shell não interativo, ou um shell interativo no qual a opção 
+@code{interactive_comments} para o comando interno @code{shopt} esteja 
+habilitada (@pxref{The Shopt Builtin}), uma palavra iniciando com 
+@samp{#} faz com que essa palavra e todos os caracteres restantes 
+naquela linha sejam ignorados.   Um shell interativo sem a opção 
+@code{interactive_comments} habilitada não permite comentários.   A 
+opção @code{interactive_comments} é habilitada por padrão em shells 
+interativos.   Veja-se @xref{Interactive Shells}, para uma descrição do 
+que torna um shell interativo.
 
 @node Shell Commands
 @section Shell Commands
 @cindex commands, shell
 
-A simple shell command such as @code{echo a b c} consists of the command
-itself followed by arguments, separated by spaces.
+Um comando de shell simples como @code{echo a b c} consiste do próprio 
+comando seguido por argumentos, separados por espaços.
 
-More complex shell commands are composed of simple commands arranged together
-in a variety of ways: in a pipeline in which the output of one command
-becomes the input of a second, in a loop or conditional construct, or in
-some other grouping.
+Comandos de shell mais complexos são compostos de comandos simples 
+arranjados juntos em uma variedade de possibilidades: em um canal de 
+comunicação (pipeline) no qual a saída de um comando se torna a entrada 
+de um segundo, em um loop ou contrução condicional, ou em algum outro 
+agrupamento.
 
 @menu
-* Simple Commands::		The most common type of command.
-* Pipelines::			Connecting the input and output of several
-				commands.
-* Lists::			How to execute commands sequentially.
-* Compound Commands::		Shell commands for control flow.
-* Coprocesses::			Two-way communication between commands.
-* GNU Parallel::		Running commands in parallel.
+* Simple Commands::		O tipo de comando mais comum.
+* Pipelines::			Conectando a entrada e saída de 
+				vários comandos.
+* Lists::			Como executar comandos 
+				sequencialmente.
+* Compound Commands::		Comandos de shell para controlar 
+				fluxo.
+* Coprocesses::			Comunicação de duas vias entre 
+				comandos.
+* GNU Parallel::		Executando comandos em paralelo.
 @end menu
 
 @node Simple Commands
 @subsection Simple Commands
 @cindex commands, simple
 
-A simple command is the kind of command encountered most often.
-It's just a sequence of words separated by @code{blank}s, terminated
-by one of the shell's control operators (@pxref{Definitions}).  The
-first word generally specifies a command to be executed, with the
-rest of the words being that command's arguments.
+Um comando simples é o tipo de comando encontrado mais frequentemente.   
+Ele é simplesmente uma sequência de palavras separadas por 
+@code{blank}s, terminada por um dos operadores de controle do shell 
+(@pxref{Definitions}).   A primeira palavra geralmente especifica um 
+comando a ser executado, com o restante das palavras sendo os argumentos 
+daquele comando.
 
-The return status (@pxref{Exit Status}) of a simple command is
-its exit status as provided
-by the @sc{posix} 1003.1 @code{waitpid} function, or 128+@var{n} if
-the command was terminated by signal @var{n}.
+O status de retorno (@pxref{Exit Status}) de um comando simples é seu 
+status de saída como fornecido pela função @code{waitpid} definida no 
+padrão @sc{posix} 1003.1, ou 128+@var{n} se o comando foi terminado pelo 
+sinal @var{n}.
 
 @node Pipelines
 @subsection Pipelines
 @cindex pipeline
 @cindex commands, pipelines
 
-A @code{pipeline} is a sequence of simple commands separated by one of
-the control operators @samp{|} or @samp{|&}.
+Um canal de comunicação (@code{pipeline}) é uma sequência de comandos 
+simples separada por um dos operadores de controle @samp{|} ou 
+@samp{|&}.
 
 @rwindex time
 @rwindex !
 @cindex command timing
-The format for a pipeline is
+O formato de um tubo é
 @example
 [time [-p]] [!] @var{command1} [ | or |& @var{command2} ] @dots{}
 @end example
 
 @noindent
-The output of each command in the pipeline is connected via a pipe
-to the input of the next command.
-That is, each command reads the previous command's output.  This
-connection is performed before any redirections specified by the
-command.
+A saída de cada comando dentro do canal de comunicação é conectada 
+via tubo à entrada do próximo comando.   Isto é, cada comando lê a saída 
+do comando anterior.   Essa conexão é feita antes de quaisquer 
+redireções especificadas pelo comando.
 
-If @samp{|&} is used, @var{command1}'s standard error, in addition to
-its standard output, is connected to
-@var{command2}'s standard input through the pipe;
-it is shorthand for @code{2>&1 |}.
-This implicit redirection of the standard error to the standard output is
-performed after any redirections specified by the command.
+Se @samp{|&} for utilizado, o descritor de erro padrão do 
+@var{command1}, em adição ao seu descritor de saída padrão, é conectado 
+ao descritor de entrada padrão do @var{command2} por meio do tubo; isso 
+é um atalho para @code{2>&1 |}.
+Essa redireção implícita do descritor de erro padrão para o descritor de 
+saída padrão é feita após quaisquer redireções especificadas pelo 
+comando.
 
-The reserved word @code{time} causes timing statistics
-to be printed for the pipeline once it finishes.
-The statistics currently consist of elapsed (wall-clock) time and
-user and system time consumed by the command's execution.
-The @option{-p} option changes the output format to that specified
-by @sc{posix}.
-When the shell is in @sc{posix} mode (@pxref{Bash POSIX Mode}),
-it does not recognize @code{time} as a reserved word if the next
-token begins with a @samp{-}.
-The @env{TIMEFORMAT} variable may be set to a format string that
-specifies how the timing information should be displayed.
-@xref{Bash Variables}, for a description of the available formats.
-The use of @code{time} as a reserved word permits the timing of
-shell builtins, shell functions, and pipelines.  An external
-@code{time} command cannot time these easily.
+A palavra reservada @code{time} faz com que sejam impressas estatísticas 
+de temporização para o canal de comunicação tão logo ele finalize.
+As estatísticas atualmente consistem do tempo (wall-clock) decorrido e 
+tempo de usuário e de sistema consumidos pela execução do comando.
+A opção @option{-p} modifica o formato da saída para aquele especificado 
+por @sc{posix}.
+Quando o shell está em modo @sc{posix} (@pxref{Bash POSIX Mode}), ele 
+não reconhece @code{time} como uma palavra reservada se o próximo token 
+inicia com um @samp{-}.
+A variável @env{TIMEFORMAT} pode ser configurada para um formato de 
+cadeia de caracteres que especifique como a informação de temporização 
+deveria ser exibida.   Veja-se @xref{Bash Variables} para uma descrição 
+dos formatos disponíveis.
+O usu de @code{time} como uma palavra reservada permite a temporização 
+de comandos internos do shell, de funções do shell, e de canais de 
+comunicação (pipelines).   Um comando @code{time} externo não pode 
+temporizar esses facilmente.
 
-When the shell is in @sc{posix} mode (@pxref{Bash POSIX Mode}), @code{time}
-may be followed by a newline.  In this case, the shell displays the
-total user and system time consumed by the shell and its children.
-The @env{TIMEFORMAT} variable may be used to specify the format of
-the time information.
+Quando o shell está em modo @sc{posix} (@pxref{Bash POSIX Mode}), 
+@code{time} deve ser seguido por um newline.   Nesse caso, o shell exibe 
+o tempo de usuário e de sistema total consumido pelo shell e seus 
+filhos.
+A variável @env{TIMEFORMAT} deve ser utilizada para especificar o 
+formato da informação de temporização.
 
-If the pipeline is not executed asynchronously (@pxref{Lists}), the
-shell waits for all commands in the pipeline to complete.
+Se o canal de comunicação não estiver sendo executado assíncronamente 
+(@pxref{Lists}), o shell aguarda que todos os comandos no canal de 
+comunicação finalizem.
 
-Each command in a pipeline is executed in its own subshell
-(@pxref{Command Execution Environment}).  The exit
-status of a pipeline is the exit status of the last command in the
-pipeline, unless the @code{pipefail} option is enabled
+Cada comando em um canal de comunicação é executado em seu próprio 
+subshell (@pxref{Command Execution Environment}).   O status de saída de 
+um canal de comunicação é o status de saída do último comando no canal 
+de comunicação, a menos que a opção @code{pipefail} esteja habilitada 
 (@pxref{The Set Builtin}).
-If @code{pipefail} is enabled, the pipeline's return status is the
-value of the last (rightmost) command to exit with a non-zero status,
-or zero if all commands exit successfully.
-If the reserved word @samp{!} precedes the pipeline, the
-exit status is the logical negation of the exit status as described
-above.
-The shell waits for all commands in the pipeline to terminate before
-returning a value.
+Se a opção @code{pipefail} estiver habilitada, o status de retorno do 
+canal de comunicação é o valor do último (mais à direita) comando a sair 
+com um status diferente de zero, ou zero se todos os comandos saírem com 
+sucesso.
+Se a palavra reservada @samp{!} preceder o canal de comunicação, o 
+status de saída é a negação lógica do status de saída conforme descrito 
+acima.
+O shell aguarda que todos os comandos no canal de comunicação terminem 
+antes de retornar um valor.
+
+
+
+
+
 
 @node Lists
 @subsection Lists of Commands
