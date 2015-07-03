@@ -205,14 +205,9 @@ interativas incluem controle de tarefa, edição de linha de comando,
 histórico de comando e apelidos.   Cada uma dessas características está 
 descrita neste manual.
 
-
-
-
 @node Definitions
 @chapter Definitions
 Estas definições são utilizadas em todo o restante deste manual.
-
-
 
 @table @code
 
@@ -324,19 +319,6 @@ pelo shell.   Essa sequência é ou uma @code{word} ou um @code{operator}.
 Uma sequência de caracteres tratada como uma unidade pelo shell.   
 Palavras não podem incluir @code{metacharacters} fora de aspas.
 @end table
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @node Basic Shell Features
 @chapter Basic Shell Features
@@ -727,165 +709,165 @@ acima.
 O shell aguarda que todos os comandos no canal de comunicação terminem 
 antes de retornar um valor.
 
-
-
-
-
-
 @node Lists
 @subsection Lists of Commands
 @cindex commands, lists
 
-A @code{list} is a sequence of one or more pipelines separated by one
-of the operators @samp{;}, @samp{&}, @samp{&&}, or @samp{||},
-and optionally terminated by one of @samp{;}, @samp{&}, or a
+Uma @code{list} é uma sequência de um os mais canais de comunicação 
+separados por um dos operadores @samp{;}, @samp{&}, @samp{&&}, ou 
+@samp{||}, e opcionalmente finalizados por um @samp{;}, @samp{&}, ou um
 @code{newline}.
 
-Of these list operators, @samp{&&} and @samp{||}
-have equal precedence, followed by @samp{;} and @samp{&},
-which have equal precedence.
+Dessa lista de operadores, @samp{&&} e @samp{||} tem igual precedência, 
+seguidos por @samp{;} e @samp{&}, os quais tem igual precedência.
 
-A sequence of one or more newlines may appear in a @code{list}
-to delimit commands, equivalent to a semicolon.
+Uma sequência de um ou mais newlines podem aparecer em uma @code{list} 
+para delimitar comandos, equivalente a ponto e vírgula.
 
-If a command is terminated by the control operator @samp{&},
-the shell executes the command asynchronously in a subshell.
-This is known as executing the command in the @var{background}.
-The shell does not wait for the command to finish, and the return
-status is 0 (true).
-When job control is not active (@pxref{Job Control}),
-the standard input for asynchronous commands, in the absence of any
-explicit redirections, is redirected from @code{/dev/null}.
+Se um comando é finalizado pelo operador de controle @samp{&}, o shell 
+executa o comando assíncronamente em um subshell.
+Isso é conhecido como executar o comando no @var{background}.
+O shell não aguarda que o comando finalize a execução, e o status de 
+retorno é 0 (verdadeiro).
+Quando o controle de tarefas não está ativo (@pxref{Job Control}), a 
+entrada padrão para comandos assíncronos, na ausência de quaisquer 
+redireções explicitas, é redirecionada a partir de @code{/dev/null}.
 
-Commands separated by a @samp{;} are executed sequentially; the shell
-waits for each command to terminate in turn.  The return status is the
-exit status of the last command executed.
+Comandos separados por um @samp{;} são executados sequencialmente; o 
+shell aguarda que cada comando finalize sua execução.   O status de 
+retorno é o status de saída do último comando executado.
 
-@sc{and} and @sc{or} lists are sequences of one or more pipelines
-separated by the control operators @samp{&&} and @samp{||},
-respectively.  @sc{and} and @sc{or} lists are executed with left
-associativity.
+As listas @sc{and} e @sc{or} são sequências de um ou mais canais de 
+comunicação separados por operadores de controle @samp{&&} e @samp{||}, 
+respectivamente.   As listas @sc{and} e @sc{or} são executadas com 
+associatividade à esquerda.
 
-An @sc{and} list has the form
+Uma lista @sc{and} tem a forma
 @example
 @var{command1} && @var{command2}
 @end example
 
 @noindent
-@var{command2} is executed if, and only if, @var{command1}
-returns an exit status of zero.
+@var{command2} é executado se, e somente se, @var{command1}
+retorna um status de saída igual a zero.
 
-An @sc{or} list has the form
+Uma lista @sc{or} tem a forma
 @example
 @var{command1} || @var{command2}
 @end example
 
 @noindent
-@var{command2} is executed if, and only if, @var{command1}
-returns a non-zero exit status.
+@var{command2} é executado se, e somente se, @var{command1}
+retorna um status de saída qualquer diferente de zero.
 
-The return status of
-@sc{and} and @sc{or} lists is the exit status of the last command
-executed in the list.
+O status de retorno das listas @sc{and} e @sc{or} é o status de saída do 
+último comando executado na lista.
 
 @node Compound Commands
 @subsection Compound Commands
 @cindex commands, compound
 
 @menu
-* Looping Constructs::		Shell commands for iterative action.
-* Conditional Constructs::	Shell commands for conditional execution.
-* Command Grouping::		Ways to group commands.
+* Looping Constructs::		Comandos de shell para ação interativa.
+* Conditional Constructs::	Comandos de shell para execução 
+condicional.
+* Command Grouping::		Maneiras de agrupar comandos.
 @end menu
 
-Compound commands are the shell programming constructs.
-Each construct begins with a reserved word or control operator and is
-terminated by a corresponding reserved word or operator.
-Any redirections (@pxref{Redirections}) associated with a compound command
-apply to all commands within that compound command unless explicitly overridden.
+Comandos de composição são os construtores de programação do shell.
+Cada construtor inicia com uma palavra reservada ou operador de controle 
+e é finalizado pela palavra reservada ou operador correspondentes.
+Quaisquer redireções (@pxref{Redirections}) associadas com um comando de 
+composição se aplicam a todos os comandos dentro desse comando de 
+composição a menos que explicitamente sobrepostas.
 
-In most cases a list of commands in a compound command's description may be
-separated from the rest of the command by one or more newlines, and may be
-followed by a newline in place of a semicolon.
+No maioria dos casos uma lista de comandos em uma descrição de comando 
+de composição pode ser separada do restante do comando por um ou mais 
+newlines, e pode ser seguida por um newline ao invés de um ponto e 
+vírgula.
 
-Bash provides looping constructs, conditional commands, and mechanisms
-to group commands and execute them as a unit.
+Bash disponibiliza construtores de loops, comandos condicionais e 
+mecanismos para agrupar comandos e executá-los como uma unidade.
 
 @node Looping Constructs
 @subsubsection Looping Constructs
 @cindex commands, looping
 
-Bash supports the following looping constructs.
+Bash suporta os seguintes construtores de loops.
 
-Note that wherever a @samp{;} appears in the description of a
-command's syntax, it may be replaced with one or more newlines.
+Note que sempre que um @samp{;} aparecer na descrição de uma sintaxe de 
+comando, ele pode ser substituído por um ou mais newlines.
 
 @table @code
 @item until
 @rwindex until
 @rwindex do
 @rwindex done
-The syntax of the @code{until} command is:
+A sintaxe do comando @code{until} é:
 
 @example
 until @var{test-commands}; do @var{consequent-commands}; done
 @end example
 
-Execute @var{consequent-commands} as long as
-@var{test-commands} has an exit status which is not zero.
-The return status is the exit status of the last command executed
-in @var{consequent-commands}, or zero if none was executed.
+Execute @var{consequent-commands} tantas vezes quantas 
+@var{test-commands} tenham um status de saída qualquer diferente de 
+zero.
+O status de retorno é o status de saída do último comando executado no 
+@var{consequent-commands}, ou zero se nenhum comando foi executado.
 
 @item while
 @rwindex while
-The syntax of the @code{while} command is:
+A sintaxe do comando @code{while} é:
 
 @example
 while @var{test-commands}; do @var{consequent-commands}; done
 @end example
 
-Execute @var{consequent-commands} as long as
-@var{test-commands} has an exit status of zero.
-The return status is the exit status of the last command executed
-in @var{consequent-commands}, or zero if none was executed.
+Execute @var{consequent-commands} tantas vezes quantas 
+@var{test-commands} tenham um status de saída igual a zero.
+O status de retorno é o status de saída do último comando executado em 
+@var{consequent-commands}, ou zero se nenhum comando foi executado.
 
 @item for
 @rwindex for
-The syntax of the @code{for} command is:
+A sintaxe do comando @code{for} é:
 
 @example
 for @var{name} [ [in [@var{words} @dots{}] ] ; ] do @var{commands}; done
 @end example
 
-Expand @var{words}, and execute @var{commands} once for each member
-in the resultant list, with @var{name} bound to the current member.
-If @samp{in @var{words}} is not present, the @code{for} command
-executes the @var{commands} once for each positional parameter that is
-set, as if @samp{in "$@@"} had been specified
+Expanda @var{words}, e execute @var{commands} uma vez para cada membro 
+na lista resultante, com @var{name} apontando para o membro atual.
+Se @samp{in @var{words}} não estiver presente, o comando @code{for} 
+executa os @var{commands} uma vez para cada parâmetro posicional que 
+estiver configurado, como se @samp{in "$@@"} tivesse sido especificado 
 (@pxref{Special Parameters}).
-The return status is the exit status of the last command that executes.
-If there are no items in the expansion of @var{words}, no commands are
-executed, and the return status is zero.
+O status de retorno é o status de saída do último comando que executar.
+Se não existirem itens na expansão de @var{words}, nenhum comando é 
+executado, e o status de retorno será igual a zero.
 
-An alternate form of the @code{for} command is also supported:
+Uma forma altenartiva do comando @code{for} também é suportada:
 
 @example
 for (( @var{expr1} ; @var{expr2} ; @var{expr3} )) ; do @var{commands} ; done
 @end example
 
-First, the arithmetic expression @var{expr1} is evaluated according
-to the rules described below (@pxref{Shell Arithmetic}).
-The arithmetic expression @var{expr2} is then evaluated repeatedly
-until it evaluates to zero.   
-Each time @var{expr2} evaluates to a non-zero value, @var{commands} are
-executed and the arithmetic expression @var{expr3} is evaluated.       
-If any expression is omitted, it behaves as if it evaluates to 1.
-The return value is the exit status of the last command in @var{commands}
-that is executed, or false if any of the expressions is invalid.
+Primeiro, a expressão aritmética @var{expr1} é calculada de acordo com 
+as regras descritas abaixo (@pxref{Shell Arithmetic}).
+A expressão aritmética @var{expr2} é então calculada repetidamente até 
+que ela seja igual a zero.
+A cada vez que @var{expr2} seja igual a um valor qualquer diferente de 
+zero, @var{commands} são executados e a expressão aritmética @var{expr3} 
+é calculada.
+Se qualquer expressão for omitida, ela se comporta como se o resultado 
+dela fosse igual a 1.
+O valor de retorno é o status de saída do último comando em 
+@var{commands} que for executado, ou falso se quaisquer das expressões 
+for inválida.
 @end table
 
-The @code{break} and @code{continue} builtins (@pxref{Bourne Shell Builtins})
-may be used to control loop execution.
+Os comandos internos @code{break} e @code{continue} podem ser utilizados 
+para controlar a execução do loop.
 
 @node Conditional Constructs
 @subsubsection Conditional Constructs
@@ -898,7 +880,7 @@ may be used to control loop execution.
 @rwindex else
 @rwindex elif
 @rwindex fi
-The syntax of the @code{if} command is:
+A sintaxe do comando @code{if} é:
 
 @example
 if @var{test-commands}; then
@@ -909,17 +891,18 @@ if @var{test-commands}; then
 fi
 @end example
 
-The @var{test-commands} list is executed, and if its return status is zero,
-the @var{consequent-commands} list is executed.
-If @var{test-commands} returns a non-zero status, each @code{elif} list
-is executed in turn, and if its exit status is zero,
-the corresponding @var{more-consequents} is executed and the   
-command completes.
-If @samp{else @var{alternate-consequents}} is present, and
-the final command in the final @code{if} or @code{elif} clause
-has a non-zero exit status, then @var{alternate-consequents} is executed.
-The return status is the exit status of the last command executed, or
-zero if no condition tested true.
+A lista @var{test-commands} é executada, e se o seu status de retorno 
+for igual a zero, a lista @var{consequent-commands} é executada.
+Se @var{test-commands} retornar um status diferente de zero, cada lista 
+@code{elif} é executada, e se o seu status de saída for igual a zero, os 
+@var{more-consequents} correspondentes são executados e o comando 
+finaliza.
+Se @samp{else @var{alternate-consequents}} estiver presente, e o comando 
+final na cláusula @code{if} ou @code{elif} final tiver um status de 
+saída qualquer diferente de zero, então @var{alternate-consequents} são 
+executados.
+O status de retorno é o status de saída do último comando executado, ou 
+zero se nenhuma condição testada for verdadeira.
 
 @item case
 @rwindex case
