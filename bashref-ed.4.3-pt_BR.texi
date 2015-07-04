@@ -1169,16 +1169,17 @@ Isso pode ser utilizado para anular a precedência normal de operadores.
 Verdadeiro se @var{expression} for falsa.
 
 @item @var{expression1} && @var{expression2}
-True if both @var{expression1} and @var{expression2} are true.
+Verdadeiro se ambas @var{expression1} e @var{expression2} forem falsas.
 
 @item @var{expression1} || @var{expression2}
-True if either @var{expression1} or @var{expression2} is true.
+Verdadeiro se ou @var{expression1} ou @var{expression2} forem 
+verdadeiro.
 @end table
 
 @noindent
-The @code{&&} and @code{||} operators do not evaluate @var{expression2} if the
-value of @var{expression1} is sufficient to determine the return
-value of the entire conditional expression.
+Os operadores @code{&&} e @code{||} não calculam @var{expression2} se o 
+valor de @var{expression1} for suficiente para determinar o valor de 
+retorno da expressão condicional inteira.
 @end table
 
 @node Command Grouping
