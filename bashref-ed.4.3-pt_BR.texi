@@ -908,100 +908,105 @@ zero se nenhuma condição testada for verdadeira.
 @rwindex case
 @rwindex in
 @rwindex esac
-The syntax of the @code{case} command is:
+A sintaxe do comando @code{case} é:
 
 @example
 case @var{word} in [ [(] @var{pattern} [| @var{pattern}]@dots{}) @var{command-list} ;;]@dots{} esac
 @end example
 
-@code{case} will selectively execute the @var{command-list} corresponding to
-the first @var{pattern} that matches @var{word}.
-If the shell option @code{nocasematch}
-(see the description of @code{shopt} in @ref{The Shopt Builtin})
-is enabled, the match is performed without regard to the case
-of alphabetic characters.
-The @samp{|} is used to separate multiple patterns, and the @samp{)}
-operator terminates a pattern list.
-A list of patterns and an associated command-list is known
-as a @var{clause}.
+@code{case} seletivamente executará a @var{command-list} correspondente 
+à primeira variável @var{pattern} que coincidir com a variável @var{word}.
+Se a opção de shell @code{nocasematch} (veja-se a descrição de 
+@code{shopt} em @ref{The Shopt Builtin}) estiverver habilitada, então a 
+coincidência é testada sem considerar maiúsculas e minúsnulas.
+O caracter @samp{|} é utilizado para separar múltiplas variáveis 
+@var{pattern}, e o operador @samp{)} finaliza a lista de variáveis.
+Uma lista de variáveis @var{pattern} e uma lista de comandos associada é 
+conhecida como uma @var{clause}.
 
-Each clause must be terminated with @samp{;;}, @samp{;&}, or @samp{;;&}.
-The @var{word} undergoes tilde expansion, parameter expansion, command
-substitution, arithmetic expansion, and quote removal before matching is
-attempted.  Each @var{pattern} undergoes tilde expansion, parameter
-expansion, command substitution, and arithmetic expansion.
+Cada cláusula deve necessariamente ser finalizada com um @samp{;;}, 
+@samp{;&}, ou um @samp{;;&}.
+A @var{word} está sujeita a expansão de til, expansão de parâmetro, 
+substituição de comando, expansão aritmética e remoção de aspas antes 
+que a coincidência seja testada.   Cada @var{pattern} está sujeita a 
+expansão de til, expansão de parâmetro, substituição de comando e 
+expansão aritmética.
 
-There may be an arbitrary number of @code{case} clauses, each terminated
-by a @samp{;;}, @samp{;&}, or @samp{;;&}.
-The first pattern that matches determines the
-command-list that is executed.
-It's a common idiom to use @samp{*} as the final pattern to define the
-default case, since that pattern will always match.
+Pode existir um número arbitrário de cláusulas @code{case}, cada uma das 
+quais finalizada por um @samp{;;}, @samp{;&}, ou um @samp{;;&}.
+O primeiro padrão que coincidir determina a lista de comandos a serem 
+executados.
+É bastante comum utilizar @samp{*} como o padrão final para definir o 
+caso padrão, sabido que tal padrão sempre coincidirá.
 
-Here is an example using @code{case} in a script that could be used to
-describe one interesting feature of an animal:
+Eis um exemplo utilizando @code{case} em um script que poderia ser 
+utilizado para descrever uma característica interessante de um animal:
 
 @example
-echo -n "Enter the name of an animal: "
+echo -n "Informe o nome de um animal: "
 read ANIMAL
-echo -n "The $ANIMAL has "
+echo -n "O $ANIMAL tem "
 case $ANIMAL in
-  horse | dog | cat) echo -n "four";;
-  man | kangaroo ) echo -n "two";;
-  *) echo -n "an unknown number of";;
+  cavalo | cachorro | gato) echo -n "quatro";;
+  homem | canguru ) echo -n "duas";;
+  *) echo -n "um número desconhecido de";;
 esac
-echo " legs."
+echo " pernas."
 @end example
 
 @noindent
 
-If the @samp{;;} operator is used, no subsequent matches are attempted after
-the first pattern match.
-Using @samp{;&}  in place of @samp{;;} causes execution to continue with
-the @var{command-list} associated with the next clause, if any.
-Using @samp{;;&} in place of @samp{;;} causes the shell to test the patterns
-in the next clause, if any, and execute any associated @var{command-list}
-on a successful match.
+Se o operador @samp{;;} for utilizado, então nenhuma coincidência 
+subsequente é tentada após o primeiro padrão coincidir.
+A utilização de um @samp{;&} no lugar de um @samp{;;} faz com que a 
+execução continue com a @var{command-list} associada com a próxima 
+cláusula, se existir alguma.
+A utilização de um @samp{;&} no lugar de um @samp{;;} faz com que o 
+shell teste os padrões na próxima cláusula, caso existe algum, e execute 
+quaisquer @var{command-list} associadas em cima de uma coincidência 
+testada com sucesso.
 
-The return status is zero if no @var{pattern} is matched.  Otherwise, the
-return status is the exit status of the @var{command-list} executed.
+O status de retorno é zero se nenhuma variável @var{pattern} coincidir.   
+Por outro lado, o status de retorno é o status de saída da 
+@var{command-list} executada.
 
 @item select
 @rwindex select
 
-The @code{select} construct allows the easy generation of menus.
-It has almost the same syntax as the @code{for} command:
+O construtor @code{select} permite a fácil geração de menus.
+Ele tem quase a mesma sintaxe que o comando @code{for}:
 
 @example
 select @var{name} [in @var{words} @dots{}]; do @var{commands}; done
 @end example
 
-The list of words following @code{in} is expanded, generating a list
-of items.  The set of expanded words is printed on the standard
-error output stream, each preceded by a number.  If the
-@samp{in @var{words}} is omitted, the positional parameters are printed,
-as if @samp{in "$@@"} had been specified.
-The @env{PS3} prompt is then displayed and a line is read from the
-standard input.
-If the line consists of a number corresponding to one of the displayed
-words, then the value of @var{name} is set to that word.
-If the line is empty, the words and prompt are displayed again.
-If @code{EOF} is read, the @code{select} command completes.
-Any other value read causes @var{name} to be set to null.
-The line read is saved in the variable @env{REPLY}.
+A lista de palavras seguintes a @code{in} é expandida, gerando uma lista 
+de itens.   O conjunto de palavras expandidas é impresso no fluxo 
+de saída padrão de erro, cada uma das quais precedida por um número.   
+Se o @samp{in @var{words}} for omitido, os parâmetros posicionais serão 
+impressos, como se @samp{in "$@@"} tivesse sido especificado.
+O prompt @env{PS3} é então exibido e uma linha é lida a partir da 
+entrada padrão.
+Se a linha consistir de um número correspondente a uma das palavras 
+exibidas, então o valor de @var{name} é configurada para aquela palavra.
+Se a linha estiver vazia, então o comando @code{select} completa sua 
+execução.
+Qualquer outro valor lido faz com que @var{name} seja configurada para 
+nulo.
+A linha lida é salva na variável @env{REPLY}.
 
-The @var{commands} are executed after each selection until a
-@code{break} command is executed, at which
-point the @code{select} command completes.
+Os @var{commands} são executados após cada seleção até que um comando 
+@code{break} seja executado, ponto no qual o comando @code{select} 
+completa a sua execução.
 
-Here is an example that allows the user to pick a filename from the
-current directory, and displays the name and index of the file
-selected.
+Eis um exemplo que permite ao usuário pegar um nome de arquivo a partir 
+do diretório de trabalho atual, e exibir o nome e indice do arquivo 
+selecionado.
 
 @example
 select fname in *;
 do
-	echo you picked $fname \($REPLY\)
+	echo você selecionou $fname \($REPLY\)
 	break;
 done
 @end example
@@ -1011,15 +1016,17 @@ done
 (( @var{expression} ))
 @end example
 
-The arithmetic @var{expression} is evaluated according to the rules
-described below (@pxref{Shell Arithmetic}).
-If the value of the expression is non-zero, the return status is 0;
-otherwise the return status is 1.  This is exactly equivalent to
+A @var{expression} aritmética é calculada de acordo com as regras 
+descritas abaixo (@pxref{Shell Arithmetic}).
+Se o valor da expressão for diferente de zero, então o status de retorno 
+é 0; do contrário o statua de retorno é 1.   Isso é exatamente 
+equivalente a
 @example
 let "@var{expression}"
 @end example
 @noindent
-@xref{Bash Builtins}, for a full description of the @code{let} builtin.
+Veja-se @xref{Bash Builtins}, para uma descrição completa acerca do 
+comando interno @code{let}.
 
 @item [[@dots{}]]
 @rwindex [[
@@ -1028,95 +1035,108 @@ let "@var{expression}"
 [[ @var{expression} ]]
 @end example
 
-Return a status of 0 or 1 depending on the evaluation of
-the conditional expression @var{expression}.
-Expressions are composed of the primaries described below in
-@ref{Bash Conditional Expressions}.
-Word splitting and filename expansion are not performed on the words
-between the @code{[[} and @code{]]}; tilde expansion, parameter and
-variable expansion, arithmetic expansion, command substitution, process
-substitution, and quote removal are performed.
-Conditional operators such as @samp{-f} must be unquoted to be recognized
-as primaries.
+Retorna um status de 0 ou 1 dependendo da avaliação da expressão 
+condicional @var{expression}.
+Expressões são compostas de primários descritos abaixo em @ref{Bash 
+Conditional Expressions}.
+A divisão de palavras (word splitting) e a expansão de nome de arquivo 
+não são feitas nas palavras contidas entre o @code{[[} e o @code{]]}; 
+expansão de til, expansão de variável e parâmetro, expansão aritmética, 
+substituição de comando, substituição de processo e remoção de aspas são 
+feitas.
+Operadores condicionais tais como @samp{-f} devem necessariamente estar 
+fora de aspas para serem reconhecidos como primários.
 
-When used with @code{[[}, the @samp{<} and @samp{>} operators sort
-lexicographically using the current locale.
+Quanto utilizados com @code{[[}, os operadores @samp{<} e @samp{>} 
+ordenam lexicograficamente utilizando o locale atual.
 
-When the @samp{==} and @samp{!=} operators are used, the string to the
-right of the operator is considered a pattern and matched according
-to the rules described below in @ref{Pattern Matching},
-as if the @code{extglob} shell option were enabled.
-The @samp{=} operator is identical to @samp{==}.
-If the shell option @code{nocasematch}
-(see the description of @code{shopt} in @ref{The Shopt Builtin})
-is enabled, the match is performed without regard to the case
-of alphabetic characters.
-The return value is 0 if the string matches (@samp{==}) or does not
-match (@samp{!=})the pattern, and 1 otherwise.
-Any part of the pattern may be quoted to force the quoted portion
-to be matched as a string.
+Quando os operadores @samp{==} e @samp{!=} são utilizados, a sequência 
+de caracteres à direita do operador é considerada um padrão e uma 
+coinciência é tentada de acordo com as regras descritas abaixo em 
+@ref{Pattern Matching}, como se a opção de shell @code{extglob} 
+estivesse habilitada.
+O operador @samp{=} é idêntico ao @samp{==}.
+Se a opção de shell @code{nocasematch} (veja-se a descrição de 
+@code{shopt} em @ref{The Shopt Builtin}) estiver habilitada, então a 
+coincidência é feita sem levar em consideração maiúsculas e minúsculas.
+O valor de retorno é 0 se a sequência de caracteres coincidir 
+(@samp{==}) ou não coincidir (@samp{!=}) com o padrão, e 1 nos outros 
+casos.
+Qualquer parte do padrão pode ser colocada entre aspas para forçar que 
+tal porção seja testada como uma sequência de caracteres.
 
-An additional binary operator, @samp{=~}, is available, with the same
-precedence as @samp{==} and @samp{!=}.
-When it is used, the string to the right of the operator is considered
-an extended regular expression and matched accordingly (as in @i{regex}3)).  
-The return value is 0 if the string matches
-the pattern, and 1 otherwise.
-If the regular expression is syntactically incorrect, the conditional
-expression's return value is 2.
-If the shell option @code{nocasematch}
-(see the description of @code{shopt} in @ref{The Shopt Builtin})
-is enabled, the match is performed without regard to the case
-of alphabetic characters.
-Any part of the pattern may be quoted to force the quoted portion
-to be matched as a string.
-Bracket expressions in regular expressions must be treated carefully,
-since normal quoting characters lose their meanings between brackets.
-If the pattern is stored in a shell variable, quoting the variable
-expansion forces the entire pattern to be matched as a string.
-Substrings matched by parenthesized subexpressions within the regular
-expression are saved in the array variable @code{BASH_REMATCH}.
-The element of @code{BASH_REMATCH} with index 0 is the portion of the string
-matching the entire regular expression.
-The element of @code{BASH_REMATCH} with index @var{n} is the portion of the
-string matching the @var{n}th parenthesized subexpression.
+Um operador binário adicional, @samp{=~}, está disponível, com a mesma 
+precedência que @samp{==} e @samp{!=}.
+Quando esse operador é utilizado, a sequência de caracteres à direita do 
+operador é considerada como sendo uma expressão regular extendida e uma 
+coincidência é tentada de acordo (como em @i{regex}3)).
+O valor de retorno é 0 se a sequência de caracteres coincidir com o 
+padrão, e 1 caso contrário.
+Se a expressão regular estiver sintaticamente incorreta, o valor de 
+retorno da expressão condicional é igual a 2.
+Se a opção de shell @code{nocasematch} (veja-se a descrição de 
+@code{shopt} em @ref{The Shopt Builtin}) estiver habilitada, a 
+coincidência é tentada sem levar em consideração maiúsculas e 
+minúsculas.
+Qualquer parte do padrão pode ser colocado entre aspas para forçar que 
+essa porção seja tratada como sendo uma sequência de caracteres.
+As expressões entre parênteses em expressões regulares devem 
+necessariamente serem tratadas cuidadosamente, dado que caracteres 
+normais para indicar aspas perdem seus significados entre parênteses.
+Se o padrão for armazenado em uma variável de shell, então colocar-se a 
+expansão da variável entre aspas força o padrão inteiro ser tratado como 
+sendo uma sequência de caracteres.
+As subsequências de caracteres testadas por subexpressões entre 
+parênteses dentro da expressão regular são salvas na variável de vetor 
+@code{BASH_REMATCH}.
+O elemento do @code{BASH_REMATCH} cujo indice é 0 é a porção da 
+sequência de caracteres coincidente com a expressão regular inteira.
+O elemento do @code{BASH_REMATCH} cujo indice é @var{n} é a porção da 
+sequência de caracteres coincidente com a @var{n}ésima subexpressão 
+entre parênteses.
 
-For example, the following will match a line
-(stored in the shell variable @var{line})
-if there is a sequence of characters in the value consisting of
-any number, including zero, of 
-space characters, zero or one instances of @samp{a}, then a @samp{b}:
+Por exemplo, o seguinte coincidirá com uma linha (armazenada na 
+variável de shell @var{line})
+Se existir uma sequência de caracteres no valor consistente de qualquer 
+número, incluindo zero; de caracteres espaço; zero ou um instâncias de 
+@samp{a}, então um @samp{b}:
 @example
 [[ $line =~ [[:space:]]*(a)?b ]]
 @end example
 
 @noindent
-That means values like @samp{aab} and @samp{  aaaaaab} will match, as
-will a line containing a @samp{b} anywhere in its value.
+Isso significa que valores como @samp{aab} e @samp{  aaaaaab} 
+coincidirão, como também coincidirá uma linha que contenha um @samp{b} 
+em qualquer lugar no seu valor.
 
-Storing the regular expression in a shell variable is often a useful
-way to avoid problems with quoting characters that are special to the
-shell.
-It is sometimes difficult to specify a regular expression literally
-without using quotes, or to keep track of the quoting used by regular
-expressions while paying attention to the shell's quote removal.
-Using a shell variable to store the pattern decreases these problems.
-For example, the following is equivalent to the above:
+O armazenamento da expressão regular em uma variável de shell é 
+frequentemente uma maneira útil de se evitar problemas com caracteres 
+que fazem encapsulamento e que são especiais para o shell.
+As vezes é difícil de se especificar uma expressão regular literalmente 
+sem se utilizar aspas, ou se manter um controle do encapsulamento 
+utilizado por expressões regulares enquanto se presta atenção à remoção 
+de aspas do shell.
+
+A utilização de uma variável de shell para armazenar o padrão reduz tais 
+problemas.   Por exemplo, o seguinte é equivalente ao acima:
 @example
 pattern='[[:space:]]*(a)?b'
 [[ $line =~ $pattern ]]
 @end example
 
 @noindent
-If you want to match a character that's special to the regular expression
-grammar, it has to be quoted to remove its special meaning.
-This means that in the pattern @samp{xxx.txt}, the @samp{.} matches any
-character in the string (its usual regular expression meaning), but in the
-pattern @samp{"xxx.txt"} it can only match a literal @samp{.}.
-Shell programmers should take special care with backslashes, since backslashes
-are used both by the shell and regular expressions to remove the special
-meaning from the following character.
-The following two sets of commands are @emph{not} equivalent:
+Se você deseja coincidir um caracter que seja especial para a gramática 
+da expressão regular, então esse caracter tem de ser encapsulado para 
+remover o seu significado especial.
+Isso significa que no padrão @samp{xxx.txt}, o @samp{.} coincide com 
+qualquer caracter na sequência de caracteres (seu significado usual de 
+expressão regular), porém no padrão @samp{"xxx.txt"} ele pode apenas 
+coincidir com um @samp{.} literal.
+Os programadores shell deveriam ter um cuidado especial com as barras 
+invertidas, dado que as barras invertidas são utilizadas tanto pelo 
+shell quanto por expressões regulares para remover o significado 
+especial do caracter seguinte à barra invertida.
+Os dois conjuntos de comandos seguintes @emph{not} são equivalentes:
 @example
 pattern='\.'
 
@@ -1128,24 +1148,25 @@ pattern='\.'
 @end example
 
 @noindent
-The first two matches will succeed, but the second two will not, because
-in the second two the backslash will be part of the pattern to be matched.
-In the first two examples, the backslash removes the special meaning from
-@samp{.}, so the literal @samp{.} matches.
-If the string in the first examples were anything other than @samp{.}, say
-@samp{a}, the pattern would not match, because the quoted @samp{.} in the
-pattern loses its special meaning of matching any single character.
+Os primeiros dois terão sucesso, porém os dois últimos não, pois nos 
+dois últimos a barra invertida será parte do padrão a ser testado.
+Nos primeiros dois exemplos, a barra invertida remove o significado 
+especial do @samp{.}, de forma que o @samp{.} literal coincide.
+Se a sequência de caracteres nos dois primeiros exemplos fosse qualquer 
+outra coisa que não o @samp{.}, diga-se @samp{a}, o padrão não 
+coincidiria, pois o @samp{.} encapsulado no padrão perde seu significado 
+especial de coincidir com qualquer caracter único.
 
-Expressions may be combined using the following operators, listed
-in decreasing order of precedence:
+As expressões podem ser combinadas utilizando-se os seguintes 
+operadores, listados em ordem decrescente de precedência:
 
 @table @code
 @item ( @var{expression} )
-Returns the value of @var{expression}.
-This may be used to override the normal precedence of operators.
+Retorna o valor de @var{expression}.
+Isso pode ser utilizado para anular a precedência normal de operadores.
 
 @item ! @var{expression}
-True if @var{expression} is false.
+Verdadeiro se @var{expression} for falsa.
 
 @item @var{expression1} && @var{expression2}
 True if both @var{expression1} and @var{expression2} are true.

@@ -3,7 +3,7 @@ Projeto de Tradução do Manual de Referência do Bash, edição 4.3, para o
 idioma português do Brasil.
 
 Translation project of the Bash Reference Manual, edition 4.3, into 
-Brazilian portuguese.
+brazilian portuguese.
 
 
 
@@ -26,7 +26,7 @@ Copyright (c) 2015 Jamenson Ferreira Espindula de Almeida Melo.
   intitulada "GNU Free Documentation Licence".
   
   Permission is granted to copy, distribute and/or modify this Bash 
-  Reference Manual, edition 4.3, version translated into Brazilian 
+  Reference Manual, edition 4.3, version translated into brazilian 
   portuguese, under the terms of the GNU Free Documentation License, 
   Version 1.3 or any later version published by the Free Software 
   Foundation; with no Invariant Sections, no Front-Cover Texts, and no 
@@ -37,15 +37,18 @@ Copyright (c) 2015 Jamenson Ferreira Espindula de Almeida Melo.
 ************************************************************************
 ************************************************************************
 								       
-Atenção					       
+ Atenção					       
 							       
-Existem os seguintes documentos acerca do GNU Bash:	       
+ Existem os seguintes documentos acerca do GNU Bash:	       
 								       
-1. Manual de Referência do Bash (Bash Reference Manual);
+1. Manual de Referência do Bash (Bash Reference Manual); e
 
-2. Manual de Comandos Gerais (General Commands Manual);
+2. Manual de Comandos Gerais (General Commands Manual).
 
-3. A Biblioteca Readline do GNU (The GNU Readline Library);
+
+ Além desses, o GNU Bash faz uso das seguintes bibliotecas:
+
+3. A Biblioteca Readline do GNU (The GNU Readline Library); e
 
 4. A Biblioteca History do GNU (The GNU History Library).
 								       
