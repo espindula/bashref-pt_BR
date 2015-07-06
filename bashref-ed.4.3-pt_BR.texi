@@ -1186,10 +1186,11 @@ retorno da expressão condicional inteira.
 @subsubsection Grouping Commands
 @cindex commands, grouping
 
-Bash provides two ways to group a list of commands to be executed
-as a unit.  When commands are grouped, redirections may be applied
-to the entire command list.  For example, the output of all the
-commands in the list may be redirected to a single stream.
+Bash provê duas maneiras de agrupar uma lista de comandos a serem 
+executados como uma unidade.   Quando comandos são agrupados, as 
+redireções podem ser aplicadas à lista de comandos inteira.   Por 
+exemplo, a saída de todos os comandos na lista pode ser redirecionada 
+para um fluxo único.
 
 @table @code
 @item ()
@@ -1197,11 +1198,11 @@ commands in the list may be redirected to a single stream.
 ( @var{list} )
 @end example
 
-Placing a list of commands between parentheses causes a subshell
-environment to be created (@pxref{Command Execution Environment}), and each
-of the commands in @var{list} to be executed in that subshell.  Since the
-@var{list} is executed in a subshell, variable assignments do not remain in
-effect after the subshell completes. 
+Colocar uma lista de comandos entre parênteses faz com que um ambiente 
+de subshell seja criado (@pxref{Command Execution Environment}), e cada 
+um dos comandos na @var{list} sejam executados nesse subshell.   Uma vez 
+que a @var{list} seja executada em um subshell, atribuições à variáveis 
+não permanecem em efeito após a finalização do subshell.
 
 @item @{@}
 @rwindex @{
@@ -1210,121 +1211,136 @@ effect after the subshell completes.
 @{ @var{list}; @}
 @end example
 
-Placing a list of commands between curly braces causes the list to
-be executed in the current shell context.  No subshell is created.
-The semicolon (or newline) following @var{list} is required.
+Colocar uma lista de comandos entre chaves faz com que a lista seja 
+executada no contexto do shell atual.   Nenhum subshell é criado.
+O ponto e vírgula (ou newline) seguinte a @var{list} é obrigatório.
 @end table
 
-In addition to the creation of a subshell, there is a subtle difference
-between these two constructs due to historical reasons.  The braces
-are @code{reserved words}, so they must be separated from the @var{list}
-by @code{blank}s or other shell metacharacters.
-The parentheses are @code{operators}, and are
-recognized as separate tokens by the shell even if they are not separated
-from the @var{list} by whitespace.
+Adicionalmente à criação de um subshell, existe uma diferença sútil 
+entre essas duas construções devida a razões históricas.   As chaves são 
+@code{reserved words}, de forma que elas devem necessariamente serem 
+separadas da @var{list} por @code{blank}s ou outros metacaracteres de 
+shell.
+Os parênteses são @code{operators}, e são reconhecidos como tokens 
+separados pelo shell mesmo se eles não forem separados da @var{list} por 
+espaços em branco.
 
-The exit status of both of these constructs is the exit status of
+O status de saída de ambas dessas construções é o status de saída de 
 @var{list}.
 
 @node Coprocesses
 @subsection Coprocesses
 @cindex coprocess
 
-A @code{coprocess} is a shell command preceded by the @code{coproc}
-reserved word.
-A coprocess is executed asynchronously in a subshell, as if the command
-had been terminated with the @samp{&} control operator, with a two-way pipe
-established between the executing shell and the coprocess.
+Um @code{coprocess} é um comando de shell precedido pela palavra 
+reservada @code{coproc}.
+Um coprocesso é executado assíncronamente em um subshell, como se o 
+comando tivesse sido finalizado com o operador de controle @samp{&}, com 
+um tubo de mão dupla estabelecido entre o shell em execução e o 
+coprocesso.
 
-The format for a coprocess is:
+O formato de um coprocesso é:
 @example
 coproc [@var{NAME}] @var{command} [@var{redirections}]
 @end example
 
 @noindent
-This creates a coprocess named @var{NAME}.
-If @var{NAME} is not supplied, the default name is @var{COPROC}.
-@var{NAME} must not be supplied if @var{command} is a simple
-command (@pxref{Simple Commands}); otherwise, it is interpreted as
-the first word of the simple command.
+Isso cria um coprocesso chamado @var{NAME}.
+Se @var{NAME} não for informado, então o nome padrão é @var{COPROC}.
+@var{NAME} deve necessariamente não ser informado se @var{command} for 
+um comando simples (@pxref{Simple Commands}); do contrário, @var{NAME} é 
+interpretada como sendo a primeira palavra do comando simples.
 
-When the coprocess is executed, the shell creates an array variable
-(@pxref{Arrays})
-named @env{NAME} in the context of the executing shell.
-The standard output of @var{command}
-is connected via a pipe to a file descriptor in the executing shell,
-and that file descriptor is assigned to @env{NAME}[0].
-The standard input of @var{command}
-is connected via a pipe to a file descriptor in the executing shell,
-and that file descriptor is assigned to @env{NAME}[1].
-This pipe is established before any redirections specified by the
-command (@pxref{Redirections}).
-The file descriptors can be utilized as arguments to shell commands
-and redirections using standard word expansions.
-The file descriptors are not available in subshells.
+Quando o coprocesso é executado, o shell cria um vetor variável 
+(@pxref{Arrays}) chamado @env{NAME} no contexto do shell em execução.
+A saída padrão de @var{command} é conectada via tubo ao arquivo 
+descritor no shell em execução, e esse arquivo descritor é atribuído ao 
+primeiro elemento do vetor que é @env{NAME}[0].
+A entrada padrão de @var{command} é conectada via tubo ao arquivo 
+descritor no shell em execução, e esse arquivo descritor é atribuído ao 
+segundo elemento do vetor que é @env{NAME}[1].
+Esse tube é estabelecido antes de quaisquer redireções especificadas 
+pelo comando (@pxref{Redirections}).
+Os descritores de arquivo podem ser utilizados como argumentos para 
+redireções e comandos de shell utilizando-se expansões de palavras 
+padrão.
+Os descritores de arquivo não estão disponíveis em subshells.
 
-The process ID of the shell spawned to execute the coprocess is
-available as the value of the variable @env{NAME}_PID.
-The @code{wait}
-builtin command may be used to wait for the coprocess to terminate.
+O Identificador (ID) de processo do shell gerado para executar o 
+coprocesso está disponível como sendo o valor da variável 
+@env{NAME}_PID.
+O comando interno @code{wait} pode ser utilizado para aguardar o 
+coprocesso finalizar.
 
-Since the coprocess is created as an asynchronous command,
-the @code{coproc} command always returns success.
-The return status of a coprocess is the exit status of @var{command}.
+Dado que o coprocesso é criado como um comando assíncrono, o comando 
+@code{coproc} sempre retorna sucesso.
+O status de retorno de um coprocesso é o status de saída de 
+@var{command}.
 
 @node GNU Parallel
 @subsection GNU Parallel
 
-There are ways to run commands in parallel that are not built into Bash.
-GNU Parallel is a tool to do just that.
+Existem maneiras de executar comandos em paralelo os quais não são 
+internos ao Bash.
+GNU Parallel é uma ferramenta para fazer justamente isso.
 
-GNU Parallel, as its name suggests, can be used to build and run commands
-in parallel.  You may run the same command with different arguments, whether
-they are filenames, usernames, hostnames, or lines read from files.  GNU
-Parallel provides shorthand references to many of the most common operations
-(input lines, various portions of the input line, different ways to specify
-the input source, and so on).  Parallel can replace @code{xargs} or feed
-commands from its input sources to several different instances of Bash.
+GNU Parallel, como seu próprio nome sugere, pode ser utilizado para 
+construir e executar comandos em paralelo.   Vocẽ pode executar o 
+mesmo comando com argumentos diferentes, quer sejam nomes de arquivos, 
+nomes de usuários, nomes de máquinas ou linhas lidas de um arquivo.   
+GNU Parallel fornece referências de atalhos para muitas das mais comuns 
+operações (linhas de entrada, várias porções da linha de entrada, 
+maneiras diferentes de especificar a fonte de entrada e assim por 
+diante).   GNU Parallel pode substituir @code{xargs} ou alimentar 
+comandos a partir de suas fontes de entrada para várias instâncias 
+distintas de Bash.
 
-For a complete description, refer to the GNU Parallel documentation.  A few
-examples should provide a brief introduction to its use.
+Para uma descrição completa, veja-se a documentação de GNU Parallel.   
+Alguns exemplos deveriam fornecer um introdução breve ao seu uso.
 
-For example, it is easy to replace @code{xargs} to gzip all html files in the
-current directory and its subdirectories:
+Por exemplo, é simples substituir @code{xargs} para compactar todos os 
+arquivos html com gzip no diretório atual e seus subdiretórios:
 @example
 find . -type f -name '*.html' -print | parallel gzip
 @end example
 @noindent
-If you need to protect special characters such as newlines in file names,
-use find's @option{-print0} option and parallel's @option{-0} option.
+Se você necessitar proteger caracteres especiais tais como newlines em 
+nomes de arquivos, utilize a opção do find @option{-print0} e a opção do 
+GNU Parallel @option{-0}.
 
-You can use Parallel to move files from the current directory when the
-number of files is too large to process with one @code{mv} invocation:
+Você pode utilizar GNU Parallel para mover arquivos do diretório atual 
+quando o número de arquivos for demasiadamente grande para se processar 
+com uma invocação de @code{mv}:
 @example
 ls | parallel mv @{@} destdir
 @end example
 
-As you can see, the @{@} is replaced with each line read from standard input.
-While using @code{ls} will work in most instances, it is not sufficient to
-deal with all filenames.
-If you need to accommodate special characters in filenames, you can use
+Como se pode observar, o @{@} é substituído por cada linha lida a partir 
+da entrada padrão.
+Ao tempo em que a utilização de @code{ls} funcionará na maioria das 
+instâncias, isso não é suficiente para lidar com todos os nomes de 
+arquivos.
+Caso se necessite acomodar caracteres especiais em nomes de arquivos, 
+pode-se utilizar
 
 @example
 find . -depth 1 \! -name '.*' -print0 | parallel -0 mv @{@} destdir
 @end example
 
 @noindent
-as alluded to above.
+conforme mencionado acima.
 
-This will run as many @code{mv} commands as there are files in the current
-directory.
-You can emulate a parallel @code{xargs} by adding the @option{-X} option:
+Isso executará tantos comandos @code{mv} quantos sejam os arquivos no 
+diretório de trabalho atual.
+Pode-se simular um @code{xargs} paralelo adicionando-se a opção 
+@option{-X}:
 @example
 find . -depth 1 \! -name '.*' -print0 | parallel -0 -X mv @{@} destdir
 @end example
 
-GNU Parallel can replace certain common idioms that operate on lines read
-from a file (in this case, filenames listed one per line):
+GNU Parallel pode substituir certos idiomas comuns que operam em linhas 
+lidas a partir de um arquivo (nesse caso, nomes de arquivos listados um 
+por linha):
 @example
 	while IFS= read -r x; do
 		do-something1 "$x" "config-$x"
@@ -1333,56 +1349,62 @@ from a file (in this case, filenames listed one per line):
 @end example
 
 @noindent
-with a more compact syntax reminiscent of lambdas:
+com uma sintaxe mais compacta reminiscente das anônimas:
 @example
 cat list | parallel "do-something1 @{@} config-@{@} ; do-something2 < @{@}" | process-output
 @end example
 
-Parallel provides a built-in mechanism to remove filename extensions, which
-lends itself to batch file transformations or renaming:
+GNU Parallel fornece um mecanismo implementado internamente para remover 
+extensões de nomes de arquivos, o qual se presta a transformações de 
+arquivos em lote ou renomeamento:
 @example
 ls *.gz | parallel -j+0 "zcat @{@} | bzip2 >@{.@}.bz2 && rm @{@}"
 @end example
 @noindent
-This will recompress all files in the current directory with names ending
-in .gz using bzip2, running one job per CPU (-j+0) in parallel.
-(We use @code{ls} for brevity here; using @code{find} as above is more
-robust in the face of filenames containing unexpected characters.)
-Parallel can take arguments from the command line; the above can also be
-written as
+Isso irá recompactar todos os arquivos no diretório de trabalho atual 
+com nomes terminando em .gz utilizando bzip2, executando uma tarefa por 
+CPU (-j+0) em paralelo.
+(Utiliza-se @code{ls} para brevidade aqui; utilizando-se @code{find} 
+como acima é mais robusto em face de nomes de arquivos contendo 
+caracteres inesperados).
+GNU Parallel pode obter argumentos a partir da linha de comando; o 
+exemplo acima também pode ser escrito como
 
 @example
 parallel "zcat @{@} | bzip2 >@{.@}.bz2 && rm @{@}" ::: *.gz
 @end example
 
-If a command generates output, you may want to preserve the input order in
-the output.  For instance, the following command
+Se um comando gerar saída, pode-se desejar preservar a ordem de entrada 
+na saída.   Por exemplo, o comando seguinte
 @example
 @{ echo foss.org.my ; echo debian.org; echo freenetproject.org; @} | parallel traceroute
 @end example
 @noindent
-will display as output the traceroute invocation that finishes first.
-Adding the @option{-k} option 
+Exibirá aquela saída da invocação de traceroute que finalizar primeiro.
+Adicionando-se a opção @option{-k}
 @example
 @{ echo foss.org.my ; echo debian.org; echo freenetproject.org; @} | parallel -k traceroute
 @end example
 @noindent
-will ensure that the output of @code{traceroute foss.org.my} is displayed first.
+se terá a certeza de que a saída de @code{traceroute foss.org.my} será 
+exibida primeiro.
 
-Finally, Parallel can be used to run a sequence of shell commands in parallel,
-similar to @samp{cat file | bash}.
-It is not uncommon to take a list of filenames, create a series of shell
-commands to operate on them, and feed that list of commnds to a shell.
-Parallel can speed this up.  Assuming that @file{file} contains a list of
-shell commands, one per line,
+Finalmente, GNU Parallel pode ser utilizado para se executar uma 
+sequência de comandos de shell em paralelo, similar a @samp{cat file | bash}.
+Não é incomum tomar-se uma lista de nomes de arquivos, criar-se uma 
+série de comandos de shell para operar em cime deles, e fornecer tal 
+lista de comandos a um shell.
+GNU Parallel pode acelerar isso.   Presumindo-se que @file{file} contém 
+uma lista de comandos de shell, um por linha,
 
 @example
 parallel -j 10 < file
 @end example
 
 @noindent
-will evaluate the commands using the shell (since no explicit command is
-supplied as an argument), in blocks of ten shell jobs at a time.
+irá avaliar os comandos utilizando o shell (dado que nenhum comando 
+explícito é fornecido como um argumento), em blocos de dez (10) tarefas 
+de shell por vez.
 
 @node Shell Functions
 @section Shell Functions
