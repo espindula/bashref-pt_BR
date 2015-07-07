@@ -1411,15 +1411,17 @@ de shell por vez.
 @cindex shell function
 @cindex functions, shell
 
-Shell functions are a way to group commands for later execution
-using a single name for the group.  They are executed just like
-a "regular" command.
-When the name of a shell function is used as a simple command name,
-the list of commands associated with that function name is executed.
-Shell functions are executed in the current
-shell context; no new process is created to interpret them.
+Funções de shell são uma maneira de agrupar comandos para execução 
+posterior utilizando um nome único para o grupo.   Elas são executadas 
+exatamente como um comando "regular".
+Quando o nome de uma função de shell é utilizada como um nome de comando 
+simples, a lista dos comandos associados com aquele nome de função é 
+executada.
+Funções de shell são executadas no contexto do shell atual; nenhum 
+processo novo é criado para interpretá-los.
 
-Functions are declared using this syntax:
+As funções são declaradas utilizando-se esta sintaxe:
+
 @rwindex function
 @example
 @var{name} () @var{compound-command} [ @var{redirections} ]
@@ -1431,105 +1433,102 @@ or
 function @var{name} [()] @var{compound-command} [ @var{redirections} ]
 @end example
 
-This defines a shell function named @var{name}.  The reserved
-word @code{function} is optional.
-If the @code{function} reserved
-word is supplied, the parentheses are optional.
-The @var{body} of the function is the compound command
-@var{compound-command} (@pxref{Compound Commands}).
-That command is usually a @var{list} enclosed between @{ and @}, but
-may be any compound command listed above.
-@var{compound-command} is executed whenever @var{name} is specified as the
-name of a command.
-When the shell is in @sc{posix} mode (@pxref{Bash POSIX Mode}),
-@var{name} may not be the same as one of the special builtins
+Isso define uma função de shell chamada @var{name}.   A palavra 
+reservada @code{function} é opcional.   Se a palavra reservada 
+@code{function} for informada, então os parênteses são opcionais.
+O @var{body} da função é o comando composto @var{compound-command} 
+(@pxref{Compound Commands}).
+Esse comando é em regra uma @var{list} encapsulada entre @{ e @}, porém 
+pode ser qualquer comando composto listado acima.
+@var{compound-command} é executado sempre que @var{name} for 
+especificado como o nome do comando.
+Quando o shell está em modo @sc{posix} (@pxref{Bash POSIX Mode}), 
+@var{name} pode não ser o mesmo que um dos comandos internos especiais 
 (@pxref{Special Builtins}).
-Any redirections (@pxref{Redirections}) associated with the shell function
-are performed when the function is executed.
+Quaisquer redireções (@pxref{Redirections}) associadas com a função de 
+shell são feitas quando a função é executada.
 
-A function definition may be deleted using the @option{-f} option to the
-@code{unset} builtin (@pxref{Bourne Shell Builtins}).
+Uma definição de função pode ser deletada utilizando-se a opção 
+@option{-f} para o comando interno @code{unset} (@pxref{Bourne Shell 
+Builtins}).
 
-The exit status of a function definition is zero unless a syntax error
-occurs or a readonly function with the same name already exists.
-When executed, the exit status of a function is the exit status of the
-last command executed in the body.
+O status de saída de uma definição de função é zero a menos que um erro 
+de sintaxe ocorra ou uma função somente leitura com o mesmo nome já 
+exista.
+Quando executada, o status de saída de uma função é o status de saída do 
+último comando executado no corpo dessa função.
 
-Note that for historical reasons, in the most common usage the curly braces
-that surround the body of the function must be separated from the body by
-@code{blank}s or newlines.
-This is because the braces are reserved words and are only recognized
-as such when they are separated from the command list
-by whitespace or another shell metacharacter.
-Also, when using the braces, the @var{list} must be terminated by a semicolon,
-a @samp{&}, or a newline.
+Perceba que, por razões históricas, no uso mais comum as chaves que 
+envolvem o corpo de uma função devem necessariamente serem separadas do 
+corpo por caracteres @code{blank}s ou newlines.
+Isso é porque as chaves são palavras reservadas e apenas são 
+reconhecidas como tais quando elas estão separadas da lista de comando 
+por espaço em branco ou um outro metacaracter de shell.
+Também, quando da utilização de chaves, a @var{list} deve 
+necessariamente ser finalizada por um ponto e vírgula, ou por um 
+@samp{&}, ou por um newline.
 
-When a function is executed, the arguments to the
-function become the positional parameters
-during its execution (@pxref{Positional Parameters}).
-The special parameter @samp{#} that expands to the number of
-positional parameters is updated to reflect the change.
-Special parameter @code{0} is unchanged.
-The first element of the @env{FUNCNAME} variable is set to the
-name of the function while the function is executing.
+Quando a função é executada, os argumentos para a função se tornam os 
+parâmetros posicionais durante a execução da função (@pxref{Positional 
+Parameters}).
+O parâmetro especial @samp{#} que é expandido para o número de 
+parâmetros posicionais é atualizado para refletir a mudança.
+O parâmetro especial @code{0} fica imodificado.
+O primeiro elemento da variável @env{FUNCNAME} é configurado para o nome 
+da função ao tempo em que a função é executada.
 
-All other aspects of the shell execution
-environment are identical between a function and its caller
-with these exceptions:
-the @env{DEBUG} and @env{RETURN} traps
-are not inherited unless the function has been given the
-@code{trace} attribute using the @code{declare} builtin or
-the @code{-o functrace} option has been enabled with
-the @code{set} builtin,
-(in which case all functions inherit the @env{DEBUG} and @env{RETURN} traps),
-and the @env{ERR} trap is not inherited unless the @code{-o errtrace}
-shell option has been enabled.
-@xref{Bourne Shell Builtins}, for the description of the
-@code{trap} builtin.
+Todos os outros aspectos do ambiente de execução de shell são identicos 
+entre a função e quem a invoca, com as seguintes exceções:
+os coletores @env{DEBUG} e @env{RETURN} não são herdados, a menos que a 
+função tenha recebido o atributo @code{trace} utilizando o comando 
+interno @code{declare} ou a opção @code{-o functrace} tenha sido 
+habilitada com o comando interno @code{set}, (caso no qual todas as 
+funções herdam os coletores @env{DEBUG} e @env{RETURN}, o coletor 
+@env{ERR} não é herdado, a menos que a opção de shell @code{-o errtrace} 
+tenha sido habilitada.
+Veja-se @xref{Bourne Shell Builtins}, para a descrição do comando 
+interno @code{trap}.
 
-The @env{FUNCNEST} variable, if set to a numeric value greater
-than 0, defines a maximum function nesting level.  Function
-invocations that exceed the limit cause the entire command to
-abort.
+A variável @env{FUNCNEST}, se configurada para um valor numérico maior 
+que zero, define um nível máximo de aninhamento de função.   As 
+invocações de função que excederem o limite fazem com que o comando 
+inteiro aborte.
 
-If the builtin command @code{return}
-is executed in a function, the function completes and
-execution resumes with the next command after the function
-call.
-Any command associated with the @code{RETURN} trap is executed
-before execution resumes.
-When a function completes, the values of the
-positional parameters and the special parameter @samp{#}
-are restored to the values they had prior to the function's
-execution.  If a numeric argument is given to @code{return},
-that is the function's return status; otherwise the function's
-return status is the exit status of the last command executed
-before the @code{return}.
+Se o comando inteiro @code{return} for executado em uma função, então a 
+função completa sua execução e reinicia com o próximo comando após a 
+chamada de função.
+Qualquer comando associado com o coletor @code{RETURN} é executado antes 
+que a função reinicie sua execução.
+Quando uma função completa sua execução, os valores dos parâmetros 
+posicionais e o parâmetro especial @samp{#} são restaurados para os 
+valores que eles tinham antes da execução da função.   Se um argumento 
+numérico é dado ao @code{return}, então esse é s status de retorno da 
+função; do contrário o status de retorno da função é o statua de saída 
+do último comando executado antes do @code{return}.
 
-Variables local to the function may be declared with the
-@code{local} builtin.  These variables are visible only to
-the function and the commands it invokes.
+Variáveis locais para a função podem ser declaradas com o comando 
+interno @code{local}.   Essas variáveis são visíveis apenas para a 
+função e aos comandos que a função invocar.
 
-Function names and definitions may be listed with the
-@option{-f} option to the @code{declare} (@code{typeset})
-builtin command (@pxref{Bash Builtins}).
-The @option{-F} option to @code{declare} or @code{typeset}
-will list the function names only
-(and optionally the source file and line number, if the @code{extdebug}
-shell option is enabled).
-Functions may be exported so that subshells
-automatically have them defined with the
-@option{-f} option to the @code{export} builtin
-(@pxref{Bourne Shell Builtins}).
-Note that shell functions and variables with the same name may result
-in multiple identically-named entries in the environment passed to the
-shell's children.
-Care should be taken in cases where this may cause a problem.
+Os nomes de função e definições podem ser listados com a opção 
+@option{-f} para o comando interno @code{declare} (@code{typeset}) 
+(@pxref{Bash Builtins}).
+A opção @option{-F} para @code{declare} ou @code{typeset} listará 
+apenas os nomes de funções (e opcionalmente o arquivo fonte e número da 
+linha, se a opção de shell @code{extdebug} estiver habilitada).
+As funções podem ser exportadas, de forma que subshells automaticamente 
+tenham elas definidas com a opção @option{-f} para o comando interno 
+@code{export} (@pxref{Bourne Shell Builtins}).
+Perceba que as funções e variáveis de shell com o mesmo nome podem 
+resultar em entradas múltiplas identicamente nomeadas no ambiente 
+passadas para os filhos do shell.
+Cuidado deveria ser tomado em casos onde isso pode causar um problema.
 
-Functions may be recursive.
-The @code{FUNCNEST} variable may be used to limit the depth of the
-function call stack and restrict the number of function invocations.
-By default, no limit is placed on the number of recursive  calls.
+As funções podem ser recursivas.
+A variável @code{FUNCNEST} pode ser utilizada para limitar a 
+profundidade da pilha de chamada da função e restringir o número de 
+invocações de função.
+Por padrão, nenhum limite é colocado no número de chamadas recursivas.
 
 @node Shell Parameters
 @section Shell Parameters
