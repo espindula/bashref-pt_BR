@@ -1,3 +1,5 @@
+2015-07-08	Added UTF-8 encode tag. Mandatory for brazilian portuguese. PDF é now being generated correctly.
+
 2015-07-07	Translated 3.3 - Shell Functions
 
 2015-07-06	Translated from <3.2.4.3 - Grouping Commands> up to <3.2.6 - GNU Parallel>.
