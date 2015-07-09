@@ -409,7 +409,7 @@ dividindo os tokens expandidos em listas de nomes de arquivos
 (@pxref{Filename Expansion}) e comandos e argumentos.
 
 @item
-Desenpenha quaisquer redireções necessárias (@pxref{Redirections}) e 
+Desempenha quaisquer redireções necessárias (@pxref{Redirections}) e 
 remove os operadores de redireção e seus operandos da lista de 
 argumentos.
 
@@ -493,7 +493,7 @@ com uma barra invertida.
 Se habilitada, a expansão de histórico será feita, a menos que um 
 @samp{!} que esteja aparecendo em aspas duplas seja encapsulado 
 utilizando-se uma barra invertida.
-A barra invertida que precede um @samp{!} não é removido.
+A barra invertida que precede um @samp{!} não é removida.
 
 Os parâmetros especiais @samp{*} e @samp{@@} tem significado 
 especial quando estejam entre aspas duplas (@pxref{Shell Parameter 
@@ -603,7 +603,7 @@ comando seguido por argumentos, separados por espaços.
 Comandos de shell mais complexos são compostos de comandos simples 
 arranjados juntos em uma variedade de possibilidades: em um canal de 
 comunicação (pipeline) no qual a saída de um comando se torna a entrada 
-de um segundo, em um loop ou contrução condicional, ou em algum outro 
+de um segundo, em um loop ou construção condicional, ou em algum outro 
 agrupamento.
 
 @menu
@@ -679,7 +679,7 @@ A variável @env{TIMEFORMAT} pode ser configurada para um formato de
 cadeia de caracteres que especifique como a informação de temporização 
 deveria ser exibida.   Veja-se @xref{Bash Variables} para uma descrição 
 dos formatos disponíveis.
-O usu de @code{time} como uma palavra reservada permite a temporização 
+O uso de @code{time} como uma palavra reservada permite a temporização 
 de comandos internos do shell, de funções do shell, e de canais de 
 comunicação (pipelines).   Um comando @code{time} externo não pode 
 temporizar esses facilmente.
@@ -732,9 +732,9 @@ O shell não aguarda que o comando finalize a execução, e o status de
 retorno é 0 (verdadeiro).
 Quando o controle de tarefas não está ativo (@pxref{Job Control}), a 
 entrada padrão para comandos assíncronos, na ausência de quaisquer 
-redireções explicitas, é redirecionada a partir de @code{/dev/null}.
+redireções explícitas, é redirecionada a partir de @code{/dev/null}.
 
-Comandos separados por um @samp{;} são executados sequencialmente; o 
+Comandos separados por um @samp{;} são executados sequêncialmente; o 
 shell aguarda que cada comando finalize sua execução.   O status de 
 retorno é o status de saída do último comando executado.
 
@@ -782,7 +782,7 @@ Quaisquer redireções (@pxref{Redirections}) associadas com um comando de
 composição se aplicam a todos os comandos dentro desse comando de 
 composição a menos que explicitamente sobrepostas.
 
-No maioria dos casos uma lista de comandos em uma descrição de comando 
+Na maioria dos casos uma lista de comandos em uma descrição de comando 
 de composição pode ser separada do restante do comando por um ou mais 
 newlines, e pode ser seguida por um newline ao invés de um ponto e 
 vírgula.
@@ -918,8 +918,8 @@ case @var{word} in [ [(] @var{pattern} [| @var{pattern}]@dots{}) @var{command-li
 @code{case} seletivamente executará a @var{command-list} correspondente 
 à primeira variável @var{pattern} que coincidir com a variável @var{word}.
 Se a opção de shell @code{nocasematch} (veja-se a descrição de 
-@code{shopt} em @ref{The Shopt Builtin}) estiverver habilitada, então a 
-coincidência é testada sem considerar maiúsculas e minúsnulas.
+@code{shopt} em @ref{The Shopt Builtin}) estiver habilitada, então a 
+coincidência é testada sem considerar maiúsculas e minúsculas.
 O caracter @samp{|} é utilizado para separar múltiplas variáveis 
 @var{pattern}, e o operador @samp{)} finaliza a lista de variáveis.
 Uma lista de variáveis @var{pattern} e uma lista de comandos associada é 
@@ -963,9 +963,9 @@ A utilização de um @samp{;&} no lugar de um @samp{;;} faz com que a
 execução continue com a @var{command-list} associada com a próxima 
 cláusula, se existir alguma.
 A utilização de um @samp{;&} no lugar de um @samp{;;} faz com que o 
-shell teste os padrões na próxima cláusula, caso existe algum, e execute 
-quaisquer @var{command-list} associadas em cima de uma coincidência 
-testada com sucesso.
+shell teste os padrões na próxima cláusula, caso exista alguma, e 
+execute quaisquer @var{command-list} associadas em cima de uma 
+coincidência testada com sucesso.
 
 O status de retorno é zero se nenhuma variável @var{pattern} coincidir.   
 Por outro lado, o status de retorno é o status de saída da 
@@ -1001,7 +1001,7 @@ Os @var{commands} são executados após cada seleção até que um comando
 completa a sua execução.
 
 Eis um exemplo que permite ao usuário pegar um nome de arquivo a partir 
-do diretório de trabalho atual, e exibir o nome e indice do arquivo 
+do diretório de trabalho atual, e exibir o nome e índice do arquivo 
 selecionado.
 
 @example
@@ -1020,7 +1020,7 @@ done
 A @var{expression} aritmética é calculada de acordo com as regras 
 descritas abaixo (@pxref{Shell Arithmetic}).
 Se o valor da expressão for diferente de zero, então o status de retorno 
-é 0; do contrário o statua de retorno é 1.   Isso é exatamente 
+é 0; do contrário o status de retorno é 1.   Isso é exatamente 
 equivalente a
 @example
 let "@var{expression}"
@@ -1048,7 +1048,7 @@ feitas.
 Operadores condicionais tais como @samp{-f} devem necessariamente estar 
 fora de aspas para serem reconhecidos como primários.
 
-Quanto utilizados com @code{[[}, os operadores @samp{<} e @samp{>} 
+Quando utilizados com @code{[[}, os operadores @samp{<} e @samp{>} 
 ordenam lexicograficamente utilizando o locale atual.
 
 Quando os operadores @samp{==} e @samp{!=} são utilizados, a sequência 
@@ -1092,7 +1092,7 @@ parênteses dentro da expressão regular são salvas na variável de vetor
 @code{BASH_REMATCH}.
 O elemento do @code{BASH_REMATCH} cujo indice é 0 é a porção da 
 sequência de caracteres coincidente com a expressão regular inteira.
-O elemento do @code{BASH_REMATCH} cujo indice é @var{n} é a porção da 
+O elemento do @code{BASH_REMATCH} cujo índice é @var{n} é a porção da 
 sequência de caracteres coincidente com a @var{n}ésima subexpressão 
 entre parênteses.
 
@@ -1137,7 +1137,7 @@ Os programadores shell deveriam ter um cuidado especial com as barras
 invertidas, dado que as barras invertidas são utilizadas tanto pelo 
 shell quanto por expressões regulares para remover o significado 
 especial do caracter seguinte à barra invertida.
-Os dois conjuntos de comandos seguintes @emph{not} são equivalentes:
+Os dois conjuntos de comandos seguintes @emph{não} são equivalentes:
 @example
 pattern='\.'
 
@@ -1173,8 +1173,8 @@ Verdadeiro se @var{expression} for falsa.
 Verdadeiro se ambas @var{expression1} e @var{expression2} forem falsas.
 
 @item @var{expression1} || @var{expression2}
-Verdadeiro se ou @var{expression1} ou @var{expression2} forem 
-verdadeiro.
+Verdadeiro se ou @var{expression1} ou @var{expression2} for 
+verdadeira.
 @end table
 
 @noindent
@@ -1260,7 +1260,7 @@ primeiro elemento do vetor que é @env{NAME}[0].
 A entrada padrão de @var{command} é conectada via tubo ao arquivo 
 descritor no shell em execução, e esse arquivo descritor é atribuído ao 
 segundo elemento do vetor que é @env{NAME}[1].
-Esse tube é estabelecido antes de quaisquer redireções especificadas 
+Esse tubo é estabelecido antes de quaisquer redireções especificadas 
 pelo comando (@pxref{Redirections}).
 Os descritores de arquivo podem ser utilizados como argumentos para 
 redireções e comandos de shell utilizando-se expansões de palavras 
@@ -1286,7 +1286,7 @@ internos ao Bash.
 GNU Parallel é uma ferramenta para fazer justamente isso.
 
 GNU Parallel, como seu próprio nome sugere, pode ser utilizado para 
-construir e executar comandos em paralelo.   Vocẽ pode executar o 
+construir e executar comandos em paralelo.   Você pode executar o 
 mesmo comando com argumentos diferentes, quer sejam nomes de arquivos, 
 nomes de usuários, nomes de máquinas ou linhas lidas de um arquivo.   
 GNU Parallel fornece referências de atalhos para muitas das mais comuns 
@@ -1297,7 +1297,7 @@ comandos a partir de suas fontes de entrada para várias instâncias
 distintas de Bash.
 
 Para uma descrição completa, veja-se a documentação de GNU Parallel.   
-Alguns exemplos deveriam fornecer um introdução breve ao seu uso.
+Alguns exemplos deveriam fornecer uma introdução breve ao seu uso.
 
 Por exemplo, é simples substituir @code{xargs} para compactar todos os 
 arquivos html com gzip no diretório atual e seus subdiretórios:
@@ -1393,7 +1393,7 @@ exibida primeiro.
 Finalmente, GNU Parallel pode ser utilizado para se executar uma 
 sequência de comandos de shell em paralelo, similar a @samp{cat file | bash}.
 Não é incomum tomar-se uma lista de nomes de arquivos, criar-se uma 
-série de comandos de shell para operar em cime deles, e fornecer tal 
+série de comandos de shell para operar em cima deles, e fornecer tal 
 lista de comandos a um shell.
 GNU Parallel pode acelerar isso.   Presumindo-se que @file{file} contém 
 uma lista de comandos de shell, um por linha,
@@ -1478,7 +1478,7 @@ O parâmetro especial @code{0} fica imodificado.
 O primeiro elemento da variável @env{FUNCNAME} é configurado para o nome 
 da função ao tempo em que a função é executada.
 
-Todos os outros aspectos do ambiente de execução de shell são identicos 
+Todos os outros aspectos do ambiente de execução de shell são idênticos 
 entre a função e quem a invoca, com as seguintes exceções:
 os coletores @env{DEBUG} e @env{RETURN} não são herdados, a menos que a 
 função tenha recebido o atributo @code{trace} utilizando o comando 
@@ -1503,8 +1503,8 @@ que a função reinicie sua execução.
 Quando uma função completa sua execução, os valores dos parâmetros 
 posicionais e o parâmetro especial @samp{#} são restaurados para os 
 valores que eles tinham antes da execução da função.   Se um argumento 
-numérico é dado ao @code{return}, então esse é s status de retorno da 
-função; do contrário o status de retorno da função é o statua de saída 
+numérico é dado ao @code{return}, então esse é o status de retorno da 
+função; do contrário o status de retorno da função é o status de saída 
 do último comando executado antes do @code{return}.
 
 Variáveis locais para a função podem ser declaradas com o comando 
@@ -1538,94 +1538,100 @@ Por padrão, nenhum limite é colocado no número de chamadas recursivas.
 @cindex shell variable
 
 @menu
-* Positional Parameters::	The shell's command-line arguments.
-* Special Parameters::		Parameters denoted by special characters.
+* Positional Parameters::	Os argumentos de linha de comando do 
+shell.
+* Special Parameters::		Parâmetros denotados por caracteres 
+especiais.
 @end menu
 
-A @var{parameter} is an entity that stores values.
-It can be a @code{name}, a number, or one of the special characters
-listed below.
-A @var{variable} is a parameter denoted by a @code{name}.
-A variable has a @var{value} and zero or more @var{attributes}.
-Attributes are assigned using the @code{declare} builtin command
-(see the description of the @code{declare} builtin in @ref{Bash Builtins}).
+Um @var{parameter} é uma entidade que armazena valores.   Pode ser um 
+@code{name}, um número, ou um dos caracteres especiais listados abaixo.
+Uma @var{variable} é um parâmetro denotado por um @code{name}.
+Uma variável tem um @var{value} e zero ou mais @var{attributes}.
+Atributos são atribuídos utilizando-se o comando interno @code{declare} 
+(veja-se a descrição do comando interno @code{declare} em @ref{Bash 
+Builtins}).
 
-A parameter is set if it has been assigned a value.  The null string is
-a valid value.  Once a variable is set, it may be unset only by using
-the @code{unset} builtin command.
+Um parâmetro é configurado se a ele foi atribuído um valor.   A frase 
+null é um valor válido.   Uma vez que uma variável for configurada, ela 
+pode ser desconfigurada apenas utilizando-se o comando interno 
+@code{unset}.
 
-A variable may be assigned to by a statement of the form
+Pode-se atribuir um valor a uma variável com uma declaração da forma
 @example
 @var{name}=[@var{value}]
 @end example
 @noindent
-If @var{value}
-is not given, the variable is assigned the null string.  All
-@var{value}s undergo tilde expansion, parameter and variable expansion,
-command substitution, arithmetic expansion, and quote
-removal (detailed below).  If the variable has its @code{integer}
-attribute set, then @var{value} 
-is evaluated as an arithmetic expression even if the @code{$((@dots{}))}
-expansion is not used (@pxref{Arithmetic Expansion}).
-Word splitting is not performed, with the exception
-of @code{"$@@"} as explained below.
-Filename expansion is not performed.
-Assignment statements may also appear as arguments to the
-@code{alias}, 
-@code{declare}, @code{typeset}, @code{export}, @code{readonly},
-and @code{local} builtin commands.
-When in @sc{posix} mode (@pxref{Bash POSIX Mode}), these builtins may appear
-in a command after one or more instances of the @code{command} builtin
-and retain these assignment statement properties.
+Se @var{value} não for dado, é atribuída para a variável a palavra null.  
+Todos os @var{value}s estão sujeitos à expansão de til, expansão de 
+parâmetro e variável, substituição de comando, expansão aritmética e 
+remoção de aspas (detalhadas abaixo).   Se a variável tiver seu atributo 
+@code{integer} configurado, então @var{value} é calculado como uma 
+expressão aritmética mesmo se a expansão @code{$((@dots{}))} não for 
+utilizada (veja-se @ref{Arithmetic Expansion}).
+Divisão de palavra não é feita, com a exceção de @code{"$@@"} conforme 
+abaixo exposto.
+Expansão de nome de arquivo não é feita.
+Declarações de atribuição também podem aparecer como argumentos para os 
+comandos internos @code{alias}, @code{declare}, @code{typeset}, 
+@code{export}, @code{readonly}, e @code{local}.
+Quando em modo @sc{posix} (veja-se @ref{Bash POSIX Mode}), esse comandos 
+internos podem aparecer em um comando após uma ou mais instâncias do 
+comando interno @code{command} e conservar essas propriedades de 
+declaração de atribuição.
 
-In the context where an assignment statement is assigning a value  
-to a shell variable or array index (@pxref{Arrays}), the @samp{+=}
-operator can be used to   
-append to or add to the variable's previous value.
-When @samp{+=} is applied to a variable for which the @var{integer} attribute
-has been set, @var{value} is evaluated as an arithmetic expression and
-added to the variable's current value, which is also evaluated.
-When @samp{+=} is applied to an array variable using compound assignment
-(@pxref{Arrays}), the
-variable's value is not unset (as it is when using @samp{=}), and new
-values are appended to the array beginning at one greater than the array's
-maximum index (for indexed arrays),  or added as additional key-value pairs
-in an associative array.
-When applied to a string-valued variable, @var{value} is expanded and
-appended to the variable's value.
+No contexto onde uma declaração de atribuição está atribuindo um valor 
+para uma variável de shell ou índice de vetor (veja-se @ref{Arrays}), o 
+operador @samp{+=} pode ser utilizado ou para acrescentar ou para somar 
+ao valor prévio da variável.
+Quando @samp{+=} é aplicado a uma variável para a qual o atributo 
+@var{integer} tenha sido configurado, @var{value} é calculado como uma 
+expressão aritmética e adicionado ao valor atual da variável, o qual 
+também é calculado.
+Quando @samp{+=} é aplicado a uma variável de vetor utilizando-se 
+atribuição composta (veja-se @ref{Arrays}), o valor da variável não é 
+desconfigurado (como o é ao se utilizar @samp{=}), e novos valores são 
+acrescentados ao vetor iniciando naquele valor maior que o índice máximo 
+do vetor (para vetores indexados), ou somados como pares de valor-chave 
+adicionais em um vetor associativo.
+Quando aplicado a uma variável de valor de sequência de caracteres, 
+@var{value} é expandido e acrescentado ao valor da variável.
 
-A variable can be assigned the @var{nameref} attribute using the
-@option{-n} option to the \fBdeclare\fP or \fBlocal\fP builtin commands
-(@pxref{Bash Builtins})
-to create a @var{nameref}, or a reference to another variable.
-This allows variables to be manipulated indirectly.
-Whenever the nameref variable is referenced or assigned to, the operation
-is actually performed on the variable specified by the nameref variable's
-value.
-A nameref is commonly used within shell functions to refer to a variable
-whose name is passed as an argument to the function.
-For instance, if a variable name is passed to a shell function as its first
-argument, running
+O atributo @var{nameref} de uma variável pode ser atribuído 
+utilizando-se a opção @option{-n} para os comandos internos 
+\fBdeclare\fP ou \fBlocal\fP (veja-se @ref{Bash Builtins}) para criar 
+uma @var{nameref}, ou uma referência a uma outra variável.
+Isso permite que variáveis sejam manipuladas indiretamente.
+Sempre que a variável nameref é referênciada ou é atribuída, a operação 
+é atualmente feita na variável especificada pelo valor da variável 
+nameref.
+Uma variável nameref é usualmente utilizada dentro de funções de shell 
+para referenciar uma variável cujo nome é passado como um argumento para 
+a função.
+Por exemplo, se um nome de variável é passado para uma função de shell 
+como o seu primeiro argumento, executar
 @example
 declare -n ref=$1
 @end example
 @noindent
-inside the function creates a nameref variable @var{ref} whose value is
-the variable name passed as the first argument.
-References and assignments to @var{ref} are treated as references and
-assignments to the variable whose name was passed as @code{$1}.
+dentro da função cria uma variável nameref @var{ref} cujo valor é o nome 
+da variável passado como o primeiro argumento.
+Referências e atribuições a @var{ref} são tratadas como referências e 
+atribuições à variável cujo nome foi passado como @code{$1}.
 
-If the control variable in a @code{for} loop has the nameref attribute,
-the list of words can be a list of shell variables, and a name reference
-will be established for each word in the list, in turn, when the loop is
-executed.
-Array variables cannot be given the @option{-n} attribute.
-However, nameref variables can reference array variables and subscripted
-array variables.
-Namerefs can be unset using the @option{-n} option to the @code{unset} builtin
-(@pxref{Bourne Shell Builtins}).
-Otherwise, if @code{unset} is executed with the name of a nameref variable
-as an argument, the variable referenced by the nameref variable will be unset.
+Se a variável de controle em um loop @code{for} tem o atributo nameref, 
+a lista de palavras pode ser uma lista de variáveis de shell, e uma 
+referência de nome será estabelecida para cada palavra na lista, em 
+sequência, quando o loop é executado.
+Às variáveis de vetores não pode ser atribuído o atributo @option{-n}.
+Entretanto, variáveis nameref podem referênciar variáveis de vetor e 
+variáveis de vetor subscritas.
+Os nameref podem ser desconfigurados utilizando-se a opção @option{-n} 
+para o comando interno @code{unset} (veja-se @ref{Bourne Shell 
+Builtins}).
+Do contrário, se @code{unset} for executado com o nome de uma variável 
+nameref como um argumento, a variável referênciada pela variável nameref 
+será desconfigurada.
 
 @node Positional Parameters
 @subsection Positional Parameters
