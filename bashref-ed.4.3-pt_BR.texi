@@ -1637,62 +1637,64 @@ será desconfigurada.
 @subsection Positional Parameters
 @cindex parameters, positional
 
-A @var{positional parameter} is a parameter denoted by one or more
-digits, other than the single digit @code{0}.  Positional parameters are
-assigned from the shell's arguments when it is invoked,
-and may be reassigned using the @code{set} builtin command.
-Positional parameter @code{N} may be referenced as @code{$@{N@}}, or
-as @code{$N} when @code{N} consists of a single digit.
-Positional parameters may not be assigned to with assignment statements.
-The @code{set} and @code{shift} builtins are used to set and
-unset them (@pxref{Shell Builtin Commands}).
-The positional parameters are
-temporarily replaced when a shell function is executed
-(@pxref{Shell Functions}).
+Um @var{positional parameter} é um parâmetro denotado por um ou mais 
+dígitos, qualquer outro diferente do dígito único @code{0}.   Parâmetros 
+posicionais são atribuídos via argumentos de shell quando esse é 
+invocado, e podem ser reatribuídos utilizando-se o comando interno 
+@code{set}.
+O parâmetro posicional @code{N} pode ser referenciado como 
+@code{$@{N@}}, ou como @code{$N} quando @code{N} consiste de um dígito 
+único.
+Parãmetros posicionais não podem ser atribuídos com declarações de 
+atribuição.
+Os comandos internos @code{set} e @code{shift} são utilizados para 
+configurar e desconfigurar os parâmetros posicionais (veja-se @ref{Shell 
+Builtin Commands}).
+Os parâmetros posicionais são substituídos temporariamente quando uma 
+função de shell é executada (veja-se @ref{Shell Functions}).
 
-When a positional parameter consisting of more than a single
-digit is expanded, it must be enclosed in braces.
+Quando um parâmetro posicional consistindo de mais que um dígito único é 
+expandido, ele deve necessariamente estar contido entre chaves.
 
 @node Special Parameters
 @subsection Special Parameters
 @cindex parameters, special
 
-The shell treats several parameters specially.  These parameters may
-only be referenced; assignment to them is not allowed.
+O shell trata diversos parâmetros especialmente.   Tais parâmetros 
+apenas podem ser referênciados; atribuição a eles não é permitida.
 
 @vtable @code
 
 @item *
 @vindex $*
-($*) Expands to the positional parameters, starting from one.
-When the expansion is not within double quotes, each positional parameter
-expands to a separate word.
-In contexts where it is performed, those words
-are subject to further word splitting and pathname expansion.
-When the expansion occurs within double quotes, it expands to a single word
-with the value of each parameter separated by the first character
-of the @env{IFS}
-special variable.  That is, @code{"$*"} is equivalent
-to @code{"$1@var{c}$2@var{c}@dots{}"}, where @var{c}
-is the first character of the value of the @code{IFS}
-variable.
-If @env{IFS} is unset, the parameters are separated by spaces.
-If @env{IFS} is null, the parameters are joined without intervening
-separators.
+($*) Expande para os parâmetros posicionais, iniciando de um.
+Quando a expansão não está dentro de aspas duplas, cada parâmetro 
+posicional expande para uma palavra separada.
+Em contextos nos quais tal expansão é feita, as mencionadas palavras são 
+objeto de separação mais ampla de palavras e de expansão de nome de 
+caminho.
+Quando a expansão acontece dentro de aspas duplas, ela expande para uma 
+palavra única com o valor de cada parâmetro separado pelo primeiro 
+caracter da variável especial @env{IFS}.   Isto é, @code{"$*"} é 
+equivalente a @code{"$1@var{c}$2@var{c}@dots{}"}, onde @var{c} é o 
+primeiro caracter do valor da variável @code{IFS}.
+Se @env{IFS} estiver desconfigurada, os parâmetros são separados por 
+espaços.
+Se @env{IFS} for null, os parâmetros são unidos sem separadores 
+intervenientes.
 
 @item @@
 @vindex $@@
-($@@) Expands to the positional parameters, starting from one.  When the
-expansion occurs within double quotes, each parameter expands to a
-separate word.  That is, @code{"$@@"} is equivalent to
-@code{"$1" "$2" @dots{}}.
-If the double-quoted expansion occurs within a word, the expansion of
-the first parameter is joined with the beginning part of the original
-word, and the expansion of the last parameter is joined with the last
-part of the original word.
-When there are no positional parameters, @code{"$@@"} and
-@code{$@@}
-expand to nothing (i.e., they are removed).
+($@@) Expande para os parâmetros posicionais, iniciando em um.   Quando 
+a expansão acontece dentro de aspas duplas, cada parâmetro expande para 
+uma palavra separada.   Isto é, @code{"$@@"} é equivalente a @code{"$1" 
+"$2" @dots{}}.
+Se a expansão de aspas duplas ocorre dentro de uma palavra, a expansão 
+do primeiro parâmetro é unido com a parte inicial da palavra original, e 
+a expansão do último parâmetro é unido com a última parte da palavra 
+original.
+Quando não existem parâmetros posicionais, @code{"$@@"} e @code{$@@} 
+expandem para nada (ou seja, os parâmetros posicionais são removidos).
 
 @item #
 @vindex $#
