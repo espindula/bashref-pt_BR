@@ -1698,52 +1698,57 @@ expandem para nada (ou seja, os parâmetros posicionais são removidos).
 
 @item #
 @vindex $#
-($#) Expands to the number of positional parameters in decimal.
+($#) Expande para o número de parâmetros posicionais em decimal.
 
 @item ?
 @vindex $?
-($?) Expands to the exit status of the most recently executed foreground
-pipeline.
+($?) Expande para o status de saída do canal de comunicação executado em 
+primeiro plano mais recentemente.
 
 @item -
 @vindex $-
-($-, a hyphen.)  Expands to the current option flags as specified upon
-invocation, by the @code{set}
-builtin command, or those set by the shell itself
-(such as the @option{-i} option).
+($-, a hyphen.)  Expande para as flags de opção atuais conforme 
+especificadas ao tempo da invocação, pelo comando interno @code{set}, ou 
+aquelas configuradas pelo próprio shell (tal como a opção @option{-i}).
 
 @item $
 @vindex $$
-($$) Expands to the process @sc{id} of the shell.  In a @code{()} subshell, it
-expands to the process @sc{id} of the invoking shell, not the subshell.
+($$) Expande para o @sc{id} de processo do shell.   Dentro de um 
+subshell @code{()}, ele expande para o @sc{id} de processo do shell que 
+invoca, não o do subshell.
 
 @item !
 @vindex $!
-($!) Expands to the process @sc{id} of the job most recently placed into the
-background, whether executed as an asynchronous command or using
-the @code{bg} builtin (@pxref{Job Control Builtins}).
+($!) Expande para o @sc{id} de processo da tarefa colocada mais 
+recentemente em segundo plano, seja executada como um comando assíncrono 
+ou utilizando o comando interno @code{bg} (veja-se @ref{Job Control 
+Builtins}).
 
 @item 0
 @vindex $0
-($0) Expands to the name of the shell or shell script.  This is set at
-shell initialization.  If Bash is invoked with a file of commands
-(@pxref{Shell Scripts}), @code{$0} is set to the name of that file.
-If Bash is started with the @option{-c} option (@pxref{Invoking Bash}),
-then @code{$0} is set to the first argument after the string to be
-executed, if one is present.  Otherwise, it is set
-to the filename used to invoke Bash, as given by argument zero.
+($0) Expande para o nome do shell ou o do script de shell.   Isso é 
+configurado na inicialização do shell.   Se Bash for invocado com um 
+arquivo de comandos (veja-se @ref{Shell Scripts}), @code{$0} é 
+configurado para o nome desse arquivo.
+Se Bash for iniciado com a opção @option{-c} (veja-se @ref{Invoking 
+Bash}), então @code{$0} é configurado para o primeiro argumento após a 
+sequência de caracteres ser executada, caso uma esteja presente.   Do 
+contrário, é configurado para o nome do arquivo utilizado para invocar 
+Bash, conforme dado pelo argumento zero.
 
 @item _
 @vindex $_
-($_, an underscore.)
-At shell startup, set to the absolute pathname used to invoke the
-shell or shell script being executed as passed in the environment
-or argument list.
-Subsequently, expands to the last argument to the previous command,
-after expansion.   
-Also set to the full pathname used to invoke each command executed
-and placed in the environment exported to that command.
-When checking mail, this parameter holds the name of the mail file.
+($_, um sublinhado.)
+Na inicialização do shell, configurado para o nome de caminho absoluto 
+utilizado para invocar o shell ou script de shell sendo executado 
+conforme passado no ambiente ou na lista de argumento.
+Subsequentemente, expande para o último argumento ao comando prévio, 
+após expansão.
+Também configurado para o nome de caminho completo utilizado para 
+invocar cada comando executado e colocado no ambiente exportado para 
+esse comando.
+Quando da verificação de mensagem, esse parâmetro mantém o nome do 
+arquivo de mensagem.
 @end vtable
 
 @node Shell Expansions
