@@ -1707,7 +1707,7 @@ primeiro plano mais recentemente.
 
 @item -
 @vindex $-
-($-, a hyphen.)  Expande para as flags de opção atuais conforme 
+($-, um hífen.)  Expande para as flags de opção atuais conforme 
 especificadas ao tempo da invocação, pelo comando interno @code{set}, ou 
 aquelas configuradas pelo próprio shell (tal como a opção @option{-i}).
 
@@ -1755,125 +1755,130 @@ arquivo de mensagem.
 @section Shell Expansions
 @cindex expansion
 
-Expansion is performed on the command line after it has been split into
-@code{token}s.  There are seven kinds of expansion performed:
+A expansão é realizada na linha de comando após ela ter sido dividida em 
+@code{token}s.   Existem sete tipos de expansão realizadas:
 
 @itemize @bullet
-@item brace expansion
-@item tilde expansion
-@item parameter and variable expansion
-@item command substitution
-@item arithmetic expansion
-@item word splitting
-@item filename expansion
+@item expansão de chave
+@item expansão de til
+@item expansão de parâmetro e variável
+@item substituição de comando
+@item expansão aritmética
+@item divisão de palavra
+@item expansão de nome de arquivo
 @end itemize
 
 @menu
-* Brace Expansion::		Expansion of expressions within braces.
-* Tilde Expansion::		Expansion of the ~ character.
-* Shell Parameter Expansion::	How Bash expands variables to their values.
-* Command Substitution::	Using the output of a command as an argument.
-* Arithmetic Expansion::	How to use arithmetic in shell expansions.
-* Process Substitution::	A way to write and read to and from a
-				command.
-* Word Splitting::	How the results of expansion are split into separate
-			arguments.
-* Filename Expansion::	A shorthand for specifying filenames matching patterns.
-* Quote Removal::	How and when quote characters are removed from
-			words.
+* Brace Expansion::		Expansão de expressões dentro de chaves.
+* Tilde Expansion::		Expansão do caracter ~.
+* Shell Parameter Expansion::	Como Bash expande variáveis para seus 
+				valores.
+* Command Substitution::	Utilizando a saída de um comando como um 
+				argumento.
+* Arithmetic Expansion::	Como utilizar aritmética em expansões de 
+				shell.
+* Process Substitution::	Uma maneira de escrever e ler para e de 
+				um comando.
+* Word Splitting::	Como os resultados da expansão são divididos em 
+			argumentos separados.
+* Filename Expansion::	Uma abreviação para especificar nomes de 
+			arquivos que conferem com padrões.
+* Quote Removal::	Como e quando caracteres de aspas são removidos 
+			de palavras.
 @end menu
 
-The order of expansions is:
-brace expansion;
-tilde expansion, parameter and variable expansion, arithmetic expansion,
-and command substitution (done in a left-to-right fashion);
-word splitting;
-and filename expansion.
+A ordem das expansões é: expansão de chave; expansão de til, expansão de 
+parâmetro e variável, expansão aritmética, e substituição de comando 
+(feita da esquerda para a direita); divisão de palavra; e expansão de 
+nome de arquivo.
 
-On systems that can support it, there is an additional expansion
-available: @var{process substitution}.
-This is performed at the
-same time as tilde, parameter, variable, and arithmetic expansion and
-command substitution.
+Em sistemas que podem suportar, existe uma expansão adicional 
+disponível: @var{process substitution}.
+Essa é realizada ao mesmo tempo que til, parâmetro, variável, e expansão 
+aritmética e substituição de comando.
 
-Only brace expansion, word splitting, and filename expansion
-can change the number of words of the expansion; other expansions
-expand a single word to a single word.
-The only exceptions to this are the expansions of
-@code{"$@@"} (@pxref{Special Parameters}) and @code{"$@{@var{name}[@@]@}"}
-(@pxref{Arrays}).
+Apenas a expansão de chave, divisão de palavra e expansão de nome de 
+arquivo podem mudar o número de palavras da expansão; outras expansões 
+expandem a palavra única para uma palavra única.
+As únicas exceções a isso são as expansões de @code{"$@@"} 
+(veja-se @ref{Special Parameters}) e @code{"$@{@var{name}[@@]@}"}
+(veja-se @ref{Arrays}).
 
-After all expansions, @code{quote removal} (@pxref{Quote Removal})
-is performed.
+Após todas as expansões @code{quote removal} (veja-se @ref{Quote 
+Removal}) é realizada.
 
 @node Brace Expansion
 @subsection Brace Expansion
 @cindex brace expansion
 @cindex expansion, brace
 
-Brace expansion is a mechanism by which arbitrary strings may be generated.
-This mechanism is similar to
-@var{filename expansion} (@pxref{Filename Expansion}),
-but the filenames generated need not exist.
-Patterns to be brace expanded take the form of an optional @var{preamble},
-followed by either a series of comma-separated strings or a sequence expression
-between a pair of braces,
-followed by an optional @var{postscript}.
-The preamble is prefixed to each string contained within the braces, and
-the postscript is then appended to each resulting string, expanding left
-to right.
+Expansão de chave é um mecanismo pelo qual sequências de caracteres 
+arbitrárias podem ser geradas.
+Esse mecenismo é similar a @var{filename expansion} 
+(veja-se @ref{Filename Expansion}), porém os nomes de arquivo gerados 
+não podem existir.
+Padrões para serem expandidos de chave assumem a forma de um 
+@var{preamble} opcional, segiuido de ou uma série de sequências de 
+caracteres separadas por vírgulas ou uma expressão sequêncial entre um 
+par de chaves, seguida por um @var{postscript} opcional.
+O preâmbulo é prefixado para cada sequência de caracteres contida nas 
+chaves, e o postscript é então adicionado a cada sequência de caracteres 
+resultante, expandindo da esquerda para a direita.
 
-Brace expansions may be nested.
-The results of each expanded string are not sorted; left to right order
-is preserved.
-For example,
+Expansões de chave podem ser aninhadas.
+Os resultados de cada sequência de caracteres expandida não são 
+ordenados; a ordem da esquerda para a direita é preservada.
+Por exemplo,
 @example
 bash$ echo a@{d,c,b@}e
 ade ace abe
 @end example
 
-A sequence expression takes the form @code{@{@var{x}..@var{y}[..@var{incr}]@}},
-where @var{x} and @var{y} are either integers or single characters,
-and @var{incr}, an optional increment, is an integer.
-When integers are supplied, the expression expands to each number between
-@var{x} and @var{y}, inclusive.
-Supplied integers may be prefixed with @samp{0} to force each term to have the
-same width.
-When either @var{x} or @var{y} begins with a zero, the shell
-attempts to force all generated terms to contain the same number of digits,
-zero-padding where necessary.
-When characters are supplied, the expression expands to each character
-lexicographically between @var{x} and @var{y}, inclusive,
-using the default C locale.
-Note that both @var{x} and @var{y} must be of the same type.
-When the increment is supplied, it is used as the difference between
-each term.  The default increment is 1 or -1 as appropriate.
+Uma expressão sequêncial assume a forma 
+@code{@{@var{x}..@var{y}[..@var{incr}]@}}, onde @var{x} e @var{y} são ou 
+inteiros ou caracteres simples, e @var{incr}, um incremento opcional, é 
+um inteiro.
+Quando inteiros são fornecidos, a expressão expande para cada número 
+entre @var{x} e @var{y}, inclusive.
+Inteiros informados podem ser prefixados com @samp{0} para forçar cada 
+termo a ter o mesmo comprimento.
+Quando ou @var{x} ou @var{y} começam com um zero, o shell tenta forçar 
+todos os termos gerados a conterem o mesmo número de dígitos, 
+completando com zeros onde necessário.
+Quando caracteres são informados, a expressão expande para cada caracter 
+lexicograficamente entre @var{x} e @var{y}, inclusive, utilizando o 
+locale C padrão.
+Note que ambas @var{x} e @var{y} devem necessariamente ser do mesmo 
+tipo.
+Quando o incremento é informado, ele é utilizado como a diferença entre 
+cada termo.   O incremento padrão é um (1) ou -1 conforme for 
+apropriado.
 
-Brace expansion is performed before any other expansions,
-and any characters special to other expansions are preserved
-in the result.  It is strictly textual.  Bash
-does not apply any syntactic interpretation to the context of the
-expansion or the text between the braces.
-To avoid conflicts with parameter expansion, the string @samp{$@{}
-is not considered eligible for brace expansion.
+Expansão de chave é realizada antes de quaisquer outras expansões, e 
+quaisquer caracteres especiais para outras expansões são preservados no 
+resultado.   É estritamente textual.   O Bash não aplica qualquer 
+interpretação sintática ao contexto da expansão ou ao texto entre as 
+chaves.
+Para evitar conflitos com a expansão de parâmetro, a sequência 
+@samp{$@{} não é considerada apta para expansão de chave.
 
-A correctly-formed brace expansion must contain unquoted opening
-and closing braces, and at least one unquoted comma or a valid
-sequence expression.
-Any incorrectly formed brace expansion is left unchanged.
+Uma expansão de chave corretamente formada deve necessariamente conter 
+chaves que abrem e fecham fora de aspas, e ao menos uma vírgula fora de 
+aspas ou uma expressão sequêncial válida.
+Qualquer expansão de chave incorreta é deixada não modificada.
 
-A @{ or @samp{,} may be quoted with a backslash to prevent its
-being considered part of a brace expression.
-To avoid conflicts with parameter expansion, the string @samp{$@{}
-is not considered eligible for brace expansion.
+Um @{ ou uma @samp{,} podem ser encapsuladas com uma barra invertida 
+para prevenir que sejam considerados parte de uma expressão de chave.
+Para evitar conflitos com a expansão de parâmetro, a sequência 
+@samp{$@{} não é considerada apta para expansão de chave.
 
-This construct is typically used as shorthand when the common
-prefix of the strings to be generated is longer than in the
-above example:
+Esta construção é tipicamente utilizada como abreviação quando o prefixo 
+comum das sequências de caracteres a serem geradas é maior que no 
+exemplo acima:
 @example
 mkdir /usr/local/src/bash/@{old,new,dist,bugs@}
 @end example
-or
+ou
 @example
 chown root /usr/@{ucb/@{ex,edit@},lib/@{ex?.?*,how_ex@}@}
 @end example
