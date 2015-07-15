@@ -15,25 +15,28 @@ Esta é a Edição @value{EDITION}, mais recentemente atualizada em
 @value{UPDATED}, do @cite{The GNU Bash Reference Manual}, para 
 @code{Bash}, Versão @value{VERSION}.
 
-Copyright @copyright{} 2015 Jamenson Ferreira Espindula de Almeida Melo.
+Copyright @copyright{} 2015 da versão traduzida para português 
+do Brasil Jamenson Ferreira Espindula de Almeida Melo.
 
 Copyright @copyright{} 1988--2014 Free Software Foundation, Inc.
 
 @quotation
-É concedida permissão para copiar, distribuir e/ou modificar este 
-documento sob os termos da Licença de Documentação Livre GNU, versão 
+É concedida permissão para copiar, distribuir e/ou modificar este Manual 
+de Referência do Bash, edição 4.3, versão traduzida para a língua 
+portuguesa sob os termos da Licença de Documentação Livre GNU, versão 
 1.3 ou qualquer versão posterior publicada pela Free Software 
 Foundation; sem Seções Invariantes, sem Textos de Capa Frontal e sem 
 Textos de Quarta Capa.   Uma cópia da licença está incluída na seção 
 intitulada "GNU Free Documentation Licence".
 
 
-Permission is granted to copy, distribute and/or modify this document
-under the terms of the GNU Free Documentation License, Version 1.3 or
-any later version published by the Free Software Foundation; with no
-Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
-A copy of the license is included in the section entitled
-``GNU Free Documentation License''.
+Permission is granted to copy, distribute and/or modify this Bash 
+Reference Manual, edition 4.3, version translated into brazilian 
+portuguese under the terms of the GNU Free Documentation License, 
+Version 1.3 or any later version published by the Free Software 
+Foundation; with no Invariant Sections, no Front-Cover Texts, and no 
+Back-Cover Texts.   A copy of the license is included in the section 
+entitled ``GNU Free Documentation License''.
 @end quotation
 @end copying
 
@@ -1970,8 +1973,8 @@ sendo parte do nome.
 
 Quando chaves são utilizadas, a chave que finaliza e confere é o 
 primeiro @samp{@}} não encapsulado por uma barra invertida ou contido em 
-um sequência de caracteres encapsulada por aspas, e não contida em uma 
-expansão aritmética embutida, substituição e comando, ou expansão de 
+uma sequência de caracteres encapsulada por aspas, e não contida em uma 
+expansão aritmética embutida, substituição de comando, ou expansão de 
 parâmetro.
 
 A forma básica da expansão de parâmetro é $@{@var{parameter}@}.
@@ -2235,7 +2238,7 @@ vetor em sequência, e a expansão é a lista resultante.
 A @var{word} é expandida para produzir um padrão exatamente como na 
 expansão de nome de arquivo.
 Se o padrão coincidir com uma porção ao final do valor expandido de 
-@var{parameter}, então e resultado da expansão é o valor de 
+@var{parameter}, então o resultado da expansão é o valor de 
 @var{parameter} com o padrão mais curto que coincidir (o caso do 
 @samp{%}) ou o padrão mais longo que coincidir (o caso do @samp{%%}) 
 deletado.
@@ -2258,8 +2261,8 @@ Se @var{pattern} se iniciar com @samp{#}, é necessário coincidir no
 início do valor expandido de @var{parameter}.
 Se @var{pattern} se iniciar com @samp{%}, é necessário coincidir no 
 final do valor expandido de @var{parameter}.
-Se @var{string} for nula, as coincidência de @var{pattern} são deletadas 
-e a @code{/} que se seguir a @var{pattern} pode ser omitida.
+Se @var{string} for nula, as coincidências de @var{pattern} são 
+deletadas e a @code{/} que se seguir a @var{pattern} pode ser omitida.
 Se @var{parameter} for @samp{@@} ou @samp{*}, a operação de substituição 
 é aplicada a cada parâmetro posicional em sequência, e a expansão é a 
 lista resultante.
@@ -2278,7 +2281,7 @@ Esta expansão modifica o tipo dos caracteres alfabéticos em @var{parameter}.
 O @var{parameter} é expandido para produzir um padrão exatamente como na 
 expansão de nome de arquivo.
 Cada caracter no valor expandido de @var{parameter} é testado contra 
-@var{pattern}, e, se coincidor com o padrão, aconteçe a conversão de 
+@var{pattern}, e, se coincidir com o padrão, aconteçe a conversão de 
 caso.
 O padrão não deveria tentar coincidir mais que um caracter.
 O operador @samp{^} converte letras minúsculas coincidentes com 
@@ -2301,40 +2304,43 @@ vetor em sequência, e a expansão é a lista resultante.
 @subsection Command Substitution
 @cindex command substitution
 
-Command substitution allows the output of a command to replace
-the command itself.
-Command substitution occurs when a command is enclosed as follows:
+A substituição de comando permite que a saída de um comando substitua o 
+próprio comando.
+A substituição de comando ocorre quando um comando é encapsulado 
+conforme segue:
 @example
 $(@var{command})
 @end example
 @noindent
-or
+ou
 @example
 `@var{command}`
 @end example
 
 @noindent
-Bash performs the expansion by executing @var{command} and
-replacing the command substitution with the standard output of the
-command, with any trailing newlines deleted.
-Embedded newlines are not deleted, but they may be removed during
-word splitting.
-The command substitution @code{$(cat @var{file})} can be
-replaced by the equivalent but faster @code{$(< @var{file})}.
+Bash realiza a expansão executando @var{command} e substituindo a 
+substituição de comando com a saída padrão do comando, com cada marcador 
+de nova linha sendo deletado.
+Os marcadores de nova linha embutidos não são deletados, porém eles 
+podem ser removidos durante a divisão de palavra.
+A substituição de comando @code{$(cat @var{file})} pode ser substituída 
+pelo equivalente, mas mais rápido @code{$(< @var{file})}.
 
-When the old-style backquote form of substitution is used,
-backslash retains its literal meaning except when followed by
-@samp{$}, @samp{`}, or @samp{\}. 
-The first backquote not preceded by a backslash terminates the
-command substitution.
-When using the @code{$(@var{command})} form, all characters between
-the parentheses make up the command; none are treated specially.
+Quando a forma de substituição estilo antigo de aspa invertida é 
+utilizada, a barra invertida mantém o seu significado literal exceto 
+quando seguido por @samp{$}, @samp{`}, ou @samp{\}.
+A primeira aspa invertida não precedida por uma barra invertida termina 
+a substituição de comando.
+Quando da utilização da forma @code{$(@var{command})}, todos os 
+caracteres entre os parênteses compõem o comando; nenhum é tratado 
+especialmente.
 
-Command substitutions may be nested.  To nest when using the backquoted
-form, escape the inner backquotes with backslashes.
+As substituições de comando podem ser aninhadas.   Para aninhar quando 
+da utilização da forma de aspa invertida, encapsule as aspas invertidas 
+internas com barras invertidas.
 
-If the substitution appears within double quotes, word splitting and
-filename expansion are not performed on the results.
+Se a substituição aparece dentro de aspas duplas, divisão de palavra e 
+expansão de nome de arquivo não são realizadas sobre os resultados.
 
 @node Arithmetic Expansion
 @subsection Arithmetic Expansion
