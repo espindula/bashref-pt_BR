@@ -1956,6 +1956,7 @@ A sequência de caracteres que poderia ser exibida por @samp{dirs
 -@var{N}}
 @end table
 
+
 @node Shell Parameter Expansion
 @subsection Shell Parameter Expansion
 @cindex parameter expansion
