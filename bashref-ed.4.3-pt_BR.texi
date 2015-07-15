@@ -1888,54 +1888,54 @@ chown root /usr/@{ucb/@{ex,edit@},lib/@{ex?.?*,how_ex@}@}
 @cindex tilde expansion
 @cindex expansion, tilde
 
-If a word begins with an unquoted tilde character (@samp{~}), all of the
-characters up to the first unquoted slash (or all characters,
-if there is no unquoted slash) are considered a @var{tilde-prefix}.
-If none of the characters in the tilde-prefix are quoted, the
-characters in the tilde-prefix following the tilde are treated as a
-possible @var{login name}.
-If this login name is the null string, the tilde is replaced with the
-value of the @env{HOME} shell variable.
-If @env{HOME} is unset, the home directory of the user executing the
-shell is substituted instead.
-Otherwise, the tilde-prefix is replaced with the home directory
-associated with the specified login name.
+Se uma palavra se inicia com um caracter til fora de aspas (@samp{~}), 
+todos os caracteres até a primeira barra fora de aspas (ou todos os 
+caracteres, se não existir barra fora de aspas) são considerados como 
+sendo um @var{tilde-prefix}.
+Se nenhum dos caracteres dentro do tilde-prefix estiver dentro de aspas, 
+os caracteres dentro do tilde-prefix seguinte ao til são tratados como 
+sendo um possível @var{login name}.
+Se esse nome de login for a sequência de caracteres "null", então o til 
+é substituído pelo valor da variável de shell @env{HOME}.
+Se @env{HOME} estiver desconfigurada, então o diretório home do usuário 
+que executa o shell é substituído.
+Do contrário, o tilde-prefix é substituído pelo diretório home associado 
+com o nome de login especificado.
 
-If the tilde-prefix is @samp{~+}, the value of
-the shell variable @env{PWD} replaces the tilde-prefix.
-If the tilde-prefix is @samp{~-}, the value of the shell variable
-@env{OLDPWD}, if it is set, is substituted.
+Se o prefix-tilde for @samp{~+}, então o valor da variável de shell 
+@env{PWD} substitue o tilde-prefix.
+Se o tilde-prefix for @samp{~-}, então o valor da variável de shell 
+@env{OLDPWD}, se ele estiver configurado, é substituído.
 
-If the characters following the tilde in the tilde-prefix consist of a
-number @var{N}, optionally prefixed by a @samp{+} or a @samp{-},
-the tilde-prefix is replaced with the
-corresponding element from the directory stack, as it would be displayed
-by the @code{dirs} builtin invoked with the characters following tilde
-in the tilde-prefix as an argument (@pxref{The Directory Stack}).
-If the tilde-prefix, sans the tilde, consists of a number without a
-leading @samp{+} or @samp{-}, @samp{+} is assumed.
+Se os caracteres seguintes ao til dentro do tilde-prefix consistem de um 
+número @var{N}, opcionalmente prefixado por um @samp{+} ou um @samp{-}, 
+então o tilde-prefix é substituído com o elemento correspondente 
+originado da pilha de diretório, como se ele pudesse ser exibido pelo 
+comando interno @code{dirs} invocado com os caracteres seguindo til no 
+tilde-prefix como um argumento (veja-se @ref{The Directory Stack}).
+Se o tilde-prefix, sem o til, consiste de um número sem um @samp{+} ou 
+@samp{-} iniciais, então @samp{+} é presumido.
 
-If the login name is invalid, or the tilde expansion fails, the word is
-left unchanged.
+Se o nome de login for inválido, ou a expansão de til falhar, a palavra 
+é deixada imodificada.
 
-Each variable assignment is checked for unquoted tilde-prefixes immediately
-following a @samp{:} or the first @samp{=}.
-In these cases, tilde expansion is also performed.
-Consequently, one may use filenames with tildes in assignments to
-@env{PATH}, @env{MAILPATH}, and @env{CDPATH},
-and the shell assigns the expanded value.
+Cada atribuição a variável é testada para tilde-prefixes fora de aspas 
+imediatamente seguinte a @samp{:} ou o primeiro @samp{=}.
+Nesse casos, a expansão de til também é feita.
+Consequentemente, pode-se utilizar nomes de arquivos com tios em 
+atribuições a @env{PATH}, @env{MAILPATH}, e @env{CDPATH}, e o shell 
+atribui o valor expandido.
 
-The following table shows how Bash treats unquoted tilde-prefixes:
+A tabela seguinte mostra como Bash trata tilde-prefixes fora de aspas:
 
 @table @code
 @item ~
-The value of @code{$HOME}
+O valor de @code{$HOME}
 @item ~/foo
 @file{$HOME/foo}
 
 @item ~fred/foo
-The subdirectory @code{foo} of the home directory of the user
-@code{fred}
+O subdiretório @code{foo} do diretório home do usuário @code{fred}
 
 @item ~+/foo
 @file{$PWD/foo}
@@ -1944,13 +1944,16 @@ The subdirectory @code{foo} of the home directory of the user
 @file{$@{OLDPWD-'~-'@}/foo}
 
 @item ~@var{N}
-The string that would be displayed by @samp{dirs +@var{N}}
+A sequência de caracteres que poderia ser exibida por @samp{dirs 
++@var{N}}
 
 @item ~+@var{N}
-The string that would be displayed by @samp{dirs +@var{N}}
+A sequência de caracteres que poderia ser exibida por @samp{dirs 
++@var{N}}
 
 @item ~-@var{N}
-The string that would be displayed by @samp{dirs -@var{N}}
+A sequência de caracteres que poderia ser exibida por @samp{dirs 
+-@var{N}}
 @end table
 
 @node Shell Parameter Expansion
