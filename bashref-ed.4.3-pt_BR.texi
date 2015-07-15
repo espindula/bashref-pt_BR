@@ -1956,111 +1956,111 @@ A sequência de caracteres que poderia ser exibida por @samp{dirs
 -@var{N}}
 @end table
 
-
 @node Shell Parameter Expansion
 @subsection Shell Parameter Expansion
 @cindex parameter expansion
 @cindex expansion, parameter
 
-The @samp{$} character introduces parameter expansion,
-command substitution, or arithmetic expansion.  The parameter name
-or symbol to be expanded may be enclosed in braces, which
-are optional but serve to protect the variable to be expanded from
-characters immediately following it which could be
-interpreted as part of the name.
+O caracter @samp{$} introduz a expansão de parâmetro, substituição de 
+comando, ou expansão aritmética.   O nome de parâmetro ou símbolo a ser 
+expandido pode ser encapsulado entre chaves, as quais são opcionais, 
+porém servem para proteger a variável a ser expandida dos caracteres 
+imediatamente seguintes a ela, os quais poderiam ser interpretados como 
+sendo parte do nome.
 
-When braces are used, the matching ending brace is the first @samp{@}}
-not escaped by a backslash or within a quoted string, and not within an
-embedded arithmetic expansion, command substitution, or parameter
-expansion.
+Quando chaves são utilizadas, a chave que finaliza e confere é o 
+primeiro @samp{@}} não encapsulado por uma barra invertida ou contido em 
+um sequência de caracteres encapsulada por aspas, e não contida em uma 
+expansão aritmética embutida, substituição e comando, ou expansão de 
+parâmetro.
 
-The basic form of parameter expansion is $@{@var{parameter}@}.
-The value of @var{parameter} is substituted.
-The @var{parameter} is a shell parameter as described above
-(@pxref{Shell Parameters}) or an array reference (@pxref{Arrays}).
-The braces are required when @var{parameter}
-is a positional parameter with more than one digit,
-or when @var{parameter} is followed by a character that is not to be
-interpreted as part of its name.
+A forma básica da expansão de parâmetro é $@{@var{parameter}@}.
+O valor de @var{parameter} é substituído.
+O @var{parameter} é um parâmetro de shell conforme descrito acima 
+(veja-se @ref{Shell Parameters}) ou uma referência de vetor 
+(veja-se @ref{Arrays}).
+As chaves são obrigatórias quando @var{parameter} é um parâmetro 
+posicional com mais que um dígito, ou quando @var{parameter} for seguido 
+por um caracter que não é para ser interpretado como sendo parte de seu 
+nome.
 
-If the first character of @var{parameter} is an exclamation point (!),
-it introduces a level of variable indirection.
-Bash uses the value of the variable formed from the rest of
-@var{parameter} as the name of the variable; this variable is then
-expanded and that value is used in the rest of the substitution, rather
-than the value of @var{parameter} itself.
-This is known as @code{indirect expansion}.
-The exceptions to this are the expansions of $@{!@var{prefix}*@}
-and $@{!@var{name}[@@]@}
-described below.
-The exclamation point must immediately follow the left brace in order to
-introduce indirection.
+Se o primeiro caracter de @var{parameter} for um ponto de exclamação 
+(!), então isso introduz um nível de indireção de variável.
+Bash utiliza o valor da variável formada a partir do resto de 
+@var{parameter} como sendo o nome da variável; essa variável é então 
+expandida e aquele valor é utilizado no restante da substituição, em vez 
+do valor do próprio @var{parameter}.
+Isso é conhecido como @code{indirect expansion}.
+As exceções a isso são as expansões de $@{!@var{prefix}*@}
+e $@{!@var{name}[@@]@} descritas abaixo.
+O ponto de exclamação deve necessariamente imediatamente seguir o 
+abre chaves com o objetivo de introduzir a expansão indireta.
 
-In each of the cases below, @var{word} is subject to tilde expansion,
-parameter expansion, command substitution, and arithmetic expansion.
+Em cada um dos casos abaixo, @var{word} é objeto de expansão de til, 
+expansão de parâmetro, substituição de comando, e expansão aritmética.
 
-When not performing substring expansion, using the form described
-below (e.g., @samp{:-}), Bash tests for a parameter that is unset or null.
-Omitting the colon results in a test only for a parameter that is unset.
-Put another way, if the colon is included,
-the operator tests for both @var{parameter}'s existence and that its value
-is not null; if the colon is omitted, the operator tests only for existence.
+Quando não for realizada expansão de substring, utilizando a forma 
+descrita abaixo (por exemplo, @samp{:-}), Bash testa se um parâmetro 
+está desconfigurado ou é nulo.
+A omissão dos dois pontos resulta em um teste apenas para um parâmetro 
+que está desconfigurado.
+Colocado de outra maneira, se os dois pontos forem incluídos, o operador 
+verifica a existência de ambos os @var{parameter}s e se o seu valor não 
+é nulo; se os dois pontos são omitidos, então o operador testa apenas a 
+existência.
 
 @table @code
 
 @item $@{@var{parameter}:@minus{}@var{word}@}
-If @var{parameter} is unset or null, the expansion of
-@var{word} is substituted.  Otherwise, the value of
-@var{parameter} is substituted.
+Se @var{parameter} estiver desconfigurado ou for nulo, a expansão de 
+@var{word} é substituida.   Do contrário, o valor de @var{parameter} é 
+substituido.
 
 @item $@{@var{parameter}:=@var{word}@}
-If @var{parameter}
-is unset or null, the expansion of @var{word}
-is assigned to @var{parameter}.
-The value of @var{parameter} is then substituted. 
-Positional parameters and special parameters may not be assigned to
-in this way.
+Se @var{parameter} estiver desconfigurado ou for nulo, a expansão de 
+@var{word} é atribuida a @var{parameter}.
+O valor de @var{parameter} é então substituido.
+Parâmetros posicionais e parâmetros especiais não podem ser atribuídos 
+dessa maneira.
 
 @item $@{@var{parameter}:?@var{word}@}
-If @var{parameter}
-is null or unset, the expansion of @var{word} (or a message
-to that effect if @var{word}
-is not present) is written to the standard error and the shell, if it
-is not interactive, exits.  Otherwise, the value of @var{parameter} is
-substituted.
+Se @var{parameter} for nulo ou estiver desconfigurado, a expansão de 
+@var{word} (ou uma mensagem para esse efeito se @var{word} não estiver 
+presente) é escrita para o descritor de erro padrão e o shell, se não 
+for interativo, sai.   Do contrário, o valor de @var{parameter} é 
+substituido.
 
 @item $@{@var{parameter}:+@var{word}@}
-If @var{parameter}
-is null or unset, nothing is substituted, otherwise the expansion of
-@var{word} is substituted.
+Se @var{parameter} for nulo ou estiver desconfigurado, nada é 
+substituido, do contrário a expansão de @var{word} é substituida.
 
 @item $@{@var{parameter}:@var{offset}@}
 @itemx $@{@var{parameter}:@var{offset}:@var{length}@}
-This is referred to as Substring Expansion.
-It expands to up to @var{length} characters of the value of @var{parameter}
-starting at the character specified by @var{offset}.
-If @var{parameter} is @samp{@@}, an indexed array subscripted by
-@samp{@@} or @samp{*}, or an associative array name, the results differ as
-described below.
-If @var{length} is omitted, it expands to the substring of the value of
-@var{parameter} starting at the character specified by @var{offset}
-and extending to the end of the value.
-@var{length} and @var{offset} are arithmetic expressions
-(@pxref{Shell Arithmetic}).
+Isso é referenciado como Expansão de Substring.
+Ela expande até @var{length} caracteres do valor de @var{parameter} 
+iniciando no caracter especificado por @var{offset}.
+Se @var{parameter} for @samp{@@}, um vetor indexado subscrito por 
+@samp{@@} ou @samp{*}, ou um nome de vetor associativo, os resultados 
+diferem conforme descritos abaixo.
+Se @var{length} for omitido, expande para a substring do valor de 
+@var{parameter} iniciando no caracter especificado por @var{offset} e se 
+estendo até o fim do valor.
+@var{length} e @var{offset} são expressões aritméticas 
+(veja-se @ref{Shell Arithmetic}).
 
-If @var{offset} evaluates to a number less than zero, the value
-is used as an offset in characters
-from the end of the value of @var{parameter}.
-If @var{length} evaluates to a number less than zero,
-it is interpreted as an offset in characters
-from the end of the value of @var{parameter} rather than
-a number of characters, and the expansion is the characters between
-@var{offset} and that result.
-Note that a negative offset must be separated from the colon by at least
-one space to avoid being confused with the @samp{:-} expansion.
+Se o valor de @var{offset} for calculado para um número menor que zero, 
+o valor é utilizado como um offset em caracteres a partir do fim do 
+valor de @var{parameter}.
+Se o valor de @var{length} for calculado para um número menor que zero, 
+ela é interpretada como sendo um offset em caracteres a partir do fim do 
+valor de @var{parameter} em vez de um número de caracteres, e a expansão 
+são os caracteres entre @var{offset} e aquele resultado.
+Perceba-se que um offset negativo deve necessariamente ser separado dos 
+dois pontos por pelo menos um espaço para evitar que seja confundido com 
+a expansão de @samp{:-}.
 
-Here are some examples illustrating substring expansion on parameters and
-subscripted arrays:
+Aqui estão alguns exemplos ilustrando a Expansão de Substring sobre 
+parâmetros e vetores subscritos:
 
 @verbatim
 $ string=01234567890abcdefgh
@@ -2116,15 +2116,16 @@ $ echo ${array[0]: -7:-2}
 bcdef
 @end verbatim
 
-If @var{parameter} is @samp{@@}, the result is @var{length} positional
-parameters beginning at @var{offset}.
-A negative @var{offset} is taken relative to one greater than the greatest
-positional parameter, so an offset of -1 evaluates to the last positional
-parameter.
-It is an expansion error if @var{length} evaluates to a number less than zero.
+Se @var{parameter} for @samp{@@}, o resultado é @var{length} parâmetros 
+posicionais iniciando em @var{offset}.
+Um @var{offset} negativo é tomado relativo a um maior que o maior 
+parâmetro posicional, de maneira que um offset de -1 tem por resultado o 
+último parâmetro posicional.
+É um erro de expansão se @var{length} tiver por resultado um número 
+menor que zero.
 
-The following examples illustrate substring expansion using positional
-parameters:
+Os exemplos seguintes ilustram Expansão de Substring utilizando 
+parâmetos posicionais:
 
 @verbatim
 $ set -- 1 2 3 4 5 6 7 8 9 0 a b c d e f g h
@@ -2146,15 +2147,16 @@ $ echo ${@: -7:0}
 
 @end verbatim
 
-If @var{parameter} is an indexed array name subscripted
-by @samp{@@} or @samp{*}, the result is the @var{length}
-members of the array beginning with @code{$@{@var{parameter}[@var{offset}]@}}.
-A negative @var{offset} is taken relative to one greater than the maximum
-index of the specified array.
-It is an expansion error if @var{length} evaluates to a number less than zero.
+Se @var{parameter} for um nome de vetor indexado subscrito por @samp{@@} 
+ou @samp{*}, o resultado é o @var{length} de membros do vetor iniciando 
+com @code{$@{@var{parameter}[@var{offset}]@}}.
+Um @var{offset} negativo é tomado relativo ao um maior que o índice 
+máximo do vetor especificado.
+É um erro de expansão se @var{length} for calculado para um número menor 
+que zero.
 
-These examples show how you can use substring expansion with indexed
-arrays:
+Estes exemplos mostram como se pode utilizar Expansão de Substring com 
+vetores indexados:
 
 @verbatim
 $ array=(0 1 2 3 4 5 6 7 8 9 0 a b c d e f g h)
@@ -2174,123 +2176,125 @@ $ echo ${array[@]: -7:0}
 
 @end verbatim
 
-Substring expansion applied to an associative array produces undefined
-results.
+Expansão de Substring aplicada a um vetor associativo produz resultados 
+indefinidos.
 
-Substring indexing is zero-based unless the positional parameters
-are used, in which case the indexing starts at 1 by default.
-If @var{offset} is 0, and the positional parameters are used, @code{$@@} is
-prefixed to the list.
+A indexação de substring é baseada em zero, a menos que os parâmetros 
+posicionais sejam utilizados, caso no qual a indexação começa no um (1) 
+por padrão.
+Se @var{offset} for zero (0), e os parâmetros posicionais forem 
+utilizados, @code{$@@} é prefixado à lista.
 
 @item $@{!@var{prefix}*@}
 @itemx $@{!@var{prefix}@@@}
-Expands to the names of variables whose names begin with @var{prefix},
-separated by the first character of the @env{IFS} special variable.
-When @samp{@@} is used and the expansion appears within double quotes, each
-variable name expands to a separate word.
+Expande para os nomes das variáveis cujos nomes iniciam com 
+@var{prefix}, separados pelo primeiro caracter da variável especial 
+@env{IFS}.
+Quando @samp{@@} for utilizada e a expansão aparece dentro de aspas 
+duplas, cada nome de variável expande para uma palavra separada.
 
 @item $@{!@var{name}[@@]@}
 @itemx $@{!@var{name}[*]@}
-If @var{name} is an array variable, expands to the list of array indices
-(keys) assigned in @var{name}.
-If @var{name} is not an array, expands to 0 if @var{name} is set and null
-otherwise.
-When @samp{@@} is used and the expansion appears within double quotes, each
-key expands to a separate word.
+Se @var{name} for uma variável de vetor, expande para a lista de índices 
+de vetor (chaves) atribuídos em @var{name}.
+Se @var{name} não for um vetor, expande para zero (0) se @var{name} 
+estiver configurada e nulo caso contrário.
+Quando @samp{@@} for utilizada e a expansão aparecer dentro de aspas 
+duplas, cada chave expande para uma palavra separada.
 
 @item $@{#@var{parameter}@}
-The length in characters of the expanded value of @var{parameter} is
-substituted.
-If @var{parameter} is @samp{*} or @samp{@@}, the value substituted
-is the number of positional parameters.
-If @var{parameter} is an array name subscripted by @samp{*} or @samp{@@}, 
-the value substituted is the number of elements in the array.
-If @var{parameter}
-is an indexed array name subscripted by a negative number, that number is
-interpreted as relative to one greater than the maximum index of
-@var{parameter}, so negative indices count back from the end of the
-array, and an index of -1 references the last element.
+O tamanho em caracteres do valor expandido de @var{parameter} é 
+substituído.
+Se @var{parameter} for @samp{*} ou @samp{@@}, o valor substituído é o 
+número de parâmetros posicionais.
+Se @var{parameter} for um nome de vetor subscrito por @samp{*} ou 
+@samp{@@}, o valor substituído é o número de elementos no vetor.
+Se @var{parameter} for um nome de vetor indexado subscrito por um número 
+negativo, esse número é interpretado como relativo a um maior que o 
+índice máximo de @var{parameter}, de maneira que índices negativos 
+contam de volta do fim do vetor, e um índice de -1 referencia o último 
+elemento.
 
 @item $@{@var{parameter}#@var{word}@}
 @itemx $@{@var{parameter}##@var{word}@}
-The @var{word}
-is expanded to produce a pattern just as in filename
-expansion (@pxref{Filename Expansion}).  If the pattern matches
-the beginning of the expanded value of @var{parameter},
-then the result of the expansion is the expanded value of @var{parameter}
-with the shortest matching pattern (the @samp{#} case) or the
-longest matching pattern (the @samp{##} case) deleted.
-If @var{parameter} is @samp{@@} or @samp{*},
-the pattern removal operation is applied to each positional
-parameter in turn, and the expansion is the resultant list.
-If @var{parameter} is an array variable subscripted with
-@samp{@@} or @samp{*},
-the pattern removal operation is applied to each member of the
-array in turn, and the expansion is the resultant list.
+A @var{word} é expandida para produzir um padrão exatamente como em 
+expansão de nome de arquivo (veja-se @ref{Filename Expansion}).   Se o 
+padrão coincidir com o inicio do valor expandido de @var{parameter}, 
+então o resultado da expansão é o valor expandido de @var{parameter} com 
+o padrão mais curto que coincidir (o caso do @samp{#}) ou o padrão mais 
+longo que coincidir (o caso do @samp{##}) deletado.
+Se @var{parameter} for @samp{@@} ou @samp{*}, a operação de remoção do 
+padrão é aplicada a cada parâmetro posicional em sequência, e a expansão 
+é a lista resultante.
+Se @var{parameter} for uma variável de vetor subscrito com @samp{@@} ou 
+@samp{*}, a operação de remoção de padrão é aplicada a cada membro do 
+vetor em sequência, e a expansão é a lista resultante.
 
 @item $@{@var{parameter}%@var{word}@}
 @itemx $@{@var{parameter}%%@var{word}@}
-The @var{word} is expanded to produce a pattern just as in
-filename expansion.
-If the pattern matches a trailing portion of the expanded value of
-@var{parameter}, then the result of the expansion is the value of
-@var{parameter} with the shortest matching pattern (the @samp{%} case)
-or the longest matching pattern (the @samp{%%} case) deleted.
-If @var{parameter} is @samp{@@} or @samp{*},
-the pattern removal operation is applied to each positional
-parameter in turn, and the expansion is the resultant list.
-If @var{parameter}
-is an array variable subscripted with @samp{@@} or @samp{*},
-the pattern removal operation is applied to each member of the
-array in turn, and the expansion is the resultant list.
+A @var{word} é expandida para produzir um padrão exatamente como na 
+expansão de nome de arquivo.
+Se o padrão coincidir com uma porção ao final do valor expandido de 
+@var{parameter}, então e resultado da expansão é o valor de 
+@var{parameter} com o padrão mais curto que coincidir (o caso do 
+@samp{%}) ou o padrão mais longo que coincidir (o caso do @samp{%%}) 
+deletado.
+Se @var{parameter} for @samp{@@} ou @samp{*}, a operação de remoção de 
+padrão é aplicada a cada parâmetro posicional em sequência, e a expansão 
+é a lista resultante.
+Se @var{parameter} for uma variável de vetor subscrito com @samp{@@} ou 
+@samp{*}, a operação de remoção de padrão é aplicada a cada membro do 
+vetor em sequência, e a expansão é a lista resultante.
 
 @item $@{@var{parameter}/@var{pattern}/@var{string}@} 
-
-The @var{pattern} is expanded to produce a pattern just as in
-filename expansion.
-@var{Parameter} is expanded and the longest match of @var{pattern}
-against its value is replaced with @var{string}.
-If @var{pattern} begins with @samp{/}, all matches of @var{pattern} are
-replaced with @var{string}.  Normally only the first match is replaced.
-If @var{pattern} begins with @samp{#}, it must match at the beginning
-of the expanded value of @var{parameter}.
-If @var{pattern} begins with @samp{%}, it must match at the end
-of the expanded value of @var{parameter}.
-If @var{string} is null, matches of @var{pattern} are deleted
-and the @code{/} following @var{pattern} may be omitted.
-If @var{parameter} is @samp{@@} or @samp{*},
-the substitution operation is applied to each positional
-parameter in turn, and the expansion is the resultant list.
-If @var{parameter}
-is an array variable subscripted with @samp{@@} or @samp{*},
-the substitution operation is applied to each member of the
-array in turn, and the expansion is the resultant list.
+O @var{pattern} é expandido para produzir um padrão exatamente como em 
+expansão de nome de arquivo.
+@var{Parameter} é expandido e a coincidência mais longa de @var{pattern} 
+contra seu valor é substituída com @var{string}.
+Se @var{pattern} iniciar com uma @samp{/}, todas as coincidências de 
+@var{pattern} são substituídas com @var{string}.   Normalmente apenas a 
+primeira coincidência é substituída.
+Se @var{pattern} se iniciar com @samp{#}, é necessário coincidir no 
+início do valor expandido de @var{parameter}.
+Se @var{pattern} se iniciar com @samp{%}, é necessário coincidir no 
+final do valor expandido de @var{parameter}.
+Se @var{string} for nula, as coincidência de @var{pattern} são deletadas 
+e a @code{/} que se seguir a @var{pattern} pode ser omitida.
+Se @var{parameter} for @samp{@@} ou @samp{*}, a operação de substituição 
+é aplicada a cada parâmetro posicional em sequência, e a expansão é a 
+lista resultante.
+Se @var{parameter} for uma variável de vetor subscrito com @samp{@@} ou 
+@samp{*}, a operação de substituição é aplicada a cada parâmetro 
+posicional em sequência, e a expansão é a lista resultante.
+Se @var{parameter} for uma variável de vetor subscrito com @samp{@@} ou 
+@samp{*}, a operação de substituição é aplicada a cada membro do vetor 
+em sequência, e a expansão é a lista resultante.
 
 @item $@{@var{parameter}^@var{pattern}@}
 @itemx $@{@var{parameter}^^@var{pattern}@}
 @itemx $@{@var{parameter},@var{pattern}@}
 @itemx $@{@var{parameter},,@var{pattern}@}
-This expansion modifies the case of alphabetic characters in @var{parameter}.
-The @var{pattern} is expanded to produce a pattern just as in
-filename expansion.
-Each character in the expanded value of @var{parameter} is tested against
-@var{pattern}, and, if it matches the pattern, its case is converted.
-The pattern should not attempt to match more than one character.
-The @samp{^} operator converts lowercase letters matching @var{pattern}
-to uppercase; the @samp{,} operator converts matching uppercase letters
-to lowercase.
-The @samp{^^} and @samp{,,} expansions convert each matched character in the
-expanded value; the @samp{^} and @samp{,} expansions match and convert only
-the first character in the expanded value.
-If @var{pattern} is omitted, it is treated like a @samp{?}, which matches
-every character.
-If @var{parameter} is @samp{@@} or @samp{*},
-the case modification operation is applied to each positional
-parameter in turn, and the expansion is the resultant list.
-If @var{parameter}
-is an array variable subscripted with @samp{@@} or @samp{*},
-the case modification operation is applied to each member of the
-array in turn, and the expansion is the resultant list.
+Esta expansão modifica o tipo dos caracteres alfabéticos em @var{parameter}.
+O @var{parameter} é expandido para produzir um padrão exatamente como na 
+expansão de nome de arquivo.
+Cada caracter no valor expandido de @var{parameter} é testado contra 
+@var{pattern}, e, se coincidor com o padrão, aconteçe a conversão de 
+caso.
+O padrão não deveria tentar coincidir mais que um caracter.
+O operador @samp{^} converte letras minúsculas coincidentes com 
+@var{pattern} para maiúsculas; o operador @samp{,} converte letras 
+maiúsculas coincidentes com @var{pattern} para minúsculas.
+As expansões @samp{^^} e @samp{,,} convertem cada caracter coincidido no 
+valor expandido; as expansões @samp{^} e @samp{,} coincidem e convertem 
+apenas o primeiro caracter no valor expandido.
+Se @var{pattern} for omitido, ele é tratado como um @samp{?}, o qual 
+coincide com cada caracter.
+Se @var{parameter} for @samp{@@} ou @samp{*}, a operação de modificação 
+de caso é aplicada a cada parâmetro posicional em sequência, e a 
+expansão é a lista resultante.
+Se @var{parameter} for uma variável de vetor subscrito com @samp{@@} ou 
+@samp{*}, a operação de modificação de caso é aplicada a cada membro do 
+vetor em sequência, e a expansão é a lista resultante.
 @end table
 
 @node Command Substitution
