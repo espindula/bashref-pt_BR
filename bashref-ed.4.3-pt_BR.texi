@@ -2347,92 +2347,92 @@ expansão de nome de arquivo não são realizadas sobre os resultados.
 @cindex expansion, arithmetic
 @cindex arithmetic expansion
 
-Arithmetic expansion allows the evaluation of an arithmetic expression
-and the substitution of the result.  The format for arithmetic expansion is:
+A expansão aritmética permite o cálculo de uma expressão aritmética e a 
+substituição do resultado.   O formato para expansão aritmética é:
 
 @example
 $(( @var{expression} ))
 @end example
 
-The expression is treated as if it were within double quotes, but
-a double quote inside the parentheses is not treated specially.
-All tokens in the expression undergo parameter and variable expansion,
-command substitution, and quote removal.
-The result is treated as the arithmetic expression to be evaluated.
-Arithmetic expansions may be nested. 
+A expressão é tratada como se ela estivesse contida entre aspas duplas, 
+porém uma aspa dupla dentro de parênteses não é tratada especialmente.
+Todos os tokens na expressão estão sujeitos a expansão de parâmetro e 
+variável, substituição de comando, e remoção de aspas.
+O resultado é tratado como a expressão aritmética a ser calculada.
+Expansões aritméticas podem ser aninhadas.
 
-The evaluation is performed according to the rules listed below
-(@pxref{Shell Arithmetic}).
-If the expression is invalid, Bash prints a message indicating
-failure to the standard error and no substitution occurs.
+O cálculo é realizado de acordo com as regras listadas abaixo 
+(veja-se @ref{Shell Arithmetic}).
+Se a expressão for inválida, Bash imprime uma mensagem indicando a falha 
+para o descritor de erro padrão e não ocorre substituição.
 
 @node Process Substitution
 @subsection Process Substitution
 @cindex process substitution
 
-Process substitution is supported on systems that support named
-pipes (@sc{fifo}s) or the @file{/dev/fd} method of naming open files.
-It takes the form of 
+A substituição de processo é suportada em sistemas que suportam tubos 
+nomeados (@sc{fifo}s) ou o método @file{/dev/fd} de nomear arquivos 
+abertos.
+A substituição de processo assume a forma de
 @example
 <(@var{list})
 @end example
 @noindent
-or
+ou
 @example
 >(@var{list})
 @end example
 @noindent
-The process @var{list} is run with its input or output connected to a
-@sc{fifo} or some file in @file{/dev/fd}.  The name of this file is
-passed as an argument to the current command as the result of the
-expansion.  If the @code{>(@var{list})} form is used, writing to
-the file will provide input for @var{list}.  If the
-@code{<(@var{list})} form is used, the file passed as an
-argument should be read to obtain the output of @var{list}.
-Note that no space may appear between the @code{<} or @code{>}
-and the left parenthesis, otherwise the construct would be interpreted
-as a redirection.
+A @var{list} de processo é executada com a entrada ou saída dela 
+conectada ao @sc{fifo} ou algum arquivo em @file{/dev/fd}.   O nome 
+desse arquivo é passado como um argumento para o comando atual como 
+resultado da expansão.   Se a forma @code{>(@var{list})} for utilizada, 
+então a escrita para o arquivo fornecerá entrada para @var{list}.   Se a 
+forma @code{<(@var{list})} for utilizada, o arquivo passado como um 
+argumento deveria ser lido para obter a saída de @var{list}.
+Perceba-se que nenhum espaço pode aparecer entre o @code{<} ou @code{>} 
+e o abre parênteses, do contrário a contrução seria interpretada como 
+sendo uma redireção.
 
-When available, process substitution is performed simultaneously with
-parameter and variable expansion, command substitution, and arithmetic
-expansion.
+Quando disponível, a substituição de processo é realizada 
+simultâneamente com a expansão de parâmetro e variável, substituição de 
+comando, e expansão aritmética.
 
 @node Word Splitting
 @subsection Word Splitting
 @cindex word splitting
 
-The shell scans the results of parameter expansion, command substitution,
-and arithmetic expansion that did not occur within double quotes for
-word splitting.
+O shell escaneia os resultados da expansão de parâmetro, substituição de 
+comando, e expansão aritmética que não ocorreu dentro de aspas duplas 
+para divisão de palavra.
 
-The shell treats each character of @env{$IFS} as a delimiter, and splits
-the results of the other expansions into words using these characters
-as field terminators.
-If @env{IFS} is unset, or its value is exactly @code{<space><tab><newline>},
-the default, then sequences of
-@code{ <space>}, @code{<tab>}, and @code{<newline>}
-at the beginning and end of the results of the previous
-expansions are ignored, and any sequence of @env{IFS}
-characters not at the beginning or end serves to delimit words.
-If @env{IFS} has a value other than the default, then sequences of
-the whitespace characters @code{space} and @code{tab}
-are ignored at the beginning and end of the
-word, as long as the whitespace character is in the
-value of @env{IFS} (an @env{IFS} whitespace character).
-Any character in @env{IFS} that is not @env{IFS}
-whitespace, along with any adjacent @env{IFS}
-whitespace characters, delimits a field.  A sequence of @env{IFS}
-whitespace characters is also treated as a delimiter.
-If the value of @env{IFS} is null, no word splitting occurs.
+O shell trata cada caracter de @env{$IFS} como sendo um delimitador, e 
+reparte os resultado das outras expansões em palavras utilizando esses 
+caracteres como termonadores de campo.
+Se @env{IFS} estiver desconfigurada, ou o valor dela for exatamente 
+@code{<space><tab><newline>}, o padrão, então as sequências de @code{ 
+<space>}, @code{<tab>}, e @code{<newline>} no início e final dos 
+resultados das expansões prévias são ignoradas, e quaisquer sequências 
+de @env{IFS} caracteres que não estejam no início ou no final servem 
+para delimitar palavras.
+Se @env{IFS} tiver um outro valor qualquer diferente do padrão, então 
+as sequências de caracteres de espaço em branco @code{space} e 
+@code{tab} são ignoradas no início e no final da palavra, até onde o 
+caracter espaço em branco esteja no valor de @env{IFS} (um caracter de 
+espaço em branco @env{IFS}).
+Qualquer caracter em @env{IFS} que não um espaço em branco @env{IFS}, 
+junto com quaisquer caracteres espaço em branco @env{IFS} adjacentes, 
+delimitam o campo.   Uma sequência de caracteres espaço em 
+branco @env{IFS} também é tratada como um delimitador.
+Se o valor de @env{IFS} for nulo, não ocorre a divisão de palavra.
 
-Explicit null arguments (@code{""} or @code{''}) are retained.
-Unquoted implicit null arguments, resulting from the expansion of
-parameters that have no values, are removed.
-If a parameter with no value is expanded within double quotes, a
-null argument results and is retained.
+Os argumentos "null" explícitos (@code{""} or @code{''}) são mantidos.
+Os argumentos "null" implícitos fora de aspas, resultantes da expansão 
+de parâmetros que não tem valores, são removidos.
+Se um parâmetro sem um valor for expandido dentro de aspas duplas, um 
+argumento "null" resulta e é mantido.
 
-Note that if no expansion occurs, no splitting
-is performed.
+Note-se que se não ocorrer expansão, divisão não é realizada.
 
 @node Filename Expansion
 @subsection Filename Expansion
