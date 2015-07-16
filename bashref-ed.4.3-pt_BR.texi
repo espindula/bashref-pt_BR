@@ -2444,144 +2444,148 @@ Note-se que se não ocorrer expansão, divisão não é realizada.
 @cindex filename expansion
 @cindex pathname expansion
 
-After word splitting, unless the @option{-f} option has been set
-(@pxref{The Set Builtin}), Bash scans each word for the characters
-@samp{*}, @samp{?}, and @samp{[}.
-If one of these characters appears, then the word is
-regarded as a @var{pattern},
-and replaced with an alphabetically sorted list of
-filenames matching the pattern (@pxref{Pattern Matching}).
-If no matching filenames are found,
-and the shell option @code{nullglob} is disabled, the word is left
-unchanged.
-If the @code{nullglob} option is set, and no matches are found, the word
-is removed.
-If the @code{failglob} shell option is set, and no matches are found,
-an error message is printed and the command is not executed.
-If the shell option @code{nocaseglob} is enabled, the match is performed
-without regard to the case of alphabetic characters.
+Após a divisão de palavra, a menos que a opção @option{-f} tenha sido 
+configurada (veja-se @ref{The Set Builtin}), Bash escaneia cada palavra 
+a procura dos caracteres @samp{*}, @samp{?}, e @samp{[}.
+Se um desse caracteres aparece, então a palavra é considerada como sendo 
+um @var{pattern}, e substituído com uma lista de nomes de arquivos 
+ordenada alfabeticamente coincidindo com o padrão (veja-se @ref{Pattern 
+Matching}).
+Se nomes de arquivo que coincidam não forem encontrados, e a opção de 
+shell @code{nullglob} estiver desabilitada, então a palavra é deixada 
+imodificada.
+Se a opção @code{nullglob} estiver configurada, e nenhuma coincidência 
+for encontrada, então a palavra é removida.
+Se a opção de shell @code{failglob} estiver configurada, e nenhuma 
+coincidência for encontrada, uma mensagem de erro é impressa e o comando 
+não é executado.
+Se a opção de shell @code{nocaseglob} estiver habilitada, o teste de 
+coinciência é tentado sem considerar maiúsculas e minúsculas.
 
-When a pattern is used for filename expansion, the character @samp{.}
-at the start of a filename or immediately following a slash
-must be matched explicitly, unless the shell option @code{dotglob} is set.
-When matching a filename, the slash character must always be
-matched explicitly.
-In other cases, the @samp{.} character is not treated specially.
+Quando um padrão é utilizado para expansão de nome de arquivo, o 
+caracter @samp{.} no início de um nome de arquivo ou imediatamente 
+seguinte a uma barra deve necessariamente ser coincidido explicitamente, 
+a menos que a opção de shell @code{dotglob} esteja configurada.
+Quando da coincidência de um nome de arquivo, o caracter barra deve 
+necessariamente sempre ser coincidido explicitamente.
+Em outros casos, o caracter @samp{.} não é tratado especialmente.
 
-See the description of @code{shopt} in @ref{The Shopt Builtin},
-for a description of the @code{nocaseglob}, @code{nullglob},
-@code{failglob}, and @code{dotglob} options.
+Veja-se a descrição de @code{shopt} na @ref{The Shopt Builtin}, para uma 
+descrição das opções @code{nocaseglob}, @code{nullglob}, 
+@code{failglob}, e @code{dotglob}.
 
-The @env{GLOBIGNORE}
-shell variable may be used to restrict the set of filenames matching a
-pattern.  If @env{GLOBIGNORE}
-is set, each matching filename that also matches one of the patterns in
-@env{GLOBIGNORE} is removed from the list of matches.  The filenames
-@file{.} and @file{..}
-are always ignored when @env{GLOBIGNORE}
-is set and not null.
-However, setting @env{GLOBIGNORE} to a non-null value has the effect of
-enabling the @code{dotglob}
-shell option, so all other filenames beginning with a
-@samp{.} will match.
-To get the old behavior of ignoring filenames beginning with a
-@samp{.}, make @samp{.*} one of the patterns in @env{GLOBIGNORE}.
-The @code{dotglob} option is disabled when @env{GLOBIGNORE}
-is unset.
+A variável de shell @env{GLOBIGNORE} pode ser utilizada para restringir 
+o conjunto de nomes de arquivo coincidentes com um padrão.   Se 
+@env{GLOBIGNORE} estiver configurada, cada nome de arquivo coincidente 
+que também coincidir com um dos padrões em @env{GLOBIGNORE} é removido 
+da lista de coincidências.   Os nomes de arquivos @file{.} e @file{..} 
+sempre são ignorados quando @env{GLOBIGNORE} estiver configurada e não 
+for nula.
+Entretanto, a configuração de @env{GLOBIGNORE} para um valor não nulo 
+tem o efeito de habilitar a opção de shell @code{dotglob}, de maneira 
+que todos os outros nomes de arquivos iniciando com um @samp{.} 
+coincidirão.
+Para se ter o comportamento antigo de ignorar nomes de arquivos 
+iniciando com um @samp{.}, torne-se @samp{.*} um dos padrões em 
+@env{GLOBIGNORE}.
+A opção @code{dotglob} é desabilitada quando @env{GLOBIGNORE} estiver 
+desconfigurada.
 
 @node Pattern Matching
 @subsubsection Pattern Matching
 @cindex pattern matching
 @cindex matching, pattern
 
-Any character that appears in a pattern, other than the special pattern
-characters described below, matches itself.
-The @sc{nul} character may not occur in a pattern.
-A backslash escapes the following character; the
-escaping backslash is discarded when matching.
-The special pattern characters must be quoted if they are to be matched
-literally.
+Qualquer caracter que apareça em um padrão, que não os caracteres 
+especiais de padrão descritos abaixo, coincidem com eles próprios.
+O caracter @sc{nul} pode não ocorrer em um padrão.
+Uma barra invertida encapsula o caracter seguinte a ela; a barra 
+invertida de encapsulamento é descartada quando da coincidência.
+Os caracteres especiais de padrão devem necessariamente serem 
+encapsulados em aspas se eles são para serem coincididos literalmente.
 
-The special pattern characters have the following meanings:
+Os caracteres especiais de padrão tem os significados seguintes:
 @table @code
 @item *
-Matches any string, including the null string.
-When the @code{globstar} shell option is enabled, and @samp{*} is used in
-a filename expansion context, two adjacent @samp{*}s used as a single
-pattern will match all files and zero or more directories and
-subdirectories.
-If followed by a @samp{/}, two adjacent @samp{*}s will match only
-directories and subdirectories.
+Coincide com qualquer sequência de caracteres, incluindo a sequência de 
+caracteres "null".
+Quando a opção de shell @code{globstar} está habilitada, e @samp{*} for 
+utilizado em um contexto de expansão de nome de arquivo, dois @samp{*}s 
+adjascentes utilizados como um padrão único coincidirá com todos os 
+arquivos e zero ou mais diretórios e subdiretórios.
+Se seguido por uma @samp{/}, dois @samp{*}s adjascentes coincidirão 
+apenas com diretórios e subdiretórios.
 @item ?
-Matches any single character.
+Coincide com qualquer caracter singular.
 @item [@dots{}]
-Matches any one of the enclosed characters.  A pair of characters
-separated by a hyphen denotes a @var{range expression};
-any character that falls between those two characters, inclusive,
-using the current locale's collating sequence and character set,
-is matched.  If the first character following the
-@samp{[} is a @samp{!}  or a @samp{^}
-then any character not enclosed is matched.  A @samp{@minus{}}
-may be matched by including it as the first or last character
-in the set.  A @samp{]} may be matched by including it as the first
-character in the set.
-The sorting order of characters in range expressions is determined by
-the current locale and the values of the
-@env{LC_COLLATE} and @env{LC_ALL} shell variables, if set.
+Coincide com qualquer um dos caracteres encapsulados.   Um par de 
+caracteres separados por um hífen denota uma @var{range expression}; 
+qualquer caracter que cair entre esses dois caracteres, inclusive, 
+utilizando o conjunto de caracteres e sequência de recolha do locale 
+atual, é coincidida.   Se o primeiro caracter seguinte a @samp{[} for 
+um @samp{!} ou um @samp{^}, então qualquer caracter não encapsulado é 
+coincidido.   Um @samp{@minus{}} pode ser coincidido incluindo-se ele 
+como o primeiro ou último caracter no conjunto.   Um @samp{]} pode ser 
+coincidido incluindo-se ele como o primeiro caracter no conjunto.
+A ordem de arranjo dos caracteres em expressões de intervalo é 
+determinada pelo locale atual e os valores das variáveis de shell 
+@env{LC_COLLATE} e @env{LC_ALL}, se configuradas.
 
-For example, in the default C locale, @samp{[a-dx-z]} is equivalent to
-@samp{[abcdxyz]}.  Many locales sort characters in dictionary order, and in
-these locales @samp{[a-dx-z]} is typically not equivalent to @samp{[abcdxyz]};
-it might be equivalent to @samp{[aBbCcDdxXyYz]}, for example.  To obtain
-the traditional interpretation of ranges in bracket expressions, you can
-force the use of the C locale by setting the @env{LC_COLLATE} or
-@env{LC_ALL} environment variable to the value @samp{C}, or enable the
-@code{globasciiranges} shell option.
-
-Within @samp{[} and @samp{]}, @var{character classes} can be specified
-using the syntax
-@code{[:}@var{class}@code{:]}, where @var{class} is one of the
-following classes defined in the @sc{posix} standard:
+Por exemplo, no locale C padrão, @samp{[a-dx-z]} é equivalente a 
+@samp{[abcdxyz]}.   Muitos locales ordenam caracteres na ordem do 
+dicionário, e em tais locales @samp{[a-dx-z]} é tipicamente não 
+equivalente a @samp{[abcdxyz]};
+poderia ser equivalente a @samp{[aBbCcDdxXyYz]}, por exemplo.   Para se 
+obter a interpretação de intervalos tradicional em expressões de 
+parêntese, pode-se forçar o uso do locale C configurando-se 
+a variável de ambiente @env{LC_COLLATE} ou @env{LC_ALL} para o valor 
+@samp{C}, ou habilitar a opção de shell @code{globasciiranges}.
+Dentro de @samp{[} e @samp{]}, @var{character classes} podem ser 
+especificadas utilizando-se a sintaxe @code{[:}@var{class}@code{:]}, 
+onde @var{class} é uma das classes seguintes definidas no padrão 
+@sc{posix}:
 @example
 alnum   alpha   ascii   blank   cntrl   digit   graph   lower
 print   punct   space   upper   word    xdigit
 @end example
 @noindent
-A character class matches any character belonging to that class.
-The @code{word} character class matches letters, digits, and the character
-@samp{_}.
+Uma classe de caracteres coincide com qualquer caracter pertencente 
+àquela classe.
+A classe de caracter @code{word} coincide com letras, dígitos, e com o 
+caracter @samp{_}.
 
-Within @samp{[} and @samp{]}, an @var{equivalence class} can be
-specified using the syntax @code{[=}@var{c}@code{=]}, which
-matches all characters with the same collation weight (as defined
-by the current locale) as the character @var{c}.
+Dentro de @samp{[} e @samp{]}, uma @var{equivalence class} pode ser 
+especificada utilizando-se a sintaxe @code{[=}@var{c}@code{=]}, a qual 
+coincide com todos os caracteres com o mesmo peso de recolha (conforme 
+definido pelo locale atual) como o caracter @var{c}.
 
-Within @samp{[} and @samp{]}, the syntax @code{[.}@var{symbol}@code{.]}
-matches the collating symbol @var{symbol}.
+Dentro de @samp{[} e @samp{]}, a sintaxe @code{[.}@var{symbol}@code{.]} 
+coincide com o símbolo de recolha @var{symbol}.
 @end table
 
-If the @code{extglob} shell option is enabled using the @code{shopt}
-builtin, several extended pattern matching operators are recognized.
-In the following description, a @var{pattern-list} is a list of one
-or more patterns separated by a @samp{|}.
-Composite patterns may be formed using one or more of the following
-sub-patterns:
+Se a opção de shell @code{extglob} for habilitada utilizando o comando 
+interno @code{shopt}, então vários operadores extendidos de padrões de 
+coincidência são reconhecidos.
+Na descrição seguinte, uma @var{pattern-list} é uma lista de um ou mais 
+padrões separados por um @samp{|}.
+Padrões de composição podem serem formados utilizando-se um ou mais dos 
+sub-padrões seguintes:
 
 @table @code
 @item ?(@var{pattern-list})
-Matches zero or one occurrence of the given patterns.
+Coincide com zero ou uma ocorrência dos padrões dados.
 
 @item *(@var{pattern-list})
-Matches zero or more occurrences of the given patterns.
+Coincide com zero ou mais ocorrências dos padrões dados.
 
 @item +(@var{pattern-list})
-Matches one or more occurrences of the given patterns.
+Coincide com uma ou mais ocorrências dos padrões dados.
 
 @item @@(@var{pattern-list})
-Matches one of the given patterns.
+Coincide com um dos padrões dados.
 
 @item !(@var{pattern-list})
-Matches anything except one of the given patterns.
+Coincide com qualquer coisa, exceto um dos padrões dados.
 @end table
 
 @node Quote Removal
