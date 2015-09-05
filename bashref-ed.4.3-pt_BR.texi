@@ -2437,7 +2437,7 @@ Note-se que se não ocorrer expansão, divisão não é realizada.
 @node Filename Expansion
 @subsection Filename Expansion
 @menu
-* Pattern Matching::	How the shell matches patterns.
+* Pattern Matching::	Como o shell combina padrões.
 @end menu
 @cindex expansion, filename
 @cindex expansion, pathname
@@ -2591,130 +2591,131 @@ Coincide com qualquer coisa, exceto um dos padrões dados.
 @node Quote Removal
 @subsection Quote Removal
 
-After the preceding expansions, all unquoted occurrences of the
-characters @samp{\}, @samp{'}, and @samp{"} that did not
-result from one of the above expansions are removed.
+Após as expansões precedentes, todas as ocorrências não aspeadas dos 
+caracteres @samp{\}, @samp{'}, e @samp{"} que não resultaram de uma das 
+expansões acima são removidos.
 
 @node Redirections
 @section Redirections
 @cindex redirection
 
-Before a command is executed, its input and output
-may be @var{redirected}
-using a special notation interpreted by the shell.
-Redirection allows commands' file handles to be
-duplicated, opened, closed,
-made to refer to different files,
-and can change the files the command reads from and writes to.
-Redirection may also be used to modify file handles in the
-current shell execution environment.  The following redirection
-operators may precede or appear anywhere within a
-simple command or may follow a command.
-Redirections are processed in the order they appear, from
-left to right.
+Antes que um comando seja executado, a entrada e a saída dele podem ser 
+@var{redirected} utilizando-se uma notação especial interpretada pelo 
+shell.   A redireção permite que manipuladores de arquivo de comandos 
+sejam duplicados, abertos, fechados, construidos para referênciar 
+arquivos diferentes, e podem modificar os arquivos a partir dos quais o 
+comando lê ou para os quais escreve.
+A redireção também pode ser utilizada para modificar manipuladores de 
+arquivos no ambiente de execução do shell atual.   Os seguintes 
+operadores de redireção podem preceder ou aparecer em qualquer lugar 
+dentro de um comando simples ou podem se seguir a um comando.
+As redireções são processadas na ordem em que elas aparecem, desde a 
+esquerda até a direita.
 
-Each redirection that may be preceded by a file descriptor number
-may instead be preceded by a word of the form @{@var{varname}@}.
-In this case, for each redirection operator except
->&- and <&-, the shell will allocate a file descriptor greater
-than 10 and assign it to @{@var{varname}@}.  If >&- or <&- is preceded
-by @{@var{varname}@}, the value of @var{varname} defines the file
-descriptor to close.
+Cada redireção que pode ser precedida por um número de descritor de 
+arquivo pode ao invés ser precedida por uma palavra da forma 
+@{@var{varname}@}.   Nesse caso, para cada operador de redireção, exceto 
+>&- e <&-, o shell alocará um descritor de arquivo maior que dez (10) e 
+o atribuirá a @{@var{varname}@}.   Se >&- ou <&- forem precedidos por 
+@{@var{varname}@}, então o valor de @var{varname} define o descritor de 
+arquivo a fechar.
 
-In the following descriptions, if the file descriptor number is
-omitted, and the first character of the redirection operator is
-@samp{<}, the redirection refers to the standard input (file
-descriptor 0).  If the first character of the redirection operator
-is @samp{>}, the redirection refers to the standard output (file
-descriptor 1).
+Nas descrições seguintes, se o número do descritor de arquivo for 
+omitido, e o primeiro carácter do operador de redireção for @samp{<}, 
+então a redireção se refere à entrada padrão (descritor de arquivo 0).   
+Se o primeiro carácter do operador de redireção for @samp{>}, então a 
+redireção se refere à saída padrão (descritor de arquivo 1).
 
-The word following the redirection operator in the following
-descriptions, unless otherwise noted, is subjected to brace expansion,
-tilde expansion, parameter expansion, command substitution, arithmetic
-expansion, quote removal, filename expansion, and word splitting.
-If it expands to more than one word, Bash reports an error.
+A palavra que se segue ao operador de redireção nas descrições 
+seguintes, a menos que apontado de outra maneira, está sujeita à 
+expansão de chave, expansão de til, expansão de parâmetro, substituição 
+de comando, expansão aritmética, remoção de aspas, expansão de nome de 
+arquivo e divisão de palavra.
+Se ela expandir para mais que uma palavra, então Bash reportará um erro.
 
-Note that the order of redirections is significant.  For example,
-the command
+Perceba que a ordem das redireções é importante.   Por exemplo, o 
+comando
 @example
 ls > @var{dirlist} 2>&1
 @end example
 @noindent
-directs both standard output (file descriptor 1) and standard error
-(file descriptor 2) to the file @var{dirlist}, while the command
+direciona ambos saída padrão (descritor de arquivo 1) e erro padrão 
+(descritor de arquivo 2) para o arquivo @var{dirlist}, ao passo que o 
+comando
 @example
 ls 2>&1 > @var{dirlist}
 @end example
 @noindent
-directs only the standard output to file @var{dirlist},
-because the standard error was made a copy of the standard output
-before the standard output was redirected to @var{dirlist}.
+direciona apenas a saída padrão para o arquivo @var{dirlist}, pois o 
+erro padrão foi feito como que uma cópia da saída padrão antes que a 
+saída padrão fosse redirecionada para @var{dirlist}.
 
-Bash handles several filenames specially when they are used in
-redirections, as described in the following table:
+Bash manipula diversos nomes de arquivos de forma especial quando tais 
+arquivos são utilizados em redireções, conforme descrito na tabela 
+seguinte:
 
 @table @code
 @item /dev/fd/@var{fd}
-If @var{fd} is a valid integer, file descriptor @var{fd} is duplicated.
+Se @var{fd} for um número inteiro válido, o descritor de arquivo 
+@var{fd} é duplicado.
 
 @item /dev/stdin
-File descriptor 0 is duplicated.
+O descritor de arquivo zero (0) é duplicado.
 
 @item /dev/stdout
-File descriptor 1 is duplicated.
+O descritor de arquivo um (1) é duplicado.
 
 @item /dev/stderr
-File descriptor 2 is duplicated.
+O descritor de arquivo dois (2) é duplicado.
 
 @item /dev/tcp/@var{host}/@var{port}
-If @var{host} is a valid hostname or Internet address, and @var{port}
-is an integer port number or service name, Bash attempts to open
-the corresponding TCP socket.
+Se @var{host} for um nome de máquina válido ou um endereço de Internet, 
+e @var{port} for um número inteiro de porta ou um nome de serviço, então 
+Bash tenta abrir o soquete TCP correspondente.
 
 @item /dev/udp/@var{host}/@var{port}
-If @var{host} is a valid hostname or Internet address, and @var{port}
-is an integer port number or service name, Bash attempts to open 
-the corresponding UDP socket.
+Se @var{host} for um nome de máquina válido ou um endereço Internet, e 
+@var{port} for um número inteiro de porta ou um nome de serviço, então 
+Bash tenta abrir o soquete UDP correspondente.
 @end table
 
-A failure to open or create a file causes the redirection to fail.
+Uma falha em abrir ou em criar um arquivo faz com que a redireção falhe.
 
-Redirections using file descriptors greater than 9 should be used with
-care, as they may conflict with file descriptors the shell uses
-internally.
+Redireções que utilizem descritores de arquivos maiores que nove (9) 
+deveriam ser utilizados com cuidado, uma vez que eles podem conflitar 
+com descritores de arquivo que o shell utiliza internamente.
 
 @subsection Redirecting Input
-Redirection of input causes the file whose name results from
-the expansion of @var{word}
-to be opened for reading on file descriptor @code{n},
-or the standard input (file descriptor 0) if @code{n}
-is not specified.
+A redireção de entrada faz com que o arquivo cujo nome resulte da 
+expansão de @var{word} seja aberto para leitura no descritor de arquivo 
+@code{n}, ou na entrada padrão (descritor de arquivo zero (0)) se 
+@code{n} não for especificado.
 
-The general format for redirecting input is:
+O formato geral para redirecionar entrada é:
 @example
 [@var{n}]<@var{word}
 @end example
 
 @subsection Redirecting Output
-Redirection of output causes the file whose name results from
-the expansion of @var{word}
-to be opened for writing on file descriptor @var{n},
-or the standard output (file descriptor 1) if @var{n}
-is not specified.  If the file does not exist it is created;
-if it does exist it is truncated to zero size.
+A redireção de saída faz com que o arquivo cujo nome resulte da expansão 
+de @var{word} seja aberto para escrita no descritor de arquivo @var{n}, 
+ou na saída padrão (descritor de arquivo um (1)) se @var{n} não for 
+especificado.   Se o arquivo não existir, ele é criado; se ele já 
+existir, ele é truncado para tamanho zero.
 
-The general format for redirecting output is:
+O formato geral para redirecionar saída é:
 @example
 [@var{n}]>[|]@var{word}
 @end example
 
-If the redirection operator is @samp{>}, and the @code{noclobber}
-option to the @code{set} builtin has been enabled, the redirection
-will fail if the file whose name results from the expansion of
-@var{word} exists and is a regular file.
-If the redirection operator is @samp{>|}, or the redirection operator is
-@samp{>} and the @code{noclobber} option is not enabled, the redirection
-is attempted even if the file named by @var{word} exists.
+Se o operadores de redirecionamento for @samp{>}, e a opção 
+@code{noclobber} para o comando interno @code{set} tiver sido 
+habilitada, então a redireção falhará se o arquivo cujo nome resulte da 
+expansão de @var{word} existir e for um arquivo regular.
+Se o operador de redireção for @samp{>|}, ou o operador de redireção for 
+@samp{>} e a opção @code{noclobber} não estiver habilitada, então a 
+redireção é tentada, mesmo se o arquivo nomeado por @var{word} existir.
+
 
 @subsection Appending Redirected Output
 Redirection of output in this fashion
