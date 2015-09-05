@@ -117,7 +117,7 @@ como a referência definitiva acerca do comportamento do shell.
 						/bin/sh.
 * GNU Free Documentation License::	Copiando e compartilhando esta 
 					documentação.
-* Indexes::			Varios índices para este manual.
+* Indexes::			Vários índices para este manual.
 @end menu
 @end ifnottex
 
@@ -177,7 +177,7 @@ execução não-interativamente, shells executam comandos lidos a partir de
 um arquivo.
 
 Um shell permite a execução de comandos @sc{gnu}, ambos síncronamente e 
-assíncronamente.
+assincronamente.
 O shell aguarda comandos síncronos completarem antes de aceitar mais 
 entrada; comandos assíncronos continuam a executar em paralelo com o 
 shell enquanto ele lê e executa comandos adicionais.
@@ -201,9 +201,9 @@ subsequentes.
 Ao tempo em que executar comandos é essencial, a maior parte do poder (e 
 complexidade) dos shells é devida às suas linguagens de programação 
 embutidas.   Como qualquer linguagem de alto-nível, o shell fornece 
-variáveis, contrutores de fluxo de controle, citações e funções.
+variáveis, construtores de fluxo de controle, citações e funções.
 
-Shells ofecerem recursos especificamente voltados para uso interativo ao 
+Shells oferecem recursos especificamente voltados para uso interativo ao 
 invés de aumentar a linguagem de programação.   Essas características 
 interativas incluem controle de tarefa, edição de linha de comando, 
 histórico de comando e apelidos.   Cada uma dessas características está 
@@ -222,7 +222,7 @@ concernente primariamente com a porção de Shell e Utilitários do padrão
 @sc{posix} 1003.1.
 
 @item blank
-Um caracter tab ou espaço.
+Um carácter tab ou espaço.
 
 @item builtin
 @cindex builtin
@@ -264,7 +264,7 @@ reiniciar (resume) a execução de processos.
 
 @item metacharacter
 @cindex metacharacter
-Um caracter que, sem aspas, separa palavras.   Um metacaracter é um 
+Um carácter que, sem aspas, separa palavras.   Um metacarácter é um 
 @code{blank} ou um dos caracteres seguintes: @samp{|}, @samp{&}, 
 @samp{;}, @samp{(}, @samp{)}, @samp{<}, ou @samp{>}.
 
@@ -434,7 +434,7 @@ status de saída (@pxref{Exit Status}).
 * Single Quotes::	Como inibir toda a interpretação de uma 
 			sequência de caracteres.
 * Double Quotes::	Como suprimir a maior parte da interpretação 
-			de uma seqência de caracteres.
+			de uma sequencia de caracteres.
 * ANSI-C Quoting::	Como expandir sequências ANSI-C em cadeias de 
 			caracteres encapsuladas entre aspas.
 * Locale Translation::	Como traduzir cadeias de caracteres em 
@@ -444,10 +444,10 @@ status de saída (@pxref{Exit Status}).
 O encapsulamento entre aspas é utilizado para remover o significado 
 especial de determinados caracteres ou palavras para o shell.   O 
 encapsulamento pode ser utilizado para desabilitar o tratamento especial 
-para caracteres especiais, previnir palavras reservadas de serem 
+para caracteres especiais, prevenir palavras reservadas de serem 
 reconhecidas como tais, e prevenir a expansão de parâmetro.
 
-Cada um dos metacaracteres do shell (@pxref{Definitions}) tem um 
+Cada um dos meta caracteres do shell (@pxref{Definitions}) tem um 
 significado especial para o shell e devem ser encapsulados caso devam 
 representar eles mesmos.
 Quando as facilidades da expansão de histórico de comandos estão sendo 
@@ -694,12 +694,12 @@ filhos.
 A variável @env{TIMEFORMAT} deve ser utilizada para especificar o 
 formato da informação de temporização.
 
-Se o canal de comunicação não estiver sendo executado assíncronamente 
+Se o canal de comunicação não estiver sendo executado assincronamente 
 (@pxref{Lists}), o shell aguarda que todos os comandos no canal de 
 comunicação finalizem.
 
 Cada comando em um canal de comunicação é executado em seu próprio 
-subshell (@pxref{Command Execution Environment}).   O status de saída de 
+sub shell (@pxref{Command Execution Environment}).   O status de saída de 
 um canal de comunicação é o status de saída do último comando no canal 
 de comunicação, a menos que a opção @code{pipefail} esteja habilitada 
 (@pxref{The Set Builtin}).
@@ -729,7 +729,7 @@ Uma sequência de um ou mais newlines podem aparecer em uma @code{list}
 para delimitar comandos, equivalente a ponto e vírgula.
 
 Se um comando é finalizado pelo operador de controle @samp{&}, o shell 
-executa o comando assíncronamente em um subshell.
+executa o comando assincronamente em um sub shell.
 Isso é conhecido como executar o comando no @var{background}.
 O shell não aguarda que o comando finalize a execução, e o status de 
 retorno é 0 (verdadeiro).
@@ -737,7 +737,7 @@ Quando o controle de tarefas não está ativo (@pxref{Job Control}), a
 entrada padrão para comandos assíncronos, na ausência de quaisquer 
 redireções explícitas, é redirecionada a partir de @code{/dev/null}.
 
-Comandos separados por um @samp{;} são executados sequêncialmente; o 
+Comandos separados por um @samp{;} são executados sequencialmente; o 
 shell aguarda que cada comando finalize sua execução.   O status de 
 retorno é o status de saída do último comando executado.
 
@@ -850,7 +850,7 @@ O status de retorno é o status de saída do último comando que executar.
 Se não existirem itens na expansão de @var{words}, nenhum comando é 
 executado, e o status de retorno será igual a zero.
 
-Uma forma altenartiva do comando @code{for} também é suportada:
+Uma forma alternativa do comando @code{for} também é suportada:
 
 @example
 for (( @var{expr1} ; @var{expr2} ; @var{expr3} )) ; do @var{commands} ; done
@@ -1056,7 +1056,7 @@ ordenam lexicograficamente utilizando o locale atual.
 
 Quando os operadores @samp{==} e @samp{!=} são utilizados, a sequência 
 de caracteres à direita do operador é considerada um padrão e uma 
-coinciência é tentada de acordo com as regras descritas abaixo em 
+coincidência é tentada de acordo com as regras descritas abaixo em 
 @ref{Pattern Matching}, como se a opção de shell @code{extglob} 
 estivesse habilitada.
 O operador @samp{=} é idêntico ao @samp{==}.
@@ -1090,13 +1090,13 @@ normais para indicar aspas perdem seus significados entre parênteses.
 Se o padrão for armazenado em uma variável de shell, então colocar-se a 
 expansão da variável entre aspas força o padrão inteiro ser tratado como 
 sendo uma sequência de caracteres.
-As subsequências de caracteres testadas por subexpressões entre 
+As subsequências de caracteres testadas por sub expressões entre 
 parênteses dentro da expressão regular são salvas na variável de vetor 
 @code{BASH_REMATCH}.
-O elemento do @code{BASH_REMATCH} cujo indice é 0 é a porção da 
+O elemento do @code{BASH_REMATCH} cujo índice é 0 é a porção da 
 sequência de caracteres coincidente com a expressão regular inteira.
 O elemento do @code{BASH_REMATCH} cujo índice é @var{n} é a porção da 
-sequência de caracteres coincidente com a @var{n}ésima subexpressão 
+sequência de caracteres coincidente com a @var{n}ésima sub expressão 
 entre parênteses.
 
 Por exemplo, o seguinte coincidirá com uma linha (armazenada na 
@@ -1203,10 +1203,10 @@ para um fluxo único.
 @end example
 
 Colocar uma lista de comandos entre parênteses faz com que um ambiente 
-de subshell seja criado (@pxref{Command Execution Environment}), e cada 
-um dos comandos na @var{list} sejam executados nesse subshell.   Uma vez 
-que a @var{list} seja executada em um subshell, atribuições à variáveis 
-não permanecem em efeito após a finalização do subshell.
+de sub shell seja criado (@pxref{Command Execution Environment}), e cada 
+um dos comandos na @var{list} sejam executados nesse sub shell.   Uma vez 
+que a @var{list} seja executada em um sub shell, atribuições à variáveis 
+não permanecem em efeito após a finalização do sub shell.
 
 @item @{@}
 @rwindex @{
@@ -1216,14 +1216,14 @@ não permanecem em efeito após a finalização do subshell.
 @end example
 
 Colocar uma lista de comandos entre chaves faz com que a lista seja 
-executada no contexto do shell atual.   Nenhum subshell é criado.
+executada no contexto do shell atual.   Nenhum sub shell é criado.
 O ponto e vírgula (ou newline) seguinte a @var{list} é obrigatório.
 @end table
 
-Adicionalmente à criação de um subshell, existe uma diferença sútil 
+Adicionalmente à criação de um sub shell, existe uma diferença sútil 
 entre essas duas construções devida a razões históricas.   As chaves são 
 @code{reserved words}, de forma que elas devem necessariamente serem 
-separadas da @var{list} por @code{blank}s ou outros metacaracteres de 
+separadas da @var{list} por @code{blank}s ou outros meta caracteres de 
 shell.
 Os parênteses são @code{operators}, e são reconhecidos como tokens 
 separados pelo shell mesmo se eles não forem separados da @var{list} por 
@@ -1238,7 +1238,7 @@ O status de saída de ambas dessas construções é o status de saída de
 
 Um @code{coprocess} é um comando de shell precedido pela palavra 
 reservada @code{coproc}.
-Um coprocesso é executado assíncronamente em um subshell, como se o 
+Um coprocesso é executado assincronamente em um sub shell, como se o 
 comando tivesse sido finalizado com o operador de controle @samp{&}, com 
 um tubo de mão dupla estabelecido entre o shell em execução e o 
 coprocesso.
@@ -1268,7 +1268,7 @@ pelo comando (@pxref{Redirections}).
 Os descritores de arquivo podem ser utilizados como argumentos para 
 redireções e comandos de shell utilizando-se expansões de palavras 
 padrão.
-Os descritores de arquivo não estão disponíveis em subshells.
+Os descritores de arquivo não estão disponíveis em sub shells.
 
 O Identificador (ID) de processo do shell gerado para executar o 
 coprocesso está disponível como sendo o valor da variável 
@@ -1467,7 +1467,7 @@ envolvem o corpo de uma função devem necessariamente serem separadas do
 corpo por caracteres @code{blank}s ou newlines.
 Isso é porque as chaves são palavras reservadas e apenas são 
 reconhecidas como tais quando elas estão separadas da lista de comando 
-por espaço em branco ou um outro metacaracter de shell.
+por espaço em branco ou um outro metacarácter de shell.
 Também, quando da utilização de chaves, a @var{list} deve 
 necessariamente ser finalizada por um ponto e vírgula, ou por um 
 @samp{&}, ou por um newline.
@@ -1520,7 +1520,7 @@ Os nomes de função e definições podem ser listados com a opção
 A opção @option{-F} para @code{declare} ou @code{typeset} listará 
 apenas os nomes de funções (e opcionalmente o arquivo fonte e número da 
 linha, se a opção de shell @code{extdebug} estiver habilitada).
-As funções podem ser exportadas, de forma que subshells automaticamente 
+As funções podem ser exportadas, de forma que sub shells automaticamente 
 tenham elas definidas com a opção @option{-f} para o comando interno 
 @code{export} (@pxref{Bourne Shell Builtins}).
 Perceba que as funções e variáveis de shell com o mesmo nome podem 
@@ -1605,7 +1605,7 @@ utilizando-se a opção @option{-n} para os comandos internos
 \fBdeclare\fP ou \fBlocal\fP (veja-se @ref{Bash Builtins}) para criar 
 uma @var{nameref}, ou uma referência a uma outra variável.
 Isso permite que variáveis sejam manipuladas indiretamente.
-Sempre que a variável nameref é referênciada ou é atribuída, a operação 
+Sempre que a variável nameref é referenciada ou é atribuída, a operação 
 é atualmente feita na variável especificada pelo valor da variável 
 nameref.
 Uma variável nameref é usualmente utilizada dentro de funções de shell 
@@ -1627,13 +1627,13 @@ a lista de palavras pode ser uma lista de variáveis de shell, e uma
 referência de nome será estabelecida para cada palavra na lista, em 
 sequência, quando o loop é executado.
 Às variáveis de vetores não pode ser atribuído o atributo @option{-n}.
-Entretanto, variáveis nameref podem referênciar variáveis de vetor e 
+Entretanto, variáveis nameref podem referenciar variáveis de vetor e 
 variáveis de vetor subscritas.
 Os nameref podem ser desconfigurados utilizando-se a opção @option{-n} 
 para o comando interno @code{unset} (veja-se @ref{Bourne Shell 
 Builtins}).
 Do contrário, se @code{unset} for executado com o nome de uma variável 
-nameref como um argumento, a variável referênciada pela variável nameref 
+nameref como um argumento, a variável referenciada pela variável nameref 
 será desconfigurada.
 
 @node Positional Parameters
@@ -1648,7 +1648,7 @@ invocado, e podem ser reatribuídos utilizando-se o comando interno
 O parâmetro posicional @code{N} pode ser referenciado como 
 @code{$@{N@}}, ou como @code{$N} quando @code{N} consiste de um dígito 
 único.
-Parãmetros posicionais não podem ser atribuídos com declarações de 
+Parâmetros posicionais não podem ser atribuídos com declarações de 
 atribuição.
 Os comandos internos @code{set} e @code{shift} são utilizados para 
 configurar e desconfigurar os parâmetros posicionais (veja-se @ref{Shell 
@@ -1664,7 +1664,7 @@ expandido, ele deve necessariamente estar contido entre chaves.
 @cindex parameters, special
 
 O shell trata diversos parâmetros especialmente.   Tais parâmetros 
-apenas podem ser referênciados; atribuição a eles não é permitida.
+apenas podem ser referenciados; atribuição a eles não é permitida.
 
 @vtable @code
 
@@ -1717,8 +1717,8 @@ aquelas configuradas pelo próprio shell (tal como a opção @option{-i}).
 @item $
 @vindex $$
 ($$) Expande para o @sc{id} de processo do shell.   Dentro de um 
-subshell @code{()}, ele expande para o @sc{id} de processo do shell que 
-invoca, não o do subshell.
+sub shell @code{()}, ele expande para o @sc{id} de processo do shell que 
+invoca, não o do sub shell.
 
 @item !
 @vindex $!
@@ -1817,12 +1817,12 @@ Removal}) é realizada.
 
 Expansão de chave é um mecanismo pelo qual sequências de caracteres 
 arbitrárias podem ser geradas.
-Esse mecenismo é similar a @var{filename expansion} 
+Esse mecanismo é similar a @var{filename expansion} 
 (veja-se @ref{Filename Expansion}), porém os nomes de arquivo gerados 
 não podem existir.
 Padrões para serem expandidos de chave assumem a forma de um 
-@var{preamble} opcional, segiuido de ou uma série de sequências de 
-caracteres separadas por vírgulas ou uma expressão sequêncial entre um 
+@var{preamble} opcional, seguido de ou uma série de sequências de 
+caracteres separadas por vírgulas ou uma expressão sequencial entre um 
 par de chaves, seguida por um @var{postscript} opcional.
 O preâmbulo é prefixado para cada sequência de caracteres contida nas 
 chaves, e o postscript é então adicionado a cada sequência de caracteres 
@@ -1837,7 +1837,7 @@ bash$ echo a@{d,c,b@}e
 ade ace abe
 @end example
 
-Uma expressão sequêncial assume a forma 
+Uma expressão sequencial assume a forma 
 @code{@{@var{x}..@var{y}[..@var{incr}]@}}, onde @var{x} e @var{y} são ou 
 inteiros ou caracteres simples, e @var{incr}, um incremento opcional, é 
 um inteiro.
@@ -1867,7 +1867,7 @@ Para evitar conflitos com a expansão de parâmetro, a sequência
 
 Uma expansão de chave corretamente formada deve necessariamente conter 
 chaves que abrem e fecham fora de aspas, e ao menos uma vírgula fora de 
-aspas ou uma expressão sequêncial válida.
+aspas ou uma expressão sequencial válida.
 Qualquer expansão de chave incorreta é deixada não modificada.
 
 Um @{ ou uma @samp{,} podem ser encapsuladas com uma barra invertida 
@@ -2016,13 +2016,13 @@ existência.
 
 @item $@{@var{parameter}:@minus{}@var{word}@}
 Se @var{parameter} estiver desconfigurado ou for nulo, a expansão de 
-@var{word} é substituida.   Do contrário, o valor de @var{parameter} é 
-substituido.
+@var{word} é substituída.   Do contrário, o valor de @var{parameter} é 
+substituído.
 
 @item $@{@var{parameter}:=@var{word}@}
 Se @var{parameter} estiver desconfigurado ou for nulo, a expansão de 
-@var{word} é atribuida a @var{parameter}.
-O valor de @var{parameter} é então substituido.
+@var{word} é atribuída a @var{parameter}.
+O valor de @var{parameter} é então substituído.
 Parâmetros posicionais e parâmetros especiais não podem ser atribuídos 
 dessa maneira.
 
@@ -2031,11 +2031,11 @@ Se @var{parameter} for nulo ou estiver desconfigurado, a expansão de
 @var{word} (ou uma mensagem para esse efeito se @var{word} não estiver 
 presente) é escrita para o descritor de erro padrão e o shell, se não 
 for interativo, sai.   Do contrário, o valor de @var{parameter} é 
-substituido.
+substituído.
 
 @item $@{@var{parameter}:+@var{word}@}
 Se @var{parameter} for nulo ou estiver desconfigurado, nada é 
-substituido, do contrário a expansão de @var{word} é substituida.
+substituído, do contrário a expansão de @var{word} é substituída.
 
 @item $@{@var{parameter}:@var{offset}@}
 @itemx $@{@var{parameter}:@var{offset}:@var{length}@}
@@ -2128,7 +2128,7 @@ parâmetro posicional, de maneira que um offset de -1 tem por resultado o
 menor que zero.
 
 Os exemplos seguintes ilustram Expansão de Substring utilizando 
-parâmetos posicionais:
+parâmetros posicionais:
 
 @verbatim
 $ set -- 1 2 3 4 5 6 7 8 9 0 a b c d e f g h
@@ -2281,7 +2281,7 @@ Esta expansão modifica o tipo dos caracteres alfabéticos em @var{parameter}.
 O @var{parameter} é expandido para produzir um padrão exatamente como na 
 expansão de nome de arquivo.
 Cada caracter no valor expandido de @var{parameter} é testado contra 
-@var{pattern}, e, se coincidir com o padrão, aconteçe a conversão de 
+@var{pattern}, e, se coincidir com o padrão, acontece a conversão de 
 caso.
 O padrão não deveria tentar coincidir mais que um caracter.
 O operador @samp{^} converte letras minúsculas coincidentes com 
@@ -2391,11 +2391,11 @@ então a escrita para o arquivo fornecerá entrada para @var{list}.   Se a
 forma @code{<(@var{list})} for utilizada, o arquivo passado como um 
 argumento deveria ser lido para obter a saída de @var{list}.
 Perceba-se que nenhum espaço pode aparecer entre o @code{<} ou @code{>} 
-e o abre parênteses, do contrário a contrução seria interpretada como 
+e o abre parênteses, do contrário a construção seria interpretada como 
 sendo uma redireção.
 
 Quando disponível, a substituição de processo é realizada 
-simultâneamente com a expansão de parâmetro e variável, substituição de 
+simultaneamente com a expansão de parâmetro e variável, substituição de 
 comando, e expansão aritmética.
 
 @node Word Splitting
@@ -2408,7 +2408,7 @@ para divisão de palavra.
 
 O shell trata cada caracter de @env{$IFS} como sendo um delimitador, e 
 reparte os resultado das outras expansões em palavras utilizando esses 
-caracteres como termonadores de campo.
+caracteres como terminadores de campo.
 Se @env{IFS} estiver desconfigurada, ou o valor dela for exatamente 
 @code{<space><tab><newline>}, o padrão, então as sequências de @code{ 
 <space>}, @code{<tab>}, e @code{<newline>} no início e final dos 
@@ -2447,8 +2447,8 @@ Note-se que se não ocorrer expansão, divisão não é realizada.
 Após a divisão de palavra, a menos que a opção @option{-f} tenha sido 
 configurada (veja-se @ref{The Set Builtin}), Bash escaneia cada palavra 
 a procura dos caracteres @samp{*}, @samp{?}, e @samp{[}.
-Se um desse caracteres aparece, então a palavra é considerada como sendo 
-um @var{pattern}, e substituído com uma lista de nomes de arquivos 
+Se um desses caracteres aparece, então a palavra é considerada como 
+sendo um @var{pattern}, e substituída com uma lista de nomes de arquivos 
 ordenada alfabeticamente coincidindo com o padrão (veja-se @ref{Pattern 
 Matching}).
 Se nomes de arquivo que coincidam não forem encontrados, e a opção de 
@@ -2460,7 +2460,7 @@ Se a opção de shell @code{failglob} estiver configurada, e nenhuma
 coincidência for encontrada, uma mensagem de erro é impressa e o comando 
 não é executado.
 Se a opção de shell @code{nocaseglob} estiver habilitada, o teste de 
-coinciência é tentado sem considerar maiúsculas e minúsculas.
+coincidência é tentado sem considerar maiúsculas e minúsculas.
 
 Quando um padrão é utilizado para expansão de nome de arquivo, o 
 caracter @samp{.} no início de um nome de arquivo ou imediatamente 
@@ -2498,7 +2498,7 @@ desconfigurada.
 
 Qualquer caracter que apareça em um padrão, que não os caracteres 
 especiais de padrão descritos abaixo, coincidem com eles próprios.
-O caracter @sc{nul} pode não ocorrer em um padrão.
+O caracter @sc{null} pode não ocorrer em um padrão.
 Uma barra invertida encapsula o caracter seguinte a ela; a barra 
 invertida de encapsulamento é descartada quando da coincidência.
 Os caracteres especiais de padrão devem necessariamente serem 
@@ -2511,9 +2511,9 @@ Coincide com qualquer sequência de caracteres, incluindo a sequência de
 caracteres "null".
 Quando a opção de shell @code{globstar} está habilitada, e @samp{*} for 
 utilizado em um contexto de expansão de nome de arquivo, dois @samp{*}s 
-adjascentes utilizados como um padrão único coincidirá com todos os 
+adjacentes utilizados como um padrão único coincidirá com todos os 
 arquivos e zero ou mais diretórios e subdiretórios.
-Se seguido por uma @samp{/}, dois @samp{*}s adjascentes coincidirão 
+Se seguido por uma @samp{/}, dois @samp{*}s adjacentes coincidirão 
 apenas com diretórios e subdiretórios.
 @item ?
 Coincide com qualquer caracter singular.
@@ -2569,7 +2569,7 @@ coincidência são reconhecidos.
 Na descrição seguinte, uma @var{pattern-list} é uma lista de um ou mais 
 padrões separados por um @samp{|}.
 Padrões de composição podem serem formados utilizando-se um ou mais dos 
-sub-padrões seguintes:
+subpadrões seguintes:
 
 @table @code
 @item ?(@var{pattern-list})
