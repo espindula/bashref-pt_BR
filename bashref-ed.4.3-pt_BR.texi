@@ -2718,197 +2718,196 @@ redireção é tentada, mesmo se o arquivo nomeado por @var{word} existir.
 
 
 @subsection Appending Redirected Output
-Redirection of output in this fashion
-causes the file whose name results from
-the expansion of @var{word}
-to be opened for appending on file descriptor @var{n},
-or the standard output (file descriptor 1) if @var{n}
-is not specified.  If the file does not exist it is created.
+A redireção da saída nesta maneira faz com que o arquivo cujo nome 
+resulte da expansão de @var{word} seja aberto, para acrescentar 
+conteúdo, no descritor de arquivo @var{n}, ou na saída padrão (descritor 
+de arquivo um (1)) caso @var{n} não seja especificado.   Se o arquivo 
+não existir, então ele é criado.
 
-The general format for appending output is:
+O formato geral para acrescentar conteúdo de saída é:
 @example
 [@var{n}]>>@var{word}
 @end example
 
 @subsection Redirecting Standard Output and Standard Error
-This construct allows both the
-standard output (file descriptor 1) and
-the standard error output (file descriptor 2)
-to be redirected to the file whose name is the
-expansion of @var{word}.
+Este construtor permite que ambas, a saída padrão (descritor de arquivo 
+um (1)) e a saída de erro padrão (descritor de arquivo dois (2)), sejam 
+redirecionadas para o arquivo cujo nome é a expansão de @var{word}.
 
-There are two formats for redirecting standard output and
-standard error:
+Existem dois formatos para o redirecionamento da saída padrão e do erro 
+padrão:
 @example
 &>@var{word}
 @end example
 @noindent
-and
+e
 @example
 >&@var{word}
 @end example
 @noindent
-Of the two forms, the first is preferred.
-This is semantically equivalent to
+Das duas formas, a primeira é a preferida.
+Isso é semanticamente equivalente a:
 @example
 >@var{word} 2>&1
 @end example
-When using the second form, @var{word} may not expand to a number or
-@samp{-}.  If it does, other redirection operators apply
-(see Duplicating File Descriptors below) for compatibility reasons.
+Quando se utilizar a segunda forma, @var{word} pode não expandir para um 
+número ou @samp{-}.   Se expandir, outros operadores de redireção se 
+aplicam (veja-se Duplicando Descritores de Arquivo abaixo) por razões de 
+compatibilidade.
 
 @subsection Appending Standard Output and Standard Error
-This construct allows both the
-standard output (file descriptor 1) and
-the standard error output (file descriptor 2)
-to be appended to the file whose name is the
-expansion of @var{word}.
+Este construtor permite que ambas, a saída padrão (descritor de arquivo 
+um (1)) e a saída de erro padrão (descritor de arquivo dois (2)), sejam 
+acrescentadas ao arquivo cujo nome é a expansão de @var{word}.
 
-The format for appending standard output and standard error is:
+O formato para acrescentar a saída padrão e o erro padrão é:
 @example
 &>>@var{word}
 @end example
 @noindent
-This is semantically equivalent to
+Isso é semanticamente equivalente a:
 @example
 >>@var{word} 2>&1
 @end example
-(see Duplicating File Descriptors below).
+(veja-se Duplicando Descritores de Arquivo abaixo).
 
 @subsection Here Documents
-This type of redirection instructs the shell to read input from the
-current source until a line containing only @var{word}
-(with no trailing blanks) is seen.  All of
-the lines read up to that point are then used as the standard
-input for a command.
+Este tipo de redireção instrue o shell a ler entrada vinda da fonte 
+atual até que uma linha contendo apenas @var{word} (sem espaços em 
+branco seguintes) seja vista.   Todas as linhas lidas até tal ponto são 
+então utilizadas como entrada padrão para um comando.
 
-The format of here-documents is:
+O formato de here-documents é:
 @example
 <<[@minus{}]@var{word}
         @var{here-document}
 @var{delimiter}
 @end example
 
-No parameter and variable expansion, command substitution,
-arithmetic expansion, or filename expansion is performed on
-@var{word}.  If any characters in @var{word} are quoted, the
-@var{delimiter} is the result of quote removal on @var{word},
-and the lines in the here-document are not expanded.
-If @var{word} is unquoted,
-all lines of the here-document are subjected to
-parameter expansion, command substitution, and arithmetic expansion,
-the character sequence @code{\newline} is ignored, and @samp{\}
-must be used to quote the characters
-@samp{\}, @samp{$}, and @samp{`}.
+Nenhuma expansão de variável e de parâmetro, substituição de comando, 
+expansão aritmética ou expansão de nome de arquivo é efetuada sobre 
+@var{word}.   Se quaisquer caracteres em @var{word} estiverem entre 
+aspas, o @var{delimiter} é o resultado da remoção das aspas sobre 
+@var{word}, e as linhas no documento-aqui não são expandidas.
+Se @var{word} estiver fora de aspas, todas as linhas do documento-aqui 
+ficam sujeitas a expansão de parâmetro, substituição de comando, e 
+expansão aritmética, a sequência de caracter @code{\newline} é ignorada, 
+e @samp{\} deve necessariamente ser utilizado para encapsular os 
+caracteres @samp{\}, @samp{$}, e @samp{`}.
 
-If the redirection operator is @samp{<<-},
-then all leading tab characters are stripped from input lines and the
-line containing @var{delimiter}.
-This allows here-documents within shell scripts to be indented in a
-natural fashion.
+Se o operador de redireção for @samp{<<-}, então todos os caracteres tab 
+iniciais são retirados das linhas de entrada e da linha que contém o 
+@var{delimiter}.
+Isso permite que documentos-aqui dentro de shell scripts sejam 
+indentados em uma forma natural.
 
 @subsection Here Strings
-A variant of here documents, the format is:
+Uma variante dos documentos aqui, o formato é:
 @example
 <<< @var{word}
 @end example
 
-The @var{word} undergoes
-brace expansion, tilde expansion, parameter and variable expansion,
-command substitution, arithmetic expansion, and quote removal.
-Pathname expansion and word splitting are not performed.
-The result is supplied as a single string to the command on its
-standard input.
+A @var{word} está sujeita a expansão de chave, expansão de til, expansão 
+de variável e de parâmetro, substituição de comando, expansão 
+aritmética, e remoção de aspas.
+A expansão de nome de caminho e a divisão de palavra não são efetuadas.
+O resultado é fornecido como uma sequência de caracteres única para o 
+comando na entrada padrão dele.
 
 @subsection Duplicating File Descriptors
-The redirection operator
+O operador de redireção
 @example
 [@var{n}]<&@var{word}
 @end example
 @noindent
-is used to duplicate input file descriptors.
-If @var{word}
-expands to one or more digits, the file descriptor denoted by @var{n}
-is made to be a copy of that file descriptor.
-If the digits in @var{word} do not specify a file descriptor open for
-input, a redirection error occurs.
-If @var{word}
-evaluates to @samp{-}, file descriptor @var{n} is closed.
-If @var{n} is not specified, the standard input (file descriptor 0) is used.
+é utilizado para duplicar descritores de arquivo de entrada.
+Se @var{word} expandir para um ou mais dígitos, o descritor de arquivo 
+denotado por @var{n} é feito como que uma cópia desse descritor de 
+arquivo.
+Se os dígitos em @var{word} não especificarem um descritor de arquivo 
+aberto para entrada, um erro de redireção ocorre.
+Se @var{word} resultar em @samp{-}, então o descritor de arquivo @var{n} 
+é fechado.
+Se @var{n} não for especificado, então a entrada padrão (descritor de 
+arquivo zero (0)) é utilizado.
 
-The operator
+O operador
 @example
 [@var{n}]>&@var{word}
 @end example
 @noindent
-is used similarly to duplicate output file descriptors.  If
-@var{n} is not specified, the standard output (file descriptor 1) is used.
-If the digits in @var{word} do not specify a file descriptor open for
-output, a redirection error occurs.
-If @var{word}
-evaluates to @samp{-}, file descriptor @var{n} is closed.
-As a special case, if @var{n} is omitted, and @var{word} does not
-expand to one or more digits or @samp{-}, the standard output and standard
-error are redirected as described previously.
+é utilizado similarmente para duplicar descritores de arquivo de saída.   
+Se @var{n} não for especificado, então a saída padrão (descritor de 
+arquivo um (1)) é utilizado.
+Se os dígitos em @var{word} não especificarem um descritor de arquivo 
+aberto para saída, então um erro de redireção ocorre.
+Se @var{word} resultar em @samp{-}, então o descritor de arquivo @var{n} 
+é fechado.
+Como um caso especial, se @var{n} for omitido, e @var{word} não expandir 
+para um ou mais dígitos ou @samp{-}, então a saída padrão e o erro 
+padrão são redirecionados conforme descrito previamente.
 
 @subsection Moving File Descriptors
-The redirection operator
+O operador de redireção
 @example
 [@var{n}]<&@var{digit}-
 @end example
 @noindent
-moves the file descriptor @var{digit} to file descriptor @var{n},
-or the standard input (file descriptor 0) if @var{n} is not specified.
-@var{digit} is closed after being duplicated to @var{n}.
+move o descritor de arquivo @var{digit} para o descritor de arquivo 
+@var{n}, ou a entrada padrão (descritor de arquivo zero (0)), se @var{n} 
+não for especificado.   @var{digit} é fechado após ser duplicado em 
+@var{n}.
 
-Similarly, the redirection operator
+Similarmente, o operador de redireção
 @example
 [@var{n}]>&@var{digit}-
 @end example
 @noindent
-moves the file descriptor @var{digit} to file descriptor @var{n},
-or the standard output (file descriptor 1) if @var{n} is not specified.
+move o descritor de arquivo @var{digit} para descritor de arquivo 
+@var{n}, ou a saída padrão (descritor de arquivo um (1)) se @var{n} não 
+for especificado.
 
 @subsection Opening File Descriptors for Reading and Writing
-The redirection operator
+O operador de redireção
 @example
 [@var{n}]<>@var{word}
 @end example
 @noindent
-causes the file whose name is the expansion of @var{word}
-to be opened for both reading and writing on file descriptor
-@var{n}, or on file descriptor 0 if @var{n}
-is not specified.  If the file does not exist, it is created.
+faz com que o arquivo cujo nome é a expansão de @var{word} seja aberto 
+tanto para leitura quanto para escrita no descritor de arquivo @var{n}, 
+ou no descritor de arquivo zero (0) se @var{n} não for especificado.   
+Se o arquivo não existir, ele é criado.
 
 @node Executing Commands
 @section Executing Commands
 
 @menu
-* Simple Command Expansion::	How Bash expands simple commands before
-				executing them.
-* Command Search and Execution::	How Bash finds commands and runs them.
-* Command Execution Environment::	The environment in which Bash
-					executes commands that are not
-					shell builtins.
-* Environment::		The environment given to a command.
-* Exit Status::		The status returned by commands and how Bash
-			interprets it.
-* Signals::		What happens when Bash or a command it runs
-			receives a signal.
+* Simple Command Expansion::	Como Bash expande comandos simples antes 
+				de executá-los.
+* Command Search and Execution::	Como Bash encontra comandos e os 
+					executa.
+* Command Execution Environment::	O ambiente no qual Bash executa 
+					comandos que não são comandos 
+					internos ao shell.
+* Environment::		O ambiente dado a um comando.
+* Exit Status::		O status retornado por comandos e como Bash os 
+			interpreta.
+* Signals::		O que acontece quando Bash ou um comando que ele 
+			executa recebe um sinal.
 @end menu
 
 @node Simple Command Expansion
 @subsection Simple Command Expansion
 @cindex command expansion
 
-When a simple command is executed, the shell performs the following
-expansions, assignments, and redirections, from left to right.
+Quando um comando simples é executado, o shell executa as seguintes 
+expansões, atribuições, e redireções, da esquerda para a direita.
 
 @enumerate
 @item
-The words that the parser has marked as variable assignments (those
-preceding the command name) and redirections are saved for later
-processing.
+As palavras que o interpretador já marcou como atribuições de variáveis 
+(aquelas precedendo o nome do comando) e redireções são salvas para 
+processamento posterior.
 
 @item
 The words that are not variable assignments or redirections are
