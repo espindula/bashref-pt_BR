@@ -1,8 +1,16 @@
-2015-09-05	Translated chapter 3.5.8.1 - Pattern Matching
-		Translated chapter 3.5.9 - Quote Removal
-		Translated chapter 3.6 - Redirections
-		Translated chapter 3.6.1 - Redirecting Input
-		Translated chapter 3.6.2 - Redirecting Output
+2015-09-05	Translated the following sections and subsections:
+		3.5.8.1 - Pattern Matching
+		3.5.9 - Quote Removal
+		3.6.1 - Redirecting Input
+		3.6.2 - Redirecting Output
+		3.6.3 - Appending Redirected Output
+		3.6.4 - Redirecting Standard Output and Standard Error
+		3.6.5 - Appending Standard Output and Standard Error
+		3.6.6 - Here Documents
+		3.6.7 - Here Strings
+		3.6.8 - Duplicating File Descriptors
+		3.6.9 - Moving File Descriptors
+		3.6.10 - Opening File Descriptors for Reading and Writing
 
 2015-07-16	Translated chapter 3.5.5 - Arithmetic Expansion
 		Translated chapter 3.5.6 - Process Substitution
