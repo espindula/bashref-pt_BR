@@ -15,10 +15,11 @@ Esta é a Edição @value{EDITION}, mais recentemente atualizada em
 @value{UPDATED}, do @cite{The GNU Bash Reference Manual}, para 
 @code{Bash}, Versão @value{VERSION}.
 
-Copyright @copyright{} 2015 da versão traduzida para português 
-do Brasil Jamenson Ferreira Espindula de Almeida Melo.
+Direitos autorais @copyright{} 2015 da versão modificada traduzida para 
+o português do Brasil: Jamenson Ferreira Espindula de Almeida Melo.
 
-Copyright @copyright{} 1988--2014 Free Software Foundation, Inc.
+Direitos autorais @copyright{} 1988--2014 da versão original escrita em 
+inglês: Free Software Foundation, Inc.
 
 @quotation
 É concedida permissão para copiar, distribuir e/ou modificar este Manual 
@@ -430,7 +431,7 @@ status de saída (@pxref{Exit Status}).
 @cindex quoting
 @menu
 * Escape Character::	Como remover o significado especial de um 
-			caracter único.
+			carácter único.
 * Single Quotes::	Como inibir toda a interpretação de uma 
 			sequência de caracteres.
 * Double Quotes::	Como suprimir a maior parte da interpretação 
@@ -451,7 +452,7 @@ Cada um dos meta caracteres do shell (@pxref{Definitions}) tem um
 significado especial para o shell e devem ser encapsulados caso devam 
 representar eles mesmos.
 Quando as facilidades da expansão de histórico de comandos estão sendo 
-utilizadas (@pxref{History Interaction}), o caracter de @var{history 
+utilizadas (@pxref{History Interaction}), o carácter de @var{history 
 expansion}, em regra @samp{!}, deve ser encapsulado para prevenir a 
 expansão de histórico.   Veja-se @xref{Bash History Facilities}, para 
 mais detalhes acerca da expansão de histórico.
@@ -461,8 +462,8 @@ character}, encapsulamento simples, e encapsulamento duplo.
 
 @node Escape Character
 @subsubsection Escape Character
-Uma barra invertida não encapsulada @samp{\} é o caracter de escape do 
-Bash.   Esse caracter preserva o valor literal do próximo caracter que 
+Uma barra invertida não encapsulada @samp{\} é o carácter de escape do 
+Bash.   Esse carácter preserva o valor literal do próximo carácter que 
 se segue, com exceção do @code{newline}.   Se um par @code{\newline} 
 aparece, e a própria barra invertida não estiver encapsulada entre 
 aspas, o @code{\newline} é tratado como uma continuação de linha (isto 
@@ -472,7 +473,7 @@ aspas, o @code{\newline} é tratado como uma continuação de linha (isto
 @subsubsection Single Quotes
 
 Encapsular caracteres em aspas simples (@samp{'}) preserva o valor 
-literal de cada caracter dentro do encapsulamento.   Um encapsulamento 
+literal de cada carácter dentro do encapsulamento.   Um encapsulamento 
 simples não deve ocorrer entre aspas simples, ainda que precedido por 
 uma barra invertida.
 
@@ -519,7 +520,7 @@ alerta (sino)
 barra invertida
 @item \e
 @itemx \E
-um caracter de encapsulamento (não ANSI C)
+um carácter de encapsulamento (não ANSI C)
 @item \f
 alimentação de formulário
 @item \n
@@ -537,19 +538,19 @@ aspa simples
 @item \"
 aspa dupla
 @item \@var{nnn}
-o caracter de oito bits cujo valor é o valor octal @var{nnn}
+o carácter de oito bits cujo valor é o valor octal @var{nnn}
 (de um até três dígitos)
 @item \x@var{HH}
-o caracter de oito bits cujo valor é o valor hexadecimal @var{HH}
+o carácter de oito bits cujo valor é o valor hexadecimal @var{HH}
 (um ou dois dígitos hexadecimais)
 @item \u@var{HHHH}
-o caracter Unicode (ISO/IEC 10646) cujo valor é o valor hexadecimal 
+o carácter Unicode (ISO/IEC 10646) cujo valor é o valor hexadecimal 
 @var{HHHH} (de um até quatro dígitos hexadecimais)
 @item \U@var{HHHHHHHH}
-o caracter Unicode (ISO/IEC 10646) cujo valor é o valor hexadecimal 
+o carácter Unicode (ISO/IEC 10646) cujo valor é o valor hexadecimal 
 @var{HHHHHHHH} (de um até oito dígitos hexadecimais)
 @item \c@var{x}
-um caracter control-@var{x}
+um carácter control-@var{x}
 @end table
 
 @noindent
@@ -923,7 +924,7 @@ case @var{word} in [ [(] @var{pattern} [| @var{pattern}]@dots{}) @var{command-li
 Se a opção de shell @code{nocasematch} (veja-se a descrição de 
 @code{shopt} em @ref{The Shopt Builtin}) estiver habilitada, então a 
 coincidência é testada sem considerar maiúsculas e minúsculas.
-O caracter @samp{|} é utilizado para separar múltiplas variáveis 
+O carácter @samp{|} é utilizado para separar múltiplas variáveis 
 @var{pattern}, e o operador @samp{)} finaliza a lista de variáveis.
 Uma lista de variáveis @var{pattern} e uma lista de comandos associada é 
 conhecida como uma @var{clause}.
@@ -1129,17 +1130,17 @@ pattern='[[:space:]]*(a)?b'
 @end example
 
 @noindent
-Se você deseja coincidir um caracter que seja especial para a gramática 
-da expressão regular, então esse caracter tem de ser encapsulado para 
+Se você deseja coincidir um carácter que seja especial para a gramática 
+da expressão regular, então esse carácter tem de ser encapsulado para 
 remover o seu significado especial.
 Isso significa que no padrão @samp{xxx.txt}, o @samp{.} coincide com 
-qualquer caracter na sequência de caracteres (seu significado usual de 
+qualquer carácter na sequência de caracteres (seu significado usual de 
 expressão regular), porém no padrão @samp{"xxx.txt"} ele pode apenas 
 coincidir com um @samp{.} literal.
 Os programadores shell deveriam ter um cuidado especial com as barras 
 invertidas, dado que as barras invertidas são utilizadas tanto pelo 
 shell quanto por expressões regulares para remover o significado 
-especial do caracter seguinte à barra invertida.
+especial do carácter seguinte à barra invertida.
 Os dois conjuntos de comandos seguintes @emph{não} são equivalentes:
 @example
 pattern='\.'
@@ -1159,7 +1160,7 @@ especial do @samp{.}, de forma que o @samp{.} literal coincide.
 Se a sequência de caracteres nos dois primeiros exemplos fosse qualquer 
 outra coisa que não o @samp{.}, diga-se @samp{a}, o padrão não 
 coincidiria, pois o @samp{.} encapsulado no padrão perde seu significado 
-especial de coincidir com qualquer caracter único.
+especial de coincidir com qualquer carácter único.
 
 As expressões podem ser combinadas utilizando-se os seguintes 
 operadores, listados em ordem decrescente de precedência:
@@ -1678,9 +1679,9 @@ objeto de separação mais ampla de palavras e de expansão de nome de
 caminho.
 Quando a expansão acontece dentro de aspas duplas, ela expande para uma 
 palavra única com o valor de cada parâmetro separado pelo primeiro 
-caracter da variável especial @env{IFS}.   Isto é, @code{"$*"} é 
+carácter da variável especial @env{IFS}.   Isto é, @code{"$*"} é 
 equivalente a @code{"$1@var{c}$2@var{c}@dots{}"}, onde @var{c} é o 
-primeiro caracter do valor da variável @code{IFS}.
+primeiro carácter do valor da variável @code{IFS}.
 Se @env{IFS} estiver desconfigurada, os parâmetros são separados por 
 espaços.
 Se @env{IFS} for null, os parâmetros são unidos sem separadores 
@@ -3006,97 +3007,98 @@ o comando termine sua execução e coleta o código de saída dele.
 @subsection Command Execution Environment
 @cindex execution environment
 
-The shell has an @var{execution environment}, which consists of the
-following:
+O shell tem um @var{execution environment}, o qual consiste do seguinte:
 
 @itemize @bullet
 @item
-open files inherited by the shell at invocation, as modified by
-redirections supplied to the @code{exec} builtin
+arquivos abertos herdados pelo shell quando da invocação, conforme 
+modificado pelas redireções fornecidas ao comando interno @code{exec}
 
 @item
-the current working directory as set by @code{cd}, @code{pushd}, or
-@code{popd}, or inherited by the shell at invocation
+o diretório atual de trabalho conforme configurado por @code{cd}, 
+@code{pushd}, ou @code{popd}, ou herdado pelo shell quando da invocação
 
 @item
-the file creation mode mask as set by @code{umask} or inherited from
-the shell's parent
+a máscara de modo de criação de arquivo conforme configurado por 
+@code{umask} ou herdado do pai do shell
 
 @item
-current traps set by @code{trap}
+coletores atuais configurados por @code{trap}
 
 @item
-shell parameters that are set by variable assignment or with @code{set}
-or inherited from the shell's parent in the environment
+parâmetros de shell que são configurados por atribuição de variáveis 
+ou com @code{set} ou herdados do pai do shell no ambiente
 
 @item
-shell functions defined during execution or inherited from the shell's
-parent in the environment
+funções de shell definidas durante a execução ou herdadas do pai do 
+shell no ambiente
 
 @item
-options enabled at invocation (either by default or with command-line
-arguments) or by @code{set}
+opções habilitadas quando da invocação (ou por padrão ou com argumentos 
+de linha de comando) ou por @code{set}
 
 @item
-options enabled by @code{shopt} (@pxref{The Shopt Builtin})
+opções habilitadas por @code{shopt} (veja-se @ref{The Shopt Builtin})
 
 @item
-shell aliases defined with @code{alias} (@pxref{Aliases})
+apelidos (aliases) de shell definidos com @code{alias} (veja-se 
+@ref{Aliases})
 
 @item
-various process @sc{id}s, including those of background jobs
-(@pxref{Lists}), the value of @code{$$}, and the value of
+vários @sc{id}s de processos, incluindo aqueles das tarefas de segundo 
+plano (veja-se @ref{Lists}), o valor de @code{$$}, e o valor de 
 @env{$PPID}
 
 @end itemize
 
-When a simple command other than a builtin or shell function
-is to be executed, it
-is invoked in a separate execution environment that consists of
-the following.  Unless otherwise noted, the values are inherited
-from the shell.
+Quando outro comando simples que não um comando interno ao shell ou uma 
+função de shell está para ser executada, ele (o comando simples) é 
+invocado em um ambiente de execução separado que consiste do seguinte.   
+A menos que anotado de outra forma, os valores são herdados do shell.
 
 @itemize @bullet
 @item
-the shell's open files, plus any modifications and additions specified
-by redirections to the command
+os arquivos abertos do shell, mais quaisquer modificações e adições 
+especificadas por redireções ao comando
 
 @item
-the current working directory
+o diretório de trabalho atual
 
 @item
-the file creation mode mask
+a máscara de modo de criação de arquivo
 
 @item
-shell variables and functions marked for export, along with variables
-exported for the command, passed in the environment (@pxref{Environment})
+funções e variáveis de shell marcadas para exportar, juntamente com 
+variáveis exportadas pelo comando, passadas no ambiente 
+(veja-se @ref{Environment})
 
 @item
-traps caught by the shell are reset to the values inherited from the
-shell's parent, and traps ignored by the shell are ignored
+coletores capturados pelo shell são reconfigurados para os valores 
+herdados do pai do shell, e coletores ignorados pelo shell são ignorados
 
 @end itemize
 
-A command invoked in this separate environment cannot affect the
-shell's execution environment. 
+Um comando invocado nesse ambiente separado não pode afetar o ambiente 
+de execução do shell.
 
-Command substitution, commands grouped with parentheses,
-and asynchronous commands are invoked in a
-subshell environment that is a duplicate of the shell environment,
-except that traps caught by the shell are reset to the values
-that the shell inherited from its parent at invocation.  Builtin
-commands that are invoked as part of a pipeline are also executed
-in a subshell environment.  Changes made to the subshell environment
-cannot affect the shell's execution environment.
+Substituição de comando, comandos agrupados entre parênteses, e comandos 
+assíncronos são invocados em um ambiente de subshell que é uma cópia do 
+ambiente de shell, exceto que os coletores capturados pelo shell são 
+reconfigurados para os valores que o shell herdou do pai dele quando da 
+invocação.   Comandos internos que são invocados como parte de um canal 
+de comunicação (pipeline) são executados também em um ambiente de 
+subshell.   Mudanças feitas no ambiente de subshell não podem afetar o 
+ambiente de execução do shell.
 
-Subshells spawned to execute command substitutions inherit the value of
-the @option{-e} option from the parent shell.  When not in @sc{posix} mode,
-Bash clears the @option{-e} option in such subshells.
+Subshell gerados para executar substituições de comandos herdam o valor 
+da opção @option{-e} do shell pai.   Quando não em modo @sc{posix}, Bash 
+limpa a opção @option{-e} em tais subshells.
 
-If a command is followed by a @samp{&} and job control is not active, the
-default standard input for the command is the empty file @file{/dev/null}.
-Otherwise, the invoked command inherits the file descriptors of the calling
-shell as modified by redirections.
+Se um comando for seguido por um sinal @samp{&} e o controle de tarefa 
+não estiver ativo, o arquivo descritor de entrada padronizada padrão 
+para o comando é o arquivo vazio @file{/dev/null}.   Do contrário, o 
+comando invocado herda os descritores de arquivo do shell invocante 
+confrme modificado pelas redireções.
 
 @node Environment
 @subsection Environment
