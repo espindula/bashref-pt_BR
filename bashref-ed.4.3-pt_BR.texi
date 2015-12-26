@@ -264,7 +264,7 @@ reiniciar (resume) a execução de processos.
 
 @item metacharacter
 @cindex metacharacter
-Um carácter que, sem aspas, separa palavras.   Um metacarácter é um 
+Um carácter que, sem aspas, separa palavras.   Um meta carácter é um 
 @code{blank} ou um dos caracteres seguintes: @samp{|}, @samp{&}, 
 @samp{;}, @samp{(}, @samp{)}, @samp{<}, ou @samp{>}.
 
@@ -1072,7 +1072,7 @@ tal porção seja testada como uma sequência de caracteres.
 Um operador binário adicional, @samp{=~}, está disponível, com a mesma 
 precedência que @samp{==} e @samp{!=}.
 Quando esse operador é utilizado, a sequência de caracteres à direita do 
-operador é considerada como sendo uma expressão regular extendida e uma 
+operador é considerada como sendo uma expressão regular estendida e uma 
 coincidência é tentada de acordo (como em @i{regex}3)).
 O valor de retorno é 0 se a sequência de caracteres coincidir com o 
 padrão, e 1 caso contrário.
@@ -1467,7 +1467,7 @@ envolvem o corpo de uma função devem necessariamente serem separadas do
 corpo por caracteres @code{blank}s ou newlines.
 Isso é porque as chaves são palavras reservadas e apenas são 
 reconhecidas como tais quando elas estão separadas da lista de comando 
-por espaço em branco ou um outro metacarácter de shell.
+por espaço em branco ou um outro meta carácter de shell.
 Também, quando da utilização de chaves, a @var{list} deve 
 necessariamente ser finalizada por um ponto e vírgula, ou por um 
 @samp{&}, ou por um newline.
@@ -2602,7 +2602,7 @@ expansões acima são removidos.
 Antes que um comando seja executado, a entrada e a saída dele podem ser 
 @var{redirected} utilizando-se uma notação especial interpretada pelo 
 shell.   A redireção permite que manipuladores de arquivo de comandos 
-sejam duplicados, abertos, fechados, construidos para referênciar 
+sejam duplicados, abertos, fechados, construídos para referenciar 
 arquivos diferentes, e podem modificar os arquivos a partir dos quais o 
 comando lê ou para os quais escreve.
 A redireção também pode ser utilizada para modificar manipuladores de 
@@ -2772,7 +2772,7 @@ Isso é semanticamente equivalente a:
 (veja-se Duplicando Descritores de Arquivo abaixo).
 
 @subsection Here Documents
-Este tipo de redireção instrue o shell a ler entrada vinda da fonte 
+Este tipo de redireção instrui o shell a ler entrada vinda da fonte 
 atual até que uma linha contendo apenas @var{word} (sem espaços em 
 branco seguintes) seja vista.   Todas as linhas lidas até tal ponto são 
 então utilizadas como entrada padrão para um comando.
@@ -2910,90 +2910,95 @@ As palavras que o interpretador já marcou como atribuições de variáveis
 processamento posterior.
 
 @item
-The words that are not variable assignments or redirections are
-expanded (@pxref{Shell Expansions}).
-If any words remain after expansion, the first word
-is taken to be the name of the command and the remaining words are
-the arguments.
+As palavras que não são atribuições de variável ou redireções são 
+expandidas (@ref{Shell Expansions}).
+Se quaisquer palavras permanecerem após a expansão, a primeira palavra é 
+considerada como sendo o nome do comando e as palavras restantes são os 
+argumentos.
 
 @item
-Redirections are performed as described above (@pxref{Redirections}).
+As redireções são implementadas conforme descrito acima 
+(@ref{Redirections}).
 
 @item
-The text after the @samp{=} in each variable assignment undergoes tilde
-expansion, parameter expansion, command substitution, arithmetic expansion,
-and quote removal before being assigned to the variable.
+O texto após o sinal @samp{=} em cada atribuição de variável está 
+submetido a expansão de til, expansão de parâmetro, substituição de 
+comando, expansão aritmética e remoção de aspas antes de ser atribuída 
+para a variável.
 @end enumerate
 
-If no command name results, the variable assignments affect the current
-shell environment.  Otherwise, the variables are added to the environment
-of the executed command and do not affect the current shell environment.
-If any of the assignments attempts to assign a value to a readonly variable,
-an error occurs, and the command exits with a non-zero status.
+Se não houver um nome de comando como resultado, as atribuições de 
+variável afetam o ambiente de shell atual.   Do contrário, as variáveis 
+são adicionadas ao ambiente do comando executado e não afetam o ambiente 
+de shell atual.   Se quaisquer das atribuições tenta atribuir um valor 
+para uma variável configurada como apenas leitura, um erro ocorre e o 
+comando sai com um código de saída diferente de zero.
 
-If no command name results, redirections are performed, but do not
-affect the current shell environment.  A redirection error causes the
-command to exit with a non-zero status.
+Se não houver um nome de comando como resultado, as redireções são 
+implementadas, porém não afetam o ambiente shell atual.   Um erro de 
+redireção faz com que o comando saia com um código de saída diferente de 
+zero.
 
-If there is a command name left after expansion, execution proceeds as
-described below.  Otherwise, the command exits.  If one of the expansions
-contained a command substitution, the exit status of the command is
-the exit status of the last command substitution performed.  If there
-were no command substitutions, the command exits with a status of zero.
+Se existir um nome de comando deixado após a expansão, a execução 
+procede conforme descrito abaixo.   Do contrário, o comando sai.   Se 
+uma das expansões continha uma substituição de comando, o código de 
+saída do comando é o código de saída da última substituição 
+implementada.   Se não houve substituições de comandos, o comando sai 
+com um código de saída igual a zero.
 
 @node Command Search and Execution
 @subsection Command Search and Execution
 @cindex command execution
 @cindex command search
 
-After a command has been split into words, if it results in a
-simple command and an optional list of arguments, the following
-actions are taken.
+Após um comando ter sido dividido em palavras, se ele resultar em um 
+comando simples e uma lista opcional de argumentos, as seguintes ações 
+são tomadas.
 
 @enumerate
 @item
-If the command name contains no slashes, the shell attempts to
-locate it.  If there exists a shell function by that name, that
-function is invoked as described in @ref{Shell Functions}.
+Se o nome do comando não contiver barras, então o shell tenta 
+localizá-lo.   Se existir uma função de shell para aquele nome, então 
+aquela função é invocada conforme descrito em @ref{Shell Functions}.
 
 @item
-If the name does not match a function, the shell searches for
-it in the list of shell builtins.  If a match is found, that
-builtin is invoked.
+Se o nome não coincidir com o de uma função, então o shell busca por ele 
+na lista de comando internos ao shell.   Se uma coincidência for 
+encontrada, então aquele comando interno é invocado.
 
 @item
-If the name is neither a shell function nor a builtin,
-and contains no slashes, Bash searches each element of
-@env{$PATH} for a directory containing an executable file
-by that name.  Bash uses a hash table to remember the full
-pathnames of executable files to avoid multiple @env{PATH} searches
-(see the description of @code{hash} in @ref{Bourne Shell Builtins}).
-A full search of the directories in @env{$PATH}
-is performed only if the command is not found in the hash table.
-If the search is unsuccessful, the shell searches for a defined shell
-function named @code{command_not_found_handle}.
-If that function exists, it is invoked with the original command and
-the original command's arguments as its arguments, and the function's
-exit status becomes the exit status of the shell.
-If that function is not defined, the shell prints an error
-message and returns an exit status of 127.
+Se o nome não for nem uma função de shell, nem um comando interno, e nem 
+contiver barras, então Bash pesquisa em cada elemento de @env{$PATH} 
+procurando por um diretório que contenha um arquivo executável para 
+aquele nome.   O Bash utiliza uma tabela de hash para lembrar os nomes 
+completos de caminhos dos arquivos executáveis para evitar múltiplas 
+buscas no @env{$PATH} (veja-se a descrição de @code{hash} em @ref{Bourne 
+Shell Builtins}).   Uma pesquisa completa dos diretórios em @env{$PATH} 
+é implementada apenas se o comando não for encontrado na tabela hash.   
+Se a busca não tiver sucesso, então o shell busca uma função de shell 
+definida chamada @code{command_not_found_handle}.   Se tal função 
+existir, ela é invocada com o comando original e os argumentos do 
+comando original como os argumentos dela própria, e o código de saída da 
+função se torna o código de saída do shell.   Se tal função não estiver 
+definida, então o shell imprime uma mensagem de erro e retorna um código 
+de saída igual a 127.
 
 @item
-If the search is successful, or if the command name contains
-one or more slashes, the shell executes the named program in
-a separate execution environment.
-Argument 0 is set to the name given, and the remaining arguments
-to the command are set to the arguments supplied, if any.
+Se a busca tiver sucesso, ou se o nome do comando contém uma ou mais 
+barras, então o shell executa o aplicativo nomeado em um ambiente de 
+execução separado.   O argumento 0 é configurado para o nome dado, e os 
+argumentos restantes para o comando são configurados para os argumentos 
+fornecidos, se existir algum.
 
 @item
-If this execution fails because the file is not in executable
-format, and the file is not a directory, it is assumed to be a
-@var{shell script} and the shell executes it as described in
-@ref{Shell Scripts}.
+Se tal execução falhar pelo fato de o arquivo não estar em formato 
+executável, e o arquivo não for um diretório, então é presumido ser um 
+@var{shell script} e o shell o executa conforme descrito em @ref{Shell 
+Scripts}.
 
 @item
-If the command was not begun asynchronously, the shell waits for
-the command to complete and collects its exit status.
+Se o comando não foi iniciado assincronamente, então o shell aguarda que 
+o comando termine sua execução e coleta o código de saída dele.
 
 @end enumerate
 
