@@ -6,8 +6,12 @@ Translation project of the Bash Reference Manual, edition 4.3, into
 brazilian portuguese.
 
 
+git clone https://github.com/espindula/bashref-pt_BR.git
 
-Copyright (c) 2015 Jamenson Ferreira Espindula de Almeida Melo.
+
+Direitos autorais da versão modificada traduzida para a língua 
+portuguesa falada no Brasil: (c) 2015 Jamenson Ferreira Espindula de 
+Almeida Melo.
 
   Este trabalho de tradução do Manual de Referência do Bash é 
   classificado pela Free Sotfware Foundation como sendo uma 
@@ -46,7 +50,8 @@ Copyright (c) 2015 Jamenson Ferreira Espindula de Almeida Melo.
 2. Manual de Comandos Gerais (General Commands Manual).
 
 
- Além desses, o GNU Bash faz uso das seguintes bibliotecas:
+ Além desses, o GNU Bash faz uso das seguintes bibliotecas (as quais 
+ também tem as suas respectivas documentações):
 
 3. A Biblioteca Readline do GNU (The GNU Readline Library); e
 
@@ -54,3 +59,4 @@ Copyright (c) 2015 Jamenson Ferreira Espindula de Almeida Melo.
 								       
 ************************************************************************
 ************************************************************************
+
