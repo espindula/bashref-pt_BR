@@ -3104,183 +3104,179 @@ confrme modificado pelas redireções.
 @subsection Environment
 @cindex environment
 
-When a program is invoked it is given an array of strings
-called the @var{environment}.
-This is a list of name-value pairs, of the form @code{name=value}.
+Quando um aplicativo é invocado, um vetor de sequência de caracteres é 
+dado a tal aplicativo, vetor esse chamado de @var{environment}.
+Esse vetor é uma lista de pares nome-valor, no formato 
+@code{name=value}.
 
-Bash provides several ways to manipulate the environment.
-On invocation, the shell scans its own environment and
-creates a parameter for each name found, automatically marking
-it for @var{export}
-to child processes.  Executed commands inherit the environment.
-The @code{export} and @samp{declare -x}
-commands allow parameters and functions to be added to and
-deleted from the environment.  If the value of a parameter
-in the environment is modified, the new value becomes part
-of the environment, replacing the old.  The environment
-inherited by any executed command consists of the shell's
-initial environment, whose values may be modified in the shell,
-less any pairs removed by the @code{unset} and @samp{export -n}
-commands, plus any additions via the @code{export} and
-@samp{declare -x} commands.
+O Bash provê várias maneiras de manipular o ambiente.   Quando da 
+invocação, o shell escaneia o próprio ambiente dele e cria um parâmetro 
+para cada nome encontrado, automaticamente marcando tais parâmetros para 
+@var{export} para processos filhos.   Os comandos executados herdam o 
+ambiente.   Os comandos @code{export} e @samp{declare -x} permitem que 
+parâmetros e funções sejam adicionados a e deletados do ambiente.   Se o 
+valor de um parâmetro no ambiente for modificado, o valor novo se torna 
+parte do ambiente, substituindo o antigo.   O ambiente herdado por 
+qualquer comando executado consiste do ambiente inicial do shell, cujos 
+valores podem ser modificados dentro do shell, exceto quaisquer pares 
+removidos pelos comandos @code{unset} e @samp{export -n}, mais quaisquer 
+adições via comandos @code{export} e @samp{declare -x}.
 
-The environment for any simple command
-or function may be augmented temporarily by prefixing it with
-parameter assignments, as described in @ref{Shell Parameters}.
-These assignment statements affect only the environment seen
-by that command.
+O ambiente para qualquer comando simples ou função pode ser aumentado 
+temporáriamente prefixando tal ambiente com atribuições de parâmetros, 
+conforme descrito em @ref{Shell Parameters}.   Tais declarações de 
+atribuição afetam apenas o ambiente visto pelo comando.
 
-If the @option{-k} option is set (@pxref{The Set Builtin}), then all
-parameter assignments are placed in the environment for a command,
-not just those that precede the command name.
+Se a opção @option{-k} for configurada (veja-se @ref{The Set Builtin}), 
+então todas as atribuições de parâmetro são colocadas no ambiente para 
+um comando, não apenas aquelas que precedem o nome do comando.
 
-When Bash invokes an external command, the variable @samp{$_}
-is set to the full pathname of the command and passed to that
-command in its environment.
+Quando Bash invoca um comando externo, a variável @samp{$_} é 
+configurada para o nome de caminho completo do comando e passada para 
+aquele comando dentro do ambiente dele.
 
 @node Exit Status
 @subsection Exit Status
 @cindex exit status
 
-The exit status of an executed command is the value returned by the
-@var{waitpid} system call or equivalent function.  Exit statuses    
-fall between 0 and 255, though, as explained below, the shell may
-use values above 125 specially.  Exit statuses from shell builtins and
-compound commands are also limited to this range.  Under certain
-circumstances, the shell will use special values to indicate specific
-failure modes.
+O código de saída de um comando executado é o valor retornado pela 
+chamada de sistema @var{waitpid} ou função equivalente.   Os códigos de 
+saída estão entre o e 255, embora, conforme explanado abaixo, o shell 
+pode utilizar especialmente valores acima de 125.   Os códigos de saída 
+originados de comandos internos ao shell e de comandos compostos também 
+são limitados ao intervalo mencionado.   Sob certas circunstâncias, o 
+shell utilizará valores especiais para indicar modos de falha 
+específicos.
 
-For the shell's purposes, a command which exits with a
-zero exit status has succeeded.
-A non-zero exit status indicates failure.
-This seemingly counter-intuitive scheme is used so there
-is one well-defined way to indicate success and a variety of
-ways to indicate various failure modes.
-When a command terminates on a fatal signal whose number is @var{N},
-Bash uses the value 128+@var{N} as the exit status.
+Para os propósitos do shell, um comando o qual sai com um código de 
+saída igual a zero teve sucesso.   Um código de saída diferente de zero 
+indica uma falha.   Esse aparentemente esquema de intuitivo de contagem 
+é utilizado de forma que existe uma maneira bem definida para indicar 
+sucesso e uma variedade de maneiras de se indicar vários modos de falha.
+Quando um comando termina em um sinal fatal cujo número é @var{N}, Bash 
+utiliza o valor 128+@var{N} como o código de saída.
 
-If a command is not found, the child process created to
-execute it returns a status of 127.  If a command is found  
-but is not executable, the return status is 126.
+Se um comando não for encontrado, então o processo filho criado para 
+executá-lo retorna o código de saída 127.   Se um comando é encontrado, 
+porém não é um executável, então 'código de saída é o 126.
 
-If a command fails because of an error during expansion or redirection,
-the exit status is greater than zero.
+Se um comando falha por causa de um erro durante a operação de expansão 
+ou a de redireção, então e código de saída é um maior que zero.
 
-The exit status is used by the Bash conditional commands
-(@pxref{Conditional Constructs}) and some of the list
-constructs (@pxref{Lists}).
+O código de saída é utilizado pelos comandos condicionais de Bash 
+(veja-se @ref{Conditional Constructs}) e por alguns dos construtores de 
+lista (veja-se @ref{Lists}).
 
-All of the Bash builtins return an exit status of zero if they succeed
-and a non-zero status on failure, so they may be used by the
-conditional and list constructs.
-All builtins return an exit status of 2 to indicate incorrect usage.
+Todos os comandos internos ao Bash retornam um código de saída de zero 
+se forem bem sucedidos e um código de saída diferente de zero na falha, 
+de forma que tais códigos de saída podem ser utilizados pelos 
+construtores de lista e condicional.   Todos os comandos internos 
+retornam um código de saída de 2 para indicar utilização incorreta.
 
 @node Signals
 @subsection Signals
 @cindex signal handling
 
-When Bash is interactive, in the absence of any traps, it ignores
-@code{SIGTERM} (so that @samp{kill 0} does not kill an interactive shell),
-and @code{SIGINT}
-is caught and handled (so that the @code{wait} builtin is interruptible).
-When Bash receives a @code{SIGINT}, it breaks out of any executing loops.
-In all cases, Bash ignores @code{SIGQUIT}.
-If job control is in effect (@pxref{Job Control}), Bash
-ignores @code{SIGTTIN}, @code{SIGTTOU}, and @code{SIGTSTP}.
+Quando Bash está em modo interativo, na ausência de qualquer coletor, 
+ele ignora @code{SIGTERM} (de forma que @samp{kill 0} não mata um shell 
+interativo), e @code{SIGINT} é capturado e manipulado (de forma que o 
+comando interno @code{wait} pode ser interrompido).   Quando Bash recebe 
+um @code{SIGINT}, ele se liberta de quaisquer loops em execução.   Em 
+todos os casos, Bash ignora @code{SIGQUIT}.   Se o controle de tarefa 
+estiver em efeito (veja-se @ref{Job Control}), Bash ignora 
+@code{SIGTTIN}, @code{SIGTTOU}, e @code{SIGTSTP}.
 
-Non-builtin commands started by Bash have signal handlers set to the
-values inherited by the shell from its parent.
-When job control is not in effect, asynchronous commands
-ignore @code{SIGINT} and @code{SIGQUIT} in addition to these inherited
-handlers.
-Commands run as a result of
-command substitution ignore the keyboard-generated job control signals
-@code{SIGTTIN}, @code{SIGTTOU}, and @code{SIGTSTP}.
+Os comandos não internos iniciados por Bash tem manipuladores de sinal 
+configurados para os valores herdados pelo shell originados dos pais 
+dele.   Quando o controle detarefa não está em efeito, os comandos 
+assíncronos ignoram @code{SIGINT} e @code{SIGQUIT} em adição àqueles 
+manipuladores herdados.   Os comandos executados como um resultado da 
+substituição de comando ignoram os sinais de controle de tarefa gerados 
+pelo teclado: @code{SIGTTIN}, @code{SIGTTOU}, e @code{SIGTSTP}.
 
-The shell exits by default upon receipt of a @code{SIGHUP}.
-Before exiting, an interactive shell resends the @code{SIGHUP} to
-all jobs, running or stopped.
-Stopped jobs are sent @code{SIGCONT} to ensure that they receive
-the @code{SIGHUP}.
-To prevent the shell from sending the @code{SIGHUP} signal to a
-particular job, it should be removed
-from the jobs table with the @code{disown}
-builtin (@pxref{Job Control Builtins}) or marked
-to not receive @code{SIGHUP} using @code{disown -h}.
+O shell sai por padrão assim que receber um @code{SIGHUP}.   Antes de 
+sair, um shell interativo reenvia o @code{SIGHUP} para todas as tarefas, 
+em execução ou paradas.   Para as tarefas paradas é enviado 
+@code{SIGCONT} para se assegurar que elas receberam o @code{SIGHUP}.
+Para prevenir que o shell envie o sinal @code{SIGHUP} para uma tarefa em 
+particular, tal tarefa deveria ser removida da tabela com o comando 
+interno @code{disown} (veja-se @ref{Job Control Builtins}) ou 
+assinaladas para não receber @code{SIGHUP} utilizando-se @code{disown 
+-h}.
 
-If the  @code{huponexit} shell option has been set with @code{shopt}
-(@pxref{The Shopt Builtin}), Bash sends a @code{SIGHUP} to all jobs when
-an interactive login shell exits.
+Se a opção de shell @code{huponexit} tiver sido configurada com 
+@code{shopt} (veja-se @ref{The Shopt Builtin}), então Bash envia um 
+@code{SIGHUP} a todas as tarefas quando um shell de login interativo 
+sai.
 
-If Bash is waiting for a command to complete and receives a signal
-for which a trap has been set, the trap will not be executed until
-the command completes. 
-When Bash is waiting for an asynchronous
-command via the @code{wait} builtin, the reception of a signal for
-which a trap has been set will cause the @code{wait} builtin to return
-immediately with an exit status greater than 128, immediately after
-which the trap is executed.
+Se Bash estiver aguardando que um comando complete sua execução e recebe 
+um sinal para o qual um coletor tenha sido configurado, o coletor não 
+será executado até que o comando complete sua execução.
+Quando Bash está aguardando um comando assíncrono, via comando interno 
+@code{wait}, a recepção de um sinal para o qual um coletor tenha sido 
+configurado fará com que o comando interno @code{wait} retorne 
+imediatamente com um código de saída maior que 128, imediatamente após o 
+que o coletor é executado.
 
 @node Shell Scripts
 @section Shell Scripts
 @cindex shell script
 
-A shell script is a text file containing shell commands.  When such
-a file is used as the first non-option argument when invoking Bash,
-and neither the @option{-c} nor @option{-s} option is supplied
-(@pxref{Invoking Bash}), 
-Bash reads and executes commands from the file, then exits.  This
-mode of operation creates a non-interactive shell.  The shell first
-searches for the file in the current directory, and looks in the
-directories in @env{$PATH} if not found there.
+Um script de shell é um arquivo de texto contendo comandos de shell.   
+Quando um tal arquivo é utilizado como o primeiro argumento não opção 
+quando da invocação de Bash, e nem a opção @option{-c} nem a @option{-s} 
+for fornecida (veja-se @ref{Invoking Bash}), Bash lê e executa comandos 
+a partir do arquivo, e sai.   Tal modo de operação cria um shell não 
+interativo.   O shell primeiro procura pelo arquivo no diretório de 
+trabalho atual, e olha nos diretórios em @env{$PATH} se não for 
+encontrado lá.
 
-When Bash runs
-a shell script, it sets the special parameter @code{0} to the name
-of the file, rather than the name of the shell, and the positional
-parameters are set to the remaining arguments, if any are given.
-If no additional arguments are supplied, the positional parameters
-are unset.
+Quando Bash executa um script de shell, ele configura o parâmetro 
+especial @code{0} para o nome do arquivo, ao invés do nome do shell, e 
+os parâmetros posicionais são configurados para o restante dos 
+argumentos, se alguns são dados.   Se nenhum argumento adicional forem 
+fornecidos, então os parâmetros posicionais são desconfigurados.
 
-A shell script may be made executable by using the @code{chmod} command
-to turn on the execute bit.  When Bash finds such a file while
-searching the @env{$PATH} for a command, it spawns a subshell to
-execute it.  In other words, executing
+Um script de shell pode ser feito executável utilizando-se o comando 
+@code{chmod} para se ligar o bit executável.   Quando Bash encontra um 
+tal arquivo enquanto procura por um comando no @env{$PATH}, ele gera um 
+subshell para executá-lo.   Em outras palavras, executar
 @example
-filename @var{arguments}
+nome_arquivo @var{arguments}
 @end example
 @noindent
-is equivalent to executing
+é equivalente a executar
 @example
-bash filename @var{arguments}
+bash nome_arquivo @var{arguments}
 @end example
-
 @noindent
-if @code{filename} is an executable shell script.
-This subshell reinitializes itself, so that the effect is as if a
-new shell had been invoked to interpret the script, with the
-exception that the locations of commands remembered by the parent
-(see the description of @code{hash} in @ref{Bourne Shell Builtins})
-are retained by the child.
+Se @code{nome_arquivo} for um script de shell executável.
+Tal subshell reinicializa a si próprio, de maneira que o efeito é como 
+se um shell novo tivesse sido invocado para interpretar o script, com a 
+exceção de que as localizações dos comandos relembradas pelo pai 
+(veja-se a descrição de @code{hash} em @ref{Bourne Shell Builtins}) são 
+mantidas pelo filho.
 
-Most versions of Unix make this a part of the operating system's command
-execution mechanism.  If the first line of a script begins with
-the two characters @samp{#!}, the remainder of the line specifies
-an interpreter for the program.
-Thus, you can specify Bash, @code{awk}, Perl, or some other
-interpreter and write the rest of the script file in that language.
+A maioria das versões de Unix faz disso uma parte do mecanismo de 
+execução de comando do sistema operacional.   Se a primeira linha de um 
+script inicia com os dois caracteres @samp{#!}, o restante daquela linha 
+especifica um interpretador para o aplicativo.
+Assim, você pode especificar para o Bash, @code{awk}, Perl, ou algum 
+outro interpretador e escrever o resto do arquivo de script naquela 
+linguagem.
 
-The arguments to the interpreter
-consist of a single optional argument following the interpreter
-name on the first line of the script file, followed by the name of
-the script file, followed by the rest of the arguments.  Bash
-will perform this action on operating systems that do not handle it
-themselves.  Note that some older versions of Unix limit the interpreter
-name and argument to a maximum of 32 characters.
+Os argumentos para o interpretador consistem de um argumento opcional 
+único seguido do nome do interpretador na primeira linha do arquivo de 
+script, seguido pelo nome do arquivo de script, seguido pelo resto dos 
+argumentos.   Bash realizará tal ação em sistemas operacionais que não 
+manipulam isso por eles próprios.   Perceba que algumas versões antigas 
+de Unix limitam o nome do interpretador e argumento a um máximo de 32 
+caracteres.
 
-Bash scripts often begin with @code{#! /bin/bash} (assuming that
-Bash has been installed in @file{/bin}), since this ensures that
-Bash will be used to interpret the script, even if it is executed
-under another shell.
+Os scripts de Bash frequentemente começam com @code{#! /bin/bash} 
+(presumindo que Bash tenha sido instalado em @file{/bin}), dado que isso 
+assegura que Bash será utilizado para interpretar o script, mesmo que o 
+script seja executado sob um outro shell.
 
 @node Shell Builtin Commands
 @chapter Shell Builtin Commands
