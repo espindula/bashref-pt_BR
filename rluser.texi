@@ -2227,3 +2227,4 @@ An older version of the bash_completion package is distributed with bash
 in the @file{examples/complete} subdirectory.
 
 @end ifset
+
