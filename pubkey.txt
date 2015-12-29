@@ -271,3 +271,14 @@ tblaS3XZDTCvrVigePiUnFzWD3UnWqWibepgEBecTsPTs1gk/J+jKzMoT6cnfXWv
 KGtuV4RVz4ZgBz8RSk4d3qE/NKtOYz5DJpI=
 =lh2e
 -----END PGP PUBLIC KEY BLOCK-----
+
+
+
+Jamenson Ferreira Espindula de Almeida Melo
+GNU/Linux user # 166197
+https://linuxcounter.net/cert/166197.png
+
+Key fingerprint:
+234D 1914 4224 7C53 BD13  6855 2AE0 25C0 08A8 6180
+
+
