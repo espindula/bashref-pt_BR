@@ -1,3 +1,9 @@
+2015-dec-29	Translated the following sections and subsections:
+		3.7.4 - Environment
+		3.7.5 - Exit Status
+		3.7.6 - Signals
+		3.8 - Shell Scripts
+
 2015-dec-26	Translated the following sections and subsections:
 		3.7.1 - Simple Command Expansion
 		3.7.2 - Command Search and Execution
