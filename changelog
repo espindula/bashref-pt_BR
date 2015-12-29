@@ -1,9 +1,9 @@
-2015-12-26	Translated the following sections and subsections:
+2015-dec-26	Translated the following sections and subsections:
 		3.7.1 - Simple Command Expansion
 		3.7.2 - Command Search and Execution
 		3.7.3 - Command Execution Environment
 
-2015-09-05	Translated the following sections and subsections:
+2015-sep-05	Translated the following sections and subsections:
 		3.5.8.1 - Pattern Matching
 		3.5.9 - Quote Removal
 		3.6.1 - Redirecting Input
@@ -17,32 +17,32 @@
 		3.6.9 - Moving File Descriptors
 		3.6.10 - Opening File Descriptors for Reading and Writing
 
-2015-07-16	Translated chapter 3.5.5 - Arithmetic Expansion
+2015-jul-16	Translated chapter 3.5.5 - Arithmetic Expansion
 		Translated chapter 3.5.6 - Process Substitution
 		Translated chapter 3.5.7 - Word Splitting
 		Translated chapter 3.5.8 - Filename Expansion
 
-2015-07-15	Translated chapter 3.5.2 - Tilde Expansion
+2015-jul-15	Translated chapter 3.5.2 - Tilde Expansion
 		Translated chapter 3.5.3 - Shell Parameter Expansion
 		Translated chapter 3.5.4 - Command Substitution
 
-2015-07-13	Translated chapter 3.5.1 - Brace Expansion
+2015-jul-13	Translated chapter 3.5.1 - Brace Expansion
 		Translated chapter 3.4.2 - Special Parameters
 
-2015-07-10	Translated chapter 3.4.1 - Positional Parameters
+2015-jul-10	Translated chapter 3.4.1 - Positional Parameters
 
-2015-07-09	Translated chapter 3.4 - Shell Parameters
+2015-jul-09	Translated chapter 3.4 - Shell Parameters
 
-2015-07-08	Added UTF-8 encode tag. Mandatory for brazilian portuguese. PDF é now being generated correctly.
+2015-jul-08	Added UTF-8 encode tag. Mandatory for brazilian portuguese. PDF é now being generated correctly.
 
-2015-07-07	Translated 3.3 - Shell Functions
+2015-jul-07	Translated 3.3 - Shell Functions
 
-2015-07-06	Translated from <3.2.4.3 - Grouping Commands> up to <3.2.6 - GNU Parallel>.
+2015-jul-06	Translated from <3.2.4.3 - Grouping Commands> up to <3.2.6 - GNU Parallel>.
 
-2015-07-04	Translated <3.2.4.2 - Condicional Constructs>.
+2015-jul-04	Translated <3.2.4.2 - Condicional Constructs>.
 
-2015-07-03	Translated from <3.2.3 - Lists of Commands> up to <3.2.4.1 - Looping Constructs>.
+2015-jul-03	Translated from <3.2.3 - Lists of Commands> up to <3.2.4.1 - Looping Constructs>.
 
-2015-06-24	Translated from <1. Introduction; 1.1. What is Bash?> up to <3.2.2 Pipelines>.
+2015-jun-24	Translated from <1. Introduction; 1.1. What is Bash?> up to <3.2.2 Pipelines>.
 
-2015-06-23 	Initial commit
+2015-jun-23 	Initial commit
