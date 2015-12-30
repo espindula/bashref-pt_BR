@@ -55,8 +55,7 @@ entitled ``GNU Free Documentation License''.
 @titlepage
 @title Manual de Referência do Bash
 @subtitle Documentação de Referência para o Bash
-@subtitle Edição @value{EDITION}, para @code{Bash} Versão 
-@value{VERSION}.
+@subtitle Edição @value{EDITION}, para @code{Bash} Versão @value{VERSION}.
 @subtitle @value{UPDATED-MONTH}
 @author Chet Ramey, Case Western Reserve University
 @author Brian Fox, Free Software Foundation
