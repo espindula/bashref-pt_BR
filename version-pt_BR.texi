@@ -1,0 +1,11 @@
+@ignore
+Direitos autorais (C) 2015 Jamenson Ferreira Espindula de Almeida Melo
+Direitos autorais (C) 1988-2014 Free Software Foundation, Inc.
+@end ignore
+
+@set LASTCHANGE Sun Feb  2 16:22:00 EST 2014
+
+@set EDITION 4.3
+@set VERSION 4.3
+@set UPDATED 02 de fevereiro de 2014
+@set UPDATED-MONTH Fevereiro de 2014
