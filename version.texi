@@ -6,5 +6,5 @@ Copyright (C) 1988-2014 Free Software Foundation, Inc.
 
 @set EDITION 4.3
 @set VERSION 4.3
-@set UPDATED 02 de fevereiro de 2014
-@set UPDATED-MONTH Fevereiro de 2014
+@set UPDATED 2 February 2014
+@set UPDATED-MONTH February 2014
