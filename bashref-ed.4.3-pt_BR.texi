@@ -4,12 +4,12 @@
 @documentencoding UTF-8
 @settitle Manual de Referência do Bash
 
-@include version.texi
+@include version-pt_BR.texi
 @c %**end of header
 
 @copying
 Este texto é uma breve descrição das características que estão presentes 
-no shell Bash (version @value{VERSION}, @value{UPDATED}).
+no shell Bash (versão @value{VERSION}, @value{UPDATED}).
 
 Esta é a Edição @value{EDITION}, mais recentemente atualizada em 
 @value{UPDATED}, do @cite{The GNU Bash Reference Manual}, para 
@@ -1773,7 +1773,7 @@ A expansão é realizada na linha de comando após ela ter sido dividida em
 
 @menu
 * Brace Expansion::		Expansão de expressões dentro de chaves.
-* Tilde Expansion::		Expansão do caracter ~.
+* Tilde Expansion::		Expansão do carácter ~.
 * Shell Parameter Expansion::	Como Bash expande variáveis para seus 
 				valores.
 * Command Substitution::	Utilizando a saída de um comando como um 
@@ -1848,7 +1848,7 @@ termo a ter o mesmo comprimento.
 Quando ou @var{x} ou @var{y} começam com um zero, o shell tenta forçar 
 todos os termos gerados a conterem o mesmo número de dígitos, 
 completando com zeros onde necessário.
-Quando caracteres são informados, a expressão expande para cada caracter 
+Quando caracteres são informados, a expressão expande para cada carácter 
 lexicograficamente entre @var{x} e @var{y}, inclusive, utilizando o 
 locale C padrão.
 Note que ambas @var{x} e @var{y} devem necessariamente ser do mesmo 
@@ -1891,7 +1891,7 @@ chown root /usr/@{ucb/@{ex,edit@},lib/@{ex?.?*,how_ex@}@}
 @cindex tilde expansion
 @cindex expansion, tilde
 
-Se uma palavra se inicia com um caracter til fora de aspas (@samp{~}), 
+Se uma palavra se inicia com um carácter til fora de aspas (@samp{~}), 
 todos os caracteres até a primeira barra fora de aspas (ou todos os 
 caracteres, se não existir barra fora de aspas) são considerados como 
 sendo um @var{tilde-prefix}.
@@ -1964,7 +1964,7 @@ A sequência de caracteres que poderia ser exibida por @samp{dirs
 @cindex parameter expansion
 @cindex expansion, parameter
 
-O caracter @samp{$} introduz a expansão de parâmetro, substituição de 
+O carácter @samp{$} introduz a expansão de parâmetro, substituição de 
 comando, ou expansão aritmética.   O nome de parâmetro ou símbolo a ser 
 expandido pode ser encapsulado entre chaves, as quais são opcionais, 
 porém servem para proteger a variável a ser expandida dos caracteres 
@@ -1984,10 +1984,10 @@ O @var{parameter} é um parâmetro de shell conforme descrito acima
 (veja-se @ref{Arrays}).
 As chaves são obrigatórias quando @var{parameter} é um parâmetro 
 posicional com mais que um dígito, ou quando @var{parameter} for seguido 
-por um caracter que não é para ser interpretado como sendo parte de seu 
+por um carácter que não é para ser interpretado como sendo parte de seu 
 nome.
 
-Se o primeiro caracter de @var{parameter} for um ponto de exclamação 
+Se o primeiro carácter de @var{parameter} for um ponto de exclamação 
 (!), então isso introduz um nível de indireção de variável.
 Bash utiliza o valor da variável formada a partir do resto de 
 @var{parameter} como sendo o nome da variável; essa variável é então 
@@ -2041,12 +2041,12 @@ substituído, do contrário a expansão de @var{word} é substituída.
 @itemx $@{@var{parameter}:@var{offset}:@var{length}@}
 Isso é referenciado como Expansão de Substring.
 Ela expande até @var{length} caracteres do valor de @var{parameter} 
-iniciando no caracter especificado por @var{offset}.
+iniciando no carácter especificado por @var{offset}.
 Se @var{parameter} for @samp{@@}, um vetor indexado subscrito por 
 @samp{@@} ou @samp{*}, ou um nome de vetor associativo, os resultados 
 diferem conforme descritos abaixo.
 Se @var{length} for omitido, expande para a substring do valor de 
-@var{parameter} iniciando no caracter especificado por @var{offset} e se 
+@var{parameter} iniciando no carácter especificado por @var{offset} e se 
 estendo até o fim do valor.
 @var{length} e @var{offset} são expressões aritméticas 
 (veja-se @ref{Shell Arithmetic}).
@@ -2191,7 +2191,7 @@ utilizados, @code{$@@} é prefixado à lista.
 @item $@{!@var{prefix}*@}
 @itemx $@{!@var{prefix}@@@}
 Expande para os nomes das variáveis cujos nomes iniciam com 
-@var{prefix}, separados pelo primeiro caracter da variável especial 
+@var{prefix}, separados pelo primeiro carácter da variável especial 
 @env{IFS}.
 Quando @samp{@@} for utilizada e a expansão aparece dentro de aspas 
 duplas, cada nome de variável expande para uma palavra separada.
@@ -2280,18 +2280,18 @@ em sequência, e a expansão é a lista resultante.
 Esta expansão modifica o tipo dos caracteres alfabéticos em @var{parameter}.
 O @var{parameter} é expandido para produzir um padrão exatamente como na 
 expansão de nome de arquivo.
-Cada caracter no valor expandido de @var{parameter} é testado contra 
+Cada carácter no valor expandido de @var{parameter} é testado contra 
 @var{pattern}, e, se coincidir com o padrão, acontece a conversão de 
 caso.
-O padrão não deveria tentar coincidir mais que um caracter.
+O padrão não deveria tentar coincidir mais que um carácter.
 O operador @samp{^} converte letras minúsculas coincidentes com 
 @var{pattern} para maiúsculas; o operador @samp{,} converte letras 
 maiúsculas coincidentes com @var{pattern} para minúsculas.
-As expansões @samp{^^} e @samp{,,} convertem cada caracter coincidido no 
+As expansões @samp{^^} e @samp{,,} convertem cada carácter coincidido no 
 valor expandido; as expansões @samp{^} e @samp{,} coincidem e convertem 
-apenas o primeiro caracter no valor expandido.
+apenas o primeiro carácter no valor expandido.
 Se @var{pattern} for omitido, ele é tratado como um @samp{?}, o qual 
-coincide com cada caracter.
+coincide com cada carácter.
 Se @var{parameter} for @samp{@@} ou @samp{*}, a operação de modificação 
 de caso é aplicada a cada parâmetro posicional em sequência, e a 
 expansão é a lista resultante.
@@ -2406,7 +2406,7 @@ O shell escaneia os resultados da expansão de parâmetro, substituição de
 comando, e expansão aritmética que não ocorreu dentro de aspas duplas 
 para divisão de palavra.
 
-O shell trata cada caracter de @env{$IFS} como sendo um delimitador, e 
+O shell trata cada carácter de @env{$IFS} como sendo um delimitador, e 
 reparte os resultado das outras expansões em palavras utilizando esses 
 caracteres como terminadores de campo.
 Se @env{IFS} estiver desconfigurada, ou o valor dela for exatamente 
@@ -2418,9 +2418,9 @@ para delimitar palavras.
 Se @env{IFS} tiver um outro valor qualquer diferente do padrão, então 
 as sequências de caracteres de espaço em branco @code{space} e 
 @code{tab} são ignoradas no início e no final da palavra, até onde o 
-caracter espaço em branco esteja no valor de @env{IFS} (um caracter de 
+carácter espaço em branco esteja no valor de @env{IFS} (um carácter de 
 espaço em branco @env{IFS}).
-Qualquer caracter em @env{IFS} que não um espaço em branco @env{IFS}, 
+Qualquer carácter em @env{IFS} que não um espaço em branco @env{IFS}, 
 junto com quaisquer caracteres espaço em branco @env{IFS} adjacentes, 
 delimitam o campo.   Uma sequência de caracteres espaço em 
 branco @env{IFS} também é tratada como um delimitador.
@@ -2463,12 +2463,12 @@ Se a opção de shell @code{nocaseglob} estiver habilitada, o teste de
 coincidência é tentado sem considerar maiúsculas e minúsculas.
 
 Quando um padrão é utilizado para expansão de nome de arquivo, o 
-caracter @samp{.} no início de um nome de arquivo ou imediatamente 
+carácter @samp{.} no início de um nome de arquivo ou imediatamente 
 seguinte a uma barra deve necessariamente ser coincidido explicitamente, 
 a menos que a opção de shell @code{dotglob} esteja configurada.
-Quando da coincidência de um nome de arquivo, o caracter barra deve 
+Quando da coincidência de um nome de arquivo, o carácter barra deve 
 necessariamente sempre ser coincidido explicitamente.
-Em outros casos, o caracter @samp{.} não é tratado especialmente.
+Em outros casos, o carácter @samp{.} não é tratado especialmente.
 
 Veja-se a descrição de @code{shopt} na @ref{The Shopt Builtin}, para uma 
 descrição das opções @code{nocaseglob}, @code{nullglob}, 
@@ -2496,10 +2496,10 @@ desconfigurada.
 @cindex pattern matching
 @cindex matching, pattern
 
-Qualquer caracter que apareça em um padrão, que não os caracteres 
+Qualquer carácter que apareça em um padrão, que não os caracteres 
 especiais de padrão descritos abaixo, coincidem com eles próprios.
-O caracter @sc{null} pode não ocorrer em um padrão.
-Uma barra invertida encapsula o caracter seguinte a ela; a barra 
+O carácter @sc{null} pode não ocorrer em um padrão.
+Uma barra invertida encapsula o carácter seguinte a ela; a barra 
 invertida de encapsulamento é descartada quando da coincidência.
 Os caracteres especiais de padrão devem necessariamente serem 
 encapsulados em aspas se eles são para serem coincididos literalmente.
@@ -2516,17 +2516,17 @@ arquivos e zero ou mais diretórios e subdiretórios.
 Se seguido por uma @samp{/}, dois @samp{*}s adjacentes coincidirão 
 apenas com diretórios e subdiretórios.
 @item ?
-Coincide com qualquer caracter singular.
+Coincide com qualquer carácter singular.
 @item [@dots{}]
 Coincide com qualquer um dos caracteres encapsulados.   Um par de 
 caracteres separados por um hífen denota uma @var{range expression}; 
-qualquer caracter que cair entre esses dois caracteres, inclusive, 
+qualquer carácter que cair entre esses dois caracteres, inclusive, 
 utilizando o conjunto de caracteres e sequência de recolha do locale 
-atual, é coincidida.   Se o primeiro caracter seguinte a @samp{[} for 
-um @samp{!} ou um @samp{^}, então qualquer caracter não encapsulado é 
+atual, é coincidida.   Se o primeiro carácter seguinte a @samp{[} for 
+um @samp{!} ou um @samp{^}, então qualquer carácter não encapsulado é 
 coincidido.   Um @samp{@minus{}} pode ser coincidido incluindo-se ele 
-como o primeiro ou último caracter no conjunto.   Um @samp{]} pode ser 
-coincidido incluindo-se ele como o primeiro caracter no conjunto.
+como o primeiro ou último carácter no conjunto.   Um @samp{]} pode ser 
+coincidido incluindo-se ele como o primeiro carácter no conjunto.
 A ordem de arranjo dos caracteres em expressões de intervalo é 
 determinada pelo locale atual e os valores das variáveis de shell 
 @env{LC_COLLATE} e @env{LC_ALL}, se configuradas.
@@ -2549,22 +2549,22 @@ alnum   alpha   ascii   blank   cntrl   digit   graph   lower
 print   punct   space   upper   word    xdigit
 @end example
 @noindent
-Uma classe de caracteres coincide com qualquer caracter pertencente 
+Uma classe de caracteres coincide com qualquer carácter pertencente 
 àquela classe.
-A classe de caracter @code{word} coincide com letras, dígitos, e com o 
-caracter @samp{_}.
+A classe de carácter @code{word} coincide com letras, dígitos, e com o 
+carácter @samp{_}.
 
 Dentro de @samp{[} e @samp{]}, uma @var{equivalence class} pode ser 
 especificada utilizando-se a sintaxe @code{[=}@var{c}@code{=]}, a qual 
 coincide com todos os caracteres com o mesmo peso de recolha (conforme 
-definido pelo locale atual) como o caracter @var{c}.
+definido pelo locale atual) como o carácter @var{c}.
 
 Dentro de @samp{[} e @samp{]}, a sintaxe @code{[.}@var{symbol}@code{.]} 
 coincide com o símbolo de recolha @var{symbol}.
 @end table
 
 Se a opção de shell @code{extglob} for habilitada utilizando o comando 
-interno @code{shopt}, então vários operadores extendidos de padrões de 
+interno @code{shopt}, então vários operadores estendidos de padrões de 
 coincidência são reconhecidos.
 Na descrição seguinte, uma @var{pattern-list} é uma lista de um ou mais 
 padrões separados por um @samp{|}.
@@ -2791,7 +2791,7 @@ aspas, o @var{delimiter} é o resultado da remoção das aspas sobre
 @var{word}, e as linhas no documento-aqui não são expandidas.
 Se @var{word} estiver fora de aspas, todas as linhas do documento-aqui 
 ficam sujeitas a expansão de parâmetro, substituição de comando, e 
-expansão aritmética, a sequência de caracter @code{\newline} é ignorada, 
+expansão aritmética, a sequência de carácter @code{\newline} é ignorada, 
 e @samp{\} deve necessariamente ser utilizado para encapsular os 
 caracteres @samp{\}, @samp{$}, e @samp{`}.
 
@@ -3097,7 +3097,7 @@ Se um comando for seguido por um sinal @samp{&} e o controle de tarefa
 não estiver ativo, o arquivo descritor de entrada padronizada padrão 
 para o comando é o arquivo vazio @file{/dev/null}.   Do contrário, o 
 comando invocado herda os descritores de arquivo do shell invocante 
-confrme modificado pelas redireções.
+conforme modificado pelas redireções.
 
 @node Environment
 @subsection Environment
@@ -3122,7 +3122,7 @@ removidos pelos comandos @code{unset} e @samp{export -n}, mais quaisquer
 adições via comandos @code{export} e @samp{declare -x}.
 
 O ambiente para qualquer comando simples ou função pode ser aumentado 
-temporáriamente prefixando tal ambiente com atribuições de parâmetros, 
+temporariamente prefixando tal ambiente com atribuições de parâmetros, 
 conforme descrito em @ref{Shell Parameters}.   Tais declarações de 
 atribuição afetam apenas o ambiente visto pelo comando.
 
@@ -3187,7 +3187,7 @@ estiver em efeito (veja-se @ref{Job Control}), Bash ignora
 
 Os comandos não internos iniciados por Bash tem manipuladores de sinal 
 configurados para os valores herdados pelo shell originados dos pais 
-dele.   Quando o controle detarefa não está em efeito, os comandos 
+dele.   Quando o controle de tarefa não está em efeito, os comandos 
 assíncronos ignoram @code{SIGINT} e @code{SIGQUIT} em adição àqueles 
 manipuladores herdados.   Os comandos executados como um resultado da 
 substituição de comando ignoram os sinais de controle de tarefa gerados 
@@ -3301,7 +3301,7 @@ de se obter com utilitários separados.
 
 Esta seção descreve brevemente os comandos internos os quais Bash herda 
 do Shell Bourne, bem como comandos internos os quais são únicos ao ou 
-foram extendidos no Bash.
+foram estendidos no Bash.
 
 Vários comandos internos são descritos em outros capítulos: comandos 
 internos os quais proveem a interface do Bash para as facilidades de 
@@ -3311,7 +3311,7 @@ comando (veja-se @ref{Bash History Builtins}), e as facilidades de
 complementação programável (veja-se @ref{Programmable Completion 
 Builtins}).
 
-Muitos dos comandos internos foram extendidos por @sc{posix} ou Bash.
+Muitos dos comandos internos foram estendidos por @sc{posix} ou Bash.
 
 A menos que informado do contrário, cada comando interno documentado 
 como que aceita opções precedidas por @samp{-} também aceita @samp{--} 
@@ -3407,12 +3407,12 @@ processada removendo-se o componente de nome de caminho imediatamente
 precedente, de volta até uma barra ou o início de @var{diretório}.
 
 Se a opção @option{-e} for fornecida com @option{-P} e o diretório de 
-trabalho atual não puder ser determinado com sucesso após uma medança de 
+trabalho atual não puder ser determinado com sucesso após uma mudança de 
 diretório exitosa, então @code{cd} retornará um código de saída de 
 insucesso.
 
 Em sistemas que suportam isto, a opção @option{-@@} apresenta os 
-atributos extendidos associados com um arquivo como um diretório.
+atributos estendidos associados com um arquivo como um diretório.
 
 Se @var{diretório} for @samp{-}, então ele é convertido para 
 @env{$OLDPWD} antes que a mudança de diretório seja tentada.
@@ -3519,14 +3519,14 @@ getopts @var{optstring} @var{nome} [@var{args}]
 
 @code{getopts} é utilizado por scripts de shell para analisar parâmetros 
 posicionais.   @var{optstring} contém os caracteres opcionais a serem 
-reconhecidos; se um caracter for seguido por um sinal de dois pontos, 
+reconhecidos; se um carácter for seguido por um sinal de dois pontos, 
 então é esperado que a opção tenha um argumento, o qual deveria estar 
 separado da opção por um espaço em branco.
 O sinal de dois pontos (@samp{:}) e o de interrogação (@samp{?}) podem 
 não serem utilizados como caracteres opcionais.
 A cada vez que é invocado, @code{getopts} coloca a próxima opção na 
 variável de shell @var{nome}, inicializando @var{nome} caso ela não 
-exista, e o indice do próximo argumento a ser processado na variável 
+exista, e o índice do próximo argumento a ser processado na variável 
 @env{OPTIND}.
 @env{OPTIND} é inicializada em 1 a cada vez que o shell ou um script de 
 shell for invocado.
@@ -3539,7 +3539,7 @@ parâmetros está para ser utilizado.
 
 Quando o final das opções é encontrado, @code{getopts} sai com um código 
 de retorno maior que zero.
-@env{OPTIND} é configurada para o indice do primeiro argumento 
+@env{OPTIND} é configurada para o índice do primeiro argumento 
 não-opção, e @var{nome} é configurada para @samp{?}.
 
 @code{getopts} normalmente analisa os parâmetros posicionais, porém se 
@@ -3547,18 +3547,18 @@ mais argumentos são dados em @var{args}, @code{getopts} analisa esses
 argumentos em vez disso.
 
 @code{getopts} pode relatar erros de duas maneiras.   Se o primeiro 
-caracter de @var{optstring} for um sinal de dois pontos, então 
+carácter de @var{optstring} for um sinal de dois pontos, então 
 o relatador de erro @var{silent} é utilizado.   Em operação normal, 
 mensagens de diagnóstico são impressas quando opções inválidas ou a 
 falta de argumentos de opção são encontrados.
 Se a variável @env{OPTERR} for configurada para zero (0), então nenhuma 
-mensagem de erro será mostrada, mesmo que o primeiro caracter de 
+mensagem de erro será mostrada, mesmo que o primeiro carácter de 
 @code{optstring} não seja o sinal de dois pontos.
 
 Se uma opção inválida é vista, @code{getopts} coloca @samp{?} dentro de 
 @var{nome} e, se não silêncio, imprime uma mensagem de erro e 
 desconfigura @env{OPTARG}.
-Se @code{getopts} for silente, então o caracter de opção encontrado é 
+Se @code{getopts} for silente, então o carácter de opção encontrado é 
 colocado em @env{OPTARG} e nenhuma mensagem de diagnóstico é impressa.
 
 Se um argumento exigido não for encontrado, e @code{getopts} não for 
@@ -3572,30 +3572,31 @@ de opção encontrado.
 @item hash
 @btindex hash
 @example
-hash [-r] [-p @var{filename}] [-dt] [@var{name}]
+hash [-r] [-p @var{nome_arquivo}] [-dt] [@var{nome}]
 @end example
 
-Each time @code{hash} is invoked, it remembers the full pathnames of the
-commands specified as @var{name} arguments,
-so they need not be searched for on subsequent invocations.
-The commands are found by searching through the directories listed in
-@env{$PATH}.
-Any previously-remembered pathname is discarded.
-The @option{-p} option inhibits the path search, and @var{filename} is
-used as the location of @var{name}.
-The @option{-r} option causes the shell to forget all remembered locations.
-The @option{-d} option causes the shell to forget the remembered location
-of each @var{name}.
-If the @option{-t} option is supplied, the full pathname to which each
-@var{name} corresponds is printed.  If multiple @var{name} arguments are
-supplied with @option{-t} the @var{name} is printed before the hashed
-full pathname.
-The @option{-l} option causes output to be displayed in a format
-that may be reused as input.
-If no arguments are given, or if only @option{-l} is supplied,
-information about remembered commands is printed.
-The return status is zero unless a @var{name} is not found or an invalid
-option is supplied.
+A cada vez que @code{hash} é invocado, ele se lembra dos nomes completos 
+de caminhos dos comandos especificados como argumentos @var{nome}, de 
+maneira que não se precisa procurar nos caminhos em subsequentes 
+invocações.   Os comandos são encontrados pesquisando-se em todos os 
+diretórios listados em @env{$PATH}.
+Quaisquer nome de caminho previamente relembrados são descartados.
+A opção @option{-p} inibe a procura de caminho, e @var{nome_arquivo} é 
+utilizado como a localização de @var{nome}.
+A opção @option{-r} faz com que o shell se esqueça de todas as 
+localizações relembradas.
+A opção @option{-d} faz com que o shell se esqueça da localização 
+relembrada de cada @var{nome}.
+Se a opção @option{-t} for fornecida, então o nome completo de caminho 
+para o qual cada @var{nome} corresponda é impresso.   Se múltiplos 
+argumentos @var{nome} forem fornecidos com @option{-t}, o @var{nome} é 
+impresso antes do nome completo do caminho esmiuçado.
+A opção @option{-l} faz com que a saída seja exibida em um formato que 
+pode ser reutilizado como entrada.
+Se nenhum argumento é dado, ou se apenas @option{-l} for fornecida, 
+então informação sobre comandos relembrados é impressa.
+O código de retorno é zero, a menos que um @var{nome} não seja 
+encontrado ou uma opção inválida seja fornecida.
 
 @item pwd
 @btindex pwd
@@ -3603,40 +3604,40 @@ option is supplied.
 pwd [-LP]
 @end example
 
-Print the absolute pathname of the current working directory.
-If the @option{-P} option is supplied, the pathname printed will not
-contain symbolic links.
-If the @option{-L} option is supplied, the pathname printed may contain
-symbolic links.
-The return status is zero unless an error is encountered while
-determining the name of the current directory or an invalid option
-is supplied.
+Imprime o nome de caminho absoluto do diretório de trabalho atual.
+Se a opção @option{-P} for fornecida, então o nome de caminho impresso 
+pode conter links simbólicos.
+O código de retorno é zero, a menos que um erro seja encontrado quando 
+da determinação do nome do diretório atual ou uma opção inválida seja 
+fornecida.
 
 @item readonly
 @btindex readonly
 @example
-readonly [-aAf] [-p] [@var{name}[=@var{value}]] @dots{}
+readonly [-aAf] [-p] [@var{nome}[=@var{valor}]] @dots{}
 @end example
 
-Mark each @var{name} as readonly.
-The values of these names may not be changed by subsequent assignment.
-If the @option{-f} option is supplied, each @var{name} refers to a shell
-function.
-The @option{-a} option means each @var{name} refers to an indexed
-array variable; the @option{-A} option means each @var{name} refers
-to an associative array variable.
-If both options are supplied, @option{-A} takes precedence.
-If no @var{name} arguments are given, or if the @option{-p}
-option is supplied, a list of all readonly names is printed.
-The other options may be used to restrict the output to a subset of
-the set of readonly names.
-The @option{-p} option causes output to be displayed in a format that
-may be reused as input.
-If a variable name is followed by =@var{value}, the value of
-the variable is set to @var{value}.
-The return status is zero unless an invalid option is supplied, one of
-the @var{name} arguments is not a valid shell variable or function name,
-or the @option{-f} option is supplied with a name that is not a shell function.
+Marca cada @var{nome} como apenas leitura.
+Os valores desses nomes não podem ser modificados por atribuição 
+subsequente.
+Se a opção @option{-f} for fornecida, então cada @var{nome} se refere a 
+uma função de shell.
+A opção @option{-a} significa que cada @var{nome} se refere a uma 
+variável de vetor indexado; a opção @option{-A} significa que cada 
+@var{nome} se refere a uma variável de vetor associativo.
+Se ambas as opções são fornecidas, então @option{-A} tem precedência.
+Se nenhum argumento @var{nome} for dado, ou se a opção @option{-p} for 
+fornecida, então uma lista de todos os nomes apenas leitura é impressa.
+As outras opções podem ser utilizadas para restringir a saída a um 
+subconjunto do conjunto de nomes apenas leitura.
+A opção @option{-p} faz com que a saída seja exibida em um formato que 
+pode ser reutilizada como entrada.
+Se um nome de variável for seguido por =@var{valor}, então o valor da 
+variável é configurada para @var{valor}.
+O código de retorno é zero, a menos que uma opção inválida seja 
+fornecida, um dos argumentos @var{nome} não seja uma variável de shell 
+válida ou um nome de função, ou a opção @option{-f} seja fornecida com 
+um nome que não seja uma função de shell.
 
 @item return
 @btindex return
@@ -3644,22 +3645,20 @@ or the @option{-f} option is supplied with a name that is not a shell function.
 return [@var{n}]
 @end example
 
-Cause a shell function to stop executing and return the value @var{n}
-to its caller.
-If @var{n} is not supplied, the return value is the exit status of the
-last command executed in the function.
-@code{return} may also be used to terminate execution of a script
-being executed with the @code{.} (@code{source}) builtin,
-returning either @var{n} or
-the exit status of the last command executed within the script as the exit
-status of the script.
-If @var{n} is supplied, the return value is its least significant
-8 bits.
-Any command associated with the @code{RETURN} trap is executed
-before execution resumes after the function or script.
-The return status is non-zero if @code{return} is supplied a non-numeric
-argument or is used outside a function
-and not during the execution of a script by @code{.} or @code{source}.
+Faz com que uma função de shell pare a sua execução e retorne o valor 
+@var{n} a quem a chamou.   Se @var{n} não for fornecida, o código de 
+retorno é o código de saída do último comando executado na função.
+@code{return} também pode ser utilizado para finalizar a execução de um 
+script sendo executado com o comando interno @code{.} (@code{source}), 
+retornando ou @var{n} ou o código de saída do último comando executado 
+dentro do script como o código de saída do script.
+Se @var{n} for fornecida, então o valor do código de retorno são os 
+últimos 8 bits significantes da variável.
+Qualquer comando associado com o coletor @code{RETURN} é executado antes 
+da retomada da execução após a função ou script.
+O código de retorno é diferente de zero se a @code{return} for fornecido 
+um argumento não numérico ou for utilizado do lado de fora da função e 
+não durante a execução do script por @code{.} ou @code{source}.
 
 @item shift
 @btindex shift
@@ -3667,17 +3666,18 @@ and not during the execution of a script by @code{.} or @code{source}.
 shift [@var{n}]
 @end example
 
-Shift the positional parameters to the left by @var{n}.
-The positional parameters from @var{n}+1 @dots{} @code{$#} are
-renamed to @code{$1} @dots{} @code{$#}-@var{n}.
-Parameters represented by the numbers @code{$#} to @code{$#}-@var{n}+1
-are unset.
-@var{n} must be a non-negative number less than or equal to @code{$#}.
-If @var{n} is zero or greater than @code{$#}, the positional parameters
-are not changed.
-If @var{n} is not supplied, it is assumed to be 1.
-The return status is zero unless @var{n} is greater than @code{$#} or
-less than zero, non-zero otherwise.
+Desloca os parâmetros posicionais @var{n} para a esquerda.
+Os parâmetros posicionais a partir de @var{n}+1 @dots{} @code{$#} são 
+renomeados para @code{$1} @dots{} @code{$#}-@var{n}.
+Os parâmetros representados pelos números @code{$#} até 
+@code{$#}-@var{n}+1 são desconfigurados.
+@var{n} deve necessariamente ser um número não-negativo menor que ou 
+igual a @code{$#}.
+Se @var{n} for zero ou maior que @code{$#}, então os parâmetros 
+posicionais não são modificados.
+Se @var{n} não for fornecido, então presume-se que seja igual a 1.
+O código de retorno é zero, a menos que @var{n} seja maior que @code{$#} 
+ou menor que zero, e diferente de zero do contrário.
 
 @item test
 @itemx [
@@ -3687,85 +3687,87 @@ less than zero, non-zero otherwise.
 test @var{expr}
 @end example
 
-Evaluate a conditional express
-ion @var{expr} and return a status of 0
-(true) or 1 (false).
-Each operator and operand must be a separate argument.
-Expressions are composed of the primaries described below in
-@ref{Bash Conditional Expressions}.
-@code{test} does not accept any options, nor does it accept and ignore
-an argument of @option{--} as signifying the end of options.
+Avalia uma expressão condicional @var{expr} e retorna um código 0 
+(verdadeiro) ou 1 (falso).
+Cada operador e operando deve necessariamente ser um argumento separado.
+Expressões são compostas dos primários descritos abaixo em @ref{Bash 
+Conditional Expressions}.
+@code{test} não aceita quaisquer opções, nem aceita e ignora um 
+argumento de @option{--} como significando o final das opções.
 
-When the @code{[} form is used, the last argument to the command must
-be a @code{]}.
+Quando a forma @code{[} é utilizada, o último argumento para o comando 
+deve necessariamente ser um @code{]}.
 
-Expressions may be combined using the following operators, listed in
-decreasing order of precedence.
-The evaluation depends on the number of arguments; see below.
-Operator precedence is used when there are five or more arguments.
+Expressões podem ser combinadas utilizando-se os seguintes operadores, 
+listados em ordem decrescente de precedência.
+A avaliação depende do número de argumentos; veja-se abaixo.
+A precedência de operador é utilizada quando existem cinco ou mais 
+argumentos.
 
 @table @code
 @item ! @var{expr}
-True if @var{expr} is false.
+Verdadeiro se @var{expr} for falso.
 
 @item ( @var{expr} )
-Returns the value of @var{expr}.
-This may be used to override the normal precedence of operators.
+Retorna o valor de @var{expr}.
+Isso pode ser utilizado para substituir a precedência normal de 
+operadores.
 
 @item @var{expr1} -a @var{expr2}
-True if both @var{expr1} and @var{expr2} are true.
+Verdadeiro se ambas @var{expr1} e @var{expr2} forem verdadeiras.
 
 @item @var{expr1} -o @var{expr2}
-True if either @var{expr1} or @var{expr2} is true.
+Verdadeiro se ou @var{expr1} ou @var{expr2} for verdadeira.
 @end table
 
-The @code{test} and @code{[} builtins evaluate conditional
-expressions using a set of rules based on the number of arguments.
+Os comandos internos @code{test} e @code{[} avaliam expressões 
+condicionais utilizando um conjunto de regras baseadas no número de 
+argumentos.
 
 @table @asis
-@item 0 arguments
-The expression is false.
+@item 0 argumentos
+A expressão é falsa.
 
-@item 1 argument
-The expression is true if and only if the argument is not null.
+@item 1 argumento
+A expressão é verdadeira se e somente se o argumento não nulo.
 
-@item 2 arguments
-If the first argument is @samp{!}, the expression is true if and
-only if the second argument is null.
-If the first argument is one of the unary conditional operators
-(@pxref{Bash Conditional Expressions}), the expression
-is true if the unary test is true.
-If the first argument is not a valid unary operator, the expression is
-false.
+@item 2 argumentos
+Se o primeiro argumento for @samp{!}, então a expressão é verdadeira se 
+e somente se o segundo argumento for nulo.
+Se o primeiro argumento for um dos operadores condicionais unários 
+(veja-se @ref{Bash Conditional Expressions}), então a expressão é 
+verdadeira se o teste unário for verdadeiro.
+Se o primeiro argumento não for um operador unário válido, então a 
+expressão é falsa.
 
-@item 3 arguments
-The following conditions are applied in the order listed.
-If the second argument is one of the binary conditional
-operators (@pxref{Bash Conditional Expressions}), the
-result of the expression is the result of the binary test using the
-first and third arguments as operands.
-The @samp{-a} and @samp{-o} operators are considered binary operators
-when there are three arguments.
-If the first argument is @samp{!}, the value is the negation of
-the two-argument test using the second and third arguments.
-If the first argument is exactly @samp{(} and the third argument is
-exactly @samp{)}, the result is the one-argument test of the second
-argument.
-Otherwise, the expression is false.
+@item 3 argumentos
+As seguintes condições são aplicadas na ordem listada.
+Se o segundo argumento for um dos operadores condicionais binários 
+(veja-se @ref{Bash Conditional Expressions}), então o resultado da 
+expressão é o resultado do teste binário utilizando-se o primeiro e o 
+terceiro argumentos como operandos.
+Os operadores @samp{-a} e @samp{-o} são considerados operadores binários 
+quando existem três argumentos.
+Se o primeiro argumento for @samp{!}, então o valor é a negação do teste 
+de dois argumentos utilizando-se o segundo e o terceiro argumentos.
+Se o primeiro argumento for exatamente @samp{(} e o terceiro argumento 
+for exatamente @samp{)}, então o resultado é o teste de um argumento do 
+segundo argumento.
+Do contrário, a expressão é falsa.
 
-@item 4 arguments
-If the first argument is @samp{!}, the result is the negation of
-the three-argument expression composed of the remaining arguments.
-Otherwise, the expression is parsed and evaluated according to 
-precedence using the rules listed above.
+@item 4 argumentos
+Se o primeiro argumento for @samp{!}, então o resultado é a negação da 
+expressão de três argumentos, composta dos restantes argumentos.
+Do contrário, a expressão é analisada e avaliada de acordo com a 
+precedência, utilizando-se as regras listadas acima.
 
-@item 5 or more arguments
-The expression is parsed and evaluated according to precedence
-using the rules listed above.
+@item 5 ou mais argumentos
+A expressão é analisada e avaliada de acordo com a precedência, 
+utilizando-se as regras listadas acima.
 @end table
 
-When used with @code{test} or @samp{[}, the @samp{<} and @samp{>}
-operators sort lexicographically using ASCII ordering.
+Quando utilizado com @code{test} ou com @samp{[}, os operadores @samp{<} 
+e @samp{>} ordenam lexicograficamente, utilizando ordenamento ASCII.
 
 @item times
 @btindex times
@@ -3773,8 +3775,8 @@ operators sort lexicographically using ASCII ordering.
 times
 @end example
 
-Print out the user and system times used by the shell and its children.
-The return status is zero.
+Imprime os tempos de sistema e de usuário, utilizados pelo shell e seus 
+filhos.   O código de retorno é zero.
 
 @item trap
 @btindex trap
