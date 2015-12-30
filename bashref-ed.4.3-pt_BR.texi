@@ -3282,81 +3282,88 @@ script seja executado sob um outro shell.
 @chapter Shell Builtin Commands
 
 @menu
-* Bourne Shell Builtins::	Builtin commands inherited from the Bourne
-				Shell.
-* Bash Builtins::		Table of builtins specific to Bash.
-* Modifying Shell Behavior::	Builtins to modify shell attributes and
-				optional behavior.
-* Special Builtins::		Builtin commands classified specially by
-				POSIX.
+* Bourne Shell Builtins::	Comandos internos herdados do Shell 
+				Bourne.
+* Bash Builtins::		Tabela de comandos internos específicos 
+				ao Bash.
+* Modifying Shell Behavior::	Comandos internos para modificar 
+				atributos do shell e comportamento 
+				opcional.
+* Special Builtins::		Comandos internos classificados 
+				especialmente por POSIX.
 @end menu
 
-Builtin commands are contained within the shell itself.
-When the name of a builtin command is used as the first word of
-a simple command (@pxref{Simple Commands}), the shell executes
-the command directly, without invoking another program.
-Builtin commands are necessary to implement functionality impossible
-or inconvenient to obtain with separate utilities.
+Comandos internos são contidos no próprio shell.   Quando o nome de um 
+comando interno é utilizado como a primeira palavra de um comando 
+simples (veja-se @ref{Simple Commands}), o shell executa o comando 
+diretamente, sem invocar outro programa.   Comandos internos são 
+necessários para implementar funcionalidade impossível ou inconveniente 
+de se obter com utilitários separados.
 
-This section briefly describes the builtins which Bash inherits from
-the Bourne Shell, as well as the builtin commands which are unique
-to or have been extended in Bash.
+Esta seção descreve brevemente os comandos internos os quais Bash herda 
+do Shell Bourne, bem como comandos internos os quais são únicos ao ou 
+foram extendidos no Bash.
 
-Several builtin commands are described in other chapters:  builtin
-commands which provide the Bash interface to the job control
-facilities (@pxref{Job Control Builtins}), the directory stack
-(@pxref{Directory Stack Builtins}), the command history
-(@pxref{Bash History Builtins}), and the programmable completion
-facilities (@pxref{Programmable Completion Builtins}).
+Vários comandos internos são descritos em outros capítulos: comandos 
+internos os quais proveem a interface do Bash para as facilidades de 
+controle de tarefas (veja-se @ref{Job Control Builtins}), a pilha de 
+diretório (veja-se @ref{Directory Stack Builtins}), o histórico de 
+comando (veja-se @ref{Bash History Builtins}), e as facilidades de 
+complementação programável (veja-se @ref{Programmable Completion 
+Builtins}).
 
-Many of the builtins have been extended by @sc{posix} or Bash.
+Muitos dos comandos internos foram extendidos por @sc{posix} ou Bash.
 
-Unless otherwise noted, each builtin command documented as accepting
-options preceded by @samp{-} accepts @samp{--}
-to signify the end of the options.
-The @code{:}, @code{true}, @code{false}, and @code{test}
-builtins do not accept options and do not treat @samp{--} specially.
-The @code{exit}, @code{logout}, @code{break}, @code{continue}, @code{let},
-and @code{shift} builtins accept and process arguments beginning
-with @samp{-} without requiring @samp{--}.
-Other builtins that accept arguments but are not specified as accepting
-options interpret arguments beginning with @samp{-} as invalid options and
-require @samp{--} to prevent this interpretation.
+A menos que informado do contrário, cada comando interno documentado 
+como que aceita opções precedidas por @samp{-} também aceita @samp{--} 
+para significar o fim das opções.
+Os comandos internos @code{:}, @code{true}, @code{false}, e @code{test} 
+não aceitam opções e não tratam @samp{--} especialmente.
+Os comandos internos @code{exit}, @code{logout}, @code{break}, 
+@code{continue}, @code{let}, e @code{shift} aceitam e processam 
+argumentos começando com @samp{-} sem exigir @samp{--}.
+Outros comandos internos que aceitam argumentos, mas não são 
+especificados como aceitantes de opções, interpretam argumentos 
+começando com @samp{-} como opções inválidas e exigem @samp{--} para 
+prevenir tal interpretação.
 
 @node Bourne Shell Builtins
 @section Bourne Shell Builtins
 
-The following shell builtin commands are inherited from the Bourne Shell.
-These commands are implemented as specified by the @sc{posix} standard.
+Os comandos internos de shell seguintes são herdados do Shell Bourne.
+Estes comandos são implementados conforme especificado pelo padrão 
+@sc{posix}.
 
 @table @code
-@item :    @r{(a colon)}
+@item :    @r{(dois pontos)}
 @btindex :
 @example
-: [@var{arguments}]
+: [@var{argumentos}]
 @end example
 
-Do nothing beyond expanding @var{arguments} and performing redirections.
-The return status is zero.
+Não faz nada além de expandir @var{argumentos} e implementar redireções.
+O código de retorno é zero.
 
-@item .    @r{(a period)}
+@item .    @r{(um ponto)}
 @btindex .
 @example
-. @var{filename} [@var{arguments}]
+. @var{nome_arquivo} [@var{argumentos}]
 @end example
 
-Read and execute commands from the @var{filename} argument in the
-current shell context.  If @var{filename} does not contain a slash,
-the @env{PATH} variable is used to find @var{filename}.
-When Bash is not in @sc{posix} mode, the current directory is searched
-if @var{filename} is not found in @env{$PATH}.
-If any @var{arguments} are supplied, they become the positional
-parameters when @var{filename} is executed.  Otherwise the positional
-parameters are unchanged.
-The return status is the exit status of the last command executed, or
-zero if no commands are executed.  If @var{filename} is not found, or
-cannot be read, the return status is non-zero.
-This builtin is equivalent to @code{source}.
+Lê e executa comandos a partir do argumento @var{nome_arquivo} no 
+contexto do shell atual.   Se @var{nome_arquivo} não contiver uma barra, 
+então a variável @env{PATH} é utilizada para encontrar 
+@var{nome_arquivo}.   Quando Bash não está em modo @sc{posix}, o 
+diretório atual é pesquisado se @var{nome_arquivo} não for encontrado em 
+@env{$PATH}.
+Se quaisquer @var{argumentos} forem fornecidos, então eles se tornam os 
+parâmetros posicionais quando @var{nome_arquivo} for executado.   Do 
+contrário, os parâmetros posicionais não são modificados.
+O código de retorno é o código de saída do último comando executado, ou 
+zero se nenhum dos comandos for executado.   Se @var{nome_arquivo} não 
+for encontrado, ou não puder ser lido, o código de retorno é diferente 
+de zero.
+Esse comando interno é equivalente a @code{source}.
 
 @item break
 @btindex break
@@ -3364,58 +3371,60 @@ This builtin is equivalent to @code{source}.
 break [@var{n}]
 @end example
 
-Exit from a @code{for}, @code{while}, @code{until}, or @code{select} loop.
-If @var{n} is supplied, the @var{n}th enclosing loop is exited.
-@var{n} must be greater than or equal to 1.
-The return status is zero unless @var{n} is not greater than or equal to 1.
+Sai de um loop @code{for}, @code{while}, @code{until}, ou @code{select}.
+Se @var{n} for fornecido, então o @var{n}ésimo loop envolvente é 
+terminado.
+@var{n} deve necessariamente ser maior que ou igual a 1.
+O código de retorno é zero a menos que @var{n} não seja maior que ou 
+igual a 1.
 
 @item cd
 @btindex cd
 @example
-cd [-L|[-P [-e]] [-@@] [@var{directory}]
+cd [-L|[-P [-e]] [-@@] [@var{diretório}]
 @end example
 
-Change the current working directory to @var{directory}.
-If @var{directory} is not supplied, the value of the @env{HOME}
-shell variable is used.
-Any additional arguments following @var{directory} are ignored.
-If the shell variable
-@env{CDPATH} exists, it is used as a search path:
-each directory name in @env{CDPATH} is searched for
-@var{directory}, with alternative directory names in @env{CDPATH}
-separated by a colon (@samp{:}).
-If @var{directory} begins with a slash, @env{CDPATH} is not used.
+Muda o diretório de trabalho atual para @var{diretório}.
+Se @var{diretório} não for fornecido, então o valor da variável de shell 
+@env{HOME} é utilizado.   Quaisquer argumentos adicionais seguintes a 
+@var{diretório} são ignorados.   Se a variável de shell @env{CDPATH} 
+existir, ela é utilizada como um caminho de busca: cada nome de 
+diretório em @env{CDPATH} é comparado com @var{diretório}, com nomes de 
+diretório alternativos separados por um sinal de dois pontos (@samp{:}).
+Se @var{diretório} começar com uma barra, então @env{CDPATH} não é 
+utilizada.
 
-The @option{-P} option means to not follow symbolic links: symbolic links
-are resolved while @code{cd} is traversing @var{directory} and before
-processing an instance of @samp{..} in @var{directory}.
+A opção @option{-P} significa não seguir links simbólicos: links 
+simbólicos são resolvidos enquanto @code{cd} está atravessando 
+@var{diretório} e antes de processar uma instância de @samp{..} em 
+@var{diretório}.
 
-By default, or when the @option{-L} option is supplied, symbolic links
-in @var{directory} are resolved after @code{cd} processes an instance
-of @samp{..} in @var{directory}.
+Por padrão, ou quando a opção @option{-L} for fornecida, links 
+simbólicos em @var{diretório} são resolvidos após @code{cd} processar 
+uma ocorrência de @samp{..} em @var{diretório}.
 
-If @samp{..} appears in @var{directory}, it is processed by removing the
-immediately preceding pathname component, back to a slash or the beginning
-of @var{directory}.
+Se @samp{..} aparecer em @var{diretório}, então essa ocorrência é 
+processada removendo-se o componente de nome de caminho imediatamente 
+precedente, de volta até uma barra ou o início de @var{diretório}.
 
-If the @option{-e} option is supplied with @option{-P}
-and the current working directory cannot be successfully determined
-after a successful directory change, @code{cd} will return an unsuccessful
-status.
+Se a opção @option{-e} for fornecida com @option{-P} e o diretório de 
+trabalho atual não puder ser determinado com sucesso após uma medança de 
+diretório exitosa, então @code{cd} retornará um código de saída de 
+insucesso.
 
-On systems that support it, the @option{-@@} option presents the extended
-attributes associated with a file as a directory.              
+Em sistemas que suportam isto, a opção @option{-@@} apresenta os 
+atributos extendidos associados com um arquivo como um diretório.
 
-If @var{directory} is @samp{-}, it is converted to @env{$OLDPWD}
-before the directory change is attempted.
+Se @var{diretório} for @samp{-}, então ele é convertido para 
+@env{$OLDPWD} antes que a mudança de diretório seja tentada.
 
-If a non-empty directory name from @env{CDPATH} is used, or if
-@samp{-} is the first argument, and the directory change is
-successful, the absolute pathname of the new working directory is
-written to the standard output.
+Se um nome de diretório não vazio de @env{CDPATH} for utilizado, ou se 
+@samp{-} for o primeiro argumento, e a mudança de diretório tiver 
+sucesso, então e nome de caminho absoluto do novo diretório de trabalho 
+é escrito na saída padrão.
 
-The return status is zero if the directory is successfully changed,
-non-zero otherwise.
+O código de retorno é zero se o diretório for mudado com sucesso, e 
+diferente de zero do contrário.
 
 @item continue
 @btindex continue
@@ -3423,48 +3432,49 @@ non-zero otherwise.
 continue [@var{n}]
 @end example
 
-Resume the next iteration of an enclosing @code{for}, @code{while},
-@code{until}, or @code{select} loop.
-If @var{n} is supplied, the execution of the @var{n}th enclosing loop
-is resumed.
-@var{n} must be greater than or equal to 1.
-The return status is zero unless @var{n} is not greater than or equal to 1.
+Retoma a próxima interação de um loop envolvente @code{for}, @code{while},
+@code{until}, ou @code{select}.
+Se @var{n} for fornecido, então a execução do @var{n}ésimo loop 
+envolvente é retomada.
+@var{n} deve necessariamente ser maior que ou igual a 1.
+O código de retorno é zero a menos que @var{n} não seja maior que ou 
+igual a 1.
 
 @item eval
 @btindex eval
 @example
-eval [@var{arguments}]
+eval [@var{argumentos}]
 @end example
 
-The arguments are concatenated together into a single command, which is
-then read and executed, and its exit status returned as the exit status
-of @code{eval}.
-If there are no arguments or only empty arguments, the return status is
-zero.
+Os argumentos são concatenados juntos em um único comando, o qual é 
+então lido e executado, e o código de saída dele é retornado como o 
+código de saída de @code{eval}.
+Se não existirem argumentos ou apenas argumentos vazios, o código de 
+retorno é zero.
 
 @item exec
 @btindex exec
 @example
-exec [-cl] [-a @var{name}] [@var{command} [@var{arguments}]]
+exec [-cl] [-a @var{nome}] [@var{comando} [@var{argumentos}]]
 @end example
 
-If @var{command}
-is supplied, it replaces the shell without creating a new process.
-If the @option{-l} option is supplied, the shell places a dash at the
-beginning of the zeroth argument passed to @var{command}.
-This is what the @code{login} program does.
-The @option{-c} option causes @var{command} to be executed with an empty
-environment.
-If @option{-a} is supplied, the shell passes @var{name} as the zeroth
-argument to @var{command}.
-If @var{command}
-cannot be executed for some reason, a non-interactive shell exits,
-unless the @code{execfail} shell option
-is enabled.  In that case, it returns failure.
-An interactive shell returns failure if the file cannot be executed.
-If no @var{command} is specified, redirections may be used to affect
-the current shell environment.  If there are no redirection errors, the
-return status is zero; otherwise the return status is non-zero.
+If @var{comando} for fornecido, então ele substitue o shell sem criar um 
+processo novo.
+Se a opção @option{-l} for fornecida, então o shell coloca um traço no 
+início do argumento zero passado para @var{comando}.
+Isso é o que o aplicativo @code{login} faz.
+A opção @option{-c} faz com que @var{comando} seja executado com um 
+ambiente vazio.
+Se a opção @option{-a} for fornecida, então o shell passa @var{nome} 
+como o argumento zero para @var{comando}.
+Se @var{comando} não puder ser executado por alguma razão, então um 
+shell não-interativo sai, a menos que a opção de shell @code{execfail} 
+esteja habilitada.   Nesse caso, é retornado uma falha.
+Um shell interativo retorna falha se o arquivo não puder ser executado.
+Se @var{comando} não for especificado, então as redireções podem ser 
+utilizadas para afetar o ambiente de shell atual.   Se não existirem 
+erros de redireção, então o código de retorno é zero; do contrário, o 
+código de retorno é diferente de zero.
 
 @item exit
 @btindex exit
@@ -3472,84 +3482,93 @@ return status is zero; otherwise the return status is non-zero.
 exit [@var{n}]
 @end example
 
-Exit the shell, returning a status of @var{n} to the shell's parent.
-If @var{n} is omitted, the exit status is that of the last command executed.
-Any trap on @code{EXIT} is executed before the shell terminates.
+Sai do shell, retornando um código de saída @var{n} para o pai do shell.
+Se @var{n} for omitida, o código de saída é aquele do último comando 
+executado.
+Qualquer coletor em @code{EXIT} é executado antes que o shell termine.
 
 @item export
 @btindex export
 @example
-export [-fn] [-p] [@var{name}[=@var{value}]]
+export [-fn] [-p] [@var{nome}[=@var{valor}]]
 @end example
 
-Mark each @var{name} to be passed to child processes
-in the environment.  If the @option{-f} option is supplied, the @var{name}s
-refer to shell functions; otherwise the names refer to shell variables.
-The @option{-n} option means to no longer mark each @var{name} for export.
-If no @var{names} are supplied, or if the @option{-p} option is given, a
-list of names of all exported variables is displayed.
-The @option{-p} option displays output in a form that may be reused as input.
-If a variable name is followed by =@var{value}, the value of
-the variable is set to @var{value}.
+Marca cada @var{nome} a ser passado para processos filho no ambiente.   
+Se a opção @option{-f} for fornecida, então os @var{nome}s se referem a 
+funções de shell; do contrário, os nomes se referem a variáveis de 
+shell.
+A opção @option{-n} significa que não mais marcar cada @var{nome} para 
+exportar.
 
-The return status is zero unless an invalid option is supplied, one of
-the names is not a valid shell variable name, or @option{-f} is supplied
-with a name that is not a shell function.
+Se nenhum @var{nome}s são fornecidos, ou se a opção @option{-p} é dada, 
+então uma lista de nomes de todas as variáveis exportadas é mostrada.
+A opção @option{-p} mostra saída em uma forma que pode ser reutilizada 
+como entrada.
+Se a variável nome for seguida por =@var{valor}, então o valor da 
+variável é configurado para @var{valor}.
+
+O código de retorno é zero a menos que uma opção inválida seja 
+fornecida, um dos nomes não seja um nome de variável válido do shell, ou 
+a opção @option{-f} seja fornecida com um nome que não seja uma função 
+de shell.
 
 @item getopts
 @btindex getopts
 @example
-getopts @var{optstring} @var{name} [@var{args}]
+getopts @var{optstring} @var{nome} [@var{args}]
 @end example
 
-@code{getopts} is used by shell scripts to parse positional parameters.
-@var{optstring} contains the option characters to be recognized; if a
-character is followed by a colon, the option is expected to have an
-argument, which should be separated from it by whitespace.
-The colon (@samp{:}) and question mark (@samp{?}) may not be
-used as option characters.
-Each time it is invoked, @code{getopts}
-places the next option in the shell variable @var{name}, initializing
-@var{name} if it does not exist,
-and the index of the next argument to be processed into the
-variable @env{OPTIND}.
-@env{OPTIND} is initialized to 1 each time the shell or a shell script
-is invoked.
-When an option requires an argument,
-@code{getopts} places that argument into the variable @env{OPTARG}.
-The shell does not reset @env{OPTIND} automatically; it must be manually
-reset between multiple calls to @code{getopts} within the same shell
-invocation if a new set of parameters is to be used.
+@code{getopts} é utilizado por scripts de shell para analisar parâmetros 
+posicionais.   @var{optstring} contém os caracteres opcionais a serem 
+reconhecidos; se um caracter for seguido por um sinal de dois pontos, 
+então é esperado que a opção tenha um argumento, o qual deveria estar 
+separado da opção por um espaço em branco.
+O sinal de dois pontos (@samp{:}) e o de interrogação (@samp{?}) podem 
+não serem utilizados como caracteres opcionais.
+A cada vez que é invocado, @code{getopts} coloca a próxima opção na 
+variável de shell @var{nome}, inicializando @var{nome} caso ela não 
+exista, e o indice do próximo argumento a ser processado na variável 
+@env{OPTIND}.
+@env{OPTIND} é inicializada em 1 a cada vez que o shell ou um script de 
+shell for invocado.
+Quando uma opção exige um argumento, @code{getopts} coloca aquele 
+argumento na variável @env{OPTARG}.
+O shell não reconfigura @env{OPTIND} automaticamente; ela deve 
+necessariamente ser reconfigurada manualmente entre múltiplas chamadas a 
+@code{getopts} dentro da mesma invocação de shell se um conjunto novo de 
+parâmetros está para ser utilizado.
 
-When the end of options is encountered, @code{getopts} exits with a
-return value greater than zero.
-@env{OPTIND} is set to the index of the first non-option argument,
-and @var{name} is set to @samp{?}.
+Quando o final das opções é encontrado, @code{getopts} sai com um código 
+de retorno maior que zero.
+@env{OPTIND} é configurada para o indice do primeiro argumento 
+não-opção, e @var{nome} é configurada para @samp{?}.
 
-@code{getopts}
-normally parses the positional parameters, but if more arguments are
-given in @var{args}, @code{getopts} parses those instead.
+@code{getopts} normalmente analisa os parâmetros posicionais, porém se 
+mais argumentos são dados em @var{args}, @code{getopts} analisa esses 
+argumentos em vez disso.
 
-@code{getopts} can report errors in two ways.  If the first character of
-@var{optstring} is a colon, @var{silent}
-error reporting is used.  In normal operation, diagnostic messages
-are printed when invalid options or missing option arguments are
-encountered.
-If the variable @env{OPTERR}
-is set to 0, no error messages will be displayed, even if the first
-character of @code{optstring} is not a colon.
+@code{getopts} pode relatar erros de duas maneiras.   Se o primeiro 
+caracter de @var{optstring} for um sinal de dois pontos, então 
+o relatador de erro @var{silent} é utilizado.   Em operação normal, 
+mensagens de diagnóstico são impressas quando opções inválidas ou a 
+falta de argumentos de opção são encontrados.
+Se a variável @env{OPTERR} for configurada para zero (0), então nenhuma 
+mensagem de erro será mostrada, mesmo que o primeiro caracter de 
+@code{optstring} não seja o sinal de dois pontos.
 
-If an invalid option is seen,
-@code{getopts} places @samp{?} into @var{name} and, if not silent,
-prints an error message and unsets @env{OPTARG}.
-If @code{getopts} is silent, the option character found is placed in
-@env{OPTARG} and no diagnostic message is printed.
+Se uma opção inválida é vista, @code{getopts} coloca @samp{?} dentro de 
+@var{nome} e, se não silêncio, imprime uma mensagem de erro e 
+desconfigura @env{OPTARG}.
+Se @code{getopts} for silente, então o caracter de opção encontrado é 
+colocado em @env{OPTARG} e nenhuma mensagem de diagnóstico é impressa.
 
-If a required argument is not found, and @code{getopts}
-is not silent, a question mark (@samp{?}) is placed in @var{name},
-@code{OPTARG} is unset, and a diagnostic message is printed.
-If @code{getopts} is silent, then a colon (@samp{:}) is placed in
-@var{name} and @env{OPTARG} is set to the option character found.
+Se um argumento exigido não for encontrado, e @code{getopts} não for 
+silente, um ponto de interrogação (@samp{?}) é colocado em @var{nome}, 
+@code{OPTARG} é desconfigurada, e uma mensagem de diagnóstico é 
+impressa.
+Se @code{getopts} for silente, então um sinal de dois pontos (@samp{:}) 
+é colocado em @var{nome} e @env{OPTARG} é configurada para o caracteres 
+de opção encontrado.
 
 @item hash
 @btindex hash
