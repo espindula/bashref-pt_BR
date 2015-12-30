@@ -473,4 +473,3 @@ or with @samp{&}.
 Apply the following @samp{s} modifier once to each word in the event.
 
 @end table
-
