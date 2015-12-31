@@ -3784,103 +3784,106 @@ filhos.   O código de retorno é zero.
 trap [-lp] [@var{arg}] [@var{sigspec} @dots{}]
 @end example
 
-The commands in @var{arg} are to be read and executed when the
-shell receives signal @var{sigspec}.  If @var{arg} is absent (and
-there is a single @var{sigspec}) or
-equal to @samp{-}, each specified signal's disposition is reset
-to the value it had when the shell was started.
-If @var{arg} is the null string, then the signal specified by
-each @var{sigspec} is ignored by the shell and commands it invokes.
-If @var{arg} is not present and @option{-p} has been supplied,
-the shell displays the trap commands associated with each @var{sigspec}.
-If no arguments are supplied, or
-only @option{-p} is given, @code{trap} prints the list of commands
-associated with each signal number in a form that may be reused as
-shell input.
-The @option{-l} option causes the shell to print a list of signal names
-and their corresponding numbers.
-Each @var{sigspec} is either a signal name or a signal number.
-Signal names are case insensitive and the @code{SIG} prefix is optional.
+Os comandos em @var{arg} são para ser executados quando o shell recebe 
+sinal @var{sigspec}.   Se @var{arg} estiver ausente (e existir um único 
+@var{sigspec}) ou for igual a @samp{-}, então cada disposição de sinal 
+especificada é reconfigurada para o valor que ele tinha quando o shell 
+foi iniciado.
+Se @var{arg} for a sequência de caracteres "null", então o sinal 
+especificado por cada @var{sigspec} é ignorado pelo shell e comandos que 
+ele (o shell) invoca.
+Se @var{arg} não estiver presente e a opção @option{-p} tiver sido 
+fornecida, então o shell exibe os comandos de coletor associados com 
+cada @var{sigspec}.
+Se nenhum argumento for fornecido, ou apenas a opção @option{-p} for 
+dada, então @code{trap} imprime a lista de comandos associados com cada 
+número de sinal em uma forma que pode ser reutilizada como entrada de 
+shell.
+A opção @option{-l} faz com que o shell imprima uma lista de nomes de 
+sinal e os números correspondentes deles.
+Cada @var{sigspec} é ou um nome de sinal ou um número de sinal.
+Nos nomes de sinal tanto faz maiúsculas como minúsculas, e o prefixo 
+@code{SIG} é opcional.
 
-If a @var{sigspec}
-is @code{0} or @code{EXIT}, @var{arg} is executed when the shell exits.
-If a @var{sigspec} is @code{DEBUG}, the command @var{arg} is executed
-before every simple command, @code{for} command, @code{case} command,
-@code{select} command, every arithmetic @code{for} command, and before
-the first command executes in a shell function.
-Refer to the description of the @code{extdebug} option to the
-@code{shopt} builtin (@pxref{The Shopt Builtin}) for details of its
-effect on the @code{DEBUG} trap.
-If a @var{sigspec} is @code{RETURN}, the command @var{arg} is executed
-each time a shell function or a script executed with the @code{.} or
-@code{source} builtins finishes executing.
+Se um @var{sigspec} for @code{0} ou @code{EXIT}, então @var{arg} é 
+executado quando o shell sair.
+Se um @var{sigspec} for @code{DEBUG}, então o comando @var{arg} é 
+executado antes de cada comando simples, comando @code{for}, comando 
+@code{case}, comando @code{select}, cada comando @code{for} aritmético, 
+e antes que o primeiro comando execute em uma função de shell.
+Consulte-se a descrição da opção @code{extdebug} para o comando interno 
+@code{shopt} (veja-se @ref{The Shopt Builtin}) para detalhes de seu 
+efeito sobre o coletor @code{DEBUG}.
+Se um @var{sigspec} for @code{RETURN}, então o comando @var{arg} é 
+executado a cada vez que uma função de shell ou um script executado com 
+os comandos internos @code{.} ou @code{source} finalizar a execução.
+Se um @var{sigspec} for @code{ERR}, então o comando @var{arg} é 
+executado sempre que um canal de comunicação (o qual pode consistir de 
+um único comando simples), uma lista, ou um comando composto retornar um 
+código de saída diferente de zero, objeto das seguintes condições.
+O coletor @code{ERR} não é executado se o comando falho for parte da 
+lista de comando imediatamente seguinte a uma palavra-chave @code{until} 
+ou @code{while}, parte do teste seguinte às palavras reservadas 
+@code{if} ou @code{elif}, parte de um comando executado em uma lista 
+@code{&&} ou @code{||}, exceto o comando que segue o @code{&&} ou 
+@code{||} final, qualquer comando em um canal de comunicação, mas o 
+último, ou se o código de retorno do comando estiver sendo invertido 
+utilizando @code{!}.
+Essas são as mesmas condições obedecidas pela opção @code{errexit} 
+(@option{-e}).
 
-If a @var{sigspec} is @code{ERR}, the command @var{arg} 
-is executed whenever
-a pipeline (which may consist of a single simple
-command), a list, or a compound command returns a 
-non-zero exit status,
-subject to the following conditions.
-The @code{ERR} trap is not executed if the failed command is part of the
-command list immediately following an @code{until} or @code{while} keyword,
-part of the test following the @code{if} or @code{elif} reserved words,
-part of a command executed in a @code{&&} or @code{||} list
-except the command following the final @code{&&} or @code{||},
-any command in a pipeline but the last,
-or if the command's return
-status is being inverted using @code{!}.
-These are the same conditions obeyed by the @code{errexit} (@option{-e})
-option.
+Sinais são ignorados após as entradas ao shell não puderem ser coletadas 
+ou reconfiguradas.
+Sinais coletados que não estão sendo ignorados são reconfigurados para 
+os valores originais deles em um subshell ou ambiente de subshell quando 
+um for criado.
 
-Signals ignored upon entry to the shell cannot be trapped or reset.
-Trapped signals that are not being ignored are reset to their original
-values in a subshell or subshell environment when one is created.
-
-The return status is zero unless a @var{sigspec} does not specify a
-valid signal.
+O código de retorno é zero, a menos que um @var{sigspec} não especifique 
+um sinal válido.
 
 @item umask
 @btindex umask
 @example
-umask [-p] [-S] [@var{mode}]
+umask [-p] [-S] [@var{modo}]
 @end example
 
-Set the shell process's file creation mask to @var{mode}.  If
-@var{mode} begins with a digit, it is interpreted as an octal number;
-if not, it is interpreted as a symbolic mode mask similar
-to that accepted by the @code{chmod} command.  If @var{mode} is
-omitted, the current value of the mask is printed.  If the @option{-S}
-option is supplied without a @var{mode} argument, the mask is printed
-in a symbolic format.
-If the  @option{-p} option is supplied, and @var{mode}
-is omitted, the output is in a form that may be reused as input.
-The return status is zero if the mode is successfully changed or if
-no @var{mode} argument is supplied, and non-zero otherwise.
+Configura a máscara de criação de arquivo do processo de shell para 
+@var{modo}.   Se @var{modo} iniciar com um dígito, então ele é 
+interpretado como sendo um número octal; se não, é interpretado como 
+sendo uma máscara de modo simbólico, similar àquela aceita pelo comando 
+@code{chmod}.   Se @var{modo} for omitido, então o valor atual da 
+máscara é impresso.   Se a opção @option{-S} for fornecida sem um 
+argumento @var{modo}, então a máscara é impressa em um formato 
+simbólico.
+Se a opção @option{-p} for fornecida, e @var{modo} for omitido, então a 
+saída fica em uma forma que pode ser reutilizada como entrada.
+O código de retorno é zero se o modo for mudado com sucesso ou se nenhum 
+argumento @var{modo} for fornecido, e diferente de zero do contrário.
 
-Note that when the mode is interpreted as an octal number, each number
-of the umask is subtracted from @code{7}.  Thus, a umask of @code{022}
-results in permissions of @code{755}.
+Perceba-se que quando o modo for interpretado como sendo um número 
+octal, cada número da máscara é subtraído de @code{7}.   Assim, um umask 
+de @code{022} resulta em permissões de @code{755}.
 
 @item unset
 @btindex unset
 @example
-unset [-fnv] [@var{name}]
+unset [-fnv] [@var{nome}]
 @end example
 
-Remove each variable or function @var{name}.
-If the @option{-v} option is given, each
-@var{name} refers to a shell variable and that variable is remvoved.
-If the @option{-f} option is given, the @var{name}s refer to shell
-functions, and the function definition is removed.
-If the @option{-n} option is supplied, and @var{name} is a variable with
-the @var{nameref} attribute, @var{name} will be unset rather than the
-variable it references.
-@option{-n} has no effect if the @option{-f} option is supplied.
-If no options are supplied, each @var{name} refers to a variable; if
-there is no variable by that name, any function with that name is
-unset.
-Readonly variables and functions may not be unset.
-The return status is zero unless a @var{name} is readonly.
+Remove cada variável ou função @var{nome}.
+Se a opção @option{-v} for dada, cada @var{nome} se referirá a uma 
+variável de shell e essa variável é removida.
+Se a opção @option{-f} for dada, então os @var{nome}s se referirão a 
+funções de shell, e a definição de função é removida.
+Se a opção @option{-n} for fornecida, e @var{nome} for uma variável com 
+o atributo @var{nameref}, então @var{nome} será desconfigurada ao invés 
+da variável que ele referencia.   @option{-n} não tem efeito se a opção 
+@option{-f} for fornecida.   Se nenhuma opção for fornecida, então cada 
+@var{nome} se referirá a uma variável; se não existir variáveis por 
+aquele nome, então qualquer função com aquele nome é desconfigurada.
+Variáveis apenas leitura e funções não podem ser desconfiguradas.
+O código de retorno é zero, a menos que um argumento @var{nome} seja 
+apenas leitura.
 @end table
 
 @node Bash Builtins
