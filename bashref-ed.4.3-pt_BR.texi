@@ -3889,25 +3889,25 @@ apenas leitura.
 @node Bash Builtins
 @section Bash Builtin Commands
 
-This section describes builtin commands which are unique to
-or have been extended in Bash.
-Some of these commands are specified in the @sc{posix} standard.
+Esta seção descreve comandos internos ao shell os quais são únicos para 
+ou foram ampliados no Bash.
+Alguns desses comandos estão especificados no padrão @sc{posix}.
 
 @table @code
 
 @item alias
 @btindex alias
 @example
-alias [-p] [@var{name}[=@var{value}] @dots{}]
+alias [-p] [@var{nome}[=@var{valor}] @dots{}]
 @end example
 
-Without arguments or with the @option{-p} option, @code{alias} prints
-the list of aliases on the standard output in a form that allows
-them to be reused as input.
-If arguments are supplied, an alias is defined for each @var{name}
-whose @var{value} is given.  If no @var{value} is given, the name
-and value of the alias is printed.
-Aliases are described in @ref{Aliases}.
+Sem argumentos ou com a opção @option{-p}, @code{alias} imprime a lista 
+de apelidos na saída padrão em uma forma que se possa utilizá-la como 
+entrada.
+Se argumentos forem fornecidos, um apelido é definido para cada 
+@var{nome} cujo @var{valor} for dado.   Se nenhum @var{valor} for dado, 
+então o nome e valor do apelido é impresso.
+Os apelidos são descritos em @ref{Aliases}.
 
 @item bind
 @btindex bind
@@ -3920,89 +3920,93 @@ bind [-m @var{keymap}] @var{keyseq:function-name}
 bind @var{readline-command}
 @end example
 
-Display current Readline (@pxref{Command Line Editing})
-key and function bindings,
-bind a key sequence to a Readline function or macro,
-or set a Readline variable.
-Each non-option argument is a command as it would appear in a
-Readline initialization file (@pxref{Readline Init File}),
-but each binding or command must be passed as a separate argument;  e.g.,
+Exibir os vínculos Readline de função e tecla (veja-se @ref{Command Line 
+Editing}), vincula uma sequência de tecla a uma função Readline ou 
+macro, ou configura uma variável Readline.
+Cada argumento que não seja uma opção é um comando conforme tal comando 
+apareceria em um arquivo de inicialização Readline (veja-se 
+@ref{Readline Init File}), porém cada vinculação ou comando deve 
+necessariamente ser passado como um argumento separado; por exemplo, 
 @samp{"\C-x\C-r":re-read-init-file}.
-
-Options, if supplied, have the following meanings:
+As opções, se fornecidas, tem os seguintes significados:
 
 @table @code
 @item -m @var{keymap}
-Use @var{keymap} as the keymap to be affected by
-the subsequent bindings.  Acceptable @var{keymap}
-names are
+Utilize @var{keymap} como sendo o mapa de teclas a ser afetado pelas 
+vinculações subsequentes.   Os nomes de @var{keymap} aceitáveis são
 @code{emacs},
 @code{emacs-standard},
 @code{emacs-meta},
 @code{emacs-ctlx},
 @code{vi},
 @code{vi-move},
-@code{vi-command}, and
+@code{vi-command}, e
 @code{vi-insert}.
-@code{vi} is equivalent to @code{vi-command};
-@code{emacs} is equivalent to @code{emacs-standard}.
+
+@code{vi} é equivalente a @code{vi-command};
+@code{emacs} é equivalente a @code{emacs-standard}.
 
 @item -l
-List the names of all Readline functions.
+Lista os nomes de todas as funções Readline.
 
 @item -p
-Display Readline function names and bindings in such a way that they
-can be used as input or in a Readline initialization file.
+Exibe nomes de função Readline e vinculações em uma tal maneira que se 
+pode utilizá-los como entrada ou em um arquivo de inicialização 
+Readline.
 
 @item -P
-List current Readline function names and bindings.
+Lista nomes de função Readline e vinculações atuais.
 
 @item -v
-Display Readline variable names and values in such a way that they
-can be used as input or in a Readline initialization file.
+Exibe nomes de variáveis Readline e valores em uma tal maneira que se 
+pode utilizá-los como entrada ou em um arquivo de inicialização 
+Readline.
 
 @item -V
-List current Readline variable names and values.
+Lista nomes de variáveis Readline e valores atuais.
 
 @item -s
-Display Readline key sequences bound to macros and the strings they output
-in such a way that they can be used as input or in a Readline
-initialization file.
+Exibe sequências de tecla Readline vinculadas à macros e as sequências 
+de caracteres que tais sequências de tecla entregam como saída em uma 
+tal maneira que tais sequências de caracteres possam ser utilizadas como 
+entrada ou em um arquivo de inicialização Readline.
 
 @item -S
-Display Readline key sequences bound to macros and the strings they output.
+Exibe sequências de tecla Readline vinculadas à macros e as sequências 
+de caracteres que tais sequências de tecla entregam como saída.
 
 @item -f @var{filename}
-Read key bindings from @var{filename}.
+Lê vínculos de tecla a partir de @var{filename}.
 
 @item -q @var{function}
-Query about which keys invoke the named @var{function}.
+Consulta sobre quais teclas invocam a @var{function} nominada.
 
 @item -u @var{function}
-Unbind all keys bound to the named @var{function}.
+Descinvula todas as teclas vinculadas à @var{function} nominada.
 
 @item -r @var{keyseq}
-Remove any current binding for @var{keyseq}.
+Remove qualquer vinculação atual para a sequência de tecla @var{keyseq}.
 
 @item -x @var{keyseq:shell-command}
-Cause @var{shell-command} to be executed whenever @var{keyseq} is
-entered.
-When @var{shell-command} is executed, the shell sets the
-@code{READLINE_LINE} variable to the contents of the Readline line
-buffer and the @code{READLINE_POINT} variable to the current location
-of the insertion point.
-If the executed command changes the value of @code{READLINE_LINE} or
-@code{READLINE_POINT}, those new values will be reflected in the
-editing state.
+Faz com que @var{shell-command} seja executado sempre que a sequência de 
+tecla @var{keyseq} seja fornecida.
+Quando o comando @var{shell-command} é executado, o shell configura a 
+variável @code{READLINE_LINE} para que essa contenha o conteúdo do 
+buffer de linha do Readline e a variável @code{READLINE_POINT} para 
+apontar para a localização atual do ponto de inserção.
+Se o comando executado modifica o valor de @code{READLINE_LINE} ou o de 
+@code{READLINE_POINT}, então os novos valores dessas variáveis são 
+refletidos no estado de edição.
 
 @item -X
-List all key sequences bound to shell commands and the associated commands
-in a format that can be reused as input.
+Lista todas as sequências de tecla vinculadas à comandos de shell e os 
+comandos associados em uma forma que possa ser reutilizado como entrada.
+
 @end table
 
 @noindent
-The return status is zero unless an invalid option is supplied or an
-error occurs.
+O código de retorno é zero, a menos que uma opção inválida seja 
+fornecida ou um erro ocorra.
 
 @item builtin
 @btindex builtin
@@ -4010,12 +4014,13 @@ error occurs.
 builtin [@var{shell-builtin} [@var{args}]]
 @end example
 
-Run a shell builtin, passing it @var{args}, and return its exit status.
-This is useful when defining a shell function with the same
-name as a shell builtin, retaining the functionality of the builtin within
-the function.
-The return status is non-zero if @var{shell-builtin} is not a shell
-builtin command.
+Executa um comando interno ao shell, passando os argumentos @var{args} 
+para o comando, e retorna o seu código de saída.
+Isso é útil quando da definição de uma função de shell com o mesmo nome 
+que um comando interno ao shell, restringindo a funcionalidade do 
+comando interno ao âmbito da função.
+O código de retorno é diferente de zero se @var{shell-builtin} não for 
+um comando interno ao shell.
 
 @item caller
 @btindex caller
@@ -4023,20 +4028,21 @@ builtin command.
 caller [@var{expr}]
 @end example
 
-Returns the context of any active subroutine call (a shell function or
-a script executed with the @code{.} or @code{source} builtins).
+Retorna o contexto de qualquer chamada de subrotina ativa (uma função de 
+shell ou um script executado com os comandos internos @code{.} ou 
+@code{source}).
 
-Without @var{expr}, @code{caller} displays the line number and source
-filename of the current subroutine call.
-If a non-negative integer is supplied as @var{expr}, @code{caller} 
-displays the line number, subroutine name, and source file corresponding
-to that position in the current execution call stack.  This extra
-information may be used, for example, to print a stack trace.  The
-current frame is frame 0.
+Sem o parâmetro @var{expr}, @code{caller} exibe o número da linha e nome 
+do arquivo fonte da chamada de subrotina atual.
+Se um número inteiro não negativo for fornecido como @var{expr}, então 
+@code{caller} exibe o número da linha, nome da subrotina, e arquivo 
+fonte correspondente àquela posição na pilha de chamada de execução 
+atual.   Essa informação extra talvez possa ser utilizada, por exemplo, 
+para imprimir um rastreamento da pilha.   O quadro atual é o frame 0.
 
-The return value is 0 unless the shell is not executing a subroutine
-call or @var{expr} does not correspond to a valid position in the
-call stack.
+O código de retorno é 0 a menos que o shell não esteja executando uma 
+chamada de subrotina ou @var{expr} não corresponda a uma posição válida 
+na pilha de chamada.
 
 @item command
 @btindex command
@@ -4044,132 +4050,137 @@ call stack.
 command [-pVv] @var{command} [@var{arguments} @dots{}]
 @end example
 
-Runs @var{command} with @var{arguments} ignoring any shell function
-named @var{command}.
-Only shell builtin commands or commands found by searching the
-@env{PATH} are executed.
-If there is a shell function named @code{ls}, running @samp{command ls}
-within the function will execute the external command @code{ls}
-instead of calling the function recursively.
-The @option{-p} option means to use a default value for @env{PATH}
-that is guaranteed to find all of the standard utilities.
-The return status in this case is 127 if @var{command} cannot be
-found or an error occurred, and the exit status of @var{command}
-otherwise.
+Executa o comando @var{command} com os argumentos @var{arguments}, 
+ignorando qualquer função de shell chamada @var{command}.
+Apenas comandos internos ao shell ou comandos encontrados pela busca no 
+caminho @env{PATH} são executados.
+Se existir uma função de shell chamada @code{ls}, a execução de 
+@samp{command ls} no âmbito da função executará o comando extorno 
+@code{ls} ao inves de chamar a função recursivamente.
+A opção @option{-p} significa utilizar um valor padrão para @env{PATH} 
+que garante encontrar todos os utilitários padrão.
+O código de retorno nesse caso é 127 se @var{command} não puder ser 
+encontrado ou um erro ocorrer, e o código de saída do comando 
+@var{command} do contrário.
 
-If either the @option{-V} or @option{-v} option is supplied, a
-description of @var{command} is printed.  The @option{-v} option
-causes a single word indicating the command or file name used to
-invoke @var{command} to be displayed; the @option{-V} option produces
-a more verbose description.  In this case, the return status is
-zero if @var{command} is found, and non-zero if not.
+Se ou a opção @option{-V} ou a opção @option{-v} for fornecida, então 
+uma descrição de @var{command} é impressa.   A opção @option{-v} faz com 
+que seja exibida uma palavra única indicando o comando ou nome de 
+arquivo utilizado para invocar @var{command}; a opção @option{-V} produz 
+uma descrição mais detalhada.   Nesse caso, o código de retorno é zero 
+se o comando @var{command} for encontrado, e diferente de zero se não 
+for.
 
 @item declare
 @btindex declare
 @example
-declare [-aAfFgilnrtux] [-p] [@var{name}[=@var{value}] @dots{}]
+declare [-aAfFgilnrtux] [-p] [@var{nome}[=@var{valor}] @dots{}]
 @end example
 
-Declare variables and give them attributes.  If no @var{name}s
-are given, then display the values of variables instead. 
+Declara variáveis e dá atributos a elas.   Se nenhum @var{nome} for 
+dado, então exibe os valores das variáveis.
 
-The @option{-p} option will display the attributes and values of each
-@var{name}.
-When @option{-p} is used with @var{name} arguments, additional options,
-other than @option{-f} and @option{-F}, are ignored.
+A opção @option{-p} exibirá os atributos e os valores de cada 
+@var{nome}.
+Quando a opção @option{-p} é utilizada com argumentos @var{nome}, opções 
+adicionais, outras que não @option{-f} e @option{-F}, são ignoradas.
 
-When @option{-p} is supplied without @var{name} arguments, @code{declare}
-will display the attributes and values of all variables having the
-attributes specified by the additional options.
-If no other options are supplied with @option{-p}, @code{declare} will
-display the attributes and values of all shell variables.  The @option{-f}
-option will restrict the display to shell functions.
+Quando a opção @option{-p} é fornecida sem argumentos @var{nome}, 
+@code{declare} exibirá os atributos e valores de todas as variáveis que 
+tenham os atributos especificados por opções adicionais.
+Se nenhuma outra opção for fornecida com @option{-p}, então 
+@code{declare} exibirá os atributos e valores de todas as variáveis de 
+shell.   A opção @option{-f} restringirá a exibição a funções de shell.
 
-The @option{-F} option inhibits the display of function definitions;
-only the function name and attributes are printed.
-If the @code{extdebug} shell option is enabled using @code{shopt}
-(@pxref{The Shopt Builtin}), the source file name and line number where
-the function is defined are displayed as well.
-@option{-F} implies @option{-f}.
+A opção @option{-F} inibe a exibição de definições de função; apenas o 
+nome da função e atributos são impressos.
+Se a opção de shell @code{extdebug} estiver habilitada utilizando-se o 
+comando interno ao shell @code{shopt} (veja-se @ref{The Shopt Builtin}), 
+então o nome do arquivo fonte e número da linha onde a função está 
+definida são exibidos também.
+@option{-F} implica @option{-f}.
 
-The @option{-g} option forces variables to be created or modified at
-the global scope, even when @code{declare} is executed in a shell function.
-It is ignored in all other cases.
+A opção @option{-g} força que variáveis sejam criadas ou modificadas no 
+escopo global, mesmo quando @code{declare} é executado em uma função de 
+shell.
+Essa opção é ignorada em todos os outros casos.
 
-The following options can be used to restrict output to variables with
-the specified attributes or to give variables attributes:
+As opções seguintes podem ser utilizadas para restringir saída a 
+variáveis com os atributos especificados ou para dar atributos a 
+variáveis:
 
 @table @code
 @item -a
-Each @var{name} is an indexed array variable (@pxref{Arrays}).
+Cada @var{nome} é uma variável vetor indexada (veja-se @ref{Arrays}).
 
 @item -A
-Each @var{name} is an associative array variable (@pxref{Arrays}).
+Cada @var{nome} é uma variável vetor associativa (veja-se @ref{Arrays}).
 
 @item -f
-Use function names only.
+Utilize apenas nomes de função.
 
 @item -i
-The variable is to be treated as
-an integer; arithmetic evaluation (@pxref{Shell Arithmetic}) is
-performed when the variable is assigned a value.
+A variável é para ser tratada como sendo um número inteiro; avaliação 
+aritmética (veja-se @ref{Shell Arithmetic}) é implementada quando for 
+atribuído um valor para a variável.
 
 @item -l
-When the variable is assigned a value, all upper-case characters are
-converted to lower-case.
-The upper-case attribute is disabled.
+Quando um valor é atribuído para a variável, todos os caracteres 
+maiúsculos são convertidos em minúsculos.
+O atributo maiúsculo é desabilitado.
 
 @item -n
-Give each @var{name} the @var{nameref} attribute, making
-it a name reference to another variable.
-That other variable is defined by the value of @var{name}.
-All references and assignments to @var{name}, except for changing the
-@option{-n} attribute itself, are performed on the variable referenced by
-@var{name}'s value.
-The @option{-n} attribute cannot be applied to array variables.
+Dá para cada @var{nome} o atributo @var{nameref}, fazendo com que ele 
+seja uma referência de nome para uma outra variável.
+Essa outra variável é definida pelo valor de @var{nome}.
+Todas as referências e atribuições a @var{nome}, exceto para modificar o 
+próprio atributo @option{-n}, são implementadas na variável referenciada 
+pelo valor de @var{nome}.
+O atributo @option{-n} não pode ser aplicado a variáveis vetor.
 
 @item -r
-Make @var{name}s readonly.  These names cannot then be assigned values
-by subsequent assignment statements or unset.
+Torna @var{nome}s apenas leitura.   Não pode então ser atribuídos 
+valores via declarações de atribuição subsequentes ou desconfigurados.
 
 @item -t
-Give each @var{name} the @code{trace} attribute.
-Traced functions inherit the @code{DEBUG} and @code{RETURN} traps from
-the calling shell.
-The trace attribute has no special meaning for variables.
+Dá a cada @var{nome} o atributo @code{trace}.
+As funções rastreadas herdam os coletores @code{DEBUG} e @code{RETURN} 
+do shell que as chamam.
+O atributo de rastreamento não tem significado especial para variáveis.
 
 @item -u
-When the variable is assigned a value, all lower-case characters are
-converted to upper-case.
-The lower-case attribute is disabled.
+Quando um valor é atribuído a uma variável, todos os caracteres 
+minúsculos são convertidos para maiúsculos.
+O atributo minúsculo é desabilitado.
 
 @item -x
-Mark each @var{name} for export to subsequent commands via
-the environment.
+Marca cada @var{nome} para exportação a comandos subsequentes via o 
+ambiente.
 @end table
 
-Using @samp{+} instead of @samp{-} turns off the attribute instead,
-with the exceptions that @samp{+a}
-may not be used to destroy an array variable and @samp{+r} will not
-remove the readonly attribute.
-When used in a function, @code{declare} makes each @var{name} local,
-as with the @code{local} command, unless the @option{-g} option is used.
-If a variable name is followed by =@var{value}, the value of the variable
-is set to @var{value}.
+Ao se utilizar @samp{+} ao invés de @samp{-} desliga o atributo, com as 
+exceções de que @samp{+a} pode não ser utilizado para destruir uma 
+variável vetor e @samp{+r} não removerá o atributo apenas leitura.
+Quando utilizado em uma função, @code{declare} torna cada @var{nome} 
+local, como com o comando @code{local}, a menos que a opção @option{-g} 
+seja utilizada.
+Se um nome de variável for seguido por =@var{value}, então o valor da 
+variável é configurado para @var{valor}.
 
-When using @option{-a} or @option{-A} and the compound assignment syntax to 
-create array variables, additional attributes do not take effect until
-subsequent assignments.
+Quando se utiliza @option{-a} ou @option{-A} e a sintaxe de atribuição 
+composta para criar variáveis vetor, atributos adicionais não tem efeito 
+até atribuições subsequentes.
 
-The return status is zero unless an invalid option is encountered,
-an attempt is made to define a function using @samp{-f foo=bar},
-an attempt is made to assign a value to a readonly variable,
-an attempt is made to assign a value to an array variable without
-using the compound assignment syntax (@pxref{Arrays}),
-one of the @var{names} is not a valid shell variable name,
-an attempt is made to turn off readonly status for a readonly variable,
-an attempt is made to turn off array status for an array variable,
-or an attempt is made to display a non-existent function with @option{-f}.
+O código de retorno é zero a menos que uma opção inválida seja 
+encontrada; uma tentativa for feita para definir a função utilizando 
+@samp{-f foo=bar}; uma tentativa for feita para atribuir um valor a uma 
+variável apenas leitura; uma tentativa for feita de atribuir um valor a 
+uma variável vetor sem utilizar a sintaxe de atribuição composta 
+(veja-se @ref{Arrays}); um dos @var{nomes} não for um nome de variável 
+de shell válido; uma tentativa for feita de desligar o estado de somente 
+leitura para uma variável apenas leitura; uma tentativa for feita de 
+desligar o estado de vetor para uma variável vetor; ou uma tentativa for 
+feita de exibir uma função não existente com @option{-f}.
 
 @item echo
 @btindex echo
@@ -4177,54 +4188,54 @@ or an attempt is made to display a non-existent function with @option{-f}.
 echo [-neE] [@var{arg} @dots{}]
 @end example
 
-Output the @var{arg}s, separated by spaces, terminated with a
-newline.
-The return status is 0 unless a write error occurs.
-If @option{-n} is specified, the trailing newline is suppressed.
-If the @option{-e} option is given, interpretation of the following
-backslash-escaped characters is enabled.
-The @option{-E} option disables the interpretation of these escape characters,
-even on systems where they are interpreted by default.
-The @code{xpg_echo} shell option may be used to
-dynamically determine whether or not @code{echo} expands these
-escape characters by default.
-@code{echo} does not interpret @option{--} to mean the end of options.
+Entrega como saída os argumentos @var{arg}, separados por espaços, 
+terminados com um carácter newline.
+O código de retorno é 0 a menos que um erro de escrita ocorra.
+Se @option{-n} for especificada, então o newline ao final é suprimido.
+Se a opção @option{-e} for dada, então é habilitada a interpretação dos 
+seguintes caracteres encapsulados com barra invertida.
+A opção @option{-E} desabilita a interpretação destes caracteres de 
+escape, mesmo em sistemas onde eles são interpretados por padrão.
+A opção de shell @code{xpg_echo} pode ser utilizada para determinar 
+dinamicamente quando ou não @code{echo} expande estes caracteres de 
+escape por padrão.
+@code{echo} não interpreta @option{--} como sendo o final das opções.
 
-@code{echo} interprets the following escape sequences:
+@code{echo} interpreta as seguintes sequências de escape:
 @table @code
 @item \a
-alert (bell)
+alerta (sino)
 @item \b
 backspace
 @item \c
-suppress further output
+suprime saída
 @item \e
 @itemx \E
 escape
 @item \f
-form feed
+alimentação de formulário
 @item \n
-new line
+nova linha
 @item \r
-carriage return
-@item \t 
-horizontal tab
+retorno de carro
+@item \t
+tab horizontal
 @item \v
-vertical tab
+tab vertical
 @item \\
-backslash
+barra invertida
 @item \0@var{nnn}
-the eight-bit character whose value is the octal value @var{nnn}
-(zero to three octal digits)
+o carácter de oito-bits cujo valor é o valor octal @var{nnn} (zero a 
+três dígitos octais)
 @item \x@var{HH}
-the eight-bit character whose value is the hexadecimal value @var{HH}
-(one or two hex digits)
+o carácter de oito-bits cujo valor é o valor hexadecimal @var{HH} (um ou 
+dois dígitos hexadecimais)
 @item \u@var{HHHH}
-the Unicode (ISO/IEC 10646) character whose value is the hexadecimal value
-@var{HHHH} (one to four hex digits)
+o carácter Unicode (ISO/IEC 10646) cujo valor é o valor hexadecimal 
+@var{HHHH} (um até quatro dígitos hexadecimais)
 @item \U@var{HHHHHHHH}
-the Unicode (ISO/IEC 10646) character whose value is the hexadecimal value
-@var{HHHHHHHH} (one to eight hex digits)
+o carácter Unicode (ISO/IEC 10646) cujo valor é o valor hexadecimal 
+@var{HHHHHHHH} (um até oito dígitos hexadecimais)
 @end table
 
 @item enable
