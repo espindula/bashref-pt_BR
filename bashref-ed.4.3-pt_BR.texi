@@ -4241,35 +4241,43 @@ o carácter Unicode (ISO/IEC 10646) cujo valor é o valor hexadecimal
 @item enable
 @btindex enable
 @example
-enable [-a] [-dnps] [-f @var{filename}] [@var{name} @dots{}]
+enable [-a] [-dnps] [-f @var{nome_arquivo}] [@var{nome} @dots{}]
 @end example
 
-Enable and disable builtin shell commands.
-Disabling a builtin allows a disk command which has the same name
-as a shell builtin to be executed without specifying a full pathname,
-even though the shell normally searches for builtins before disk commands.
-If @option{-n} is used, the @var{name}s become disabled.  Otherwise
-@var{name}s are enabled.  For example, to use the @code{test} binary
-found via @env{$PATH} instead of the shell builtin version, type
-@samp{enable -n test}.
+Habilita e desabilita comandos internos do shell.
+Desabilitar um comando interno permite que um comando de disco o qual 
+tenha o mesmo nome que o comando interno ao shell seja executado sem se 
+especificar um nome de caminho completo, ainda que o shell normalmente 
+procure por comandos internos antes que comandos de disco.
+Se a opção @option{-n} for utilizada, então os @var{nome}s se tornam 
+desabilitados.   Do contrário os @var{nome}s são habilitados.   Por 
+exemplo, para se utilizar o binário @code{test} encontrado via 
+@env{$PATH} ao invés da versão interna do shell, digite @samp{enable -n 
+test}.
 
-If the @option{-p} option is supplied, or no @var{name} arguments appear,
-a list of shell builtins is printed.  With no other arguments, the list
-consists of all enabled shell builtins.
-The @option{-a} option means to list
-each builtin with an indication of whether or not it is enabled. 
+Se a opção @option{-p} for fornecida, ou nenhum argumento @var{nome} 
+aparecer, uma lista dos comandos internos ao shell é impressa.   Sem 
+nenhum outro argumento, a lista consiste de todos os comandos internos 
+ao shell habilitados.
+A opção @option{-a} significa listar cada comando interno com uma 
+indicação de se ou não o comando esteja habilitado.
 
-The @option{-f} option means to load the new builtin command @var{name}
-from shared object @var{filename}, on systems that support dynamic loading.
-The @option{-d} option will delete a builtin loaded with @option{-f}.
+A opção @option{-f} significa carregar o novo comando interno @var{nome} 
+a partir do objeto compartilhado @var{nome_arquivo}, em sistemas que 
+suportem carregamento dinâmico.
+A opção @option{-d} deletará um comando interno carregado com 
+@option{-f}.
 
-If there are no options, a list of the shell builtins is displayed.
-The @option{-s} option restricts @code{enable} to the @sc{posix} special
-builtins.  If @option{-s} is used with @option{-f}, the new builtin becomes
-a special builtin (@pxref{Special Builtins}).
+Se não existirem opções, então uma lista dos comandos internos ao shell 
+é exibida.
+A opção @option{-s} restringe @code{enable} aos comandos internos 
+especiais do padrão @sc{posix}.   Se @option{-s} for utilizada com 
+@option{-f},, então o novo comando interno se torna um comando interno 
+especial (veja-se @ref{Special Builtins}).
 
-The return status is zero unless a @var{name} is not a shell builtin
-or there is an error loading a new builtin from a shared object.
+O código de retorno é zero a menos que um @var{nome} não seja um comando 
+interno ao shell ou exista um erro ao carregar um novo comando interno a 
+partir de um objeto compartilhado.
 
 @item help
 @btindex help
@@ -4277,50 +4285,52 @@ or there is an error loading a new builtin from a shared object.
 help [-dms] [@var{pattern}]
 @end example
 
-Display helpful information about builtin commands.
-If @var{pattern} is specified, @code{help} gives detailed help
-on all commands matching @var{pattern}, otherwise a list of
-the builtins is printed.
+Exibe informação útil acerca de comandos internos.
+Se @var{pattern} for especificada, então @code{help} fornece ajuda 
+detalhada sobre todos os comandos coincidentes com @var{pattern}, do 
+contrário uma lista de comandos internos é impressa.
 
-Options, if supplied, have the following meanings:
+Opções, de fornecidas, tem os seguintes significados:
 
 @table @code
 @item -d
-Display a short description of each @var{pattern}
+Exibe uma descrição curta de cada @var{pattern}
 @item -m
-Display the description of each @var{pattern} in a manpage-like format
+Exibe a descrição de cada @var{pattern} em um formato parecido com 
+página de manual.
 @item -s
-Display only a short usage synopsis for each @var{pattern}
+Exibe apenas uma sinópse curta de uso para cada @var{pattern}
 @end table
 
-The return status is zero unless no command matches @var{pattern}.
+O código de retorno é zero a menos que nenhum comando coincida com 
+@var{pattern}.
 
 @item let
 @btindex let
 @example
-let @var{expression} [@var{expression} @dots{}]
+let @var{expressão} [@var{expressão} @dots{}]
 @end example
 
-The @code{let} builtin allows arithmetic to be performed on shell
-variables.  Each @var{expression} is evaluated according to the
-rules given below in @ref{Shell Arithmetic}.  If the
-last @var{expression} evaluates to 0, @code{let} returns 1;
-otherwise 0 is returned.
+O comando interno @code{let} permite que operações aritméticas sejam 
+efetuadas sobre variáveis de shell.   Cada @var{expressão} é avaliada de 
+acordo com as regras dadas abaixo em @ref{Shell Arithmetic}.   Se a 
+última @var{expressão} avaliada resultar em 0, então @code{let} 
+retornará 1; do contrário 0 é retornado.
 
 @item local
 @btindex local
 @example
-local [@var{option}] @var{name}[=@var{value}] @dots{}
+local [@var{opção}] @var{nome}[=@var{valor}] @dots{}
 @end example
 
-For each argument, a local variable named @var{name} is created,
-and assigned @var{value}.
-The @var{option} can be any of the options accepted by @code{declare}.
-@code{local} can only be used within a function; it makes the variable
-@var{name} have a visible scope restricted to that function and its
-children.  The return status is zero unless @code{local} is used outside
-a function, an invalid @var{name} is supplied, or @var{name} is a
-readonly variable.
+Para cada argumento, uma variável local chamada @var{nome} é criada, e 
+@var{valor} é atribuído a essa variável.
+A @var{opção} pode ser quaisquer das opções aceitas por @code{declare}.
+@code{local} apenas pode ser utilizado dentro de uma função; ele faz com 
+que a variável @var{nome} tenha um escopo visível restrito àquela função 
+e os filhos dela.   O código de retorno é zero a menos que @code{local} 
+seja utilizada fora da função, um @var{nome} seja fornecido, ou 
+@var{nome} seja uma variável apenas leitura.
 
 @item logout
 @btindex logout
@@ -4328,8 +4338,8 @@ readonly variable.
 logout [@var{n}]
 @end example
 
-Exit a login shell, returning a status of @var{n} to the shell's
-parent.
+Sai de um shell de login, retornando um código de @var{n} para o pai do 
+shell.
 
 @item mapfile
 @btindex mapfile
@@ -4338,98 +4348,106 @@ mapfile [-n @var{count}] [-O @var{origin}] [-s @var{count}] [-t] [-u @var{fd}]
     [-C @var{callback}] [-c @var{quantum}] [@var{array}]
 @end example
 
-Read lines from the standard input into the indexed array variable @var{array},
-or from file descriptor @var{fd}
-if the @option{-u} option is supplied.
-The variable @code{MAPFILE} is the default @var{array}.
-Options, if supplied, have the following meanings:
+Lê linhas a partir da entrada padrão armazenando em uma variável vetor 
+indexada @var{array}, ou a partir do descritor de arquivo @var{fd} se a 
+opção @option{-u} for fornecida.
+A variável @code{MAPFILE} é o @var{array} padrão.
+Opções, se fornecidas, tem os seguintes significados:
 
 @table @code
 
 @item -n
-Copy at most @var{count} lines.  If @var{count} is 0, all lines are copied.
+Copia no máximo @var{count} linhas.   Se @var{count} for 0, então todas 
+as linhas são copiadas.
 @item -O
-Begin assigning to @var{array} at index @var{origin}.
-The default index is 0.
+Atribui a @var{array} iniciando no índice @var{origin}.
+O índice padrão é 0.
 @item -s
-Discard the first @var{count} lines read.
+Descarta as primeiras @var{count} linhas lidas.
 @item -t
-Remove a trailing newline from each line read.
+Remove um marcador newline do final de cada linha lida.
 @item -u
-Read lines from file descriptor @var{fd} instead of the standard input.
+Lê linhas a partir do descritor de arquivo @var{fd} ao invés de o fazer 
+a partir da entrada padrão.
 @item -C
-Evaluate @var{callback} each time @var{quantum}P lines are read.
-The @option{-c} option specifies @var{quantum}.
+Avalia @var{callback} a cada vez que @var{quantum}P linhas são lidas.
+A opção @option{-c} especifica @var{quantum}.
 @item -c
-Specify the number of lines read between each call to @var{callback}.
+Especifica o número de linhas lidas entre cada chamada a @var{callback}.
 @end table
 
-If @option{-C} is specified without @option{-c}, 
-the default quantum is 5000.
-When @var{callback}  is evaluated, it is supplied the index of the next
-array element to be assigned and the line to be assigned to that element
-as additional arguments.
-@var{callback} is evaluated after the line is read but before the 
-array element is assigned.
+Se @option{-C} for especificada sem @option{-c}, então a quantidade 
+padrão é 5000.
+Quando @var{callback} for avaliada, como argumentos adicionais, é 
+fornecido o índice do próximo elemento do vetor a ser atribuído e a 
+linha a ser atribuída àquele elemento.
+@var{callback} é avaliada após a linha ser lida, mas antes que o 
+elemento do vetor seja atribuído.
 
-If not supplied with an explicit origin, @code{mapfile} will clear @var{array}
-before assigning to it.
+Se @code{mapfile} não for fornecida com uma origem explícita, então 
+@code{mapfile} esvaziará @var{array} antes de atribuir-lhe dados.
 
-@code{mapfile} returns successfully unless an invalid option or option
-argument is supplied, @var{array} is invalid or unassignable, or @var{array}
-is not an indexed array.
+@code{mapfile} retorna um código de sucesso a menos que uma opção 
+inválida ou um argumento opcional seja fornecido; @var{array} seja 
+inválido e inatribuível; ou @var{array} não seja um vetor indexado.
 
 @item printf
 @btindex printf
 @example
-printf [-v @var{var}] @var{format} [@var{arguments}]
+printf [-v @var{var}] @var{formato} [@var{argumentos}]
 @end example
 
-Write the formatted @var{arguments} to the standard output under the
-control of the @var{format}.
-The @option{-v} option causes the output to be assigned to the variable
-@var{var} rather than being printed to the standard output.
+Escreve os @var{argumentos} formatados na saída padrão sob o controle de 
+@var{formato}.
+A opção @option{-v} faz com que a saída seja atribuída para a variável 
+@var{var} no lugar de ser impressa na saída padrão.
 
-The @var{format} is a character string which contains three types of objects:
-plain characters, which are simply copied to standard output, character
-escape sequences, which are converted and copied to the standard output, and
-format specifications, each of which causes printing of the next successive
-@var{argument}.
-In addition to the standard @code{printf(1)} formats, @code{printf}
-interprets the following extensions:
+O @var{formato} é uma sequência de caracteres a qual contém três tipos 
+de objetos: caracteres planos, os quais são simplesmente copiados para a 
+saída padrão; sequências de caracteres de escape, as quais são 
+convertidas e copiadas para a saída padrão; e especificações de formato, 
+cada uma das quais provoca a impressão dos próximos @var{argumentos} 
+sucessivos.
+Em adição aos formatos @code{printf(1)} padrão, @code{printf} interpreta 
+as seguintes extensões:
 
 @table @code
 @item %b
-Causes @code{printf} to expand backslash escape sequences in the
-corresponding @var{argument},
-except that @samp{\c} terminates output, backslashes in
-@samp{\'}, @samp{\"}, and @samp{\?} are not removed, and octal escapes
-beginning with @samp{\0} may contain up to four digits.
+Faz com que @code{printf} expanda sequências de escape de barra 
+invertida nos correspondentes @var{argumentos}, exceto que @samp{\c} 
+finaliza a saída; barras invertidas dentro de @samp{\'}, @samp{\"}, e 
+@samp{\?} não são removidas; e escapes octais iniciando com @samp{\0} 
+podem conter até quatro dígitos.
 @item %q
-Causes @code{printf} to output the
-corresponding @var{argument} in a format that can be reused as shell input.
+Faz com que @code{printf} entregue como saída os correspondentes 
+@var{argumentos} em um formato que pode ser reutilizado como entrada de 
+shell.
 @item %(@var{datefmt})T
-Causes @code{printf} to output the date-time string resulting from using
-@var{datefmt} as a format string for @code{strftime}(3).
-The corresponding @var{argument} is an integer representing the number of
-seconds since the epoch.
-Two special argument values may be used: -1 represents the current
-time, and -2 represents the time the shell was invoked.
-If no argument is specified, conversion behaves as if -1 had been given.
-This is an exception to the usual @code{printf} behavior.
+Faz com que @code{printf} entregue como saída a sequência de caracteres 
+resultante da utilização de @var{datefmt} como uma sequência de 
+caracteres de formatação para @code{strftime}(3).
+Os @var{argumentos} correspondentes são um número inteiro 
+representativos do número de segundos desde a época.
+Dois valores de argumento especiais podem ser utilizados: -1 representa 
+o horário atual; e -2 representa o horário no qual o shell foi invocado.
+Se nenhum argumento for especificado, então a conversão se comporta como 
+se -1 tivesse sido dado.
+Isso é uma exceção ao comportamento usual de @code{printf}.
 @end table
 
 @noindent
-Arguments to non-string format specifiers are treated as C language constants,
-except that a leading plus or minus sign is allowed, and if the leading
-character is a single or double quote, the value is the ASCII value of
-the following character.
+Os argumentos para os especificadores de formato que não sejam 
+sequências de caracteres são tratados como constantes da linguagem C, 
+exceto que é permitido no início um sinal mais ou um menos, e se o 
+caracter inicial for uma aspa simples ou uma dupla, então o valor é o 
+valor ASCII do caracter seguinte.
 
-The @var{format} is reused as necessary to consume all of the @var{arguments}.
-If the @var{format} requires more @var{arguments} than are supplied, the
-extra format specifications behave as if a zero value or null string, as
-appropriate, had been supplied.  The return value is zero on success,
-non-zero on failure.
+O @var{formato} é reutilizado conforme necessário para consumir todos os 
+@var{argumentos}.   Se o @var{formato} necessitar de mais 
+@var{argumentos} que os que forem fornecidos, então as especificações 
+extra de formato se comportam como se um valor zero ou uma sequência de 
+caracteres nula, conforme apropriado, tivesse sido fornecida.   O código 
+de retorno é zero no sucesso, e diferente de zero na falha.
 
 @item read
 @btindex read
@@ -4438,93 +4456,102 @@ read [-ers] [-a @var{aname}] [-d @var{delim}] [-i @var{text}] [-n @var{nchars}]
     [-N @var{nchars}] [-p @var{prompt}] [-t @var{timeout}] [-u @var{fd}] [@var{name} @dots{}]
 @end example
 
-One line is read from the standard input, or from the file descriptor
-@var{fd} supplied as an argument to the @option{-u} option, and the first word
-is assigned to the first @var{name}, the second word to the second @var{name},
-and so on, with leftover words and their intervening separators assigned
-to the last @var{name}.
-If there are fewer words read from the input stream than names,
-the remaining names are assigned empty values.
-The characters in the value of the @env{IFS} variable
-are used to split the line into words using the same rules the shell
-uses for expansion (described above in @ref{Word Splitting}).
-The backslash character @samp{\} may be used to remove any special
-meaning for the next character read and for line continuation.
-If no names are supplied, the line read is assigned to the
-variable @env{REPLY}.
-The return code is zero, unless end-of-file is encountered, @code{read}
-times out (in which case the return code is greater than 128),
-a variable assignment error (such as assigning to a readonly variable) occurs,
-or an invalid file descriptor is supplied as the argument to @option{-u}.
+Uma linha é lida a partir da entrada padrão, ou a partir do descritor de 
+arquivo @var{fd} fornecido como um argumento para a opção @option{-u}, e 
+a primeira palavra é atribuída para o primeiro @var{name}; a segunda 
+palavra para o segundo @var{name}, e assim por diante, com as palavras 
+que sobrarem e os separadores intervenientes delas atribuídos para o 
+último @var{name}.
+Se existirem palavras menores que os nomes, lidas do fluxo de entrada, 
+então aos nomes remanescentes serão atribuídos valores vazios.
+Os caracteres no valor da variável @env{IFS} são utilizados para dividir 
+a linha em palavras utilizando-se as mesmas regras que o shell utiliza 
+para expansão (descrita acima em @ref{Word Splitting}).
+O caracter "barra invertida" @samp{\} pode ser utilizado para remover 
+qualquer significado especial do próximo caracter lido e para 
+continuação de linha.
+Se nenhum nome for fornecido, então a linha lida é atribuída à variável 
+@env{REPLY}.
+O código de retorno é zero, a menos que um marcador de fim de arquivo 
+for encontrado; @code{read} tiver em intervalo de tempo (caso no qual o 
+código de retorno é maior que 128); um erro de atribuição de variável 
+(tal qual a atribuição a uma variável apenas leitura) ocorrer; ou um 
+descritor de arquivo inválido for fornecido como um argumento para 
+@option{-u}.
 
-Options, if supplied, have the following meanings:
+Opções, se fornecidas, tem os seguintes significados:
 
 @table @code
 @item -a @var{aname}
-The words are assigned to sequential indices of the array variable
-@var{aname}, starting at 0.
-All elements are removed from @var{aname} before the assignment.
-Other @var{name} arguments are ignored.
+As palavras são atribuídas a índices sequenciais da variável vetor 
+@var{aname}, iniciando no 0.
+Todos os elementos são removidos do @var{aname} antes da atribuição.
+Outros argumentos @var{aname} são ignorados.
 
 @item -d @var{delim}
-The first character of @var{delim} is used to terminate the input line,
-rather than newline.
+O primeiro caracter de @var{delim} é utilizado para terminar a linha de 
+entrada, ao invés do marcador newline.
 
 @item -e
-Readline (@pxref{Command Line Editing}) is used to obtain the line.
-Readline uses the current (or default, if line editing was not previously
-active) editing settings.
+Readline (veja-se @ref{Command Line Editing}) é utilizado para se obter 
+a linha.
+Readline utiliza as configurações de edição atuais (ou a padrão, se a 
+edição de linha não foi previamente ativada).
 
 @item -i @var{text}
-If Readline is being used to read the line, @var{text} is placed into
-the editing buffer before editing begins.
+Se Readline está sendo utilizada para ler a linha, então @var{text} é 
+colocado na área de edição antes que a edição propriamente dita começe.
 
 @item -n @var{nchars}
-@code{read} returns after reading @var{nchars} characters rather than
-waiting for a complete line of input, but honor a delimiter if fewer
-than @var{nchars} characters are read before the delimiter.
+@code{read} retorna após a leitura de @var{nchars} caracteres ao invés 
+de aguardar por uma linha completa de entrada, porém respeita um 
+delimitador se menos que @var{nchars} caracteres forem lidos antes do 
+delimitador.
 
 @item -N @var{nchars}
-@code{read} returns after reading exactly @var{nchars} characters rather
-than waiting for a complete line of input, unless EOF is encountered or
-@code{read} times out.
-Delimiter characters encountered in the input are
-not treated specially and do not cause @code{read} to return until
-@var{nchars} characters are read.
+@code{read} retorna após a leitura de exatamente @var{nchars} caracteres 
+ao invés de aguardar pela leitura de uma linha completa de entrada, a 
+menos que um marcador EOF seja encontrado ou @code{read} tenha um 
+intervalo de tempo.
+Os caracteres delimitadores encontrados na entrada não são tratados 
+especialmente e não fazem com que @code{read} retorne até que 
+@var{nchars} sejam lidos.
 
 @item -p @var{prompt}
-Display @var{prompt}, without a trailing newline, before attempting
-to read any input.
-The prompt is displayed only if input is coming from a terminal.
+Exibe @var{prompt}, sem um finalizador newline, antes da tentativa de 
+ler qualquer entrada.
+O prompt é exibido apenas se a entrada estiver vindo de um terminal.
 
 @item -r
-If this option is given, backslash does not act as an escape character.
-The backslash is considered to be part of the line.
-In particular, a backslash-newline pair may not be used as a line
-continuation.
+Se essa opção for dada, a barra invertida não atua como um caracter de 
+escape.   A barra invertida é considerada como fazendo parte da linha.
+Em particular, um par barra invertida + newline não pode ser utilizado 
+como uma continuação de linha.
 
 @item -s
-Silent mode.  If input is coming from a terminal, characters are
-not echoed.
+Modo silencioso.   Se a entrada está vindo de um terminal, então os 
+caracteres não são ecoados.
 
 @item -t @var{timeout}
-Cause @code{read} to time out and return failure if a complete line of
-input (or a specified number of characters)
-is not read within @var{timeout} seconds.
-@var{timeout}  may be a decimal number with a fractional portion following
-the decimal point.
-This option is only effective if @code{read} is reading input from a
-terminal, pipe, or other special file; it has no effect when reading
-from regular files.
-If @code{read} times out, @code{read} saves any partial input read into
-the specified variable @var{name}.
-If @var{timeout} is 0, @code{read} returns immediately, without trying to
-read and data.  The exit status is 0 if input is available on
-the specified file descriptor, non-zero otherwise.
-The exit status is greater than 128 if the timeout is exceeded.
+Faz com que @code{read} tenha um intervalo e retorne falha se uma linha 
+completa de entrada (ou um número especificado de caracteres) não for 
+lido dentro de @var{timeout} segundos.
+@var{timeout} pode ser um número decimal com uma porção em forma de 
+fração seguinte ao ponto decimal.
+Essa opção apenas é efetiva se @code{read} estiver lendo entrada a 
+partir de um terminal, canal de comunicação, ou outro arquivo especial; 
+a opção não tem efeito quando a leitura é feita a partir de arquivos 
+regulares.
+Se @code{read} tiver um intervalo de tempo, então @code{read} salvará 
+qualquer entrada parcial lida na variável especificada por @var{name}.
+Se @var{timeout} for 0, então @code{read} retorna imediatamente, sem 
+tentar ler e sem dados.   O código de saída é 0 se a entrada estiver 
+disponível no descritor de arquivo especificado, e diferente de zero no 
+caso contrário.
+O código de saída é maior que 128 se o intervalo de tempo for excedido.
 
 @item -u @var{fd}
-Read input from file descriptor @var{fd}.
+Lê entrada a partir do descritor de arquivo @var{fd}.
 @end table
 
 @item readarray
