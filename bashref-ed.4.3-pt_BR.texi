@@ -4561,11 +4561,11 @@ readarray [-n @var{count}] [-O @var{origin}] [-s @var{count}] [-t] [-u @var{fd}]
     [-C @var{callback}] [-c @var{quantum}] [@var{array}]
 @end example
 
-Read lines from the standard input into the indexed array variable @var{array},
-or from file descriptor @var{fd}
-if the @option{-u} option is supplied.
+Lê linha a partir da entrada padrão para a variável vetor indexada 
+@var{array}, ou a partir do descritor de arquivo @var{fd} se a opção 
+@option{-u} for fornecida.
 
-A synonym for @code{mapfile}.
+É um sinônimo para @code{mapfile}.
 
 @item source
 @btindex source
@@ -4573,7 +4573,7 @@ A synonym for @code{mapfile}.
 source @var{filename}
 @end example
 
-A synonym for @code{.} (@pxref{Bourne Shell Builtins}).
+Um sinônimo para @code{.} (veja-se @ref{Bourne Shell Builtins}).
 
 @item type
 @btindex type
@@ -4581,37 +4581,38 @@ A synonym for @code{.} (@pxref{Bourne Shell Builtins}).
 type [-afptP] [@var{name} @dots{}]
 @end example
 
-For each @var{name}, indicate how it would be interpreted if used as a
-command name.
+Para cada @var{name}, indica como deveria ser interpretado se utilizado 
+como um nome de comando.
 
-If the @option{-t} option is used, @code{type} prints a single word
-which is one of @samp{alias}, @samp{function}, @samp{builtin},
-@samp{file} or @samp{keyword},
-if @var{name} is an alias, shell function, shell builtin,
-disk file, or shell reserved word, respectively.
-If the @var{name} is not found, then nothing is printed, and
-@code{type} returns a failure status.
+Se a opção @option{-t} for utilizada, @code{type} imprime uma palavra 
+única a qual é @samp{alias}, @samp{function}, @samp{builtin},
+@samp{file} ou @samp{keyword}, se @var{name} for um apelido; uma função 
+de shell; um comando interno ao shell; um arquivo de disco; ou uma 
+palavra reservada de shell, respectivamente.
+Se @var{name} não for encontrada, então nada é impresso e @code{type} 
+retorna um código de falha.
 
-If the @option{-p} option is used, @code{type} either returns the name
-of the disk file that would be executed, or nothing if @option{-t}
-would not return @samp{file}.
+Se a opção @option{-p} for utilizada, então @code{type} ou retorna o 
+nome do arquivo de disco que deveria ser executado, ou nada caso 
+@option{-t} não retorne @samp{file}.
 
-The @option{-P} option forces a path search for each @var{name}, even if
-@option{-t} would not return @samp{file}.
+A opção @option{-P} força uma busca de caminho para cada @var{name}, 
+mesmo no caso de @option{-t} não retornar @samp{file}.
 
-If a command is hashed, @option{-p} and @option{-P} print the hashed value,
-which is not necessarily the file that appears first in @code{$PATH}.
+Se um comando for dividido em pedaços, então @option{-p} e @option{-P} 
+imprimem o valor cortado em pedaços, o qual não é necessariamente o 
+arquivo que aparecer primeiro no @code{$PATH}.
 
-If the @option{-a} option is used, @code{type} returns all of the places
-that contain an executable named @var{file}.
-This includes aliases and functions, if and only if the @option{-p} option
-is not also used.
+Se a opção @option{-a} for utilizada, então @code{type} retorna todos os 
+locais que contém um executável chamado @var{file}.
+Isso inclui apelidos e funções, se e somente se a opção @option{-p} 
+também não for utilizada.
 
-If the @option{-f} option is used, @code{type} does not attempt to find
-shell functions, as with the @code{command} builtin.
+Se a opção @option{-f} for utilizada, então @code{type} não tentará 
+encontrar funções de shell, como com o comando interno @code{command}.
 
-The return status is zero if all of the @var{names} are found, non-zero
-if any are not found.
+O código de retorno é zero se todos os @var{names} forem encontrados, e 
+diferente de zero se qualquer deles não for encontrado.
 
 @item typeset
 @btindex typeset
@@ -4619,9 +4620,9 @@ if any are not found.
 typeset [-afFgrxilnrtux] [-p] [@var{name}[=@var{value}] @dots{}]
 @end example
 
-The @code{typeset} command is supplied for compatibility with the Korn
-shell.
-It is a synonym for the @code{declare} builtin command.
+O comando @code{typeset} é fornecido para compatibilidade com o shell 
+Korn.
+Ele é um sinônimo para o comando interno @code{declare}.
 
 @item ulimit
 @btindex ulimit
@@ -4629,95 +4630,101 @@ It is a synonym for the @code{declare} builtin command.
 ulimit [-abcdefilmnpqrstuvxHST] [@var{limit}]
 @end example
 
-@code{ulimit} provides control over the resources available to processes
-started by the shell, on systems that allow such control.  If an
-option is given, it is interpreted as follows:
+@code{ulimit} provê controle sobre os recursos disponíveis aos processos 
+inicializados pelo shell, em sistemas que permitem tal controle.   Se 
+uma opção for dada, essa opção é interpretada conforme segue:
 
 @table @code
 @item -S
-Change and report the soft limit associated with a resource.
+Modifica e relata o limite leve associado com o recurso.
 
 @item -H
-Change and report the hard limit associated with a resource.
+Modifica e relata o limite pesado associado com o recurso.
 
 @item -a
-All current limits are reported.
+Todos os limites atuais são relatados.
 
 @item -b
-The maximum socket buffer size.
+O tamanho máximo da memória intermediária de socket.
 
 @item -c
-The maximum size of core files created.
+O tamanho máximo dos arquivos centrais criados.
 
 @item -d
-The maximum size of a process's data segment.
+O tamanho máximo de um segmento de dados do processo.
 
 @item -e
-The maximum scheduling priority ("nice").
+A prioridade máxima do agendamento ("nice").
 
 @item -f
-The maximum size of files written by the shell and its children.
+O tamanho máximo de arquivos escritos pelo shell e filhos dele.
 
 @item -i
-The maximum number of pending signals.
+O número máximo de sinais pendentes.
 
 @item -l
-The maximum size that may be locked into memory.
+O tamanho máximo que pode ser travado dentro da memória.
 
 @item -m
-The maximum resident set size (many systems do not honor this limit).
+O tamanho máximo do conjunto residente (muitos sistemas não respeitam 
+esse limite).
 
 @item -n
-The maximum number of open file descriptors (most systems do not
-allow this value to be set).
+O número máximo de descritores de arquivo arbertos (muitos sistemas não 
+permitem que esse valor seja configurado).
 
 @item -p
-The pipe buffer size.
+O tamanho da memória intermediária do canal de comunicação.
 
 @item -q
-The maximum number of bytes in POSIX message queues.
+O número máximo de bytes nas consultas de mensagem POSIX.
 
 @item -r
-The maximum real-time scheduling priority.
+A prioridade máxima de agendamento de tempo-real.
 
 @item -s
-The maximum stack size.
+O tamanho máximo da pilha.
 
 @item -t
-The maximum amount of cpu time in seconds.
+A quantidade máxima de tempo de cpu em segundos.
 
 @item -u
-The maximum number of processes available to a single user.
+O número máximo de processos disponíveis para um usuário único.
 
 @item -v
-The maximum amount of virtual memory available to the shell, and, on
-some systems, to its children.
+A quantidade máxima de memória virtual disponível para o shell, e, em 
+alguns sistemas, para os filhos dele.
 
 @item -x
-The maximum number of file locks.
+O número máximo de travas de arquivo.
 
 @item -T
-The maximum number of threads.
+O número máximo de camadas.
+
 @end table
 
-If @var{limit} is given, and the @option{-a} option is not used,
-@var{limit} is the new value of the specified resource.
-The special @var{limit} values @code{hard}, @code{soft}, and
-@code{unlimited} stand for the current hard limit, the current soft limit,
-and no limit, respectively.
-A hard limit cannot be increased by a non-root user once it is set;
-a soft limit may be increased up to the value of the hard limit.
-Otherwise, the current value of the soft limit for the specified resource
-is printed, unless the @option{-H} option is supplied.
-When setting new limits, if neither @option{-H} nor @option{-S} is supplied,
-both the hard and soft limits are set.
-If no option is given, then @option{-f} is assumed.  Values are in 1024-byte
-increments, except for @option{-t}, which is in seconds; @option{-p},
-which is in units of 512-byte blocks; and @option{-T}, @option{-b},
-@option{-n} and @option{-u}, which are unscaled values.
+Se @var{limit} for dado, então a opção @option{-a} não é utilizada, 
+@var{limit} é o valor novo os recurso especificado.
+Os valores @var{limit} especiais @code{hard}, @code{soft}, e 
+@code{unlimited} representam o atual limite pesado; o atual limite leve; 
+e sem limite, respectivamente.
+Um limite pesado não pode incrementado por um usuário sem privilégios 
+administrativos uma vez que for configurado; um limite leve pode ser 
+incrementado até o valor do limite pesado.
+Do contrário, o valor atual do limite leve para o recurso especificado é 
+impresso, a menos que a opção @option{-H} seja fornecida.
+Quando da configuração de novos limites, se nem @option{-H} nem 
+@option{-S} forem fornecidas, então ambos os limites, o pesado e o leve, 
+são configurados.
+Se nenhuma opção for dada, então @option{-f} é presumida.   Os valores 
+são em incrementos de 1024-byte, exceto para @option{-t}, o qual é em 
+segundos; @option{-p}, o qual é em unidades de blocos de 512-bytes; e 
+@option{-T}, @option{-b}, @option{-n} e @option{-u}, os quais são 
+valores sem escala.
 
-The return status is zero unless an invalid option or argument is supplied,
-or an error occurs while setting a new limit.
+O código de retorno é zero a menos que uma opção inválida ou argumento 
+seja fornecido, ou um erro ocorra  quando da configuração de um novo 
+limite.
 
 @item unalias
 @btindex unalias
@@ -4725,9 +4732,9 @@ or an error occurs while setting a new limit.
 unalias [-a] [@var{name} @dots{} ]
 @end example
 
-Remove each @var{name} from the list of aliases.  If @option{-a} is
-supplied, all aliases are removed.
-Aliases are described in @ref{Aliases}.
+Remove cada @var{name} da lista de apelidos.   Se @option{-a} for 
+fornecida, então todos os apelidos serão removidos.
+Os apelidos são descritos em @ref{Aliases}.
 @end table
 
 @node Modifying Shell Behavior
