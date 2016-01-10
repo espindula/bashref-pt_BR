@@ -5056,7 +5056,8 @@ fornecida.
 @node The Shopt Builtin
 @subsection The Shopt Builtin
 
-This builtin allows you to change additional shell optional behavior.
+Esse comando interno permite modificar o comportamento opcional 
+adicional do shell.
 
 @table @code
 
@@ -5066,279 +5067,287 @@ This builtin allows you to change additional shell optional behavior.
 shopt [-pqsu] [-o] [@var{optname} @dots{}]
 @end example
 
-Toggle the values of settings controlling optional shell behavior.
-The settings can be either those listed below, or, if the
-@option{-o} option is used, those available with the @option{-o}
-option to the @code{set} builtin command (@pxref{The Set Builtin}).
-With no options, or with the @option{-p} option, a list of all settable
-options is displayed, with an indication of whether or not each is set.
-The @option{-p} option causes output to be displayed in a form that
-may be reused as input.
-Other options have the following meanings:
+Permuta os valores das configurações que controlam o comportamento 
+opcional do shell.   As configurações podem ser ou aquelas listadas 
+abaixo, ou, se a opção @option{-o} for utilizada, aquelas disponíveis 
+com a opção @option{-o} para o comando interno @code{set} 
+(veja-se @ref{The Set Builtin}).
+Sem opções, ou com a opção @option{-p}, uma lista de todas as opções 
+configuráveis é exibida, com uma indicação de se ou não cada está 
+configurada.
+A opção @option{-p} faz com a saída seja exibida em uma forma que pode 
+ser reutilizada como entrada.
+Outras opções tem os seguintes significados:
 
 @table @code
 @item -s
-Enable (set) each @var{optname}.
+Habilita (configura) cada @var{optname}.
 
 @item -u
-Disable (unset) each @var{optname}.
+Desabilita (desconfigura) cada @var{optname}.
 
 @item -q
-Suppresses normal output; the return status
-indicates whether the @var{optname} is set or unset.
-If multiple @var{optname} arguments are given with @option{-q},
-the return status is zero if all @var{optnames} are enabled;
-non-zero otherwise.
+Suprime a saída normal; o código de retorno indica quando a 
+@var{optname} está configurada ou desconfigurada.
+Se múltiplos argumentos @var{optname} forem dados com @option{-q}, então 
+o código de retorno é zero se todos @var{optnames} estiverem 
+habilitados; diferente de zero do contrário.
 
 @item -o
-Restricts the values of
-@var{optname} to be those defined for the @option{-o} option to the
-@code{set} builtin (@pxref{The Set Builtin}).
+Restringe os valores de @var{optname} àqueles definidos para a opção 
+@option{-o} para o comando interno @code{set} (veja-se @ref{The Set 
+Builtin}).
 @end table
 
-If either @option{-s} or @option{-u}
-is used with no @var{optname} arguments, @code{shopt} shows only
-those options which are set or unset, respectively.
+Se ou @option{-s} ou @option{-u} forem utilizadas sem argumentos 
+@var{optname}, então @code{shopt} mostra apenas aquelas opções as quais 
+estão configuradas ou desconfiguradas, respectivamente.
 
-Unless otherwise noted, the @code{shopt} options are disabled (off)
-by default.
+A menos que apontado do contrário, as opções @code{shopt} estão 
+desabilitadas (desligadas) por padrão.
 
-The return status when listing options is zero if all @var{optnames}
-are enabled, non-zero otherwise.  When setting or unsetting options,
-the return status is zero unless an @var{optname} is not a valid shell
-option.
+O código de retorno quando das opções de listagem é zero se todas 
+@var{optnames} estiverem habilitadas, diferente de zero do contrário.
+Quando configurando ou desconfigurando opções, o código de retorno é 
+zero a menos que uma @var{optname} não seja uma opção de shell válida.
 
-The list of @code{shopt} options is:
+A lista das opções @code{shopt} é:
 @table @code
 
 @item autocd
-If set, a command name that is the name of a directory is executed as if
-it were the argument to the @code{cd} command.
-This option is only used by interactive shells.
+Se configurado, um nome de comando que seja o nome de um diretório é 
+executado como se o nome fosse o argumento para o comando @code{cd}.
+Essa opção é utilizada apenas por shells interativos.
 
 @item cdable_vars
-If this is set, an argument to the @code{cd} builtin command that
-is not a directory is assumed to be the name of a variable whose
-value is the directory to change to.
+Se isso estiver configurado, um argumento para o comando interno 
+@code{cd} que não seja um diretório é presumido que seja o nome de uma 
+variável cujo valor é o diretório para o qual se acessar.
 
 @item cdspell
-If set, minor errors in the spelling of a directory component in a
-@code{cd} command will be corrected.
-The errors checked for are transposed characters,
-a missing character, and a character too many.
-If a correction is found, the corrected path is printed,
-and the command proceeds.
-This option is only used by interactive shells.
+Se configurado, error menores na grafia de um componente de diretório em 
+um comando @code{cd} serão corrigidos.
+Os erros verificados são caracteres transpostos, um carácter em falta, e 
+um carácter demasiado.
+Se uma correção for encontrada, então o cominho corrigido é impresso, e 
+o comando procede.
+Essa opção é utilizada apenas por shells interativos.
 
 @item checkhash
-If this is set, Bash checks that a command found in the hash
-table exists before trying to execute it.  If a hashed command no
-longer exists, a normal path search is performed.
+Se isso estiver configurado, Bash verifica se um comando encontrado na 
+tabela de hash existe antes de tentar executá-lo.   Se um comando 
+gravado na tabela não mais existir, uma procura de caminho normal é 
+realizada.
 
 @item checkjobs
-If set, Bash lists the status of any stopped and running jobs before
-exiting an interactive shell.  If any jobs are running, this causes
-the exit to be deferred until a second exit is attempted without an
-intervening command (@pxref{Job Control}).
-The shell always postpones exiting if any jobs are stopped.
+Se configurada, Bash lista o estado de quaisquer tarefas paradas e em 
+execução antes de sair de um shell interativo.   Se quaisquer tarefas 
+estão em execução, isso faz com que a saída seja adiada até que uma 
+segunda saída seja tentada sem um comando interveniente (veja-se 
+@ref{Job Control}).
+O shell sempre adia a saída se quaisquer tarefas estiverem paradas.
 
 @item checkwinsize
-If set, Bash checks the window size after each command
- and, if necessary, updates the values of    
-@env{LINES} and @env{COLUMNS}.
+Se configurada, Bash verifica o tamanho da janela após cada comando e, 
+se necessário, atualiza os valores de @env{LINES} e @env{COLUMNS}.
 
 @item cmdhist
-If set, Bash
-attempts to save all lines of a multiple-line
-command in the same history entry.  This allows
-easy re-editing of multi-line commands.
+Se configurado, Bash tenta salvar todas as linhas de um comando de 
+múltiplas linhas na mesma entrada de histórico.   Isso permite a fácil 
+reedição de comandos de múltiplas linhas.
 
 @item compat31
-If set, Bash
-changes its behavior to that of version 3.1 with respect to quoted
-arguments to the conditional command's @samp{=~} operator
-and with respect to locale-specific
-string comparison when using the @code{[[}
-conditional command's @samp{<} and @samp{>} operators.
-Bash versions prior to bash-4.1 use ASCII collation and strcmp(3);
-bash-4.1 and later use the current locale's collation sequence and strcoll(3).
+Se configurado, Bash muda o comportamento dele para aquele da versão 3.1 
+com respeito aos argumentos entre aspas para o operador @samp{=~} do 
+comando condicional e com respeito a comparações de sequências de 
+caracteres específicas do local quando da utilização dos operadores 
+@samp{<} e @samp{>} do comando condicional @code{[[}.
+As versões de Bash anteriores a bash-4.1 utilizam colação ASCII e strcmp(3);
+bash-4.1 e posterior utilizam a sequência de colação do local atual e 
+strcoll(3).
 
 @item compat32
-If set, Bash
-changes its behavior to that of version 3.2 with respect to locale-specific
-string comparison when using the @code{[[}
-conditional command's @samp{<} and @samp{>} operators (see previous item).
+Se configurado, Bash muda o comportamento dele para aquele da versão 3.2 
+com respeito à comparação de sequência de caracteres específica do local 
+quando da utilização dos operadores @samp{<} e @samp{>} do comando 
+condicional @code{[[} (veja-se o item anterior).
 
 @item compat40
-If set, Bash
-changes its behavior to that of version 4.0 with respect to locale-specific
-string comparison when using the @code{[[}
-conditional command's @samp{<} and @samp{>} operators (see description
-of @code{compat31})
-and the effect of interrupting a command list.
-Bash versions 4.0 and later interrupt the list as if the shell received the
-interrupt; previous versions continue with the next command in the list.
+Se configurado, Bash muda o comportamento dele para aquele da versão 4.0 
+com respeito à comparação de sequência de caracteres específica do local 
+quando da utilização dos operadores @samp{<} e @samp{>} do comando 
+condicional @code{[[} (veja-se a descrição de @code{compat31}) e o 
+efeito da interrupção de uma lista de comandos.
+As versões 4.0 e posteriores de Bash interrompem a lista como se o shell 
+recebesse a interrupção; versões anteriores continuam com o próximo 
+comando na lista.
 
 @item compat41
-If set, Bash, when in @sc{posix} mode, treats a single quote in a double-quoted
-parameter expansion as a special character.  The single quotes must match
-(an even number) and the characters between the single quotes are considered
-quoted.  This is the behavior of @sc{posix} mode through version 4.1.
-The default Bash behavior remains as in previous versions.
+Se configurado, Bash, quando em modo @sc{posix}, trata uma aspa simples 
+em uma expansão de parâmetro dentro de aspas duplas como um carácter 
+especial.   As aspas simples devem necessariamente coincidirem (um 
+eventual número) e os caracteres entre as aspas simples são consideradas 
+encapsuladas por aspas.   Esse é o comportamento do modo @sc{posix} 
+durante a versão 4.1.
+O comportamento padrão do Bash permanece como nas versões anteriores.
 
 @item compat42
-If set, Bash
-does not process the replacement string in the pattern substitution word
-expansion using quote removal.
+Se configurado, Bash não processa a sequência de caracteres de 
+substituição na expansão de palavra de substituição de padrão utilizando 
+remoção de aspas.
 
 @item complete_fullquote
-If set, Bash
-quotes all shell metacharacters in filenames and directory names when
-performing completion.
-If not set, Bash
-removes metacharacters such as the dollar sign from the set of
-characters that will be quoted in completed filenames
-when these metacharacters appear in shell variable references in words to be
-completed.
-This means that dollar signs in variable names that expand to directories
-will not be quoted;
-however, any dollar signs appearing in filenames will not be quoted, either.
-This is active only when bash is using backslashes to quote completed
-filenames.
-This variable is set by default, which is the default Bash behavior in
-versions through 4.2.
+Se configurado, Bash encapsula entre aspas todos os metacaracteres de 
+shell em nomes de arquivo e em nomes de diretório quando da realização 
+da completação.
+Se não configurado, Bash remove metacaracteres tais como o sinal de 
+dólar do conjunto de caracteres que serão encapsulados entre aspas em 
+nomes de arquivos completados quando esses metacaracteres aparecerem em 
+referências de variáveis de shell em palavras sejam completados.
+Isso significa que os sinais de dólar em nomes de variáveis que expandam 
+para diretórios não serão encapsulados em aspas; entretanto, quaisquer 
+sinais de dólar que aparecerem em nomes de arquivo não serão 
+encapsulados em aspas, entretanto.
+Isso está ativo apenas quando bash está utilizando barras invertidas 
+para encapsular em aspas nomes de arquivos completados.
+Essa variável é consigurada por padrão, o qual é o comportamento padrão 
+de Bash em versões durante 4.2.
 
 @item direxpand
-If set, Bash
-replaces directory names with the results of word expansion when performing
-filename completion.  This changes the contents of the readline editing
-buffer.
-If not set, Bash attempts to preserve what the user typed.
+Se configurado, Bash substitue os nomes de diretório com os resultados 
+da expansão de palavra quando da realização da completação de nome de 
+arquivo.   Isso modifica o conteúdo da área de edição do readline.
+Se não configurado, Bash tenta preservar o que o usuário digitou.
 
 @item dirspell
-If set, Bash
-attempts spelling correction on directory names during word completion 
-if the directory name initially supplied does not exist.
+Se configurado, Bash tenta a correção ortográfica em nomes de diretórios 
+durante a completação de palavra se o nome de diretórioinicialmente 
+fornecido não existir.
 
 @item dotglob
-If set, Bash includes filenames beginning with a `.' in
-the results of filename expansion.
+Se configurado, Bash inclue nomes de arquivo iniciando com um `.' nos 
+resultados da expansão de nome de arquivo.
 
 @item execfail
-If this is set, a non-interactive shell will not exit if
-it cannot execute the file specified as an argument to the @code{exec}
-builtin command.  An interactive shell does not exit if @code{exec}
-fails.
+Se isso estiver configurado, um shell não interativo não sairá se ele 
+não puder executar o arquivo especificado como um argumento para o 
+comando interno @code{exec}.   Um shell interativo não sai se 
+@code{exec} falha.
 
 @item expand_aliases
-If set, aliases are expanded as described below under Aliases,
-@ref{Aliases}.
-This option is enabled by default for interactive shells.
+Se configurado, apelidos são expandidos conforme descrito abaixo sob 
+Apelidos, @ref{Aliases}.
+Essa opção está habiltada por padrão para shells interativos.
 
 @item extdebug
-If set, behavior intended for use by debuggers is enabled:
+Se configurado, o comportamento concebido para uso por depuradores é 
+habilitado:
 
 @enumerate
 @item
-The @option{-F} option to the @code{declare} builtin (@pxref{Bash Builtins})
-displays the source file name and line number corresponding to each function
-name supplied as an argument.
+A opção @option{-F} para o comando interno @code{declare} 
+(veja-se @ref{Bash Builtins}) exibe o nome do arquivo fonte e o número 
+da linha correspondente a cada nome de função fornecida como um 
+argumento.
 
 @item
-If the command run by the @code{DEBUG} trap returns a non-zero value, the
-next command is skipped and not executed.
+Se o comando executado pelo coletor @code{DEBUG} retornar um valor 
+diferente de zero, então o próximo comando é ignorado e não executado.
 
 @item
-If the command run by the @code{DEBUG} trap returns a value of 2, and the
-shell is executing in a subroutine (a shell function or a shell script
-executed by the @code{.} or @code{source} builtins), a call to
-@code{return} is simulated.
+Se o comando executado pelo coletor @code{DEBUG} retornar o valor 2, e o 
+shell estiver executando em uma subrotina (uma função de shell ou um 
+script de shell executado pelos comandos internos @code{.} ou 
+@code{source}, então uma chamada a @code{return} é simulada.
 
 @item
-@code{BASH_ARGC} and @code{BASH_ARGV} are updated as described in their
-descriptions (@pxref{Bash Variables}).
+@code{BASH_ARGC} e @code{BASH_ARGV} são atualizados conforme descrito 
+nas descrições deles (veja-se @ref{Bash Variables}).
 
 @item
-Function tracing is enabled:  command substitution, shell functions, and
-subshells invoked with @code{( @var{command} )} inherit the
-@code{DEBUG} and @code{RETURN} traps.
+O rastreamento de função é habilitado: substituição de comando, funções 
+de shell, e subshells invocados com @code{( @var{command} )} herdam os 
+coletores @code{DEBUG} e @code{RETURN}.
 
 @item
-Error tracing is enabled:  command substitution, shell functions, and
-subshells invoked with @code{( @var{command} )} inherit the
-@code{ERR} trap.
+O rastreamento de erro é habilitado: substituição de comando, funções de 
+shell, e subshells invocados com @code{( @var{command} )} herdam o 
+coletor @code{ERR}.
 @end enumerate
 
 @item extglob
-If set, the extended pattern matching features described above
-(@pxref{Pattern Matching}) are enabled.
+
+Se configurado, as características de coincidência extendida de padrões 
+descritas acima (veja-se @ref{Pattern Matching}) são habilitadas.
 
 @item extquote
-If set, @code{$'@var{string}'} and @code{$"@var{string}"} quoting is  
-performed within @code{$@{@var{parameter}@}} expansions                     
-enclosed in double quotes.  This option is enabled by default. 
+Se configurado, o encapsulamento de aspas @code{$'@var{string}'} e 
+@code{$"@var{string}"} é realizado dentro de expansões 
+@code{$@{@var{parameter}@}} encapsuladas em aspas duplas.   Essa opção é 
+habilitada por padrão.
 
 @item failglob
-If set, patterns which fail to match filenames during filename expansion
-result in an expansion error.
+Se configurado. padrões os quais falham em coincidir nomes de arquivo 
+durante a expansão de nome de arquivo resultam em um erro de expansão.
 
 @item force_fignore
-If set, the suffixes specified by the @env{FIGNORE} shell variable
-cause words to be ignored when performing word completion even if
-the ignored words are the only possible completions.
-@xref{Bash Variables}, for a description of @env{FIGNORE}.
-This option is enabled by default.
+Se configurado, os sufixos especificados pela variável de shell 
+@env{FIGNORE} fazem com que palavras sejam ignoradas quando da 
+realização de completação de palavra ainda que as palavras ignoradas 
+sejam as únicas completações possíveis.   Veja-se @ref{Bash Variables}, 
+para uma descrição de @env{FIGNORE}.
+Essa opção está habilitada por padrão.
 
 @item globasciiranges
-If set, range expressions used in pattern matching bracket expressions
-(@pxref{Pattern Matching})
-behave as if in the traditional C locale when performing
-comparisons.  That is, the current locale's collating sequence
-is not taken into account, so
-@samp{b} will not collate between @samp{A} and @samp{B},
-and upper-case and lower-case ASCII characters will collate together.   
+Se configurado, as expressões de intervalo utilizadas em expressões de 
+suporte de coincidência de padrão (veja-se @ref{Pattern Matching}) se 
+comportam como se estivesse no local C tradicional quando da realização 
+de comparações.   Isto é, a sequência de colação de local atual não é 
+levado em consideração, de forma que @samp{b} não cotejará entre 
+@samp{A} e @samp{B}, e caracteres ASCII maiúsculos e minúsculos serão 
+cotejados juntos.
 
 @item globstar
-If set, the pattern @samp{**} used in a filename expansion context will
-match all files and zero or more directories and subdirectories.
-If the pattern is followed by a @samp{/}, only directories and
-subdirectories match.
+Se configurado, o padrão @samp{**} utilizado em um contexto de expansão 
+de nome de arquivo conincidirá com todos os arquivos e zero ou mais 
+diretórios e subdiretórios.
+Se o padrão for seguido por uma @samp{/}, então apenas diretórios e 
+subdiretórios coincidem.
 
 @item gnu_errfmt
-If set, shell error messages are written in the standard @sc{gnu} error
-message format.
+Se configurado, as mensagens de erro do shell serão escritas no formato 
+de mensagem de erro padrão @sc{gnu}.
 
 @item histappend
-If set, the history list is appended to the file named by the value
-of the @env{HISTFILE}
-variable when the shell exits, rather than overwriting the file.
+Se configurado, a lista de histórico é acrescentada ao arquivo nominado 
+pelo valor da variável @env{HISTFILE} quando o shell sair, ao invés de 
+sobrescrever o arquivo.
 
 @item histreedit
-If set, and Readline
-is being used, a user is given the opportunity to re-edit a
-failed history substitution.
+Se configurado, e Readline estiver sendo utilizada, ao usuário é dada a 
+oportunidade de reeditar uma substituição de histórico que falhou.
 
 @item histverify
-If set, and Readline
-is being used, the results of history substitution are not immediately
-passed to the shell parser.  Instead, the resulting line is loaded into
-the Readline editing buffer, allowing further modification.
+Se configurado, e Readline estiver sendo utilizada, então os resultados 
+da substituição de histórico não são imediatamente passadas para o 
+analisador de shell.   Ao invés disso, a linha resultante é carregada na 
+área de edição da Readline, permitindo maiores modificações.
 
 @item hostcomplete
-If set, and Readline is being used, Bash will attempt to perform
-hostname completion when a word containing a @samp{@@} is being
-completed (@pxref{Commands For Completion}).  This option is enabled
-by default.
+Se configurado, e Readline estiver sendo utilizada, então Bash tentará 
+realizar uma completação de nome de máquina quando uma palavra contendo 
+um @samp{@@} estiver sendo completada (veja-se @ref{Commands For 
+Completion}).   Essa opção está habilitada por padrão.
 
 @item huponexit
-If set, Bash will send @code{SIGHUP} to all jobs when an interactive
-login shell exits (@pxref{Signals}).
+Se configurado, Bash enviará @code{SIGHUP} a todas as tarefas quando um 
+shell de login interativo sair (veja-se @ref{Signals}).
 
 @item interactive_comments
-Allow a word beginning with @samp{#}
-to cause that word and all remaining characters on that
-line to be ignored in an interactive shell.
-This option is enabled by default.
+Permite uma palavra iniciando com @samp{#}, fazendo com que essa palavra 
+e todos os caracteres restantes naquela linha sejam ignorados em um 
+shell interativo.
+Essa opção está habilitada por padrão.
 
 @item lastpipe
 If set, and job control is not active, the shell runs the last command of
