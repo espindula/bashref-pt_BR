@@ -5350,110 +5350,121 @@ shell interativo.
 Essa opção está habilitada por padrão.
 
 @item lastpipe
-If set, and job control is not active, the shell runs the last command of
-a pipeline not executed in the background in the current shell environment.
+Se configurado, e o controle de tarefas não estiver ativo, o shell 
+executa o último comando de um canal de comunicação não executado em 
+segundo plano no ambiente de shell atual.
 
 @item lithist
-If enabled, and the @code{cmdhist}
-option is enabled, multi-line commands are saved to the history with
-embedded newlines rather than using semicolon separators where possible.
+Se habilitado, e a opção @code{cmdhist} estiver habilitada, comandos de 
+múltiplas linhas são salvos no histórico com marcadores de novas linhas 
+embutidos an invés de utilizar separadores de ponto e vírgula onde 
+possível.
 
 @item login_shell
-The shell sets this option if it is started as a login shell
-(@pxref{Invoking Bash}).
-The value may not be changed.
+O shell configura essa opção se ele (shell) foi inicializado como um 
+shell de login (veja-se @ref{Invoking Bash}).
+O valor não pode ser modificado.
 
 @item mailwarn
-If set, and a file that Bash is checking for mail has been  
-accessed since the last time it was checked, the message
-@code{"The mail in @var{mailfile} has been read"} is displayed.
+Se configurado, e um arquivo que Bash estiver verificando por 
+correspondência eletrônica tiver sido acessado desde a última vez que 
+ele foi acessado, então a mensagem @code{"A correspondência em 
+@var{mailfile} foi lida"} é exibida.
 
 @item no_empty_cmd_completion
-If set, and Readline is being used, Bash will not attempt to search
-the @env{PATH} for possible completions when completion is attempted
-on an empty line.
+Se configurado, e Readline estiver sendo utilizada, Bash não tentará 
+procurar no @env{PATH} por possíveis completações quando a completação 
+for tentada em uma linha vazia.
 
 @item nocaseglob
-If set, Bash matches filenames in a case-insensitive fashion when
-performing filename expansion.
+Se configurado, Bash coincide nomes de arquivos de forma a ignorar a 
+diferença entre maiúsculas e minúsculas quando da realização da expansão 
+de nome de arquivo.
 
 @item nocasematch
-If set, Bash matches patterns in a case-insensitive fashion when
-performing matching while executing @code{case} or @code{[[}
-conditional commands.
+Se configurado, Bash coincide modelos de forma a ignorar a diferença 
+entre maiúsculas e minúsculas quando da realização da operação de 
+coincidência enquanto estiver executando os comandos condicionais 
+@code{case} ou @code{[[}.
 
 @item nullglob
-If set, Bash allows filename patterns which match no
-files to expand to a null string, rather than themselves.
+Se configurado, Bash permite que modelos de nome de arquivo os quais não 
+coincidem com nenhum arquivo sejam expandidos para uma sequência de 
+caracteres nula, ao invés dos próprios modelos.
 
 @item progcomp
-If set, the programmable completion facilities
-(@pxref{Programmable Completion}) are enabled.
-This option is enabled by default.
+Se configurado, as facilidades da completação programável 
+(veja-se @ref{Programmable Completion}) são habilitadas.
+Essa opção está habilitada por padrão.
 
 @item promptvars
-If set, prompt strings undergo
-parameter expansion, command substitution, arithmetic
-expansion, and quote removal after being expanded
-as described below (@pxref{Controlling the Prompt}).
-This option is enabled by default.
+Se configurado, apresenta sequências de caracteres como prompt sujeitas 
+a expansão de parâmetro, substituição de comando, expansão aritmética e 
+remoção de aspas, após ser expandida conforme descrito abaixo 
+(veja-se @ref{Controlling the Prompt}).
+Essa opção está habilitada por padrão.
 
 @item restricted_shell
-The shell sets this option if it is started in restricted mode
-(@pxref{The Restricted Shell}).
-The value may not be changed.
-This is not reset when the startup files are executed, allowing
-the startup files to discover whether or not a shell is restricted.
+O shell configura essa opção se ele for inicializado em modo restrito 
+(veja-se @ref{The Restricted Shell}).
+O valor não pode ser modificado.
+Isso não é reconfigurado quando os arquivos de inicialização são 
+executados, permitindo que os arquivos de inicialização descubram se o 
+shell é restrito ou não.
 
 @item shift_verbose
-If this is set, the @code{shift}
-builtin prints an error message when the shift count exceeds the
-number of positional parameters.
+Se isso estiver configurado, então o comando interno @code{shift} 
+imprime uma mensagem de erro quando a contagem de deslocamento exceder o 
+número de parâmetros posicionais.
 
 @item sourcepath
-If set, the @code{source} builtin uses the value of @env{PATH}
-to find the directory containing the file supplied as an argument.
-This option is enabled by default.
+Se configurado, o comando interno @code{source} utiliza o valor de 
+@env{PATH} para encontrar o diretório contendo o arquivo fornecido como 
+um argumento.
+Essa opção está habilitada por padrão.
 
 @item xpg_echo
-If set, the @code{echo} builtin expands backslash-escape sequences
-by default.
+Se configurado, então o comando interno @code{echo} expande sequências 
+de escape de barra invertida por padrão.
 
 @end table
 
 @noindent
-The return status when listing options is zero if all @var{optnames}
-are enabled, non-zero otherwise.
-When setting or unsetting options, the return status is zero unless an
-@var{optname} is not a valid shell option.
+O código de retorno quando da listagem de opções é zero se todos os 
+@var{optnames} estiverem habilitados, e diferente de zero do contrário.
+Quando configurando ou desconfigurando opções, o código de retorno é 
+zero a menos que um @var{optname} não seja uma opção de shell válida.
 @end table
 
 @node Special Builtins
 @section Special Builtins
 @cindex special builtin
 
-For historical reasons, the @sc{posix} standard has classified
-several builtin commands as @emph{special}.
-When Bash is executing in @sc{posix} mode, the special builtins
-differ from other builtin commands in three respects:
+Por razões históricas, o padrão @sc{posix} classificou vários comandos 
+internos como @emph{special}.
+Quando Bash está executando no modo @sc{posix}, os comandos internos 
+especiais diferem de outros comandos internos em três aspectos:
 
 @enumerate
 @item
-Special builtins are found before shell functions during command lookup.
+Comandos internos especiais são encontrados antes das funções de shell 
+durante a procura de comando.
 
 @item
-If a special builtin returns an error status, a non-interactive shell exits.
+Se um comando interno especial retornar um código de erro, um shell não 
+interativo sai.
 
 @item
-Assignment statements preceding the command stay in effect in the shell
-environment after the command completes.
+Declarações de atribuição precedendo o comando permanecem em efeito no 
+ambiente do shell após o comando completar.
 @end enumerate
 
-When Bash is not executing in @sc{posix} mode, these builtins behave no
-differently than the rest of the Bash builtin commands.
-The Bash @sc{posix} mode is described in @ref{Bash POSIX Mode}. 
+Quando Bash não está executando no modo @sc{posix}, estes comandos 
+internos se comportam sem nenhuma diferença do restante dos comandos 
+internos ao Bash.
+O modo @sc{posix} do Bash está descrito em @ref{Bash POSIX Mode}.
 
-These are the @sc{posix} special builtins:
+Estes são os comandos internos especiais do @sc{posix}:
 @example
 @w{break : . continue eval exec exit export readonly return set}
 @w{shift trap unset}
@@ -5463,73 +5474,77 @@ These are the @sc{posix} special builtins:
 @chapter Shell Variables
 
 @menu
-* Bourne Shell Variables::	Variables which Bash uses in the same way
-				as the Bourne Shell.
-* Bash Variables::		List of variables that exist in Bash.
+* Bourne Shell Variables::	Variáveis as quais Bash utiliza da mesma 
+				forma que o Shell Bourne.
+* Bash Variables::		Lista de variáveis que existem no Bash.
 @end menu
 
-This chapter describes the shell variables that Bash uses.
-Bash automatically assigns default values to a number of variables.
+Este capítulo descreve as variáveis de shell que Bash utiliza.
+Bash automaticamente atribui valores padrão a um número de variáveis.
 
 @node Bourne Shell Variables
 @section Bourne Shell Variables
 
-Bash uses certain shell variables in the same way as the Bourne shell.
-In some cases, Bash assigns a default value to the variable.
+Bash utiliza certas variáveis de shell da mesma maneira que o shell 
+Bourne.
+Em alguns casos, Bash atribui um valor padrão para a variável.
 
 @vtable @code
 
 @item CDPATH
-A colon-separated list of directories used as a search path for
-the @code{cd} builtin command.
+Uma lista de diretórios separados por vírgula utilizado como um caminho 
+de pesquisa para o comando interno @code{cd}.
 
 @item HOME
-The current user's home directory; the default for the @code{cd} builtin
-command.
-The value of this variable is also used by tilde expansion
-(@pxref{Tilde Expansion}).
+O diretório home do usuário atual; o padrão para o comando interno 
+@code{cd}.
+O valor dessa variável também é utilizado pela expansão de til 
+(veja-se @ref{Tilde Expansion}).
 
 @item IFS
-A list of characters that separate fields; used when the shell splits
-words as part of expansion.
+Uma lista de caracters que separam campos; utilizada quando o shell 
+divide palavras como parte da expansão.
 
 @item MAIL
-If this parameter is set to a filename or directory name
-and the @env{MAILPATH} variable
-is not set, Bash informs the user of the arrival of mail in
-the specified file or Maildir-format directory.
+Se esse parâmetro estiver configurado para um nome de arquivo ou nome de 
+diretório e a variável @env{MAILPATH} não estiver configurada, Bash 
+informa o usuário da chegada de correspondência no arquivo especificado 
+ou no diretório no formato Maildir.
 
 @item MAILPATH
-A colon-separated list of filenames which the shell periodically checks
-for new mail.
-Each list entry can specify the message that is printed when new mail
-arrives in the mail file by separating the filename from the message with
-a @samp{?}.
-When used in the text of the message, @code{$_} expands to the name of
-the current mail file.
+Uma lista de nomes de arquivos, separados por vírgula, nos quais o shell 
+periodicamente verifica a existência de correspondência nova.
+Cada entrada da lista pode especificar a mensagem que é impressa quando 
+uma correspondência nova chega no arquivo de correspondência, 
+separando-se o nome de arquivo da mensagem com um @samp{?}.
+Quando utilizado no texto da mensagem, @code{$_} expande para o nome do 
+arquivo de correspondência atual.
 
 @item OPTARG
-The value of the last option argument processed by the @code{getopts} builtin.
+O valor do último argumento opção processado pelo comando interno 
+@code{getopts}.
 
 @item OPTIND
-The index of the last option argument processed by the @code{getopts} builtin.
+O índice do último argumento opção processado pelo comando interno 
+@code{getopts}.
 
 @item PATH
-A colon-separated list of directories in which the shell looks for
-commands.
-A zero-length (null) directory name in the value of @code{PATH} indicates the
-current directory.
-A null directory name may appear as two adjacent colons, or as an initial
-or trailing colon.
-
+Uma lista de diretórios separados por vírgula nos quais o shell busca 
+por comandos.
+Um nome de diretório de tamanho zero (nulo) no valor de @code{PATH} 
+indica o diretório atual.
+Um nome de diretório nulo pode aparecer como duas vírgulas adjacentes, 
+ou como uma vírgula inicial ou final.
 
 @item PS1
-The primary prompt string.  The default value is @samp{\s-\v\$ }.
-@xref{Controlling the Prompt}, for the complete list of escape
-sequences that are expanded before @env{PS1} is displayed.
+A sequência de caracteres primária de prompt.   O valor padrão é 
+@samp{\s-\v\$ }.   Veja-se @ref{Controlling the Prompt}, para a lista 
+completa de sequências de escape que são expandidas antes que @env{PS1} 
+seja exibida.
 
 @item PS2
-The secondary prompt string.  The default value is @samp{> }.
+A sequência de caracteres secundária de prompt.   O valor padrão é 
+@samp{> }.
 
 @end vtable
 
