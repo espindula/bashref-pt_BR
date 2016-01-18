@@ -1,3 +1,6 @@
+2016-jan-18	Translated the following sections and subsections:
+		5.2 - Bash Variables (translated until "FUNCNAME")
+
 2016-jan-11	Translated the following sections and subsections:
 		4.3 - Modifyins Shell Behavior (translated 
 		4.3.2 - The Shopt Builtin - from "lastpipe" up to 
