@@ -5551,304 +5551,316 @@ A sequência de caracteres secundária de prompt.   O valor padrão é
 @node Bash Variables
 @section Bash Variables
 
-These variables are set or used by Bash, but other shells
-do not normally treat them specially.
+Estas variáveis são configuradas ou utilizadas por Bash, porém outros 
+shells normalmente não tratam elas especialmente.
 
-A few variables used by Bash are described in different chapters:
-variables for controlling the job control facilities
-(@pxref{Job Control Variables}).
+Umas poucas variáveis utilizadas por Bash estão descritas em diferentes 
+capítulos: variáveis para controlar as facilidades de controle de 
+tarefas (veja-se @ref{Job Control Variables}).
 
 @vtable @code
 
 @item BASH
-The full pathname used to execute the current instance of Bash.
+O caminho completo utilizado para executar a instância atual de Bash.
 
 @item BASHOPTS
-A colon-separated list of enabled shell options.  Each word in
-the list is a valid argument for the @option{-s} option to the
-@code{shopt} builtin command (@pxref{The Shopt Builtin}).
-The options appearing in @env{BASHOPTS} are those reported
-as @samp{on} by @samp{shopt}.
-If this variable is in the environment when Bash
-starts up, each shell option in the list will be enabled before
-reading any startup files.  This variable is readonly.
+Uma lista separada por vírgula das opções habilitadas de shell.   Cada 
+palavra na lista é um argumento válido para a opção @option{-s} ao 
+comando interno @code{shopt} (veja-se @ref{The Shopt Builtin}).
+As opções que aparecem em @env{BASHOPTS} são aquelas relatadas como 
+@samp{on} por @samp{shopt}.
+Se essa variável estiver no ambiente quando Bash inicializar, então cada 
+opção de shell na lista será habilitada antes da leitura de quaisquer 
+arquivos de inicialização.   Essa variável é somente leitura.
 
 @item BASHPID
-Expands to the process ID of the current Bash process.
-This differs from @code{$$} under certain circumstances, such as subshells
-that do not require Bash to be re-initialized.
+Expande para o ID de processo do processo Bash atual.
+Isso difere de @code{$$} sob certas circunstâncias, tais como subshells 
+que não exigem que Bash seja reinicializado.
 
 @item BASH_ALIASES
-An associative array variable whose members correspond to the internal
-list of aliases as maintained by the @code{alias} builtin.
-(@pxref{Bourne Shell Builtins}).
-Elements added to this array appear in the alias list; unsetting array
-elements cause aliases to be removed from the alias list.
+Uma variável de vetor associativo cujos membros correspondem à lista 
+interna de apelidos conforme mantida pelo comando interno @code{alias}.
+(veja-se @ref{Bourne Shell Builtins}).
+Os elementos adicionados a esse vetor aparecem na lista de apelidos; 
+desconfigurar elementos do vetor faz com que os apelidos sejam removidos 
+da lista de apelidos.
 
 @item BASH_ARGC
-An array variable whose values are the number of parameters in each
-frame of the current bash execution call stack.  The number of
-parameters to the current subroutine (shell function or script executed
-with @code{.} or @code{source}) is at the top of the stack.  When a
-subroutine is executed, the number of parameters passed is pushed onto
+Uma variável de vetor cujos valores são o número de parâmetros em cada 
+quadro da pilha de chamada de execução do bash atual.   O número de 
+parâmetros para a subrotina atual (função de shell ou script executado 
+com @code{.} ou @code{source}) está no topo da pilha.   Quando uma 
+subrotina é executada, o número de parâmetros passado é empurrado em 
 @code{BASH_ARGC}.
-The shell sets @code{BASH_ARGC} only when in extended debugging mode
-(see @ref{The Shopt Builtin}
-for a description of the @code{extdebug} option to the @code{shopt}
-builtin).
+O shell configura @code{BASH_ARGC} somente quando estiver em modo de 
+depuração extendido (veja-se @ref{The Shopt Builtin} para uma descrição 
+da opção @code{extdebug} para o comando interno @code{shopt}).
 
 @item BASH_ARGV
-An array variable containing all of the parameters in the current bash
-execution call stack.  The final parameter of the last subroutine call
-is at the top of the stack; the first parameter of the initial call is
-at the bottom.  When a subroutine is executed, the parameters supplied
-are pushed onto @code{BASH_ARGV}.
-The shell sets @code{BASH_ARGV} only when in extended debugging mode
-(see @ref{The Shopt Builtin}
-for a description of the @code{extdebug} option to the @code{shopt}
-builtin).
+Um variável de vetor contendo todos os parâmetros na pilha de chamada de 
+execução do bash atual.   O parâmetro final da última chamada de 
+subrotina está no topo da pilha; o primeiro parâmetro da chamada inicial 
+está embaixo.   Quando uma subrotina é executada, os parâmetros 
+fornecidos são empurrados em @code{BASH_ARGV}.
+O shell configura @code{BASH_ARGV} somente quando estiver em modo de 
+depuração extendido (veja-se @ref{The Shopt Builtin} para uma descrição 
+da opção @code{extdebug} para o comando interno @code{shopt}).
 
 @item BASH_CMDS
-An associative array variable whose members correspond to the internal
-hash table of commands as maintained by the @code{hash} builtin
-(@pxref{Bourne Shell Builtins}).
-Elements added to this array appear in the hash table; unsetting array
-elements cause commands to be removed from the hash table.
+Uma variável vetor associativo cujos membros correspondem à tabela de 
+comandos do hash interno conforme mantida pelo comando interno 
+@code{hash} (veja-se @ref{Bourne Shell Builtins}).
+Os elementos adicionados a esse vetor aparecem na tabela de hash; 
+desconfigurar elementos do vetor faz com que comandos sejam removidos da 
+tabela de hash.
 
 @item BASH_COMMAND
-The command currently being executed or about to be executed, unless the
-shell is executing a command as the result of a trap,
-in which case it is the command executing at the time of the trap.
+O comando atualmente sendo executado ou prestes a ser executado, a menos 
+que o shell esteja executando um comando como resultado de um coletor, 
+caso no qual é o comando em execução ao tempo do coletor.
 
 @item BASH_COMPAT
-The value is used to set the shell's compatibility level.
-@xref{The Shopt Builtin}, for a description of the various compatibility
-levels and their effects.
-The value may be a decimal number (e.g., 4.2) or an integer (e.g., 42)
-corresponding to the desired compatibility level.
-If @code{BASH_COMPAT} is unset or set to the empty string, the compatibility
-level is set to the default for the current version.
-If @code{BASH_COMPAT} is set to a value that is not one of the valid
-compatibility levels, the shell prints an error message and sets the
-compatibility level to the default for the current version.
-The valid compatibility levels correspond to the compatibility options
-accepted by the @code{shopt} builtin described above (for example,
-@var{compat42} means that 4.2 and 42 are valid values).
-The current version is also a valid value.
+O valor é utilizado para configurar o nível de compatibilidade do shell.
+Veja-se @ref{The Shopt Builtin}, para uma descrição dos vários níveis de 
+compatibilidade e os efeitos deles.
+O valor pode ser um número decimal (por exemplo, 4.2) ou um inteiro (por 
+exemplo, 42) correspondente ao nível de compatibilidade desejado.
+Se @code{BASH_COMPAT} for desconfigurado ou configurado para a sequência 
+de caracteres vazia, então o nível de compatibilidade é configurado para 
+o padrão para a versão atual.
+Se @code{BASH_COMPAT} for configurada para um valor que não seja um dos 
+níveis de compatibilidade válidos, então o shell imprime uma mensagem de 
+erro e configura o nível de compatibilidade para o padrão para a versão 
+atual.
+Os níveis de compatibilidade válidos correspondem às opções de 
+compatibilidade aceitas pelo comando interno @code{shopt} descrito acima 
+(por exemplo, @var{compat42} significa que 4.2 e 42 são valores 
+válidos).
+A versão atual também é um valor válido.
 
 @item BASH_ENV
-If this variable is set when Bash is invoked to execute a shell
-script, its value is expanded and used as the name of a startup file
-to read before executing the script.  @xref{Bash Startup Files}.
+Se essa variável for configurada quando Bash for invocado para executar 
+um script de shell, então o valor dela é expandido e utilizado como o 
+nome de um arquivo de inicialização a ser lido antes de executar o 
+script.   Veja-se @ref{Bash Startup Files}.
 
 @item BASH_EXECUTION_STRING
-The command argument to the @option{-c} invocation option.
+O argumento de comando para a opção de invocação @option{-c}.
 
 @item BASH_LINENO
-An array variable whose members are the line numbers in source files
-where each corresponding member of @var{FUNCNAME} was invoked.
-@code{$@{BASH_LINENO[$i]@}} is the line number in the source file
-(@code{$@{BASH_SOURCE[$i+1]@}}) where
-@code{$@{FUNCNAME[$i]@}} was called (or @code{$@{BASH_LINENO[$i-1]@}} if
-referenced within another shell function). 
-Use @code{LINENO} to obtain the current line number.
+Uma variável de vetor cujos membros são os números de linha em arquivos 
+fonte onde cada número correspondente de @var{FUNCNAME} foi invocado.
+@code{$@{BASH_LINENO[$i]@}} é o número de linha no arquivo fonte 
+(@code{$@{BASH_SOURCE[$i+1]@}}) onde @code{$@{FUNCNAME[$i]@}} foi 
+chamado (ou @code{$@{BASH_LINENO[$i-1]@}} se referenciado dentro de uma 
+outra função de shell).
+Utilize @code{LINENO} para obter o número de linha atual.
 
 @item BASH_REMATCH
-An array variable whose members are assigned by the @samp{=~} binary
-operator to the @code{[[} conditional command
-(@pxref{Conditional Constructs}).
-The element with index 0 is the portion of the string
-matching the entire regular expression.
-The element with index @var{n} is the portion of the
-string matching the @var{n}th parenthesized subexpression.
-This variable is read-only.
+Uma variável vetor cujos membros são atribuidos pelo operador binário 
+@samp{=~} para o comando condicional @code{[[}
+(veja-se @ref{Conditional Constructs}).
+O elemento com indice 0 é a porção da sequência de caracteres que 
+coincide com a expressão regular inteira.
+O elemento com indice @var{n} é a porção da sequência de caracteres que 
+coincide com a @var{n}ézima subexpressão nos parênteses.
+Essa variável é somente leitura.
 
 @item BASH_SOURCE
-An array variable whose members are the source filenames where the
-corresponding shell function names in the @code{FUNCNAME} array
-variable are defined.
-The shell function @code{$@{FUNCNAME[$i]@}} is defined in the file
-@code{$@{BASH_SOURCE[$i]@}} and called from @code{$@{BASH_SOURCE[$i+1]@}}
+Uma variável vetor cujos membros são os nomes de arquivos fonte onde os 
+nomes de função de shell correspondentes na variável vetor 
+@code{FUNCNAME} estão definidos.
+A função de shell @code{$@{FUNCNAME[$i]@}} está definida no arquivo 
+@code{$@{BASH_SOURCE[$i]@}} e chamada a partir de 
+@code{$@{BASH_SOURCE[$i+1]@}}
 
 @item BASH_SUBSHELL
-Incremented by one within each subshell or subshell environment when
-the shell begins executing in that environment.
-The initial value is 0.
+Incrementada de um dentro de cada subshell ou ambiente de subshell 
+quando o shell inicia sua execução dentro daquele ambiente.
+O valor inicial é 0.
 
 @item BASH_VERSINFO
-A readonly array variable (@pxref{Arrays})
-whose members hold version information for this instance of Bash.
-The values assigned to the array members are as follows:
+Uma variável vetor somente leitura (veja-se @ref{Arrays}) cujos membros 
+mantém informação de versão para essa instância de Bash.
+Os valores atribuidos aos membros do vetor são conforme a seguir:
 
 @table @code
 
 @item BASH_VERSINFO[0]
-The major version number (the @var{release}).
+O número de versão maior (o @var{release}).
 
 @item BASH_VERSINFO[1]
-The minor version number (the @var{version}).
+O número de versão menor (o @var{version}).
 
 @item BASH_VERSINFO[2]
-The patch level.
+O nível de correção.
 
 @item BASH_VERSINFO[3]
-The build version.
+A versão de construção.
 
 @item BASH_VERSINFO[4]
-The release status (e.g., @var{beta1}).
+O estado de lançamento (por exemplo, @var{beta1}).
 
 @item BASH_VERSINFO[5]
-The value of @env{MACHTYPE}.
+O valor de @env{MACHTYPE}.
 @end table
 
 @item BASH_VERSION
-The version number of the current instance of Bash.
+O número de versão da instância atual de Bash.
 
 @item BASH_XTRACEFD
-If set to an integer corresponding to a valid file descriptor, Bash
-will write the trace output generated when @samp{set -x}
-is enabled to that file descriptor.
-This allows tracing output to be separated from diagnostic and error
-messages.
-The file descriptor is closed when @code{BASH_XTRACEFD} is unset or assigned
-a new value.
-Unsetting @code{BASH_XTRACEFD} or assigning it the empty string causes the
-trace output to be sent to the standard error.
-Note that setting @code{BASH_XTRACEFD} to 2 (the standard error file
-descriptor) and then unsetting it will result in the standard error
-being closed.
+Se configurado para um número inteiro correspondente a um descritor de 
+arquivo válido, então Bash escreverá a saída de rastreamento gerada 
+quando @samp{set -x} for habilitada para aquele descritor de arquivo.
+Isso permite que a saída de rastreamento seja separada das mensagens de 
+diagnóstico e erro.
+O descritor de arquivo é fechado quando @code{BASH_XTRACEFD} for 
+desconfigurado ou um novo valor for atribuido.
+Desconfigurar @code{BASH_XTRACEFD} ou lhe atribuir a sequência de 
+caracteres vazia faz com que a saída de rastreamento seja enviada para a 
+saída de erro padrão.
+Note que configurar @code{BASH_XTRACEFD} para 2 (o descritor de arquivo 
+de erro padrão) e então desconfigurá-lo resultará na saída de erro 
+padrão ser fechada.
 
 @item CHILD_MAX
-Set the number of exited child status values for the shell to remember.
-Bash will not allow this value to be decreased below a @sc{posix}-mandated
-minimum, and there is a maximum value (currently 8192) that this may
-not exceed.
-The minimum value is system-dependent.
+Configura o número de valores de estado de processos filhos que sairam 
+para que o shell se lembre.
+Bash não permitirá que esse valor seja decrementado abaixo de um mínimo 
+do obrigado pelo padrão @sc{posix}, e existe um valor minimo (atualmente 
+8192) que isso não pode exceder.
+O valor minimo é dependente de sistema.
 
 @item COLUMNS
-Used by the @code{select} command to determine the terminal width
-when printing selection lists.
-Automatically set if the @code{checkwinsize} option is enabled
-(@pxref{The Shopt Builtin}), or in an interactive shell upon receipt of a
-@code{SIGWINCH}.
+Utilizado pelo comando @code{select} para determinar a largura do 
+terminal quando da impressão de listas de seleção.
+Automaticamente configurado se a opção @code{checkwinsize} for 
+habilitada (veja-se @ref{The Shopt Builtin}), ou em um shell interativo 
+quando do recebimento de um @code{SIGWINCH}.
 
 @item COMP_CWORD
-An index into @env{$@{COMP_WORDS@}} of the word containing the current
-cursor position.
-This variable is available only in shell functions invoked by the
-programmable completion facilities (@pxref{Programmable Completion}).
+Um indice em @env{$@{COMP_WORDS@}} de uma palavra contendo a posição 
+atual do cursor.
+Essa variável está disponível apenas em funções de shell invocadas pelas 
+facilidades de completação programáveis (veja-se
+@ref{Programmable Completion}).
 
 @item COMP_LINE
-The current command line.
-This variable is available only in shell functions and external
-commands invoked by the
-programmable completion facilities (@pxref{Programmable Completion}).
+A linha de comando atual.
+Essa variável está disponivel somente em funções de shell e comandos 
+externos invocados pelas facilidades de completação programáveis
+@ref{Programmable Completion}).
 
 @item COMP_POINT
-The index of the current cursor position relative to the beginning of
-the current command.
-If the current cursor position is at the end of the current command,
-the value of this variable is equal to @code{$@{#COMP_LINE@}}.
-This variable is available only in shell functions and external
-commands invoked by the
-programmable completion facilities (@pxref{Programmable Completion}).
+O indice da posição atual do cursor relativo ao inicio do comando atual.
+Se a posição atual do cursor estiver no inicio do comando atual, então o 
+valor dessa variável é igual a @code{$@{#COMP_LINE@}}.
+Essa variável está disponivel somente em funções de shell e comandos 
+externos invocados pelas facilidades de completação programáveis
+@ref{Programmable Completion}).
 
 @item COMP_TYPE
-Set to an integer value corresponding to the type of completion attempted
-that caused a completion function to be called:
-@var{TAB}, for normal completion,
-@samp{?}, for listing completions after successive tabs,
-@samp{!}, for listing alternatives on partial word completion,
-@samp{@@}, to list completions if the word is not unmodified,
-or
-@samp{%}, for menu completion.
-This variable is available only in shell functions and external
-commands invoked by the
-programmable completion facilities (@pxref{Programmable Completion}).
+Configurado para um valor inteiro correspondente ao tipo de completação 
+tentada que fez com que uma função de completação fosse chamada:
+@var{TAB}, para completação normal,
+@samp{?}, para listagem de completações após sucessivos tabs,
+@samp{!}, para listar alternativas sobre completação de palavra parcial,
+@samp{@@}, para listar completações, se a palavra não estiver 
+imodificada, ou
+@samp{%}, para completação de menu.
+Essa variável está disponivel somente em funções de shell e comandos 
+externos invocados pelas facilidades de completação programáveis
+@ref{Programmable Completion}).
 
 @item COMP_KEY
-The key (or final key of a key sequence) used to invoke the current
-completion function.
+A chave (ou chave final de uma sequência de chave) utilizada para 
+invocar a função de completação atual.
 
 @item COMP_WORDBREAKS
-The set of characters that the Readline library treats as word
-separators when performing word completion.
-If @code{COMP_WORDBREAKS} is unset, it loses its special properties,
-even if it is subsequently reset.
+O conjunto de caracteres que a biblioteca Readline trata como 
+separadores de palavra quando da realização de completação de palavra.
+Se @code{COMP_WORDBREAKS} estiver desconfigurada, então ela perde suas 
+propriedades especiais, mesmo se ela for reconfigurada subsequentemente.
 
 @item COMP_WORDS
-An array variable consisting of the individual
-words in the current command line.
-The line is split into words as Readline would split it, using
-@code{COMP_WORDBREAKS} as described above.
-This variable is available only in shell functions invoked by the
-programmable completion facilities (@pxref{Programmable Completion}).
+Uma variável vetor consistente de palavras individuais na linha de 
+comando atual.
+A linha é dividida em palavras como Readline as dividiria, utilizando 
+@code{COMP_WORDBREAKS} conforme descrito acima.
+Essa variável está disponivel somente em funções de shell invocadas 
+pelas facilidades de completação programáveis (veja-se 
+@ref{Programmable Completion}).
 
 @item COMPREPLY
-An array variable from which Bash reads the possible completions
-generated by a shell function invoked by the programmable completion
-facility (@pxref{Programmable Completion}).
-Each array element contains one possible completion.
+Uma variável vetor a partir de quem Bash lê as completações possiveis 
+geradas por uma função de shell invocada pela facilidade de completação 
+programável (veja-se @ref{Programmable Completion}).
+Cada elemento do vetor contém uma possivel completação.
 
 @item COPROC
-An array variable created to hold the file descriptors
-for output from and input to an unnamed coprocess (@pxref{Coprocesses}).
+Uma variável vetor criada para manter os descritores de arquivo para 
+saída de e entrada para um coprocesso não nomeado 
+(veja-se @ref{Coprocesses}).
 
 @item DIRSTACK
-An array variable containing the current contents of the directory stack.
-Directories appear in the stack in the order they are displayed by the
-@code{dirs} builtin.
-Assigning to members of this array variable may be used to modify
-directories already in the stack, but the @code{pushd} and @code{popd}
-builtins must be used to add and remove directories.
-Assignment to this variable will not change the current directory.
-If @env{DIRSTACK} is unset, it loses its special properties, even if
-it is subsequently reset.
+Uma variável vetor contendo o conteúdo atual da pilha de diretório.
+Diretórios aparecem na pilha na ordem que eles são exibidos pelo comando 
+interno @code{dirs}.
+A atribuição a membros dessa variável vetor pode ser utilizada para 
+modificar diretórios que já estejam na pilha, porém os comandos internos 
+@code{pushd} e @code{popd} devem necessariamente ser utilizados para 
+adicionar e para remover diretórios.
+A atribuição a essa variável não mudará o diretório atual.
+Se @env{DIRSTACK} for desconfigurada, então ela perde suas propriedades 
+especiais, mesmo se reconfigurada subsequentemente.
 
 @item EMACS
-If Bash finds this variable in the environment when the shell
-starts with value @samp{t}, it assumes that the shell is running in an
-Emacs shell buffer and disables line editing.
+Se Bash encontra essa variável no ambiente quando o shell inicializa com 
+valor @samp{t}, então Bash assume que o shell está executando em um 
+buffer de shell Emacs e desabilita a edição de linha.
 
 @item ENV
-Similar to @code{BASH_ENV}; used when the shell is invoked in
-@sc{posix} Mode (@pxref{Bash POSIX Mode}).
+Semelhante a @code{BASH_ENV}; utilizado quando o shell for invocado no 
+modo @sc{posix} (veja-se @ref{Bash POSIX Mode}).
 
 @item EUID
-The numeric effective user id of the current user.  This variable
-is readonly.
+O id numérico de usuário efetivo do usuário atual.   Essa variável é 
+somente leitura.
 
 @item FCEDIT
-The editor used as a default by the @option{-e} option to the @code{fc}
-builtin command.
+O editor utilizado como um padrão para a opção @option{-e} para o 
+comando interno @code{fc}.
 
 @item FIGNORE
-A colon-separated list of suffixes to ignore when performing
-filename completion.
-A filename whose suffix matches one of the entries in 
-@env{FIGNORE}
-is excluded from the list of matched filenames.  A sample
-value is @samp{.o:~}
+Uma lista separada por vírgula de sufixos a serem ignorados quando da 
+realização da completação de nome de arquivo.
+Um nome de arquivo cujo sufixo coincide com uma das entradas em 
+@env{FIGNORE} é excluido da lista de nomes de arquivos coincididos. Um 
+valor modelo é @samp{.o:~}
 
 @item FUNCNAME
-An array variable containing the names of all shell functions
-currently in the execution call stack.
-The element with index 0 is the name of any currently-executing
-shell function.
-The bottom-most element (the one with the highest index)
-is @code{"main"}.
-This variable exists only when a shell function is executing.
-Assignments to @env{FUNCNAME} have no effect and return an error status.
-If @env{FUNCNAME} is unset, it loses its special properties, even if
-it is subsequently reset.
+Uma variável vetor contendo os nomes de todas as funções de shell 
+atualmente na pilha de chamada de execução.
+O elemento com indice 0 é o nome de qualquer função de shell atualmente 
+em execução.
+O elemento mais embaixo (aquele com o indice mais alto) é @code{"main"}.
+Essa variável existe somente quando uma função de shell está executando.
+Atribuições a @env{FUNCNAME} não tem efeito e retornam um código de 
+erro.
+Se @env{FUNCNAME} for desconfigurada, então ela perde suas propriedades 
+especiais, mesmo se for reconfigurada subsequentemente.
 
-This variable can be used with @code{BASH_LINENO} and @code{BASH_SOURCE}.
-Each element of @code{FUNCNAME} has corresponding elements in
-@code{BASH_LINENO} and @code{BASH_SOURCE} to describe the call stack.
-For instance, @code{$@{FUNCNAME[$i]@}} was called from the file
-@code{$@{BASH_SOURCE[$i+1]@}} at line number @code{$@{BASH_LINENO[$i]@}}.
-The @code{caller} builtin displays the current call stack using this
-information.
+Essa variável pode ser utilizada com @code{BASH_LINENO} e 
+@code{BASH_SOURCE}.
+Cada elemento de @code{FUNCNAME} tem elementos correspondentes em 
+@code{BASH_LINENO} e @code{BASH_SOURCE} para descrever a pilha de 
+chamada.
+Por exemplo, @code{$@{FUNCNAME[$i]@}} foi chamado a partir do arquivo 
+@code{$@{BASH_SOURCE[$i+1]@}} na linha de número 
+@code{$@{BASH_LINENO[$i]@}}.
+O comando interno @code{caller} exibe a pilha de chamada atual 
+utilizando essa informação.
 
 @item FUNCNEST
 If set to a numeric value greater than 0, defines a maximum function
