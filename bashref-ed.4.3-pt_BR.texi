@@ -5863,203 +5863,220 @@ O comando interno @code{caller} exibe a pilha de chamada atual
 utilizando essa informação.
 
 @item FUNCNEST
-If set to a numeric value greater than 0, defines a maximum function
-nesting level.  Function invocations that exceed this nesting level
-will cause the current command to abort.
+Se configurada para um valor numérico maior que 0, define um nível 
+máximo de aninhamento de função.   Invocações de função que excederem 
+esse nível de aninhamento farão com que o comando atual aborte.
 
 @item GLOBIGNORE
-A colon-separated list of patterns defining the set of filenames to
-be ignored by filename expansion.
-If a filename matched by a filename expansion pattern also matches one
-of the patterns in @env{GLOBIGNORE}, it is removed from the list
-of matches.
+Uma lista separada por vírgula de padrões definidores do conjunto de 
+nomes de arquivo a serem ignorados pela expansão de nome de arquivo.
+Se um nome de arquivo coincidido por um modelo de expansão de nome de 
+arquivo também coincide com um dos padrões em @env{GLOBIGNORE}, então 
+esse nome de arquivo é removido da lista de coincidências.
 
 @item GROUPS
-An array variable containing the list of groups of which the current    
-user is a member.
-Assignments to @env{GROUPS} have no effect and return an error status.
-If @env{GROUPS} is unset, it loses its special properties, even if it is
-subsequently reset.
+Uma variável vetor contendo a lista de grupos dos quais o usuário atual 
+é um membro.
+Atribuições a @env{GROUPS} não tem efeito e retornam um código de erro.
+Se @env{GROUPS} for desconfigurada, então ela perde as suas propriedades 
+especiais, mesmo se for reconfigurada subsequentemente.
 
 @item histchars
-Up to three characters which control history expansion, quick
-substitution, and tokenization (@pxref{History Interaction}).
-The first character is the
-@var{history expansion} character, that is, the character which signifies the
-start of a history expansion, normally @samp{!}.  The second character is the
-character which signifies `quick substitution' when seen as the first
-character on a line, normally @samp{^}.  The optional third character is the
-character which indicates that the remainder of the line is a comment when
-found as the first character of a word, usually @samp{#}.  The history
-comment character causes history substitution to be skipped for the
-remaining words on the line.  It does not necessarily cause the shell
-parser to treat the rest of the line as a comment.
+Até três caracteres os quais controlam a expansão de histórico, 
+substituição rápida, e "tokenização" (veja-se
+@ref{History Interaction}).
+O primeiro caracter é o caracter de @var{history expansion}, isto é, o 
+caracter que significa o início de uma expansão de histórico, 
+normalmente @samp{!}.   O segundo caracter é o caracter que significa 
+"substituição rápida" quando visto como o primeiro caracter em uma 
+linha, normalmente @samp{^}.   O terceiro caracter opcional é o caracter 
+que indica que o restante da linha é um comentário quando encontrado 
+como o primeiro caracter de uma palavra, usualmente @samp{#}.   O 
+caracter de comentário do histórico faz com que a substituição de 
+histórico seja saltada para as palavras restantes na linha.   Isso não 
+necessariamente faz com que o analisador do shell trate o resto da linha 
+como um comentário.
 
 @item HISTCMD
-The history number, or index in the history list, of the current
-command.  If @env{HISTCMD} is unset, it loses its special properties,
-even if it is subsequently reset.
+O número do histórico, ou indice na lista de histórico, do comando 
+atual.   Se @env{HISTCMD} for desconfigurada, então ela perde suas 
+propriedades especiais, mesmo se for reconfigurada subsequentemente.
 
 @item HISTCONTROL
-A colon-separated list of values controlling how commands are saved on
-the history list.
-If the list of values includes @samp{ignorespace}, lines which begin
-with a space character are not saved in the history list.
-A value of @samp{ignoredups} causes lines which match the previous
-history entry to not be saved.
-A value of @samp{ignoreboth} is shorthand for
-@samp{ignorespace} and @samp{ignoredups}.
-A value of @samp{erasedups} causes all previous lines matching the
-current line to be removed from the history list before that line
-is saved.
-Any value not in the above list is ignored.
-If @env{HISTCONTROL} is unset, or does not include a valid value, 
-all lines read by the shell parser are saved on the history list, 
-subject to the value of @env{HISTIGNORE}.
-The second and subsequent lines of a multi-line compound command are
-not tested, and are added to the history regardless of the value of
-@env{HISTCONTROL}.
+Uma lista de valores separados por vírgula que controlam como os 
+comandos são salvos na lista de histórico.
+Se a lista de valores inclui @samp{ignorespace}, então as linhas as 
+quais começam com um caracter espaço não são salvas na lista de 
+histórico.
+Um valor de @samp{ignoredups} faz com que as linhas que coincidam com 
+entradas prévias de histórico não sejam salvas.
+Um valor de @samp{ignoreboth} é um atalho para @samp{ignorespace} e 
+@samp{ignoredups}.
+Um valor de @samp{erasedups} faz com que todas as linhas prévias que 
+coincidam com a linha atual sejam removidas da lista de histórico antes 
+que aquela linha seja salva.
+Qualquer valor que não esteja na lista acima é ignorado.
+Se @env{HISTCONTROL} for desconfigurada, ou não incluir um valor válido, 
+então todas as linhas lidas pelo analisador do shell são salvas na lista 
+de histórico, sujeito ao valor de @env{HISTIGNORE}.
+A segunda e subsequentes linhas de um comando composto multi-linha não 
+são testadas, e são adicionadas ao histórico independentemente do valor 
+de @env{HISTCONTROL}.
 
 @item HISTFILE
-The name of the file to which the command history is saved.  The
-default value is @file{~/.bash_history}.
+O nome do arquivo para o qual o histórico de comando é salvo.   O valor 
+padrão é @file{~/.bash_history}.
 
 @item HISTFILESIZE
-The maximum number of lines contained in the history file.
-When this variable is assigned a value, the history file is truncated,
-if necessary, to contain no more than that number of lines
-by removing the oldest entries.
-The history file is also truncated to this size after
-writing it when a shell exits.
-If the value is 0, the history file is truncated to zero size.
-Non-numeric values and numeric values less than zero inhibit truncation.
-The shell sets the default value to the value of @env{HISTSIZE}
-after reading any startup files.
+O número máximo de linhas contidas no arquivo de histórico.
+Quando a essa variável é atribuído um valor, o arquivo de histórico é 
+truncado, se necessário, para conter não mais que aquele número de 
+linhas, removendo-se as entradas mais antigas.
+O arquivo de histórico também é truncado para esse tamanho após 
+escrevê-lo quando um shell sai.
+Se o valor for 0, o arquivo de histórico é truncado para tamanho zero.
+Os valores não numéricos e valores numéricos menores que zero inibem a 
+truncagem.
+O shell configura o valor padrão para o valor de @env{HISTSIZE} após a 
+leitura de quaisquer arquivos de inicialização.
 
 @item HISTIGNORE
-A colon-separated list of patterns used to decide which command
-lines should be saved on the history list.  Each pattern is
-anchored at the beginning of the line and must match the complete
-line (no implicit @samp{*} is appended).  Each pattern is tested
-against the line after the checks specified by @env{HISTCONTROL}
-are applied.  In addition to the normal shell pattern matching
-characters, @samp{&} matches the previous history line.  @samp{&}
-may be escaped using a backslash; the backslash is removed
-before attempting a match. 
-The second and subsequent lines of a multi-line compound command are
-not tested, and are added to the history regardless of the value of
-@env{HISTIGNORE}.
+Uma lista de padrões separados por vírgula utilizado para decidir quais 
+linhas de comandos deveriam ser salvos na lista de histórico.   Cada 
+padrão é ancorado no inicio da linha e deve necessariamente coincidir 
+com a linha completa (nenhum @samp{*} implícito é adicionado).   Cada 
+padrão é testado contra a linha após as checagens especificadas por 
+@env{HISTCONTROL} serem aplicadas.   Em adição aos caracteres de 
+coincidência de padrão normais do shell, @samp{&} coincide com a linha 
+prévia de histórico.   @samp{&} pode ser encapsulada utilizando-se um 
+barra invertida; a barra invertida é removida antes da textativa de 
+coincidência.
+A segunda e subsequentes linhas de um comando composto multi-linha não 
+são testadas, e são adicionadas ao histórico independentemente do valor 
+de @env{HISTIGNORE}.
 
-@env{HISTIGNORE} subsumes the function of @env{HISTCONTROL}.  A
-pattern of @samp{&} is identical to @code{ignoredups}, and a
-pattern of @samp{[ ]*} is identical to @code{ignorespace}. 
-Combining these two patterns, separating them with a colon,
-provides the functionality of @code{ignoreboth}. 
+@env{HISTIGNORE} inclui a função de @env{HISTCONTROL}.   Um padrão de 
+@samp{&} é idêntico a @code{ignoredups}, e um padrão de @samp{[ ]*} é 
+idêntico a @code{ignorespace}.   Combinando-se esses dois padrões, 
+separando-se eles com um vírgula, implementa-se a funcionalidade de 
+@code{ignoreboth}.
 
 @item HISTSIZE
-The maximum number of commands to remember on the history list.
-If the value is 0, commands are not saved in the history list.
-Numeric values less than zero result in every command being saved
-on the history list (there is no limit).
-The shell sets the default value to 500 after reading any startup files.
+O número máximo de comandos a lembrar na lista de histórico.
+Se o valor for 0, então os comandos não são salvos na lista de 
+histórico.
+Valores numéricos menores que zero resultam em cada comando sendo salvo 
+na lista de histórico (não existe limite).
+O shell configura o valor padrão para 500 após a leitura de quaisquer 
+arquivos de configuração.
 
 @item HISTTIMEFORMAT
-If this variable is set and not null, its value is used as a format string
-for @var{strftime} to print the time stamp associated with each history
-entry displayed by the @code{history} builtin.
-If this variable is set, time stamps are written to the history file so
-they may be preserved across shell sessions.
-This uses the history comment character to distinguish timestamps from
-other history lines.
+Se essa variável estiver configurada e não for nula, então o valor dela 
+é utilizado como uma sequência de caracteres de formato para 
+@var{strftime} para imprimir a marca temporal associada com cada entrada 
+de histórico exibida pelo comando interno @code{history}.
+Se essa variável for configurada, então as marcas temporais são escritas 
+no arquivo de histórico de forma que elas podem ser preservadas entre 
+sessões de shell.
+Isso utiliza o caracter de comentário de histórico para distinguir 
+marcas temporais de outras linhas de histórico.
 
 @item HOSTFILE
-Contains the name of a file in the same format as @file{/etc/hosts} that
-should be read when the shell needs to complete a hostname.
-The list of possible hostname completions may be changed while the shell
-is running;
-the next time hostname completion is attempted after the
-value is changed, Bash adds the contents of the new file to the
-existing list.
-If @env{HOSTFILE} is set, but has no value, or does not name a readable file,
-Bash attempts to read 
-@file{/etc/hosts} to obtain the list of possible hostname completions.
-When @env{HOSTFILE} is unset, the hostname list is cleared.
+Contém o nome de um arquivo no mesmo formato que @file{/etc/hosts} que 
+deveria ser lido quando o shell precisasse completar um nome de máquina.
+A lista de possíveis completações de nomes de máquinas pode ser 
+modificada enquanto o shell está em execução; na próxima vez que a 
+completação de nome de máquina for tentada após o valor ser modificado, 
+Bash adiciona o conteúdo do arquivo novo à lista existente.
+Se @env{HOSTFILE} for configurada, porém não tiver valor, ou não nominar 
+um arquivo legível, então Bash tenta ler @file{/etc/hosts} para obter a 
+lista de possíveis completações de nomes de máquina.
+Quando @env{HOSTFILE} for desconfigurada, a lista de nomes de máquina é 
+limpa.
 
 @item HOSTNAME
-The name of the current host.
+O nome da máquina atual.
 
 @item HOSTTYPE
-A string describing the machine Bash is running on.
+Uma sequência de caracteres descrevendo a máquina onde Bash está em 
+execução.
 
 @item IGNOREEOF
-Controls the action of the shell on receipt of an @code{EOF} character
-as the sole input.  If set, the value denotes the number
-of consecutive @code{EOF} characters that can be read as the
-first character on an input line
-before the shell will exit.  If the variable exists but does not
-have a numeric value (or has no value) then the default is 10.
-If the variable does not exist, then @code{EOF} signifies the end of 
-input to the shell.  This is only in effect for interactive shells.
+Controla a ação do shell quando do recebimento de um caracter @code{EOF} 
+como a entrada única.   Se configurada, o valor denota o número de 
+caracteres @code{EOF} consecutivos que podem ser lidos como o primeiro 
+caracter em uma linha de entrada antes que o shell saia.   Se a variável 
+existir, porém não tiver um valor numérico (ou não tiver valor), então o 
+padrão é 10.
+Se a variável não existir, então @code{EOF} significa o fim de entrada 
+para o shell.   Isso está em efeito apenas para shell interativos.
 
 @item INPUTRC
-The name of the Readline initialization file, overriding the default
-of @file{~/.inputrc}.
+O nome do arquivo de inicialização de Readline, prevalecendo sobre o 
+padrão @file{~/.inputrc}.
 
-@item LANG  
-Used to determine the locale category for any category not specifically
-selected with a variable starting with @code{LC_}.
+@item LANG
+Utilizada para determinar a categoria de local para qualquer categoria 
+não selecionada especialmente com uma variável inicializando com 
+@code{LC_}.
 
 @item LC_ALL
-This variable overrides the value of @env{LANG} and any other
-@code{LC_} variable specifying a locale category.
+Essa variável prevalesce sobre o valor de @env{LANG} e qualquer outra 
+variável @code{LC_} especificando uma categoria de local.
 
 @item LC_COLLATE
-This variable determines the collation order used when sorting the
-results of filename expansion, and
-determines the behavior of range expressions, equivalence classes,
-and collating sequences within filename expansion and pattern matching
-(@pxref{Filename Expansion}).
+Essa variável determina a ordem de colação utilizada quando da ordenação 
+dos resultados da expansão de nome de arquivo, e detrmina o 
+comportamento de expressões de intervalo, classes de equivalência, e 
+sequência de colacionamento dentro de expansão de nome de arquivo e 
+coincidências de padrão (veja-se @ref{Filename Expansion}).
 
 @item LC_CTYPE
-This variable determines the interpretation of characters and the
-behavior of character classes within filename expansion and pattern
-matching (@pxref{Filename Expansion}).
+Essa variável determina a interpretação de caracteres e o comportamento 
+de classes de caracteres dentro da expansão de nome de arquivo e 
+coincidências de padrão (veja-se @ref{Filename Expansion}).
 
 @item LC_MESSAGES
-This variable determines the locale used to translate double-quoted
-strings preceded by a @samp{$} (@pxref{Locale Translation}).
+Essa variável determina o local utilizado para traduzir sequências de 
+caracteres encapsuladas entre aspas duplas precedidas por um @samp{$} 
+(veja-se @ref{Locale Translation}).
 
 @item LC_NUMERIC
-This variable determines the locale category used for number formatting.
+Essa variável determina a categoria de local utilizada para formatação 
+de números.
 
 @item LINENO
-The line number in the script or shell function currently executing.
+O número da linha no script ou função de shell atualmente em execução.
 
 @item LINES
-Used by the @code{select} command to determine the column length
-for printing selection lists.
-Automatically set if the @code{checkwinsize} option is enabled
-(@pxref{The Shopt Builtin}), or in an interactive shell upon receipt of a
-@code{SIGWINCH}.
+Utilizada pelo comando @code{select} para determinar a largura da coluna 
+para imprimir listas de seleção.
+Automaticamente configurada se a opção @code{checkwinsize} estiver 
+habilitada (veja-se @ref{The Shopt Builtin}), ou em um shell interativo 
+quando do recebimento de um @code{SIGWINCH}.
 
 @item MACHTYPE
-A string that fully describes the system type on which Bash
-is executing, in the standard @sc{gnu} @var{cpu-company-system} format.
+Uma sequência de caracteres que descreve completamente o tipo de sistema 
+no qual Bash estã em execução, no format  padrão @sc{gnu} 
+@var{cpu-company-system}
 
 @item MAILCHECK
-How often (in seconds) that the shell should check for mail in the
-files specified in the @env{MAILPATH} or @env{MAIL} variables.
-The default is 60 seconds.  When it is time to check
-for mail, the shell does so before displaying the primary prompt.
-If this variable is unset, or set to a value that is not a number
-greater than or equal to zero, the shell disables mail checking.
+Quão frequentemente (em segundos) que o shell deveria verificar a 
+correspondência nos arquivos especificados nas variáveis @env{MAILPATH} 
+ou @env{MAIL}.
+O padrão é 60 segundos.   Quando for tempo da checagem da 
+correspondência, o shell faz isso antes da exibição do prompt primário.
+Se essa variável for desconfigurada, ou configurada para um valor que 
+não seja um número maior que ou igual a zero, então o shell desabilita a 
+checagem de correspondência.
 
 @item MAPFILE
-An array variable created to hold the text read by the
-@code{mapfile} builtin when no variable name is supplied.
+Uma variável vetor criada para manter o texto lido pelo comando interno 
+@code{mapfile} quando nenhum nome de variável for fornecido.
 
 @item OLDPWD
-The previous working directory as set by the @code{cd} builtin.
+O diretório de trabalho prévio conforme configurado pelo comando interno 
+@code{cd}.
 
 @item OPTERR
 If set to the value 1, Bash displays error messages
