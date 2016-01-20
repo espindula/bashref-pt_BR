@@ -6254,23 +6254,26 @@ somente leitura.
 @node Bash Features
 @chapter Bash Features
 
-This chapter describes features unique to Bash.
+Este capítulo descreve características únicas do Bash.
 
 @menu
-* Invoking Bash::		Command line options that you can give
-				to Bash.
-* Bash Startup Files::		When and how Bash executes scripts.
-* Interactive Shells::		What an interactive shell is.
-* Bash Conditional Expressions::	Primitives used in composing expressions for
-				the @code{test} builtin.
-* Shell Arithmetic::		Arithmetic on shell variables.
-* Aliases::			Substituting one command for another.
-* Arrays::			Array Variables.
-* The Directory Stack::		History of visited directories.
-* Controlling the Prompt::	Customizing the various prompt strings.
-* The Restricted Shell::	A more controlled mode of shell execution.
-* Bash POSIX Mode::		Making Bash behave more closely to what
-				the POSIX standard specifies.
+* Invoking Bash::		Opções de linha de comando que você pode 
+				dar ao Bash.
+* Bash Startup Files::		Quando e como Bash executa scripts.
+* Interactive Shells::		O que é um shell interativo.
+* Bash Conditional Expressions::	Rudimentos utilizados na 
+				composição de expressões para o comando 
+				interno @code{test}.
+* Shell Arithmetic::		Aritmética sobre variáveis de shell.
+* Aliases::			Substituindo um comando por outro.
+* Arrays::			Variáveis vetor.
+* The Directory Stack::		Histórico de diretórios visitados.
+* Controlling the Prompt::	Personalizando as várias sequências de 
+				caracteres de prompt.
+* The Restricted Shell::	Um modo mais controlado de execução de 
+				shell.
+* Bash POSIX Mode::		Fazendo o Bash se comportar mais próximo 
+				ao que o padrão POSIX especifica.
 @end menu
 
 @node Invoking Bash
@@ -6282,268 +6285,283 @@ bash [long-opt] [-abefhkmnptuvxdBCDHP] [-o @var{option}] [-O @var{shopt_option}]
 bash [long-opt] -s [-abefhkmnptuvxdBCDHP] [-o @var{option}] [-O @var{shopt_option}] [@var{argument} @dots{}]
 @end example
 
-All of the single-character options used with the @code{set} builtin
-(@pxref{The Set Builtin}) can be used as options when the shell is invoked.
-In addition, there are several multi-character
-options that you can use.  These options must appear on the command
-line before the single-character options to be recognized. 
+Todas as opções de caracter simples utilizadas com o comando interno 
+@code{set} (veja-se @ref{The Set Builtin}) podem ser utilizadas como 
+opções quando o shell for invocado.
+Adcionalmente, existem várias opções multi-caracter que você pode 
+utilizar.   Essas opções devem necessariamente aparecer na linha de 
+comando antes das opções de caracter simples serem reconhecidas.
 
 @table @code
 @item --debugger
-Arrange for the debugger profile to be executed before the shell
-starts.  Turns on extended debugging mode (see @ref{The Shopt Builtin}
-for a description of the @code{extdebug} option to the @code{shopt}
-builtin).
+Organiza para que o perfil de depurador seja executado antes que o shell 
+inicialize.   Liga o modo extendido de depuração (veja-se
+@ref{The Shopt Builtin} para uma descrição da opção @code{extdebug} para 
+o comando interno @code{shopt}.
 
 @item --dump-po-strings
-A list of all double-quoted strings preceded by @samp{$}
-is printed on the standard output
-in the @sc{gnu} @code{gettext} PO (portable object) file format.
-Equivalent to @option{-D} except for the output format.
+Uma lista de todas as sequências de caracteres encapsuladas em aspas 
+duplas precedida por @samp{$} é impressa na saída padrão no formato de 
+arquivo PO (objeto portável) do @sc{gnu} @code{gettext}.
+Equivalente a @option{-D} exceto para o formato de saída.
 
 @item --dump-strings
-Equivalent to @option{-D}.
+Equivalente a @option{-D}.
 
 @item --help
-Display a usage message on standard output and exit successfully.
+Exibe uma mensagem útil na saída padrão e sai com sucesso.
 
 @item --init-file @var{filename}
 @itemx --rcfile @var{filename}
-Execute commands from @var{filename} (instead of @file{~/.bashrc})
-in an interactive shell.
+Executa comandos originados de @var{filename} (ao invés de 
+@file{~/.bashrc}) em um shell interativo.
 
 @item --login
-Equivalent to @option{-l}.
+Equivalente a @option{-l}.
 
 @item --noediting
-Do not use the @sc{gnu} Readline library (@pxref{Command Line Editing})
-to read  command lines when the shell is interactive.
+Não utilizar a biblioteca @sc{gnu} Readline
+(veja-se @ref{Command Line Editing}) para ler linhas de comando quando o 
+shell for interativo.
 
 @item --noprofile
-Don't load the system-wide startup file @file{/etc/profile}
-or any of the personal initialization files
-@file{~/.bash_profile}, @file{~/.bash_login}, or @file{~/.profile}
-when Bash is invoked as a login shell.
+Não carrega o arquivo de inicialização geral de sistema 
+@file{/etc/profile} ou quaisquer dos arquivos pessoais de inicialização 
+@file{~/.bash_profile}, @file{~/.bash_login}, ou @file{~/.profile} 
+quando Bash for invocado como um shell de login.
 
 @item --norc
-Don't read the @file{~/.bashrc} initialization file in an
-interactive shell.  This is on by default if the shell is
-invoked as @code{sh}.
+Não lê o arquivo de inicialização @file{~/.bashrc} em um shell 
+interativo.   Isso está ativado por padrão se o shell for invocado como 
+@code{sh}.
 
 @item --posix
-Change the behavior of Bash where the default operation differs
-from the @sc{posix} standard to match the standard.  This
-is intended to make Bash behave as a strict superset of that
-standard.  @xref{Bash POSIX Mode}, for a description of the Bash
-@sc{posix} mode.
+Modifica o comportamento de Bash onde a operação padrão diferir do 
+padrão @sc{posix} para coincidir com esse padrão.   Isso é entendido 
+como um modo de fazer com que Bash se comporte como um super conjunto 
+estrito daquele padrão.   Veja-se @ref{Bash POSIX Mode}, para uma 
+descrição do modo @sc{posix} de Bash.
 
 @item --restricted
-Make the shell a restricted shell (@pxref{The Restricted Shell}).
+Faz do shell um shell restrito (veja-se @ref{The Restricted Shell}).
 
 @item --verbose
-Equivalent to @option{-v}.  Print shell input lines as they're read.
+Equivalente a @option{-v}.   Imprime as linhas de entrada do shell 
+conforme elas sejam lidas.
 
 @item --version
-Show version information for this instance of
-Bash on the standard output and exit successfully.
+Mosta informação de versão para esta instância de Bash na saída padrão e 
+sai com sucesso.
 @end table
 
-There are several single-character options that may be supplied at
-invocation which are not available with the @code{set} builtin.
+Existem várias opções de caracter simples que podem ser fornecidas na 
+invocação as quais não estão disponíveis com o comando interno 
+@code{set}.
 
 @table @code
 @item -c
-Read and execute commands from the first non-option @var{argument}
-after processing the options, then exit. 
-Any remaining arguments are assigned to the
-positional parameters, starting with @code{$0}.
+Lê e executa comandos a partir da primeira não opção @var{argument} após 
+o processamento das opções, então sai.
+Quaisquer argumentos remanescentes são atribuidos aos parâmetros 
+posicionais, iniciando com @code{$0}.
 
 @item -i
-Force the shell to run interactively.  Interactive shells are
-described in @ref{Interactive Shells}.
+Força o shell a executar interativamente.   Os shell interativos estão 
+descritos em @ref{Interactive Shells}.
 
 @item -l
-Make this shell act as if it had been directly invoked by login.
-When the shell is interactive, this is equivalent to starting a
-login shell with @samp{exec -l bash}.
-When the shell is not interactive, the login shell startup files will
-be executed.
-@samp{exec bash -l} or @samp{exec bash --login}
-will replace the current shell with a Bash login shell.
-@xref{Bash Startup Files}, for a description of the special behavior
-of a login shell.
+Faz com que este shell atue como se ele tivesse sido invocado 
+diretamente por login.   Quando o shell for interativo, isso é 
+equivalente a inicializar um shell de login com @samp{exec -l bash}.
+Quando o shell não for interativo, os arquivos de inicialização de shell 
+de login serão executados.
+@samp{exec bash -l} ou @samp{exec bash --login} substituirão o shell 
+atual com um shell de login de Bash.
+Veja-se @ref{Bash Startup Files}, para uma descrição do comportamento 
+especial de um shell de login.
 
 @item -r
-Make the shell a restricted shell (@pxref{The Restricted Shell}).
+Faz do shell um shell restrito (veja-se @ref{The Restricted Shell}).
 
 @item -s
-If this option is present, or if no arguments remain after option
-processing, then commands are read from the standard input.
-This option allows the positional parameters to be set
-when invoking an interactive shell.
+Se essa opção estiver presente, ou se nenhum argumento restar após o 
+processamento de opção, então os comandos são lidos a partir da entrada 
+padrão.
+Essa opção permite que os parâmetros posicionais sejam configurados 
+quando da invocação de um shell interativo.
 
 @item -D
-A list of all double-quoted strings preceded by @samp{$}
-is printed on the standard output.
-These are the strings that
-are subject to language translation when the current locale
-is not @code{C} or @code{POSIX} (@pxref{Locale Translation}).
-This implies the @option{-n} option; no commands will be executed.
+Uma lista de todas as sequências de caracteres encapsuladas em aspas 
+duplas precedida por @samp{$} é impressa na saída padrão.
+Essas são as sequências de caracteres que são objeto de tradução de 
+linguagem quando o local atual não for @code{C} ou @code{POSIX} 
+(veja-se @ref{Locale Translation}).
+Isso implica a opção @option{-n}; nenhum comando será executado.
 
 @item [-+]O [@var{shopt_option}]
-@var{shopt_option} is one of the shell options accepted by the
-@code{shopt} builtin (@pxref{The Shopt Builtin}).
-If @var{shopt_option} is present, @option{-O} sets the value of that option;
-@option{+O} unsets it.  
-If @var{shopt_option} is not supplied, the names and values of the shell
-options accepted by @code{shopt} are printed on the standard output.
-If the invocation option is @option{+O}, the output is displayed in a format
-that may be reused as input.
+@var{shopt_option} é uma das opções de shell aceitas pelo comando 
+interno @code{shopt} (veja-se @ref{The Shopt Builtin}).
+Se @var{shopt_option} estiver presente, então @option{-O} configura o 
+valor dessa opção; @option{+O} desconfigura.
+Se @var{shopt_option} não for fornecida, então os nomes e valores das 
+opções de shell aceitas por @code{shopt} são impressas na saída padrão.
+Se a opção de invocação for @option{+O}, então a saída é exibida em um 
+formato que pode ser reutilizado como entrada.
 
 @item --
-A @code{--} signals the end of options and disables further option
-processing.
-Any arguments after the @code{--} are treated as filenames and arguments.
+Um @code{--} sinaliza o fim das opções e desabilita o processamento 
+adicional de opção.
+Quaisquer argumentos após o @code{--} são tratados como nomes de 
+arquivos e argumentos.
 @end table
 
 @cindex login shell
-A @emph{login} shell is one whose first character of argument zero is
-@samp{-}, or one invoked with the @option{--login} option.
+Um shell de @emph{login} é um cujo primeiro caracter do argumento zero é 
+@samp{-}, ou um invocado com a opção @option{--login}.
 
 @cindex interactive shell
-An @emph{interactive} shell is one started without non-option arguments,
-unless @option{-s} is specified,
-without specifying the @option{-c} option, and whose input and output are both
-connected to terminals (as determined by @code{isatty(3)}), or one
-started with the @option{-i} option.  @xref{Interactive Shells}, for more
-information.
+Um shell @emph{interactive} é um iniciado sem argumentos não opção, a 
+menos que @option{-s} seja especificado, sem especificar a opção 
+@option{-c}, e cuja saída e entrada são ambas conectadas a terminais 
+(conforme determinado por @code{isatty(3)}), ou um iniciado com a opção 
+@option{-i}.   Veja-se @ref{Interactive Shells}, para mais informação.
 
-If arguments remain after option processing, and neither the
-@option{-c} nor the @option{-s}
-option has been supplied, the first argument is assumed to
-be the name of a file containing shell commands (@pxref{Shell Scripts}).
-When Bash is invoked in this fashion, @code{$0}
-is set to the name of the file, and the positional parameters
-are set to the remaining arguments.
-Bash reads and executes commands from this file, then exits.   
-Bash's exit status is the exit status of the last command executed
-in the script.  If no commands are executed, the exit status is 0.
+Se restarem argumentos após o processamento de opção, e nem a opção 
+@option{-c} nem a @option{-s} forem fornecidas, então o primeiro 
+argumento é presumido que seja o nome de um arquivo contendo comandos de 
+shell (veja-se @ref{Shell Scripts}).
+Quando Bash for invocado dessa forma, @code{$0} é configurado para o 
+nome do arquivo, e os parâmetros posicionais são configurados para os 
+argumentos restantes.
+Bash lê e executa comandos a partir desse arquivo, então sai.
+O código de saída de Bash é o código de saída do último comando 
+executado no script.   Se nenhum comando for executado, o código de 
+saída é 0.
 
 @node Bash Startup Files
 @section Bash Startup Files
 @cindex startup files
 
-This section describes how Bash executes its startup files.
-If any of the files exist but cannot be read, Bash reports an error.
-Tildes are expanded in filenames as described above under
-Tilde Expansion (@pxref{Tilde Expansion}).
+Esta seção descreve como Bash executa seus arquivos de inicialização.
+Se quaisquer dos arquivos existirem, porém não puderem ser lidos, então 
+Bash reporta um erro.
+Os sinais de til são expandidos em nomes de arquivos conforme descrito 
+acima sob Expansão de til (veja-se @ref{Tilde Expansion}).
 
-Interactive shells are described in @ref{Interactive Shells}.
+Shell interativos são descritos em @ref{Interactive Shells}.
 
-@subsubheading Invoked as an interactive login shell, or with @option{--login}
+@subsubheading Invocado como um shell de login interativo, ou com @option{--login}
 
-When Bash is invoked as an interactive login shell, or as a
-non-interactive shell with the @option{--login} option, it first reads and
-executes commands from the file @file{/etc/profile}, if that file exists.
-After reading that file, it looks for @file{~/.bash_profile},
-@file{~/.bash_login}, and @file{~/.profile}, in that order, and reads
-and executes commands from the first one that exists and is readable.
-The @option{--noprofile} option may be used when the shell is started to
-inhibit this behavior.
+Quando Bash for invocado como um shell de login interativo, ou como um 
+shell não interativo com a opção @option{--login}, ele primeiro lê e 
+executa comandos a partir do arquivo @file{/etc/profile}, se esse 
+arquivo existir.
+Após a leitura daquele arquivo, Bash procura por @file{~/.bash_profile}, 
+@file{~/.bash_login}, e @file{~/.profile}, nessa exata ordem, e lê e 
+executa comandos a partir do primeiro que existir e for legível.
+A opção @option{--noprofile} pode ser utilizada quando o shell for 
+inicializado para inibir esse comportamento.
 
-When a login shell exits, Bash reads and executes commands from
-the file @file{~/.bash_logout}, if it exists.
+Quando um shell de login sai, Bash lê e executa comandos a partir do 
+arquivo @file{~/.bash_logout}, se ele existir.
 
-@subsubheading Invoked as an interactive non-login shell
+@subsubheading Invocado como um shell interativo de não-login
 
-When an interactive shell that is not a login shell is started, Bash
-reads and executes commands from @file{~/.bashrc}, if that file exists.
-This may be inhibited by using the @option{--norc} option.
-The @option{--rcfile @var{file}} option will force Bash to read and
-execute commands from @var{file} instead of @file{~/.bashrc}.
+Quando um shell interativo que não é um shell de login é inicializado, 
+Bash lê e executa comandos a partir de @file{~/.bashrc}, se esse arquivo 
+existir.
+Isso pode ser inibido utilizando-se a opção @option{--norc}.
+A opção @option{--rcfile @var{file}} forçará Bash a ler e executar 
+comandos a partir de @var{file} ao invés de @file{~/.bashrc}.
 
-So, typically, your @file{~/.bash_profile} contains the line
+Assim, tipicamente, o seu @file{~/.bash_profile} contém a linha
 @example
 @code{if [ -f ~/.bashrc ]; then . ~/.bashrc; fi}
 @end example
 @noindent
-after (or before) any login-specific initializations.
+após (ou antes) quaisquer inicializações específicas de login.
 
-@subsubheading Invoked non-interactively
+@subsubheading Invocado não-interativamente
 
-When Bash is started non-interactively, to run a shell script,
-for example, it looks for the variable @env{BASH_ENV} in the environment,
-expands its value if it appears there, and uses the expanded value as
-the name of a file to read and execute.  Bash behaves as if the
-following command were executed:
+Quando Bash for inicializado não-interativamente, para executar um 
+script de shell, por exemplo, ele procura pela variável @env{BASH_ENV} 
+no ambiente, expande o valor dela se ela aparece lá, e utiliza o valor 
+expandido como o nome de um arquivo a ler e executar.   Bash se comporta 
+como se o comando seguinte fosse executado:
 @example
 @code{if [ -n "$BASH_ENV" ]; then . "$BASH_ENV"; fi}
 @end example
 @noindent
-but the value of the @env{PATH} variable is not used to search for the
-filename.
+porém o valor da variável @env{PATH} não é utilizado para buscar pelo 
+nome de arquivo.
 
-As noted above, if a non-interactive shell is invoked with the
-@option{--login} option, Bash attempts to read and execute commands from the
-login shell startup files. 
+Conforme informado acima, se um shell não-interativo for invocado com a 
+opção @option{--login}, então Bash tenta ler e executar comandos a 
+partir dos arquivos de inicialização de shell de login.
 
-@subsubheading Invoked with name @code{sh}
+@subsubheading Invocado com nome @code{sh}
 
-If Bash is invoked with the name @code{sh}, it tries to mimic the
-startup behavior of historical versions of @code{sh} as closely as
-possible, while conforming to the @sc{posix} standard as well.
+Se Bash for invocado com o nome @code{sh}, então ele tenta imitar o 
+comportamento de inicialização de versões históricas de @code{sh} tão 
+aproximadamente quanto for possível, enquanto se conformando ao padrão 
+@sc{posix} também.
 
-When invoked as an interactive login shell, or as a non-interactive
-shell with the @option{--login} option, it first attempts to read
-and execute commands from @file{/etc/profile} and @file{~/.profile}, in
-that order.
-The @option{--noprofile} option may be used to inhibit this behavior.
-When invoked as an interactive shell with the name @code{sh}, Bash
-looks for the variable @env{ENV}, expands its value if it is defined,
-and uses the expanded value as the name of a file to read and execute.
-Since a shell invoked as @code{sh} does not attempt to read and execute
-commands from any other startup files, the @option{--rcfile} option has
-no effect.
-A non-interactive shell invoked with the name @code{sh} does not attempt
-to read any other startup files.
+Quando invocado como um shell de login interativo, ou como um shell 
+não-interativo com a opção @option{--login}, Bash primeiro tenta ler e 
+executar comandos a partir de @file{/etc/profile} e @file{~/.profile}, 
+nessa exata ordem.
+A opção @option{--noprofile} pode ser utilizada para inibir esse 
+comportamento.
+Quando invocado como um shell interativo com o nome @code{sh}, Bash 
+procura pela variável @env{ENV}, expande o valor dela se estiver 
+definido, e utiliza o valor expandido como o nome de um arquivo a ler e 
+executar.
+Uma vez que um shell invocado como @code{sh} não tenta ler e executar 
+comandos a partir de quaisquer outros arquivos de inicialização, a opção 
+@option{--rcfile} não tem efeito.
+Um shell não-interativo invocado com o nome @code{sh} não tenta ler 
+quaisquer outros arquivos de inicialização.
 
-When invoked as @code{sh}, Bash enters @sc{posix} mode after
-the startup files are read.
+Quando invocado como @code{sh}, Bash entra no modo @sc{posix} após os 
+arquivos de inicialização serem lidos.
 
-@subsubheading Invoked in @sc{posix} mode
+@subsubheading Invocado no modo @sc{posix}
 
-When Bash is started in @sc{posix} mode, as with the
-@option{--posix} command line option, it follows the @sc{posix} standard
-for startup files.
-In this mode, interactive shells expand the @env{ENV} variable
-and commands are read and executed from the file whose name is the
-expanded value.
-No other startup files are read.
+Quando Bash for inicializado no modo @sc{posix}, como com a opção de 
+linha de comando @option{--posix}, ele segue o padrão @sc{posix} para 
+arquivos de inicialização.
+Nesse modo, os shells interativos expandem a variável @env{ENV} e 
+comandos são lidos e executados a partir do arquivo cujo nome for o 
+valor expandido.
+Nenhum outro arquivo de inicialização é lido.
 
-@subsubheading Invoked by remote shell daemon
+@subsubheading Invocado por daemon de shell remoto
 
-Bash attempts to determine when it is being run with its standard input
-connected to a network connection, as when executed by the remote shell
-daemon, usually @code{rshd}, or the secure shell daemon @code{sshd}.
-If Bash determines it is being run in
-this fashion, it reads and executes commands from @file{~/.bashrc}, if that
-file exists and is readable.
-It will not do this if invoked as @code{sh}.
-The @option{--norc} option may be used to inhibit this behavior, and the
-@option{--rcfile} option may be used to force another file to be read, but
-neither @code{rshd} nor @code{sshd} generally invoke the shell with those
-options or allow them to be specified.
+Bash tenta determinar quando está sendo executado com sua entrada padrão 
+conectada a uma conexão de rede, como quando executado por daemon de 
+shell remoto, usualmente @code{rshd}, ou o daemon de shell seguro 
+@code{sshd}.
+Se Bash determina que está sendo executado dessa forma, então ele lê e 
+executa comandos a partir de @file{~/.bashrc}, se esse arquivo existir e 
+for legível.
+Bash não fará isso se invocado como @code{sh}.
+A opção @option{--norc} pode ser utilizada para inibir esse 
+comportamento, e a opção @option{--rcfile} pode ser utilizada para 
+forçar que outro arquivo seja lido, porém nem @code{rshd} nem 
+@code{sshd} geralmente invocam o shell com tais opções ou permitem que 
+sejam especificadas.
 
-@subsubheading Invoked with unequal effective and real @sc{uid/gid}s
+@subsubheading Invocado com @sc{uid/gid}s efetiva and real diferentes
 
-If Bash is started with the effective user (group) id not equal to the
-real user (group) id, and the @option{-p} option is not supplied, no startup
-files are read, shell functions are not inherited from the environment,
-the @env{SHELLOPTS}, @env{BASHOPTS}, @env{CDPATH}, and @env{GLOBIGNORE}
-variables, if they appear in the environment, are ignored, and the effective
-user id is set to the real user id.
-If the @option{-p} option is supplied at invocation, the startup behavior is
-the same, but the effective user id is not reset.
+Se Bash for inicializado com o id de usuário efetivo (grupo) diferente 
+do id de usuário real (grupo), e a opção @option{-p} não for fornecida, 
+nenhum arquivo de inicialização é lido, funções de shell são herdadas do 
+ambiente, as variáveis @env{SHELLOPTS}, @env{BASHOPTS}, @env{CDPATH}, e 
+@env{GLOBIGNORE}, se elas aparecerem no ambiente, são ignoradas, e o id 
+de usuário efetivo é configurado para o id de usuário real.
+Se a opção @option{-p} for fornecida na invocação, então o comportamento 
+de inicialização é o mesmo, porém o id de usuário efetivo não é 
+reconfigurado.
 
 @node Interactive Shells
 @section Interactive Shells
