@@ -6897,164 +6897,169 @@ ou maior que ou igual a @var{arg2}, respectivamente.   @var{Arg1} and
 @cindex evaluation, arithmetic
 @cindex arithmetic evaluation
 
-The shell allows arithmetic expressions to be evaluated, as one of
-the shell expansions or by the @code{let} and the @option{-i} option
-to the @code{declare} builtins.
+O shell permite que expressões aritméticas sejam avaliadas, como uma das 
+expansões de shell ou pelo @code{let} e a opção @option{-i} para os 
+comandos internos @code{declare}.
 
-Evaluation is done in fixed-width integers with no check for overflow,
-though division by 0 is trapped and flagged as an error.
-The operators and their precedence, associativity, and values
-are the same as in the C language.
-The following list of operators is grouped into levels of
-equal-precedence operators.
-The levels are listed in order of decreasing precedence. 
+A avaliação é feita em números inteiros de tamanho fixo sem verificação 
+de excesso, apesar que a devisão por 0 é coletada e rotulada como um 
+erro.
+Os operadores e suas precedências, associatividade, e valores são os 
+mesmos que na linguagem C.
+A seguinte lista de operadores está agrupada em níveis de operadores de 
+igual precedência.
+Os níveis estão listados em ordem de precedência decrescente.
 
 @table @code
 
 @item @var{id}++ @var{id}--
-variable post-increment and post-decrement 
+variável pós-incremento e pós-decremento
 
 @item ++@var{id} --@var{id}
-variable pre-increment and pre-decrement
+variável pré-incremento e pré-decremento
 
 @item - +
-unary minus and plus
+unário menos e mais
 
 @item ! ~
-logical and bitwise negation
+lógico e negação bit a bit
 
 @item **
-exponentiation
+exponenciação
 
 @item * / %
-multiplication, division, remainder
+multiplicação, divisão, restante
 
 @item + -
-addition, subtraction
+adição, subtração
 
 @item << >>
-left and right bitwise shifts
+deslocamentos bit a bit a esquerda e a direita
 
 @item <= >= < >
-comparison
+comparação
 
 @item == !=
-equality and inequality
+igualdade e desigualdade
 
 @item &
-bitwise AND
+E bit a bit
 
 @item ^
-bitwise exclusive OR
+OU exclusivo bit a bit
 
 @item |
-bitwise OR
+OU bit a bit
 
 @item &&
-logical AND
+E lógico
 
 @item ||
-logical OR
+OU lógico
 
 @item expr ? expr : expr
-conditional operator
+operador condicional
 
 @item = *= /= %= += -= <<= >>= &= ^= |=
-assignment
+atribuição
 
 @item expr1 , expr2
-comma
+vírgula
 @end table
 
-Shell variables are allowed as operands; parameter expansion is
-performed before the expression is evaluated. 
-Within an expression, shell variables may also be referenced by name
-without using the parameter expansion syntax.
-A shell variable that is null or unset evaluates to 0 when referenced
-by name without using the parameter expansion syntax.
-The value of a variable is evaluated as an arithmetic expression
-when it is referenced, or when a variable which has been given the  
-@var{integer} attribute using @samp{declare -i} is assigned a value.
-A null value evaluates to 0.
-A shell variable need not have its @var{integer} attribute turned on
-to be used in an expression.
+As varíaveis do shell funcionam como operandos; expansão de parâmetro é 
+realizada antes que a expressão seja avaliada.
+Dentro de uma expressão, variáveis de shell também podem ser 
+referenciadas pelo nome sem se utilizar a sintaxe de expansão de 
+parâmetro.
+Uma variável de shell que é nula ou desconfigurada dá como resultado 0 
+quando referenciada pelo nome sem se utilizar a sintaxe de expansão de 
+parâmetro.
+O valor de uma variável é avaliado como uma expressão aritmética quando 
+ela for referenciada, ou quando uma variável para a qual tenha sido dado 
+o atributo @var{integer} utilizando @samp{declare -i} for atribuido um 
+valor.
+Um valor nulo resulta em 0.
+Uma variável de shell precisa não ter o atributo @var{integer} dela 
+ligado para ser utilizada em uma expressão.
 
-Constants with a leading 0 are interpreted as octal numbers.
-A leading @samp{0x} or @samp{0X} denotes hexadecimal.  Otherwise,
-numbers take the form [@var{base}@code{#}]@var{n}, where the optional @var{base}
-is a decimal number between 2 and 64 representing the arithmetic
-base, and @var{n} is a number in that base.
-If @var{base}@code{#} is omitted, then base 10 is used.
-When specifying @var{n},
-he digits greater than 9 are represented by the lowercase letters,
-the uppercase letters, @samp{@@}, and @samp{_}, in that order.
-If @var{base} is less than or equal to 36, lowercase and uppercase
-letters may be used interchangeably to represent numbers between 10
-and 35.
+Constantes com um 0 inicial são interpretradas como números octais.
+Um @samp{0x} ou @samp{0X} denota um número hexadecimal.   Do contrário, 
+os números tomam a forma [@var{base}@code{#}]@var{n}, onde o opcional 
+@var{base} é um número decimal compreendido entre 2 e 64, representando 
+a base aritmética, e @var{n} é um número na naquela base.
+Se @var{base}@code{#} for omitida, então a base 10 é utilizada.
+Quando se especificar @var{n}, os dígitos maiores que 9 são 
+representados por letras minúsculas, pelas letras maiúsculas, @samp{@@}, 
+e @samp{_}, nessa exata ordem.
+Se @var{base} for menor que ou igual a 36, então as letras minúsculas e 
+maiúsculas podem ser utilizadas indistintamente para representar 
+números entre 10 e 35.
 
-Operators are evaluated in order of precedence.  Sub-expressions in
-parentheses are evaluated first and may override the precedence
-rules above.
+Os operadores são avaliados na ordem de precedência.   Sub-expressões 
+entre parênteses são avaliadas primeiro e podem substituir as regras de 
+precedência acima.
 
 @node Aliases
 @section Aliases
 @cindex alias expansion
 
-@var{Aliases} allow a string to be substituted for a word when it is used
-as the first word of a simple command.
-The shell maintains a list of aliases that may be set and unset with
-the @code{alias} and @code{unalias} builtin commands.
+Apelidos @var{Aliases} permitem que uma sequência de caracteres seja 
+substituida por uma palavra quando forem utilizados como a primeira 
+palavra de um comando simples.
 
-The first word of each simple command, if unquoted, is checked to see
-if it has an alias.
-If so, that word is replaced by the text of the alias.
-The characters @samp{/}, @samp{$}, @samp{`}, @samp{=} and any of the
-shell metacharacters or quoting characters listed above may not appear
-in an alias name.
-The replacement text may contain any valid
-shell input, including shell metacharacters.
-The first word of the replacement text is tested for
-aliases, but a word that is identical to an alias being expanded
-is not expanded a second time.
-This means that one may alias @code{ls} to @code{"ls -F"},
-for instance, and Bash does not try to recursively expand the
-replacement text.
-If the last character of the alias value is a
-@var{blank}, then the next command word following the
-alias is also checked for alias expansion.
+O shell mantém uma lista dos apelidos, que podem ser configurados ou 
+desconfigurados com os comandos internos @code{alias} e @code{unalias}.
 
-Aliases are created and listed with the @code{alias}
-command, and removed with the @code{unalias} command.
+A primeira palavra de cada comando simples, se não encapsulados entre 
+aspas, é verificada para ser se ela tem um apelido.
+Se tiver, essa palavra é substituida pelo texto do apelido.
+Os caracteres @samp{/}, @samp{$}, @samp{`}, @samp{=} e quaisquer dos 
+metacaracteres do shell ou caracteres de encapsulamento de aspas 
+listados acima podem não aparecer em um nome de apelido.
+O texto de substituição pode conter qualquer entrada de shell válida, 
+incluindo metacaracteres de shell.
+A primeira palavra do texto de substituição é testado para apelidos, 
+porém uma palavra que for identica a um apelido sendo expandido não é 
+expandida uma segunda vez.
+Isso significa que alguém pode apelidar @code{ls} para @code{"ls -F"}, 
+por exemplo, e Bash não tenta recursivamente expandir o texto de 
+substituição.
+Se o último carácter do valor do apelido for um @var{blank}, então a 
+próxima palavra de comando seguinte ao apelido também é checada para 
+expansão de apelido.
 
-There is no mechanism for using arguments in the replacement text,
-as in @code{csh}.
-If arguments are needed, a shell function should be used
-(@pxref{Shell Functions}).
+Os apelidos são criados e listados com o comando @code{alias}, e 
+removidos com o comando @code{unalias}.
 
-Aliases are not expanded when the shell is not interactive,
-unless the @code{expand_aliases} shell option is set using
-@code{shopt} (@pxref{The Shopt Builtin}).
+Não existe um mecanismo para se utilizar argumentos em um texto de 
+substituição, como em @code{csh}.
+Se argumentos forem necessários, então uma função de shell deveria ser 
+utilizada (veja-se @ref{Shell Functions}).
 
-The rules concerning the definition and use of aliases are
-somewhat confusing.  Bash
-always reads at least one complete line
-of input before executing any
-of the commands on that line.  Aliases are expanded when a
-command is read, not when it is executed.  Therefore, an
-alias definition appearing on the same line as another
-command does not take effect until the next line of input is read.
-The commands following the alias definition
-on that line are not affected by the new alias.
-This behavior is also an issue when functions are executed.
-Aliases are expanded when a function definition is read,
-not when the function is executed, because a function definition
-is itself a compound command.  As a consequence, aliases
-defined in a function are not available until after that
-function is executed.  To be safe, always put
-alias definitions on a separate line, and do not use @code{alias}
-in compound commands.
+Os apelidos não são expandidos quando o shell não é interativo, a menos 
+que a opção de shell @code{expand_aliases} seja configurada utilizando 
+@code{shopt} (veja-se @ref{The Shopt Builtin}).
 
-For almost every purpose, shell functions are preferred over aliases.
+As regras relativas à definição e uso de apelidos são de alguma maneira 
+confusas.   Bash sempre lê pelo menos uma linha completa de entrada 
+antes de executar quaisquer dos comandos naquela linha.   Os apelidos 
+são expandidos quando um comando é lido, não quando ele é executado.
+Portanto, uma definição de apelido que aparece na mesmo linha como um 
+outro comando não tem efeito até que a próxima linha de entrada seja 
+lida.
+Os comandos que se seguirem à definição de apelidos naquela linha não 
+são afetados pelo novo apelido.
+Esse comportamento também é um problema quando funções são executadas.
+Apelidos são expandidos quando uma definição de função é lida, não 
+quando a função é executada, pois uma definição de função é ela própria 
+um comando composto.   Como uma consequência, apelidos definidos em uma 
+função não estão disponíveis até após aquela função ser executada.   Por 
+segurança, sempre coloque definições de apelidos em uma linha separada, 
+e não utilize @code{alias} em comandos compostos.
+
+Para quase todos os propósitos, as funções de shell são preferidas a 
+apelidos.
 
 @node Arrays
 @section Arrays
