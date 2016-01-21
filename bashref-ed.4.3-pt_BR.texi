@@ -6569,34 +6569,34 @@ reconfigurado.
 @cindex shell, interactive
 
 @menu
-* What is an Interactive Shell?::	What determines whether a shell is Interactive.
-* Is this Shell Interactive?::	How to tell if a shell is interactive.
-* Interactive Shell Behavior::	What changes in a interactive shell?
+* What is an Interactive Shell?::	O que determina quando um shell 
+é interativo.
+* Is this Shell Interactive?::	Como dizer se um shell é interativo.
+* Interactive Shell Behavior::	O que muda em um shell interativo?
 @end menu
 
 @node What is an Interactive Shell?
 @subsection What is an Interactive Shell?
 
-An interactive shell
-is one started without non-option arguments, unless @option{-s} is
-specified, without specifying the @option{-c} option, and
-whose input and error output are both
-connected to terminals (as determined by @code{isatty(3)}),
-or one started with the @option{-i} option.
+Um shell interativo é aquele inicializado sem argumentos não opção, a 
+menos que @option{-s} seja especificada, sem especificar a opção 
+@option{-c}, e cuja entrada e saída de erro estão ambas conectadas a 
+terminais (conforme determinado por @code{isatty(3)}), ou aquele 
+inicializado com a opção @option{-i}.
 
-An interactive shell generally reads from and writes to a user's
-terminal.
+Um shell interativo geralmente lê a partir de e escreve para um terminal 
+de usuário.
 
-The @option{-s} invocation option may be used to set the positional parameters
-when an interactive shell is started.
+A opção de invocação @option{-s} pode ser utilizada para configurar os 
+parâmetros posicionais quando um shell interativo for inicializado.
 
 @node Is this Shell Interactive?
 @subsection Is this Shell Interactive?
 
-To determine within a startup script whether or not Bash is
-running interactively,
-test the value of the @samp{-} special parameter.
-It contains @code{i} when the shell is interactive.  For example:
+Para determinar dentro de um script de inicialização quando ou não Bash 
+está executando interativamente, teste o valor do parâmetro especial 
+@samp{-}.
+Ele contém @code{i} quando o shell é interativo.   Por exemplo:
 
 @example
 case "$-" in
@@ -6605,9 +6605,9 @@ case "$-" in
 esac
 @end example
 
-Alternatively, startup scripts may examine the variable
-@env{PS1}; it is unset in non-interactive shells, and set in
-interactive shells.  Thus:
+Alternativamente, scripts de inicialização podem examinar a variável 
+@env{PS1}; ela é desconfigurada em shells não interativos, e configurada 
+em shells interativos.   Assim:
 
 @example
 if [ -z "$PS1" ]; then
@@ -6620,103 +6620,111 @@ fi
 @node Interactive Shell Behavior
 @subsection Interactive Shell Behavior
 
-When the shell is running interactively, it changes its behavior in
-several ways.
+Quando o shell está executando interativamente, ele modifica o 
+comportamento dele de várias maneiras.
 
 @enumerate
 @item
-Startup files are read and executed as described in @ref{Bash Startup Files}.
+Arquivos de inicialização são lidos e executados conforme descrito em 
+@ref{Bash Startup Files}.
 
 @item
-Job Control (@pxref{Job Control}) is enabled by default.  When job
-control is in effect, Bash ignores the keyboard-generated job control
-signals @code{SIGTTIN}, @code{SIGTTOU}, and @code{SIGTSTP}.
+O Controle de Tarefas (veja-se @ref{Job Control}) é habilitado por 
+padrão.   Quando o controle de tarefa está em efeito, Bash ignora os 
+sinais de controle de tarefa gerados via teclado @code{SIGTTIN}, 
+@code{SIGTTOU}, e @code{SIGTSTP}.
 
 @item
-Bash expands and displays @env{PS1} before reading the first line
-of a command, and expands and displays @env{PS2} before reading the
-second and subsequent lines of a multi-line command.
+Bash expande e exibe @env{PS1} antes de ler a primeira linha de um 
+comando, e expande e exibe @env{PS2} antes de ler a segunda e 
+subsequentes linhas de um comando multi-linha.
 
 @item
-Bash executes the value of the @env{PROMPT_COMMAND} variable as a command
-before printing the primary prompt, @env{$PS1}
-(@pxref{Bash Variables}).
+Bash executa o valor da variável @env{PROMPT_COMMAND} como um comando 
+antes de imprimir o prompt primário, @env{$PS1} (veja-se
+@ref{Bash Variables}).
 
 @item
-Readline (@pxref{Command Line Editing}) is used to read commands from
-the user's terminal.
+Readline (veja-se @ref{Command Line Editing}) é utilizada para ler 
+comandos a partir do terminal do usuário.
 
 @item
-Bash inspects the value of the @code{ignoreeof} option to @code{set -o}
-instead of exiting immediately when it receives an @code{EOF} on its
-standard input when reading a command (@pxref{The Set Builtin}).
+Bash inspeciona o valor da opção @code{ignoreeof} para @code{set -o} ao 
+invés de sair imediatamente quando receber um @code{EOF} na sua entrada 
+padrão quando da leitura de um comando (veja-se @ref{The Set Builtin}).
 
 @item
-Command history (@pxref{Bash History Facilities})
-and history expansion (@pxref{History Interaction})
-are enabled by default.
-Bash will save the command history to the file named by @env{$HISTFILE}
-when a shell with history enabled exits.
+
+
+
+Histórico de Comandos (veja-se @ref{Bash History Facilities}) e expansão 
+de histórico (veja-se @ref{History Interaction}) são habilitados por 
+padrão.
+Bash salvará o histórico de comandos no arquivo nomeado por 
+@env{$HISTFILE} quando um shell com histórico habilitado sai.
 
 @item
-Alias expansion (@pxref{Aliases}) is performed by default.
+Expansão de Apelidos (veja-se @ref{Aliases}) é realizado por padrão.
 
 @item
-In the absence of any traps, Bash ignores @code{SIGTERM}
-(@pxref{Signals}).
+Na ausência de quaisquer coletores, Bash ignora @code{SIGTERM}
+(veja-se @ref{Signals}).
 
 @item
-In the absence of any traps, @code{SIGINT} is caught and handled
-((@pxref{Signals}).
-@code{SIGINT} will interrupt some shell builtins.
+Na ausência de quaisquer coletores, @code{SIGINT} é capturada e 
+manuseada (veja-se @ref{Signals}).
+@code{SIGINT} interromperá alguns comandos internos do shell.
 
 @item
-An interactive login shell sends a @code{SIGHUP} to all jobs on exit
-if the @code{huponexit} shell option has been enabled (@pxref{Signals}).
+Um shell de login interativo envia um @code{SIGHUP} a todas as tarefas 
+na saída se a opção de shell @code{huponexit} tiver sido habilitada
+(veja-se @ref{Signals}).
 
 @item
-The @option{-n} invocation option is ignored, and @samp{set -n} has
-no effect (@pxref{The Set Builtin}).
+A opção de invocação @option{-n} é ignorada, e @samp{set -n} não tem 
+efeito (veja-se @ref{The Set Builtin}).
 
 @item
-Bash will check for mail periodically, depending on the values of the
-@env{MAIL}, @env{MAILPATH}, and @env{MAILCHECK} shell variables
-(@pxref{Bash Variables}).
+Bash verificará a correspondência periodicamente, dependendo dos valores 
+das variáveis de shell @env{MAIL}, @env{MAILPATH}, e @env{MAILCHECK}
+(veja-se @ref{Bash Variables}).
 
 @item
-Expansion errors due to references to unbound shell variables after
-@samp{set -u} has been enabled will not cause the shell to exit
-(@pxref{The Set Builtin}).
+Os erros de expansão, devido a referências a variáveis de shell não 
+checadas após @samp{set -u} tiver sido habilitado, não fazem com que o 
+shell saia (veja-se @ref{The Set Builtin}).
 
 @item
-The shell will not exit on expansion errors caused by @var{var} being unset
-or null in @code{$@{@var{var}:?@var{word}@}} expansions
-(@pxref{Shell Parameter Expansion}).
+O shell não sairá em erros de expansão causados por @var{var} sendo 
+desconfigurada ou nula nas expansões @code{$@{@var{var}:?@var{word}@}}
+(veja-se @ref{Shell Parameter Expansion}).
 
 @item
-Redirection errors encountered by shell builtins will not cause the
-shell to exit.
+Erros de redireção encontrados por comandos internos ao shell não farão 
+com que o shell saia.
 
 @item
-When running in @sc{posix} mode, a special builtin returning an error
-status will not cause the shell to exit (@pxref{Bash POSIX Mode}).
+Quando em execução no modo @sc{posix}, um comando interno especial que 
+retornar um código de erro não fará com que o shell saia
+(veja-se @ref{Bash POSIX Mode}).
 
 @item
-A failed @code{exec} will not cause the shell to exit
-(@pxref{Bourne Shell Builtins}).
+Um @code{exec} falho não fará com que o shell saia
+(veja-se @ref{Bourne Shell Builtins}).
 
 @item
-Parser syntax errors will not cause the shell to exit.
+Erros de sintaxe de analisador não fazem com que o shell saia.
 
 @item
-Simple spelling correction for directory arguments to the @code{cd}
-builtin is enabled by default (see the description of the @code{cdspell}
-option to the @code{shopt} builtin in @ref{The Shopt Builtin}).
+Correções ortográficas simples para argumentos de diretório para o 
+comando interno @code{cd} estão habilitados por padrão (veja-se a 
+descrição da opção @code{cdspell} para o comando interno @code{shopt} 
+em @ref{The Shopt Builtin}).
 
 @item
-The shell will check the value of the @env{TMOUT} variable and exit
-if a command is not read within the specified number of seconds after
-printing @env{$PS1} (@pxref{Bash Variables}).
+O shell verificará o valor da variável @env{TMOUT} e sai se um comando 
+não for lido dentro do número especificado de segundos após a impressão 
+de @env{$PS1} (veja-se @ref{Bash Variables}).
 
 @end enumerate
 
@@ -6724,144 +6732,161 @@ printing @env{$PS1} (@pxref{Bash Variables}).
 @section Bash Conditional Expressions
 @cindex expressions, conditional
 
-Conditional expressions are used by the @code{[[} compound command
-and the @code{test} and @code{[} builtin commands.
+Expressões condicionais são utilizadas pelo comando composto @code{[[} e 
+pelos comandos internos @code{test} e @code{[}.
 
-Expressions may be unary or binary.
-Unary expressions are often used to examine the status of a file.
-There are string operators and numeric comparison operators as well.
-If the @var{file} argument to one of the primaries is of the form
-@file{/dev/fd/@var{N}}, then file descriptor @var{N} is checked.
-If the @var{file} argument to one of the primaries is one of
-@file{/dev/stdin}, @file{/dev/stdout}, or @file{/dev/stderr}, file
-descriptor 0, 1, or 2, respectively, is checked.
+Expressões podem ser unárias ou binárias.
+Expressões unárias são frequentemente utilizadas para examinar a 
+situação de um arquivo.
+Existem operadores de sequências de caracteres e operadores de 
+comparação numérica também.
+Se o argumento @var{file} para um dos primários for da forma 
+@file{/dev/fd/@var{N}}, então o descritor de arquivo @var{N} é 
+verificado.
+Se o argumento @var{file} para um dos primários for um destes: 
+@file{/dev/stdin}, @file{/dev/stdout}, ou @file{/dev/stderr}, então o 
+descritor 0, 1 ou 2, respectivamente, é verificado.
 
-When used with @code{[[}, the @samp{<} and @samp{>} operators sort
-lexicographically using the current locale.
-The @code{test} command uses ASCII ordering.
+Quando utilizado com @code{[[}, os operadores @samp{<} e @samp{>} 
+ordenam lexicograficamente utilizando o local atual.
+O comando @code{test} empregaordenamento ASCII.
 
-Unless otherwise specified, primaries that operate on files follow symbolic
-links and operate on the target of the link, rather than the link itself.
+menos que especificadode outra maneira, primários que operam sobre 
+arquivos seguem links simbólicos e operam sobre o alvo do link, ao invés 
+do próprio link.
 
 @table @code
 @item -a @var{file}
-True if @var{file} exists.
+Verdadeiro se @var{file} existe.
 
 @item -b @var{file}
-True if @var{file} exists and is a block special file.
+Verdadeiro se @var{file} existe e for um arquivo especial de bloco.
 
 @item -c @var{file}
-True if @var{file} exists and is a character special file.
+Verdadeiro se @var{file} existe e for um arquivo especial de carácter.
 
 @item -d @var{file}
-True if @var{file} exists and is a directory.
+Verdadeiro se @var{file} existe e for um diretório.
 
 @item -e @var{file}
-True if @var{file} exists.
+Verdadeiro se @var{file} existe.
 
 @item -f @var{file}
-True if @var{file} exists and is a regular file.
+Verdadeiro se @var{file} existe e for um arquivo regular.
 
 @item -g @var{file}
-True if @var{file} exists and its set-group-id bit is set.
+Verdadeiro se @var{file} existe e seu bit do conjunto de id de grupo 
+estiver configurado.
 
 @item -h @var{file}
-True if @var{file} exists and is a symbolic link.
+Verdadeiro se @var{file} existe e for um link simbólico.
 
 @item -k @var{file}
-True if @var{file} exists and its "sticky" bit is set.
+Verdadeiro se @var{file} existe e seu bit "sticky" estiver configurado.
 
 @item -p @var{file}
-True if @var{file} exists and is a named pipe (FIFO).
+Verdadeiro se @var{file} existe e for um canal de comunicação nomeado 
+(FIFO).
 
 @item -r @var{file}
-True if @var{file} exists and is readable.
+Verdadeiro se @var{file} existe e for legível.
 
 @item -s @var{file}
-True if @var{file} exists and has a size greater than zero.
+Verdadeiro se @var{file} existe e tiver um tamanho maior que zero.
 
 @item -t @var{fd}
-True if file descriptor @var{fd} is open and refers to a terminal.
+Verdadeiro se o descritor de arquivo @var{fd} estiver aberto e se refere 
+a um terminal.
 
 @item -u @var{file}
-True if @var{file} exists and its set-user-id bit is set.
+Verdadeiro se @var{file} existe e seu bit do conjunto de id do usuário 
+estiver configurado.
 
 @item -w @var{file}
-True if @var{file} exists and is writable.
+Verdadeiro se @var{file} existe e for possível a escrita.
 
 @item -x @var{file}
-True if @var{file} exists and is executable.
+Verdadeiro se @var{file} existe e for executável.
 
 @item -G @var{file}
-True if @var{file} exists and is owned by the effective group id.
+Verdadeiro se @var{file} existe e for de propriedade do id efetivo de 
+grupo.
 
 @item -L @var{file}
-True if @var{file} exists and is a symbolic link.
+Verdadeiro se @var{file} existe e for um link simbólico.
 
 @item -N @var{file}
-True if @var{file} exists and has been modified since it was last read.
+Verdadeiro se @var{file} existe e tiver sido modificado desde 
+quando ele foi lido mais recentemente.
 
 @item -O @var{file}
-True if @var{file} exists and is owned by the effective user id.
+Verdadeiro se @var{file} existe e for de propriedade do id efetivo de 
+usuário.
 
 @item -S @var{file}
-True if @var{file} exists and is a socket.
+Verdadeiro se @var{file} existe e for um socket.
 
 @item @var{file1} -ef @var{file2}
-True if @var{file1} and @var{file2} refer to the same device and
-inode numbers.
+Verdadeiro se @var{file1} e @var{file2} se referem aos mesmos números 
+de dispositivo e inode.
 
 @item @var{file1} -nt @var{file2}
-True if @var{file1} is newer (according to modification date)
-than @var{file2}, or if @var{file1} exists and @var{file2} does not.
+Verdadeiro se @var{file1} for mais novo (de acordo com a data de 
+modificação) que @var{file2}, ou se @var{file1} existe e @var{file2} 
+não.
 
 @item @var{file1} -ot @var{file2}
-True if @var{file1} is older than @var{file2},
-or if @var{file2} exists and @var{file1} does not.
+Verdadeiro se @var{file1} for mais antigo que @var{file2}, ou se 
+@var{file2} existe e @var{file1} não.
 
 @item -o @var{optname}
-True if the shell option @var{optname} is enabled.
-The list of options appears in the description of the @option{-o}
-option to the @code{set} builtin (@pxref{The Set Builtin}).
+Verdadeiro se a opção de shell @var{optname} estiver habilitada.
+A lista de opções aparece na descrição da opção @option{-o} para o 
+comando interno @code{set} (veja-se @ref{The Set Builtin}).
 
 @item -v @var{varname}
-True if the shell variable @var{varname} is set (has been assigned a value).
+Verdadeiro se a variável de shell @var{varname} estiver configurada 
+(tiver recebido um valor).
 
 @item -R @var{varname}
-True if the shell variable @var{varname} is set and is a name reference.
+Verdadeiro se a variável de shell @var{varname} estiver configurada e 
+for uma referência de nome.
 
 @item -z @var{string}
-True if the length of @var{string} is zero.
+Verdadeiro se o comprimento de @var{string} for zero.
 
 @item -n @var{string}
 @itemx @var{string}
-True if the length of @var{string} is non-zero.
+Verdadeiro se o comprimento de @var{string} for diferente de zero.
 
 @item @var{string1} == @var{string2}
 @itemx @var{string1} = @var{string2}
-True if the strings are equal.
-When used with the @code{[[} command, this performs pattern matching as
-described above (@pxref{Conditional Constructs}).
+Verdadeiro se as sequências de caracteres forem iguais.
+Quando utilizado com o comando @code{[[}, isso realiza a coincidência de 
+padrão conforme descrito acima (veja-se @ref{Conditional Constructs}).
 
-@samp{=} should be used with the @code{test} command for @sc{posix} conformance.
+@samp{=} deveria ser utilizado com o comando @code{test} para 
+conformação com o padrão @sc{posix}.
 
 @item @var{string1} != @var{string2}
-True if the strings are not equal.
+Verdadeiro se as sequências de caracteres forem diferentes.
 
 @item @var{string1} < @var{string2}
-True if @var{string1} sorts before @var{string2} lexicographically.
+Verdadeiro se @var{string1} figurar antes de @var{string2} 
+lexicograficamente.
 
 @item @var{string1} > @var{string2}
-True if @var{string1} sorts after @var{string2} lexicographically.
+Verdadeiro se @var{string1} figurar após @var{string2} 
+lexicograficamente.
 
 @item @var{arg1} OP @var{arg2}
 @code{OP} is one of 
-@samp{-eq}, @samp{-ne}, @samp{-lt}, @samp{-le}, @samp{-gt}, or @samp{-ge}.
-These arithmetic binary operators return true if @var{arg1}
-is equal to, not equal to, less than, less than or equal to,
-greater than, or greater than or equal to @var{arg2},
-respectively.  @var{Arg1} and @var{arg2}
-may be positive or negative integers.
+@samp{-eq}, @samp{-ne}, @samp{-lt}, @samp{-le}, @samp{-gt}, ou 
+@samp{-ge}.
+Esses operadores aritméticos binários retornam verdadeiro se @var{arg1} 
+for igual a, diferente de, menor que, menor que ou igual a, maior que, 
+ou maior que ou igual a @var{arg2}, respectivamente.   @var{Arg1} and 
+@var{arg2} podem ser número inteiros positivos ou negativos.
 @end table
 
 @node Shell Arithmetic
