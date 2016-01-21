@@ -6654,9 +6654,6 @@ invés de sair imediatamente quando receber um @code{EOF} na sua entrada
 padrão quando da leitura de um comando (veja-se @ref{The Set Builtin}).
 
 @item
-
-
-
 Histórico de Comandos (veja-se @ref{Bash History Facilities}) e expansão 
 de histórico (veja-se @ref{History Interaction}) são habilitados por 
 padrão.
@@ -7065,135 +7062,135 @@ apelidos.
 @section Arrays
 @cindex arrays
 
-Bash provides one-dimensional indexed and associative array variables.
-Any variable may be used as an indexed array;
-the @code{declare} builtin will explicitly declare an array.
-There is no maximum
-limit on the size of an array, nor any requirement that members
-be indexed or assigned contiguously.
-Indexed arrays are referenced using integers (including arithmetic
-expressions (@pxref{Shell Arithmetic})) and are zero-based;
-associative arrays use arbitrary strings.
-Unless otherwise noted, indexed array indices must be non-negative integers.
+Bash provê variáveis vetor indexado unidimensional e associativo.
+Qualquer variável pode ser utilizada como um vetor indexado; o comando 
+interno @code{declare} explicitamente declarará um vetor.
+Não existe limite máximo para o tamanho de um vetor, nem qualquer 
+exigência de que os membros sejam indexados ou atribuidos contiguamente.
+Os vetores indexados são referenciados utilizando-se números inteiros 
+(incluindo expressões aritméticas (veja-se @ref{Shell Arithmetic}) e são 
+baseados em zero; vetores associativos utilizam sequências de caracteres 
+arbitrárias.
+A menos que informado do contrário, os indices de vetor indexado devem 
+necessariamente ser números inteiros não negativos.
 
-An indexed array is created automatically if any variable is assigned to
-using the syntax
+Um vetor indexado é criado automaticamente se qualquer veriável for 
+atribuida a ele utilizando-se a sintaxe
 @example
 @var{name}[@var{subscript}]=@var{value}
 @end example
 
 @noindent
-The @var{subscript}
-is treated as an arithmetic expression that must evaluate to a number.
-To explicitly declare an array, use
+O @var{subscript} é tratado como uma expressão aritmética que deve 
+necessariamente resultar em um número.
+Para explicitamente declarar um vetor, utilize
 @example
 declare -a @var{name}
 @end example
 @noindent
-The syntax
+A sintaxe
 @example
 declare -a @var{name}[@var{subscript}]
 @end example
 @noindent
-is also accepted; the @var{subscript} is ignored.
+também é aceita; o @var{subscript} é ignorado.
 
 @noindent
-Associative arrays are created using
+Vetores associativos são criados utilizando-se
 @example
 declare -A @var{name}.
 @end example
 
-Attributes may be
-specified for an array variable using the @code{declare} and
-@code{readonly} builtins.  Each attribute applies to all members of
-an array.
+Atributos podem ser especificados para uma variável vetor utilizando-se 
+os comandos internos @code{declare} e @code{readonly}.   Cada atributo 
+se aplica a todos os membros de um vetor.
 
-Arrays are assigned to using compound assignments of the form
+Vetores recebem valores utilizando-se atribuições compostas da forma
 @example
 @var{name}=(@var{value1} @var{value2} @dots{} )
 @end example
 @noindent
-where each
-@var{value} is of the form @code{[@var{subscript}]=}@var{string}.
-Indexed array assignments do not require anything but @var{string}.
-When assigning to indexed arrays, if
-the optional subscript is supplied, that index is assigned to;
-otherwise the index of the element assigned is the last index assigned
-to by the statement plus one.  Indexing starts at zero.
+onde cada @var{value} é da forma @code{[@var{subscript}]=}@var{string}.
+Atribuições de vetor indexado não exigem nada exceto @var{string}.
+Quando da atribuição a vetores indexados, se o subscript opcional for 
+fornecido, então aquele indice recebe a atribuição; do contrário o 
+indice do elemento atribuido é o último indice atribuido pela declaração 
+mais um.   A indexação inicia no zero.
 
-When assigning to an associative array, the subscript is required.
+Quando da atribuição a um vetor associativo, o subscript é exigido.
 
-This syntax is also accepted by the @code{declare}
-builtin.  Individual array elements may be assigned to using the
-@code{@var{name}[@var{subscript}]=@var{value}} syntax introduced above.
+Essa sintaxe também é aceita pelo comando interno @code{declare}.
+Pode-se atribuir valores aos elementos individuais de um vetor 
+utilizando-se a sintaxe @code{@var{name}[@var{subscript}]=@var{value}} 
+apresentada acima.
 
-When assigning to an indexed array, if @var{name}
-is subscripted by a negative number, that number is
-interpreted as relative to one greater than the maximum index of
-@var{name}, so negative indices count back from the end of the
-array, and an index of -1 references the last element.
+Quando da atribuição a um vetor indexado, se @var{name} for subscrita 
+por um número negativo, então esse número é interpretado como relativo a 
+um maior que o indice máximo de @var{name}, de maneira que indices 
+negativos contam do final do vetor para o início, e um indice de -1 faz 
+referência ao último elemento.
 
-Any element of an array may be referenced using
+Qualquer elemento de um vetor pode ser referenciado utilizando-se
 @code{$@{@var{name}[@var{subscript}]@}}.
-The braces are required to avoid
-conflicts with the shell's filename expansion operators.  If the
-@var{subscript} is @samp{@@} or @samp{*}, the word expands to all members
-of the array @var{name}.  These subscripts differ only when the word
-appears within double quotes.
-If the word is double-quoted,
-@code{$@{@var{name}[*]@}} expands to a single word with
-the value of each array member separated by the first character of the
-@env{IFS} variable, and @code{$@{@var{name}[@@]@}} expands each element of
-@var{name} to a separate word.  When there are no array members,
-@code{$@{@var{name}[@@]@}} expands to nothing.
-If the double-quoted expansion occurs within a word, the expansion of
-the first parameter is joined with the beginning part of the original
-word, and the expansion of the last parameter is joined with the last
-part of the original word.
-This is analogous to the
-expansion of the special parameters @samp{@@} and @samp{*}. 
-@code{$@{#@var{name}[@var{subscript}]@}} expands to the length of
+As chaves são exigidas para se evitar conflitos com os operadores de 
+expansão de nome de arquivo do shell.   Se o @var{subscript} for 
+@samp{@@} ou @samp{*}, então a palavra expande para todos os membros do 
+vetor @var{name}.   Esses subscritos diferem somente quando a palavra 
+aparece dentro de aspas duplas.
+Se a palavra estiver encapsulada em aspas duplas, então 
+@code{$@{@var{name}[*]@}} expande para um palavra singular com o valor 
+de cada membro do vetor separado pelo primeiro carácter da variável 
+@env{IFS}, e @code{$@{@var{name}[@@]@}} expande cada elemento de 
+@var{name} para uma palavra separada.   Quando não existem membros do 
+vetor, @code{$@{@var{name}[@@]@}} expande para nada.
+Se a expansão de aspas duplas ocorre dentro de uma palavra, então a 
+expansão do primeiro parâmetro é anexado com a parte inicial da palavra 
+original, e a expansão do último parâmetro é anexado com a última parte 
+da palavra original.
+Isso é análogo à expansão dos parâmetros especiais @samp{@@} e @samp{*}.
+@code{$@{#@var{name}[@var{subscript}]@}} expande para o comprimento de
 @code{$@{@var{name}[@var{subscript}]@}}.
-If @var{subscript} is @samp{@@} or
-@samp{*}, the expansion is the number of elements in the array. 
-Referencing an array variable without a subscript is equivalent to
-referencing with a subscript of 0. 
-If the @var{subscript}
-used to reference an element of an indexed array
-evaluates to a number less than zero, it is 
-interpreted as relative to one greater than the maximum index of the array,
-so negative indices count back from the end of the array,
-and an index of -1 refers to the last element.
+Se @var{subscript} for @samp{@@} ou @samp{*}, então a expansão é o 
+número de elementos no vetor.
+O referenciamento a uma variável vetor sem um subscrito é equivalente a 
+referenciar com um subscrito 0.
+Se o @var{subscript} utilizado para referenciar um elemento de um vetor 
+indexado resultar em um número menor que zero, então ele é interpretado 
+como relativo a um maior que o indice máximo do vetor, de forma que 
+indices negativos contam do final do vetor para o seu início, e um 
+indice de -1 se refere ao último elemento.
 
-An array variable is considered set if a subscript has been assigned a
-value.  The null string is a valid value.
+Uma variável vetor é considerada configurada se um subscrito tiver sido 
+atribuido ao valor.   A sequência de caracteres nula é um valor válido.
 
-It is possible to obtain the keys (indices) of an array as well as the values.
-$@{!@var{name}[@@]@} and $@{!@var{name}[*]@} expand to the indices
-assigned in array variable @var{name}.
-The treatment when in double quotes is similar to the expansion of the
-special parameters @samp{@@} and @samp{*} within double quotes.
+É possivel se obter as chaves (indices) de um vetor bem os valores.
+$@{!@var{name}[@@]@} e $@{!@var{name}[*]@} expandem para os indices 
+atribuidos na variável de vetor @var{name}.
+O tratamento quando em aspas duplas é semelhante ao da expansão dos 
+parâmetros especiais @samp{@@} e @samp{*} dentro de aspas duplas.
 
-The @code{unset} builtin is used to destroy arrays.
-@code{unset @var{name}[@var{subscript}]}
-destroys the array element at index @var{subscript}.
-Negative subscripts to indexed arrays are interpreted as described above.
-Care must be taken to avoid unwanted side effects caused by filename
-expansion.
-@code{unset @var{name}}, where @var{name} is an array, removes the
-entire array.  A subscript of @samp{*} or @samp{@@} also removes the
-entire array.
+O comando interno @code{unset} é utilizado para destruir vetores.
+@code{unset @var{name}[@var{subscript}]} destrói o elemento do vetor no 
+indice @var{subscript}.
+Subscritos negativos para vetores indexados são interpretados conforme 
+descrito acima.
+Deve-se necessariamente tomar cuidado para se evitar efeitos colaterais 
+indesejados causados pela expansão de nome de arquivo.
+@code{unset @var{name}}, onde @var{name} é um vetor, remove o vetor 
+inteiro.   Um subscrito de @samp{*} ou @samp{@@} também remove o vetor 
+inteiro.
 
-The @code{declare}, @code{local}, and @code{readonly}
-builtins each accept a @option{-a} option to specify an indexed
-array and a @option{-A} option to specify an associative array.
-If both options are supplied, @option{-A} takes precedence.
-The @code{read} builtin accepts a @option{-a}
-option to assign a list of words read from the standard input
-to an array, and can read values from the standard input into
-individual array elements.  The @code{set} and @code{declare}
-builtins display array values in a way that allows them to be
-reused as input.
+Os comandos internos @code{declare}, @code{local}, e @code{readonly} 
+cada aceitam uma opção @option{-a} para especificar um vetor indexado e 
+uma opção @option{-A} para especificar um vetor associativo.
+Se ambas as opções forem fornecidas, então @option{-A} tem a 
+precedência.
+O comando interno @code{read} aceita uma opção @option{-a} para se 
+atribuir uma lista de palavras lida a partir da entrada padrão para um 
+vetor, e pode ler valores a partir da entrada padrão para elementos 
+individuais do vetor.   Os comandos internos @code{set} e @code{declare} 
+exibem valores do vetor de uma forma que permite que se possa 
+reutilizá-los como entrada.
 
 @node The Directory Stack
 @section The Directory Stack
