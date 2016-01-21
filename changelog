@@ -2,6 +2,9 @@
 		6 - Bash Features
 		6.3 - Interactive Shells
 		6.4 - Bash Conditional Expressions
+		6.5 - Shell Arithmetic
+		6.6 - Aliases
+		6.7 - Arrays
 
 2016-jan-20	Translated the following sections and subsections:
 		6 - Bash Features
