@@ -3,6 +3,7 @@
 		6.8.1 - Directory Stack Builtins
 		6.9 - Controlling The Prompt
 		6.10 - The Restrited Shell
+		6.11 - Bash POSIX Mode
 
 2016-jan-21	Translated the following sections and subsections:
 		6 - Bash Features
