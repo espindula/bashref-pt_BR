@@ -7453,276 +7453,295 @@ restrições no shell gerado para executar o script.
 @section Bash POSIX Mode
 @cindex POSIX Mode
 
-Starting Bash with the @option{--posix} command-line option or executing
-@samp{set -o posix} while Bash is running will cause Bash to conform more
-closely to the @sc{posix} standard by changing the behavior to
-match that specified by @sc{posix} in areas where the Bash default differs.
+Inicializar Bash com a opção de linha de comando @option{--posix}, ou 
+executar @samp{set -o posix} enquanto Bash estiver em execução, fará com 
+que Bash se conforme mais proximamente ao padrão @sc{posix}, modificando 
+o comportamento para coincidir com aquele especificado por @sc{posix} em 
+áreas onde o padrão Bash difere.
 
-When invoked as @code{sh}, Bash enters @sc{posix} mode after reading the
-startup files.
+Quando invocado como @code{sh}, Bash entra no modo @sc{posix} após a 
+leitura dos arquivos de inicialização.
 
-The following list is what's changed when `@sc{posix} mode' is in effect:
+A seguinte lista é aquilo que é modificado quando `modo @sc{posix}' está 
+em efeito:
 
 @enumerate
 @item
-When a command in the hash table no longer exists, Bash will re-search
-@env{$PATH} to find the new location.  This is also available with
-@samp{shopt -s checkhash}.
+Quando um comando na tabela hash não existe mais, Bash re-pesquisará 
+@env{$PATH} para encontrar a localização nova.   Isso também está 
+disponível com @samp{shopt -s checkhash}.
 
 @item
-The message printed by the job control code and builtins when a job
-exits with a non-zero status is `Done(status)'.
+A mensagem impressa pelo código de controle de tarefa e comandos 
+internos quando uma tarefa sai com um código diferente de zero é 
+`Done(status)'.
 
 @item
-The message printed by the job control code and builtins when a job
-is stopped is `Stopped(@var{signame})', where @var{signame} is, for
-example, @code{SIGTSTP}.
+A mensagem impressa pelo código de controle de tarefa e comandos 
+internos quando uma tarefa é parada é `Stopped(@var{signame})', onde 
+@var{signame} é, por exemplo, @code{SIGTSTP}.
 
 @item
-The @code{bg} builtin uses the required format to describe each job placed
-in the background, which does not include an indication of whether the job
-is the current or previous job.
+O comando interno @code{bg} utiliza o formato exigido para descrever 
+cada tarefa colocada em segundo plano, o qual não inclui uma indicação 
+de quando a tarefa é a tarefa atual ou prévia.
 
 @item
-Reserved words appearing in a context where reserved words are recognized
-do not undergo alias expansion.
+As palavras reservadas que aparecerem em um contexto onde palavras 
+reservadas são reconhecidas não se sujeitam a expansão de apelidos.
 
 @item
-The @sc{posix} @env{PS1} and @env{PS2} expansions of @samp{!} to
-the history number and @samp{!!} to @samp{!} are enabled,
-and parameter expansion is performed on the values of @env{PS1} and
-@env{PS2} regardless of the setting of the @code{promptvars} option.
+As expansões @sc{posix} @env{PS1} e @env{PS2} de @samp{!} para o número 
+de histórico e @samp{!!} para @samp{!} são habilitadas, e a expansão de 
+parâmetro é realizada sobre os valores de @env{PS1} e @env{PS2}, 
+independentemente da configuração da opção @code{promptvars}.
 
 @item
-The @sc{posix} startup files are executed (@env{$ENV}) rather than
-the normal Bash files.
+Os arquivos de inicialização @sc{posix} são executados (@env{$ENV}) ao 
+invés dos arquivos normais de Bash.
 
 @item
-Tilde expansion is only performed on assignments preceding a command
-name, rather than on all assignment statements on the line.
+A expansão de til somente é realizada sobre atribuições precedendo um 
+nome de comando, ao invés de sobre todas as declarações de atribuição na 
+linha.
 
 @item
-The @code{command} builtin does not prevent builtins that take assignment
-statements as arguments from expanding them as assignment statements;
-when not in @sc{posix} mode, assignment builtins lose their assignment
-statement expansion properties when preceded by @code{command}.
+O comando interno @code{command} não previne comandos internos, que 
+tomem declarações de atribuição como argumentos, da expansão deles como 
+declarações de atribuição; quando não em modo @sc{posix}, comandos 
+internos de atribuição perdem as suas propriedades de expansão de 
+declaração de atribuição, quando precedidos por @code{command}.
 
 @item
-The default history file is @file{~/.sh_history} (this is the
-default value of @env{$HISTFILE}).
+O arquivo de histórico padrão é @file{~/.sh_history} (isso é o valor 
+padrão de @env{$HISTFILE}).
 
 @item
-The output of @samp{kill -l} prints all the signal names on a single line,
-separated by spaces, without the @samp{SIG} prefix.
+A saída de @samp{kill -l} imprime todos os nomes de sinal em uma linha 
+única, separados por espaços, sem o prefixo @samp{SIG}.
 
 @item
-The @code{kill} builtin does not accept signal names with a @samp{SIG}
-prefix.
+O comando interno @code{kill} não aceita nomes de sinal com o prefixo 
+@samp{SIG}.
 
 @item
-Non-interactive shells exit if @var{filename} in @code{.} @var{filename}
-is not found.
+Os shell não interativos saem se @var{filename} em @code{.} 
+@var{filename} não seja encontrado.
 
 @item
-Non-interactive shells exit if a syntax error in an arithmetic expansion
-results in an invalid expression.
+Os shells não interativos saem se um erro de sintaxe em uma expansão 
+aritmética resultar em uma expressão inválida.
 
 @item
-Non-interactive shells exit if there is a syntax error in a script read
-with the @code{.} or @code{source} builtins, or in a string processed by
-the @code{eval} builtin.
+Os shells não interativos saem se existir um erro de sintaxe em um 
+script lido com os comandos internos @code{.} ou @code{source}, ou em 
+uma sequência de caracteres processada pelo comando interno @code{eval}.
 
 @item
-Redirection operators do not perform filename expansion on the word
-in the redirection unless the shell is interactive.
+Os operadores de redireção não realizam expansão de nome de arquivo 
+sobre a palavra na redireção a menos que o shell seja interativo.
 
 @item
-Redirection operators do not perform word splitting on the word in the
-redirection.
+Os operadores de redireção não realizam partição de palavra sobre a 
+palavra na redireção.
 
 @item
-Function names must be valid shell @code{name}s.  That is, they may not
-contain characters other than letters, digits, and underscores, and
-may not start with a digit.  Declaring a function with an invalid name
-causes a fatal syntax error in non-interactive shells.
+Os nomes de função devem necessariamente ser @code{name}s válidos de 
+shell.   Isto é, eles não podem conter outros caracteres que não letras, 
+dígitos, e sublinhados, e não podeminiciar com um dígito.   Declarar uma 
+função com um nome inválido causa um erro fatal de sintaxe em shells não 
+interativos.
 
 @item
-Function names may not be the same as one of the @sc{posix} special
-builtins.
+Os nomes de função não podem ser os mesmos que os de algum dos comandos 
+internos @sc{posix} especiais.
 
 @item
-@sc{posix} special builtins are found before shell functions
-during command lookup.
+Os comandos internos @sc{posix} especiais são encontrados antes das 
+funções de shell durante a procura de comando.
 
 @item
-The @code{time} reserved word may be used by itself as a command.  When
-used in this way, it displays timing statistics for the shell and its
-completed children.  The @env{TIMEFORMAT} variable controls the format
-of the timing information.
+A palavra reservada @code{time} pode ser utilizada por ela mesma como um 
+comando.   Quando utilizada dessa maneira, ela exibe estatísticas de 
+temporização para o shell e seus filhos completados.   A variável 
+@env{TIMEFORMAT} controla o formato da informação de temporização.
 
 @item
-When parsing and expanding a $@{@dots{}@} expansion that appears within
-double quotes, single quotes are no longer special and cannot be used to
-quote a closing brace or other special character, unless the operator is
-one of those defined to perform pattern removal.  In this case, they do
-not have to appear as matched pairs.
+Quando da análise e expansão de uma expansão $@{@dots{}@} que aparece 
+dentro de aspas duplas, aspas simples não mais são especiais e não podem 
+ser utilizadas para encapsular uma chave em fechamento ou outro carácter 
+especial, a menos que o operador seja um daqueles definidos para 
+realizar a remoção de padrão.   Nesse caso, as aspas simples não tem de 
+aparecer como pares coincididos.
 
 @item
-The parser does not recognize @code{time} as a reserved word if the next
-token begins with a @samp{-}.
+O analisador não reconhece @code{time} como uma palavra reservada se o 
+próximo token inicia com um @samp{-}.
 
 @item
-If a @sc{posix} special builtin returns an error status, a
-non-interactive shell exits.  The fatal errors are those listed in
-the @sc{posix} standard, and include things like passing incorrect options,
-redirection errors, variable assignment errors for assignments preceding
-the command name, and so on.
+Se um comando interno @sc{posix} especial retorna um código de erro, um 
+shell não interativo sai.   Os erros fatais são aqueles listados no 
+padrão @sc{posix}, e incluem coisas como a análise de opções incorretas, 
+erros de redireção, erros de atribuição a variável para atribuições que 
+precedem o nome de comando, e assim por diante.
 
 @item
-A non-interactive shell exits with an error status if a variable
-assignment error occurs when no command name follows the assignment
-statements.
-A variable assignment error occurs, for example, when trying to assign
-a value to a readonly variable.
+Um shell não interativo sai com um código de erro se um erro de 
+atribuição a variável ocorrer quando nenhum nome de comando seguir as 
+declarações de atribuição.
+Um erro de atribuição a variável ocorre, por exemplo, quando da 
+tentativa de atribuir um valor para uma variável somente leitura.
 
 @item
-A non-interactive shell exits with an error status if a variable
-assignment error occurs in an assignment statement preceding a special
-builtin, but not with any other simple command.
+Um shell não interativo sai com um código de erro se um erro de 
+atribuição a variável ocorrer em uma declaração de atribuição precedendo 
+um comando interno especial, porém não com qualquer outro comando 
+simples.
 
 @item
-A non-interactive shell exits with an error status if the iteration
-variable in a @code{for} statement or the selection variable in a
-@code{select} statement is a readonly variable.
+Um shell não interativo sai com um código de erro se a variável de 
+iteração em uma declaração @code{for} ou a variável de seleção em uma 
+declaração @code{select} for uma variável somente leitura.
 
 @item
-Process substitution is not available.
+A substituição de processo não está disponível.
 
 @item
-While variable indirection is available, it may not be applied to the
-@samp{#} and @samp{?} special parameters.
+Enquanto a indireção de variável estiver disponível, ela não pode ser 
+aplicada aos parâmetros especiais @samp{#} e @samp{?}.
 
 @item
-Assignment statements preceding @sc{posix} special builtins
-persist in the shell environment after the builtin completes.
+As declarações de atribuição precedendo comandos internos @sc{posix} 
+especiais persistem no ambiente de shell após o comando interno 
+completar.
 
 @item
-Assignment statements preceding shell function calls persist in the
-shell environment after the function returns, as if a @sc{posix}
-special builtin command had been executed.
+As declarações de atribuição precedendo as chamadas de função de shell 
+persistem no ambiente de shell após a função retornar, como se um 
+comando interno @sc{posix} especial tivesse sido executado.
 
 @item
-The @code{export} and @code{readonly} builtin commands display their
-output in the format required by @sc{posix}.
+Os comandos internos @code{export} e @code{readonly} exibem suas saídas 
+no formato exigido por @sc{posix}.
 
 @item
-The @code{trap} builtin displays signal names without the leading
+O comando interno @code{trap} exibe nomes de sinal sem o prefixo 
 @code{SIG}.
 
 @item
-The @code{trap} builtin doesn't check the first argument for a possible
-signal specification and revert the signal handling to the original
-disposition if it is, unless that argument consists solely of digits and
-is a valid signal number.  If users want to reset the handler for a given
-signal to the original disposition, they should use @samp{-} as the
-first argument.
+O comando interno @code{trap} não verifica o primeiro argumento para uma 
+possível especificação de sinal e reverte o manipulador de sinal para a 
+disposição original se estiver, a menos que argumento consista 
+unicamente de dígitos e for um número válido de sinal.   Se usuários 
+desejarem reconfigurar o manipulador para um dado sinal para a 
+disposição original, então eles deveriam utilizar @samp{-} como o 
+primeiro argumento.
 
 @item
-The @code{.} and @code{source} builtins do not search the current directory
-for the filename argument if it is not found by searching @env{PATH}.
+Os comandos internos @code{.} e @code{source} não pesquisam o diretório 
+atual em busca de argumento de nome de arquivo se o argumento não for 
+encontrado pesquisando-se @env{PATH}.
 
 @item
-Subshells spawned to execute command substitutions inherit the value of
-the @option{-e} option from the parent shell.  When not in @sc{posix} mode,
-Bash clears the @option{-e} option in such subshells.
+Os subshells criados para executar substituições de comando herdam o 
+valor da opção @option{-e} do shell pai.   Quando não no modo 
+@sc{posix}, Bash limpa a opção @option{-e} em tais subshells.
 
 @item
-Alias expansion is always enabled, even in non-interactive shells.
+A expansão de apelido sempre está habilitada, mesmo em shells não 
+interativos.
 
 @item
-When the @code{alias} builtin displays alias definitions, it does not
-display them with a leading @samp{alias } unless the @option{-p} option
-is supplied.
+Quando o comando interno @code{alias} exibe definições de apelidos, ele 
+não os exibe com um @samp{alias } no início, a menos que a opção 
+@option{-p} seja fornecida.
 
 @item
-When the @code{set} builtin is invoked without options, it does not display
-shell function names and definitions.
+Quando o comando interno @code{set} for invocado sem opções, ele não 
+exibe definições e nomes de função de shell.
 
 @item
-When the @code{set} builtin is invoked without options, it displays
-variable values without quotes, unless they contain shell metacharacters,
-even if the result contains nonprinting characters.
+Quando o comando interno @code{set} for invocado sem opções, ele exibe 
+valores de variáveis sem aspas, a menos que eles contenham 
+metacaracteres de shell, mesmo se o resultado contém caracteres não 
+imprimíveis.
 
 @item
-When the @code{cd} builtin is invoked in @var{logical} mode, and the pathname
-constructed from @code{$PWD} and the directory name supplied as an argument
-does not refer to an existing directory, @code{cd} will fail instead of
-falling back to @var{physical} mode.
+Quando o comando interno @code{cd} for invocado no modo @var{logical}, e 
+o nome de caminho contruido a partir de @code{$PWD}e o nome de diretório 
+fornecido como um argumento não se refere a um diretório existente, 
+@code{cd} falhará, ao invés de retornar ao modo @var{physical}.
 
 @item
-The @code{pwd} builtin verifies that the value it prints is the same as the
-current directory, even if it is not asked to check the file system with the
-@option{-P} option.
+O comando interno @code{pwd} verifica se o valor que ele imprime é o 
+mesmo que o diretório atual, mesmo se não for pedido a ele para checar o 
+sistema de arquivo com a opção @option{-P}.
 
 @item
-When listing the history, the @code{fc} builtin does not include an
-indication of whether or not a history entry has been modified.
+Quando da listagem do histórico, o comando interno @code{fc} não inclue 
+uma indicação de quando ou não uma entrada de histórico foi modificada.
 
 @item
-The default editor used by @code{fc} is @code{ed}.
+O editor padrão utilizado por @code{fc} é @code{ed}.
 
 @item
-The @code{type} and @code{command} builtins will not report a non-executable
-file as having been found, though the shell will attempt to execute such a
-file if it is the only so-named file found in @code{$PATH}.
+Os comandos internos @code{type} e @code{command} não reportarão um 
+arquivo não executável como tendo sido encontrado, apesar que o shell 
+tentará executar tal arquivo se ele for o único arquivo assim nominado 
+encontrado no @code{$PATH}.
 
 @item
-The @code{vi} editing mode will invoke the @code{vi} editor directly when
-the @samp{v} command is run, instead of checking @code{$VISUAL} and
-@code{$EDITOR}.
+O modo de edição @code{vi} invocará o editor @code{vi} diretamente 
+quando o comando @samp{v} for executado, ao invés de verificar 
+@code{$VISUAL} e @code{$EDITOR}.
 
 @item
-When the @code{xpg_echo} option is enabled, Bash does not attempt to interpret
-any arguments to @code{echo} as options.  Each argument is displayed, after
-escape characters are converted.
+Quando a opção @code{xpg_echo} estiver habilitada, Bash não tenta 
+interpretar quaisquer argumentos para @code{echo} como opções.   Cada 
+argumento é exibido, após os caracteres de escape serem convertidos.
 
 @item
-The @code{ulimit} builtin uses a block size of 512 bytes for the @option{-c}
-and @option{-f} options.
+O comando interno @code{ulimit} utiliza um tamanho de bloco de 512 bytes 
+para as opções @option{-c} e @option{-f}.
 
 @item
-The arrival of @code{SIGCHLD}  when a trap is set on @code{SIGCHLD} does
-not interrupt the @code{wait} builtin and cause it to return immediately.
-The trap command is run once for each child that exits.
+A chegada de @code{SIGCHLD} quando um coletor estiver configurado sobre 
+@code{SIGCHLD} não interrompe o comando interno @code{wait} e faz com 
+que ele retorne imediatamente.
+O comando coletor é executado uma vez para cada filho que sai.
 
 @item
-The @code{read} builtin may be interrupted by a signal for which a trap
-has been set.
-If Bash receives a trapped signal while executing @code{read}, the trap
-handler executes and @code{read} returns an exit status greater than 128.
+O comando interno @code{read} pode ser interrompido por um sinal para o 
+qual um coletor tenha sido configurado.
+Se Bash recebe um sinal coletado enquanto executando @code{read}, então 
+o manipulador de coletor executa e @code{read}, retorna um código de 
+saida maior que 128.
 
 @end enumerate
 
-There is other @sc{posix} behavior that Bash does not implement by
-default even when in @sc{posix} mode.
-Specifically:
+Existe outro comportamento @sc{posix} que Bash não implementa por padrão 
+mesmo quando no modo @sc{posix}.
+Especificamente:
 
 @enumerate
 
 @item
-The @code{fc} builtin checks @code{$EDITOR} as a program to edit history
-entries if @code{FCEDIT} is unset, rather than defaulting directly to
-@code{ed}.  @code{fc} uses @code{ed} if @code{EDITOR} is unset.
+O comando interno @code{fc} verifica @code{$EDITOR} como um programa 
+para editar entradas de histórico se @code{FCEDIT} estiver 
+desconfigurada, no lugar de diretamente considerar como padrão 
+@code{ed}.   @code{fc} utiliza @code{ed} se @code{EDITOR} estiver 
+desconfigurada.
 
 @item
-As noted above, Bash requires the @code{xpg_echo} option to be enabled for
-the @code{echo} builtin to be fully conformant.
+Conforme apontado acima, Bash exige que a opção @code{xpg_echo} esteja 
+habilitada para que o comando interno @code{echo} seja completamente 
+conformante.
 
 @end enumerate
 
-Bash can be configured to be @sc{posix}-conformant by default, by specifying
-the @option{--enable-strict-posix-default} to @code{configure} when building
-(@pxref{Optional Features}).
+Bash pode ser configurado para ser conformante com @sc{posix} por 
+padrão, especificando-se @option{--enable-strict-posix-default} para 
+@code{configure} quando da construção (veja-se @ref{Optional Features}).
 
 @node Job Control
 @chapter Job Control
