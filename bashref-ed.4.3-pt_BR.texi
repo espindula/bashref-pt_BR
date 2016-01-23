@@ -7197,19 +7197,19 @@ reutilizá-los como entrada.
 @cindex directory stack
 
 @menu
-* Directory Stack Builtins::		Bash builtin commands to manipulate
-					the directory stack.
+* Directory Stack Builtins::		Comandos internos do Bash para 
+					manipular a pilha de diretório.
 @end menu
 
-The directory stack is a list of recently-visited directories.  The
-@code{pushd} builtin adds directories to the stack as it changes
-the current directory, and the @code{popd} builtin removes specified
-directories from the stack and changes the current directory to
-the directory removed.  The @code{dirs} builtin displays the contents
-of the directory stack.
+A pilha de diretório é uma lista de diretórios recentemente visitados.
+O comando interno @code{pushd} adiciona diretório à pilha conforme ele 
+muda o diretório atual, e o comando interno @code{popd} remove os 
+diretórios especificados da pilha e muda o diretório atual para o 
+diretório removido.   O comando interno @code{dirs} exibe o conteúdo da 
+pilha de diretório.
 
-The contents of the directory stack are also visible
-as the value of the @env{DIRSTACK} shell variable.
+O conteúdo da pilha de diretório também é visível como o valor da 
+variável de shell @env{DIRSTACK}.
 
 @node Directory Stack Builtins
 @subsection Directory Stack Builtins
@@ -7222,30 +7222,31 @@ as the value of the @env{DIRSTACK} shell variable.
 dirs [-clpv] [+@var{N} | -@var{N}]
 @end example
 
-Display the list of currently remembered directories.  Directories
-are added to the list with the @code{pushd} command; the
-@code{popd} command removes directories from the list.
+Exibe a lista dos diretórios atualmente lembrados.   Os diretórios são 
+adicionados à lista com o comando @code{pushd}; o comando @code{popd} 
+remove diretórios da lista.
 
 @table @code
 @item -c
-Clears the directory stack by deleting all of the elements.
+Limpa a pilha de diretório deletando todos os elementos.
 @item -l
-Produces a listing using full pathnames;
-the default listing format uses a tilde to denote the home directory.
+Produz uma listagem utilizando nomes de caminho completos;
+o formato padrão de listagem utiliza um til para denotar o diretório 
+home.
 @item -p
-Causes @code{dirs} to print the directory stack with one entry per
-line.
+Faz com @code{dirs} imprima a pilha de diretório com uma entrada por 
+linha.
 @item -v
-Causes @code{dirs} to print the directory stack with one entry per
-line, prefixing each entry with its index in the stack.
+Faz com que @code{dirs} imprima a pilha de diretório com uma entrada por 
+linha, prefixando cada entrada com seu indice na pilha.
 @item +@var{N}
-Displays the @var{N}th directory (counting from the left of the
-list printed by @code{dirs} when invoked without options), starting
-with zero.
+Exibe o @var{N}ésimo diretório (contando-se a partir da esquerda da 
+lista impressa por @code{dirs} quando invocado sem opções), iniciando 
+com zero.
 @item -@var{N}
-Displays the @var{N}th directory (counting from the right of the
-list printed by @code{dirs} when invoked without options), starting
-with zero.
+Exibe o @var{N}ésimo diretório (contando-se a partir da direita da lista 
+impressa por @code{dirs} quando invocado sem opções), iniciando com 
+zero.
 @end table
 
 @item popd
@@ -7254,24 +7255,23 @@ with zero.
 popd [-n] [+@var{N} | -@var{N}]
 @end example
 
-Remove the top entry from the directory stack, and @code{cd}
-to the new top directory.
-When no arguments are given, @code{popd}
-removes the top directory from the stack and
-performs a @code{cd} to the new top directory.  The
-elements are numbered from 0 starting at the first directory listed with
-@code{dirs}; that is, @code{popd} is equivalent to @code{popd +0}.
+Remove a entrada topo da pilha de diretório, e muda (@code{cd}) para o 
+novo diretório topo.
+Quando nenhum argumento é dado, @code{popd} remove o diretório topo da 
+pilha e realiza um @code{cd} para o novo diretório topo.   Os elementos 
+são numerados a partir do 0 iniciando no primeiro diretório listado com 
+@code{dirs}; isto é, @code{popd} é equivalente a @code{popd +0}.
 
 @table @code
 @item -n
-Suppresses the normal change of directory when removing directories
-from the stack, so that only the stack is manipulated.
+Suprime a mudança normal de diretório quando da remoção de diretórios da 
+pilha, de forma que somente a pilha é manipulada.
 @item +@var{N}
-Removes the @var{N}th directory (counting from the left of the
-list printed by @code{dirs}), starting with zero.
+Remove o @var{N}ésimo diretório (contando-se a partir da esquerda da 
+lista impressa por @code{dirs}), iniciando com zero.
 @item -@var{N}
-Removes the @var{N}th directory (counting from the right of the
-list printed by @code{dirs}), starting with zero.
+Remove o @var{N}ésimo diretório (contando-se a partir da direita da 
+lista impressa por @code{dirs}), iniciando com zero.
 @end table
 
 @btindex pushd
@@ -7280,26 +7280,26 @@ list printed by @code{dirs}), starting with zero.
 pushd [-n] [@var{+N} | @var{-N} | @var{dir}]
 @end example
 
-Save the current directory on the top of the directory stack
-and then @code{cd} to @var{dir}.
-With no arguments, @code{pushd} exchanges the top two directories.
+Salva o diretório atual o topo da pilha de diretório e então muda 
+(@code{cd}) para @var{dir}.
+Sem argumentos, @code{pushd} permuta os dois diretórios topo.
 
 @table @code
 @item -n
-Suppresses the normal change of directory when adding directories
-to the stack, so that only the stack is manipulated.
+Suprime a mudança normal de diretório quando da adição de diretórios à 
+pilha, de forma que somente a pilha é manipulada.
 @item +@var{N}
-Brings the @var{N}th directory (counting from the left of the
-list printed by @code{dirs}, starting with zero) to the top of
-the list by rotating the stack.
+Traz o @var{N}ésimo diretório (contando-se a partir da esquerda da lista 
+impressa por @code{dirs}, iniciando com zero) para o topo da lista 
+rotacionando a pilha.
 @item -@var{N}
-Brings the @var{N}th directory (counting from the right of the
-list printed by @code{dirs}, starting with zero) to the top of
-the list by rotating the stack.
+Traz o @var{N}ésimo diretório (contando-se a partir da esquerda da lista 
+impressa por @code{dirs}, iniciando com zero) para o topo da lista 
+rotacionando a pilha.
 @item @var{dir}
-Makes the current working directory be the top of the stack, making
-it the new current directory as if it had been supplied as an argument
-to the @code{cd} builtin.
+Faz com que o diretório de trabalho atual seja o topo da pilha, 
+tornando-o o novo diretório atual, como se tal diretório tivesse sido 
+fornecido como um argumento para o comando interno @code{cd}.
 @end table
 @end table
 
@@ -7307,141 +7307,147 @@ to the @code{cd} builtin.
 @section Controlling the Prompt
 @cindex prompting
 
-The value of the variable @env{PROMPT_COMMAND} is examined just before
-Bash prints each primary prompt.  If @env{PROMPT_COMMAND} is set and
-has a non-null value, then the
-value is executed just as if it had been typed on the command line.
+O valor da variável @env{PROMPT_COMMAND} é examinado um pouco antes que 
+Bash imprima cada prompt primário.   Se @env{PROMPT_COMMAND} estiver 
+configurada e tiver um valor não nulo, então o valor é executado 
+exatamente como se tal valor tivesse sido digitado na linha de comando.
 
-In addition, the following table describes the special characters which
-can appear in the prompt variables @env{PS1} to @env{PS4}:
+Adicionalmente, a tabela seguinte descreve os caracteres especiais os 
+quais podem aparecer nas variáveis de prompt @env{PS1} até @env{PS4}:
 
 @table @code
 @item \a
-A bell character.
+Um carácter de sino.
 @item \d
-The date, in "Weekday Month Date" format (e.g., "Tue May 26").
+A data, no formato "Dia da Semana Mês Dia" (por exemplo, "Terça Maio 
+26").
 @item \D@{@var{format}@}
-The @var{format} is passed to @code{strftime}(3) and the result is inserted
-into the prompt string; an empty @var{format} results in a locale-specific
-time representation.  The braces are required.
+O @var{format} é passado para @code{strftime}(3) e o resultado é 
+inserido na sequência de caracteres de prompt; um @var{format} vazio 
+resulta em uma representação de hora específica do local.  As chaves 
+são exigidas.
 @item \e
-An escape character.
+Um carácter de escape.
 @item \h
-The hostname, up to the first `.'.
+O nome da máquina, até o primeiro `.'.
 @item \H
-The hostname.
+O nome da máquina.
 @item \j
-The number of jobs currently managed by the shell.
+O número de tarefas atualmente gerenciadas pelo shell.
 @item \l
-The basename of the shell's terminal device name.
+O nome de base do nome de dispositivo de terminal do shell.
 @item \n
-A newline.
+Uma linha nova.
 @item \r
-A carriage return.
+Um retorno de carro.
 @item \s
-The name of the shell, the basename of @code{$0} (the portion
-following the final slash).
+O nome do shell, o nome de base de @code{$0} (a porção seguinte à barra 
+final).
 @item \t
-The time, in 24-hour HH:MM:SS format.
+A hora, no formato 24 horas HH:MM:SS
 @item \T
-The time, in 12-hour HH:MM:SS format.
+A hora, no formato 12 horas HH:MM:SS
 @item \@@
-The time, in 12-hour am/pm format.
+A hora, no formato 12 horas am/pm
 @item \A
-The time, in 24-hour HH:MM format.
+A hora, no formato 24 horas HH:MM
 @item \u
-The username of the current user.
+O nome de usuário do usuário atual.
 @item \v
-The version of Bash (e.g., 2.00)          
+A versão de Bash (por exemplo, 2.00)
 @item \V
-The release of Bash, version + patchlevel (e.g., 2.00.0)
+A versão de lançamento de Bash, versão + nível de correção (por exemplo, 
+2.00.0)
 @item \w
-The current working directory, with @env{$HOME} abbreviated with a tilde
-(uses the @env{$PROMPT_DIRTRIM} variable).
+O diretório de trabalho atual, com @env{$HOME} abreviada com um til 
+(utiliza a variável @env{$PROMPT_DIRTRIM}).
 @item \W
-The basename of @env{$PWD}, with @env{$HOME} abbreviated with a tilde.
+O nome de base de @env{$PWD}, com @env{$HOME} abreviada com um til.
 @item \!
-The history number of this command.
+O número de histórico desse comando.
 @item \#
-The command number of this command.
+O número de comando desse comando.
 @item \$
-If the effective uid is 0, @code{#}, otherwise @code{$}.
+Se o uid efetivo for 0, @code{#}, do contrário @code{$}.
 @item \@var{nnn}
-The character whose ASCII code is the octal value @var{nnn}.
+O carácter cujo código ASCII for o valor octal @var{nnn}.
 @item \\
-A backslash.
+Uma barra invertida.
 @item \[
-Begin a sequence of non-printing characters.  This could be used to
-embed a terminal control sequence into the prompt.
+Inicia uma sequência de caracteres não imprimíveis.  Isso poderia ser 
+utilizado para embutir uma sequência de controle de terminal no prompt.
 @item \]
-End a sequence of non-printing characters.
+Finaliza uma sequência de caracteres não imprimíveis.
 @end table
 
-The command number and the history number are usually different:
-the history number of a command is its position in the history
-list, which may include commands restored from the history file
-(@pxref{Bash History Facilities}), while the command number is
-the position in the sequence of commands executed during the current
-shell session.
+O númedo de comando e o número de histórico são usualmente diferentes: o 
+número de histórico de um comando é a posição dele na lista de 
+histórico, a qual pode incluir comandos restaurados a partir do arquivo 
+de histórico (veja-se @ref{Bash History Facilities}), enquanto que o 
+número de comando é a posição na sequência de comandos executada durante 
+a atual sessão do shell.
 
-After the string is decoded, it is expanded via
-parameter expansion, command substitution, arithmetic
-expansion, and quote removal, subject to the value of the
-@code{promptvars} shell option (@pxref{Bash Builtins}).
+Após a string ser decodificada, ela é expandida via expansão de 
+parâmetro, substituição de comando, expansão aritmética, e remoção de 
+aspas, sujeito ao valor da opção de shell @code{promptvars}
+(veja-se @ref{Bash Builtins}).
 
 @node The Restricted Shell
 @section The Restricted Shell
 @cindex restricted shell
 
-If Bash is started with the name @code{rbash}, or the
-@option{--restricted}
-or
-@option{-r}
-option is supplied at invocation, the shell becomes restricted.
-A restricted shell is used to
-set up an environment more controlled than the standard shell.
-A restricted shell behaves identically to @code{bash}
-with the exception that the following are disallowed or not performed:
+Se Bash for inicializado com o nome @code{rbash}, ou a opção 
+@option{--restricted} ou @option{-r} for fornecida na invocação, então o 
+shell se torna restrito.
+Um shell restrito é utilizado para configurar um ambiente mais 
+controlado que o shell padrão.
+Um shell restrito se comporta identicamente a @code{bash} com exceção 
+que o seguinte é proibido ou não realizado:
 
 @itemize @bullet
 @item
-Changing directories with the @code{cd} builtin.
+Mudança de diretórios com o comando interno @code{cd}.
 @item
-Setting or unsetting the values of the @env{SHELL}, @env{PATH},
-@env{ENV}, or @env{BASH_ENV} variables.
+Configurar ou desconfigurar os valor das variáveis @env{SHELL}, 
+@env{PATH}, @env{ENV}, ou @env{BASH_ENV}.
 @item
-Specifying command names containing slashes.
+Especificação de nomes de comandos contendo barras.
 @item
-Specifying a filename containing a slash as an argument to the @code{.}
-builtin command.
+Especificação de um nome de arquivo contendo uma barra como um argumento 
+para o comando interno @code{.}
 @item
-Specifying a filename containing a slash as an argument to the @option{-p}
-option to the @code{hash} builtin command.
+Especificação de um nome de arquivo contendo uma barra como um argumento 
+para a opção @option{-p} para o comando interno @code{hash}.
 @item
-Importing function definitions from the shell environment at startup.
+Importação de definições de função a partir do ambiente de shell na 
+inicialização.
 @item
-Parsing the value of @env{SHELLOPTS} from the shell environment at startup.
+Análise do valor de @env{SHELLOPTS} a partir do ambiente de shell na 
+inicialização.
 @item
-Redirecting output using the @samp{>}, @samp{>|}, @samp{<>}, @samp{>&},
-@samp{&>}, and @samp{>>} redirection operators.
+Redirecionamento de saída utilizando-se os operadores de redireção 
+@samp{>}, @samp{>|}, @samp{<>}, @samp{>&}, @samp{&>}, e @samp{>>}.
 @item
-Using the @code{exec} builtin to replace the shell with another command.
+Utilização do comando interno @code{exec} para substituir o shell com um 
+outro comando.
 @item
-Adding or deleting builtin commands with the
-@option{-f} and @option{-d} options to the @code{enable} builtin.
+Adicionar ou deletar comandos internos com as opções @option{-f} e 
+@option{-d} para o comando interno @code{enable}.
 @item
-Using the @code{enable} builtin command to enable disabled shell builtins.
+Utilizar o comando interno @code{enable} para habilitar comandos 
+internos de shell desabilitados.
 @item
-Specifying the @option{-p} option to the @code{command} builtin.
+Especificar a opção @option{-p} para o comando interno @code{command}.
 @item
-Turning off restricted mode with @samp{set +r} or @samp{set +o restricted}.
+Desligar o modo restrito com @samp{set +r} ou @samp{set +o restricted}.
 @end itemize
 
-These restrictions are enforced after any startup files are read.
+Essas restrições são aplicadas após quaisquer arquivos de inicialização 
+serem lidos.
 
-When a command that is found to be a shell script is executed
-(@pxref{Shell Scripts}), @code{rbash} turns off any restrictions in
-the shell spawned to execute the script.
+Quando um comando que for encontrado como sendo um script de shell é 
+executado (veja-se @ref{Shell Scripts}), @code{rbash} desliga quaisquer 
+restrições no shell gerado para executar o script.
 
 @node Bash POSIX Mode
 @section Bash POSIX Mode
