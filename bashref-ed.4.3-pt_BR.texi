@@ -7746,15 +7746,16 @@ padrão, especificando-se @option{--enable-strict-posix-default} para
 @node Job Control
 @chapter Job Control
 
-This chapter discusses what job control is, how it works, and how
-Bash allows you to access its facilities.
+Este capítulo discute o que é o controle de tarefas, como ele funciona, 
+e como Bash te permite acessar as facilidades desse controle.
 
 @menu
-* Job Control Basics::		How job control works.
-* Job Control Builtins::	Bash builtin commands used to interact
-				with job control.
-* Job Control Variables::	Variables Bash uses to customize job
-				control.
+* Job Control Basics::		Como o controle de tarefas funciona.
+* Job Control Builtins::	Os comandos internos do Bash utilizados 
+				para interagir com o controle de 
+				tarefas.
+* Job Control Variables::	Variáveis que o Bash utiliza para 
+				personalizar o controle de tarefas.
 @end menu
 
 @node Job Control Basics
@@ -7764,103 +7765,105 @@ Bash allows you to access its facilities.
 @cindex background
 @cindex suspending jobs
 
-Job control
-refers to the ability to selectively stop (suspend)
-the execution of processes and continue (resume)
-their execution at a later point.  A user typically employs
-this facility via an interactive interface supplied jointly
-by the operating system kernel's terminal driver and Bash.
+O controle de tarefas se refere à habilidade de parar (suspender) 
+seletivamente a execução de processos e continuar (resumir) a execução 
+deles num ponto mais tarde.   Um usuário tipicamente emprega essa 
+facilidade via uma interface interativa fornecida conjuntamente pelo 
+driver de terminal do núcleo do sistema operacional e por Bash.
 
-The shell associates a @var{job} with each pipeline.  It keeps a
-table of currently executing jobs, which may be listed with the
-@code{jobs} command.  When Bash starts a job
-asynchronously, it prints a line that looks
-like:
+O shell associa um @var{job} com cada canal de comunicação.   O shell 
+mantém uma tabela das tarefas atualmente em execução, as quais podem ser 
+listadas com o comando @code{jobs}.   Quando Bash inicia uma tarefa 
+assincronamente, ele imprime uma linha que se parece com isto:
 @example
 [1] 25647
 @end example
 @noindent
-indicating that this job is job number 1 and that the process @sc{id}
-of the last process in the pipeline associated with this job is
-25647.  All of the processes in a single pipeline are members of
-the same job.  Bash uses the @var{job} abstraction as the
-basis for job control. 
+indicando que essa tarefa é a tarefa número 1 e que o @sc{id} de 
+processo do último processo no canal de comunicação associado com essa 
+tarefa é 25647.   Bash utiliza a abstração de @var{job} como uma base 
+para o controle de tarefa.
 
-To facilitate the implementation of the user interface to job
-control, the operating system maintains the notion of a current terminal
-process group @sc{id}.  Members of this process group (processes whose
-process group @sc{id} is equal to the current terminal process group
-@sc{id}) receive keyboard-generated signals such as @code{SIGINT}. 
-These processes are said to be in the foreground.  Background
-processes are those whose process group @sc{id} differs from the
-terminal's; such processes are immune to keyboard-generated
-signals.  Only foreground processes are allowed to read from or, if
-the user so specifies with @code{stty tostop}, write to the terminal.
-Background processes which attempt to
-read from (write to when @code{stty tostop} is in effect) the
-terminal are sent a @code{SIGTTIN} (@code{SIGTTOU})
-signal by the kernel's terminal driver,
-which, unless caught, suspends the process. 
+Para facilitar a implementação da interface de usuário para o controle 
+de tarefa, o sistema operacional mantém a noção de @sc{id} de grupo de 
+processo de terminal atual.   Os membros desse grupo de processos 
+(processos cujo @sc{id} de grupo de processo seja igual ao atual @sc{id} 
+de grupo de processo de terminal) recebem sinais gerados por teclado 
+tais como @code{SIGINT}.
+Diz-se que esses processos estão no primeiro plano.   Os processos de 
+segundo plano são aqueles cujo @sc{id} de grupo de processo difere do 
+@sc{id} de grupo de processo do terminal; tais processos estão imunes 
+aos sinais gerados por teclado.   Apenas aos processos de primeiro plano 
+é permitido ler a partir de ou, se o usuário especifica com @code{stty 
+tostop}, escrever para o terminal.
+Aos processos de segundo plano que tentam ler a partir (escrever para 
+quando @code{stty tostop} está em efeito) do terminal é enviado um 
+sinal @code{SIGTTIN} (@code{SIGTTOU}) pelo driver de terminal do kernel, 
+o qual, a menos que capturado, suspende o processo.
 
-If the operating system on which Bash is running supports
-job control, Bash contains facilities to use it.  Typing the
-@var{suspend} character (typically @samp{^Z}, Control-Z) while a
-process is running causes that process to be stopped and returns
-control to Bash.  Typing the @var{delayed suspend} character
-(typically @samp{^Y}, Control-Y) causes the process to be stopped
-when it attempts to read input from the terminal, and control to
-be returned to Bash.  The user then manipulates the state of
-this job, using the @code{bg} command to continue it in the
-background, the @code{fg} command to continue it in the
-foreground, or the @code{kill} command to kill it.  A @samp{^Z}
-takes effect immediately, and has the additional side effect of
-causing pending output and typeahead to be discarded. 
+Se o sistema operacional no qual Bash está em execução suporta controle 
+de tarefa, então Bash contém facilidades para utilizá-lo.   Digitar-se o 
+carácter @var{suspend} (tipicamente @samp{^Z}, Control-Z) enquanto um 
+processo está em execução faz com que esse processo seja parado e 
+retorne o controle para Bash.   O usuário então manipula o estado dessa 
+tarefa, utilizando o comando @code{bg} para continuá-lo no primeiro 
+plano, ou o comando @code{kill} para matá-lo.   Um @samp{^Z} tem efeito 
+imediatamente, e tem o efeito colateral adicional de fazer com que saída 
+pendente e autocompletar serem descartados.
 
-There are a number of ways to refer to a job in the shell.  The
-character @samp{%} introduces a job specification (@var{jobspec}).
+Existe um número de maneiras de se referir a uma tarefa no shell.  O 
+carácter @samp{%} introduz uma especificação de tarefa (@var{jobspec}).
 
-Job number @code{n} may be referred to as @samp{%n}.
-The symbols @samp{%%} and  @samp{%+} refer to the shell's notion of the
-current job, which is the last job stopped while it was in the foreground
-or started in the background.
-A single @samp{%} (with no accompanying job specification) also refers
-to the current job.
-The previous job may be referenced using @samp{%-}.
-If there is only a single job, @samp{%+} and @samp{%-} can both be used
-to refer to that job.
-In output pertaining to jobs (e.g., the output of the @code{jobs}
-command), the current job is always flagged with a @samp{+}, and the
-previous job with a @samp{-}. 
+Um número de tarefa @code{n} pode ser referenciado como @samp{%n}.
+Os símbolos @samp{%%} e @samp{%+} se referem à noção do shell da tarefa 
+atual, a qual é a última tarefa parada enquanto ela estava no primeiro 
+plano ou inicialiada no segundo plano.
 
-A job may also be referred to
-using a prefix of the name used to start it, or using a substring
-that appears in its command line.  For example, @samp{%ce} refers
-to a stopped @code{ce} job.  Using @samp{%?ce}, on the
-other hand, refers to any job containing the string @samp{ce} in
-its command line.  If the prefix or substring matches more than one job,
-Bash reports an error.
+Um único @samp{%} (sem acompanhamento da especificação de tarefa) também 
+se refere à tarefa atual.
+A tarefa previa pode ser referenciada utilizando-se @samp{%-}.
+Se existir apenas uma tarefa única, então @samp{%+} e @samp{%-} podem 
+ambos serem utilizados para se referir àquela tarefa.
+Na saída relativa à tarefas (por exemplo, a saída do comando 
+@code{jobs}), a tarefa atual sempre é rotulada com um @samp{+}, e a 
+tarefa prévia com um @samp{-}.
 
-Simply naming a job can be used to bring it into the foreground:
-@samp{%1} is a synonym for @samp{fg %1}, bringing job 1 from the
-background into the foreground.  Similarly, @samp{%1 &} resumes
-job 1 in the background, equivalent to @samp{bg %1}
+Uma tarefa também pode sr referenciada utilizando-se um prefixo do nome 
+utilizado para inicializá-la, ou utilizando-se uma parte da sequência de 
+caracteres que aparece na sua linha de comando.   Por exemplo, 
+@samp{%ce} se refere à tarefa @code{ce} parada.   Utilizando-se 
+@samp{%?ce}, por outro lado, se refere a qualquer tarefa contendo a 
+sequência de caracteres @samp{ce} em sua linha de comando.   Se o 
+prefixo ou parte da sequencia de caracteres coincide com mais que uma 
+tarefa, então Bash reporta um erro.
 
-The shell learns immediately whenever a job changes state. 
-Normally, Bash waits until it is about to print a prompt
-before reporting changes in a job's status so as to not interrupt
-any other output.
-If the @option{-b} option to the @code{set} builtin is enabled,
-Bash reports such changes immediately (@pxref{The Set Builtin}).
-Any trap on @code{SIGCHLD} is executed for each child process
-that exits.
+Em poucas palavras, uma tarefa pode ser utilizada para se trazer para o 
+primeiro plano: @samp{%1} é um sinônimo para @samp{fg %1}, trazendo a 
+tarefa 1 do segundo plano para o primeiro plano.   Similarmente, 
+@samp{%1 &} suspende a tarefa 1 no primeir plano, equivalente a
+@samp{bg %1}.
 
-If an attempt to exit Bash is made while jobs are stopped, (or running, if
-the @code{checkjobs} option is enabled -- see @ref{The Shopt Builtin}), the
-shell prints a warning message, and if the @code{checkjobs} option is
-enabled, lists the jobs and their statuses.
-The @code{jobs} command may then be used to inspect their status.
-If a second attempt to exit is made without an intervening command,
-Bash does not print another warning, and any stopped jobs are terminated.
+O shell aprende imediatamente quando uma tarefa muda de estado.
+Normalmente, Bash aguarda até que esteja prestes a imprimir um prompt 
+antes de reportar modificações em um estado da tarefa, de forma a não 
+interromper qualquer outra entrada.
+Se a opção @option{-b} para o comando interno @code{set} estiver 
+habilitada, então reporta tais modificações imediatamente
+(veja-se @ref{The Set Builtin}).
+Qualquer coletor sobre @code{SIGCHLD} é executado para cada processo 
+filho que sai.
+
+Se uma tentativa de sair de Bash for feita enquanto tarefas estão 
+paradas, (ou em execução, se a opção @code{checkjobs} estiver habilitada 
+-- veja-se @ref{The Shopt Builtin}), então o shell imprime uma mensagem 
+de alerta, e se a opção @code{checkjobs} estiver habilitada, lista as 
+tarefas e suas situações.
+
+O comando @code{jobs} pode então ser utilizado para inspecionar os 
+estados das tarefas.
+Se uma segunda tentativa de sair for feita, sem um comando 
+interveniente, então Bash não imprime outro alerta, e quaisquer tarefas 
+paradas são terminadas.
 
 @node Job Control Builtins
 @section Job Control Builtins
@@ -7873,13 +7876,14 @@ Bash does not print another warning, and any stopped jobs are terminated.
 bg [@var{jobspec} @dots{}]
 @end example
 
-Resume each suspended job @var{jobspec} in the background, as if it
-had been started with @samp{&}.
-If @var{jobspec} is not supplied, the current job is used.
-The return status is zero unless it is run when job control is not
-enabled, or, when run with job control enabled, any
-@var{jobspec} was not found or specifies a job
-that was started without job control.
+Continua a execução de cada tarefa @var{jobspec} suspensa no segundo 
+plano, como se ela tivesse sido inicializada com @samp{&}.
+Se @var{jobspec} não for fornecida, então a tarefa atual é utilizada.
+O código de retorno é zero, a menos que esse comando interno seja 
+executado quando o controle de tarefa não esteja habilitado, ou, quando 
+executado com o controle de tarefa habilitado, qualquer @var{jobspec} 
+não foi encontrado ou especifica uma tarefa que foi inicializada sem 
+controle de tarefa.
 
 @item fg
 @btindex fg
@@ -7887,12 +7891,14 @@ that was started without job control.
 fg [@var{jobspec}]
 @end example
 
-Resume the job @var{jobspec} in the foreground and make it the current job.
-If @var{jobspec} is not supplied, the current job is used.
-The return status is that of the command placed into the foreground,
-or non-zero if run when job control is disabled or, when run with
-job control enabled, @var{jobspec} does not specify a valid job or
-@var{jobspec} specifies a job that was started without job control.
+Continua a execução da tarefa @var{jobspec} no primeiro plano e a faz a 
+tarefa atual.
+Se @var{jobspec} não for fornecida, então a tarefa atual é utilizada.
+O código de retorno é aquele do comando colocado no primeiro plano, ou 
+diferente de zero se executado quando o controle de tarefa estiver 
+desabilitado ou, quando executado com o controle de tarefa habilitado, 
+@var{jobspec} não especificar uma tarefa válida ou @var{jobspec} 
+especifica uma tarefa que foi inicializada sem controle de tarefa.
 
 @item jobs
 @btindex jobs
@@ -7901,36 +7907,38 @@ jobs [-lnprs] [@var{jobspec}]
 jobs -x @var{command} [@var{arguments}]
 @end example
 
-The first form lists the active jobs.  The options have the
-following meanings:
+A primeira forma lista as tarefas ativas.   As opções tem os seguintes 
+significados:
 
 @table @code
 @item -l
-List process @sc{id}s in addition to the normal information.
+Lista @sc{id}s de processos em adição à informação normal.
 
 @item -n
-Display information only about jobs that have changed status since
-the user was last notified of their status.
+Exibe informação somente sobre tarefas que tiveram estado modificado 
+desde quando o usuário foi notificado mais recentemente do estado delas.
 
 @item -p
-List only the process @sc{id} of the job's process group leader.
+Lista somente o @sc{id} de processo do líder de grupo de processo da 
+tarefa.
 
 @item -r
-Display only running jobs.
+Exibe apenas tarefas em execução.
 
 @item -s
-Display only stopped jobs.
+Exibe apenas tarefas paradas.
 @end table
 
-If @var{jobspec} is given,
-output is restricted to information about that job. 
-If @var{jobspec} is not supplied, the status of all jobs is
-listed.
+Se @var{jobspec} for dada, então a saída é restrita à informação sobre 
+aquela tarefa.
+Se @var{jobspec} não for fornecida, então a situação de todas as tarefas 
+é listada.
 
-If the @option{-x} option is supplied, @code{jobs} replaces any
-@var{jobspec} found in @var{command} or @var{arguments} with the
-corresponding process group @sc{id}, and executes @var{command},
-passing it @var{argument}s, returning its exit status. 
+Se a opção @option{-x} for fornecida, então @code{jobs} substitue 
+qualquer @var{jobspec} encontrado em @var{command} ou @var{arguments} 
+com o correspondente @sc{id} de grupo de processo, e executa 
+@var{command}, passando a ele @var{argument}s, retornando seu código de 
+saída.
 
 @item kill
 @btindex kill
@@ -7939,20 +7947,23 @@ kill [-s @var{sigspec}] [-n @var{signum}] [-@var{sigspec}] @var{jobspec} or @var
 kill -l [@var{exit_status}]
 @end example
 
-Send a signal specified by @var{sigspec} or @var{signum} to the process
-named by job specification @var{jobspec} or process @sc{id} @var{pid}.
-@var{sigspec} is either a case-insensitive signal name such as
-@code{SIGINT} (with or without the @code{SIG} prefix)
-or a signal number; @var{signum} is a signal number.
-If @var{sigspec} and @var{signum} are not present, @code{SIGTERM} is used.
-The @option{-l} option lists the signal names.
-If any arguments are supplied when @option{-l} is given, the names of the
-signals corresponding to the arguments are listed, and the return status
-is zero.
-@var{exit_status} is a number specifying a signal number or the exit
-status of a process terminated by a signal.
-The return status is zero if at least one signal was successfully sent,
-or non-zero if an error occurs or an invalid option is encountered.
+Envia um sinal especificado por @var{sigspec} ou @var{signum} para o 
+processo nomeado pela especificação de tarefa @var{jobspec} ou @sc{id} 
+de processo @var{pid}.
+@var{sigspec} é ou um nome de sinal sem distinção entre maiúsculas e 
+minúsculas, tal como @code{SIGINT} (com ou sem o prefixo @code{SIG}) ou 
+um número de sinal; @var{signum} é um número de sinal.
+Se @var{sigspec} e @var{signum} não estiverem presentes, então 
+@code{SIGTERM} é utilizado.
+A opção @option{-l} lista os nomes de sinal.
+Se quaisquer argumentos forem fornecidos quando @option{-l} for dada, 
+então os nomes dos sinais correspondentes aos argumentos são listados, e 
+o código de retorno é zero.
+@var{exit_status} é um número que especifica um número de sinal ou a 
+situação de saída de um processo terminado por um sinal.
+O código de retorno é zero se pelo menos um sinal foi enviado com 
+sucesso, ou diferente de zero se um erro ocorre ou uma opção inválida é 
+encontrada.
 
 @item wait
 @btindex wait
@@ -7960,16 +7971,17 @@ or non-zero if an error occurs or an invalid option is encountered.
 wait [-n] [@var{jobspec} or @var{pid} @dots{}]
 @end example
 
-Wait until the child process specified by each process @sc{id} @var{pid}
-or job specification @var{jobspec} exits and return the exit status of the
-last command waited for.
-If a job spec is given, all processes in the job are waited for.
-If no arguments are given, all currently active child processes are
-waited for, and the return status is zero.
-If the @option{-n} option is supplied, @code{wait} waits for any job to
-terminate and returns its exit status.
-If neither @var{jobspec} nor @var{pid} specifies an active child process
-of the shell, the return status is 127.
+Aguarda até que o processo filho especificado por cada @sc{id} de 
+processo @var{pid} ou especificação de tarefa @var{jobspec} saia e 
+retorna a situação de saída do último comando aguardado.
+Se uma especificação de tarefa for dada, então todos os processos na 
+tarefa são aguardados.
+Se nenhum argumento for dado, então todos os processos filho atualmente 
+ativos são aguardados, e o código de retorno é zero.
+Se a opção @option{-n} for fornecida, então @code{wait} aguarda qualquer 
+tarefa terminar e retorna sua situação de saída.
+Se nem @var{jobspec} nem @var{pid} especifica um processo filho ativo do 
+shell, então o código de retorno é 127.
 
 @item disown
 @btindex disown
@@ -7977,16 +7989,15 @@ of the shell, the return status is 127.
 disown [-ar] [-h] [@var{jobspec} @dots{}]
 @end example
 
-Without options, remove each @var{jobspec} from the table of
-active jobs.
-If the @option{-h} option is given, the job is not removed from the table,
-but is marked so that @code{SIGHUP} is not sent to the job if the shell
-receives a @code{SIGHUP}.
-If @var{jobspec} is not present, and neither the @option{-a} nor the
-@option{-r} option is supplied, the current job is used.
-If no @var{jobspec} is supplied, the @option{-a} option means to remove or
-mark all jobs; the @option{-r} option without a @var{jobspec}
-argument restricts operation to running jobs.
+Sem opções, remove cada @var{jobspec} da tabela de tarefas ativas.
+Se a opção @option{-h} for dada, então a tarefa não é removida da 
+tabela, porém é marcada, de forma que @code{SIGHUP} não é enviado para a 
+tarefa se o shell recebe um @code{SIGHUP}.
+Se @var{jobspec} não estiver presente, e nem a opção @option{-a} nem a 
+@option{-r} forem fornecidas, então a tarefa atual é utilizada.
+Se nenhuma @var{jobspec} for fornecida, então a opção @option{-a} 
+significa remover ou marcar todas as tarefas; a opção @option{-r} sem 
+um argumento @var{jobspec} restringe a operação a tarefas em execução.
 
 @item suspend
 @btindex suspend
@@ -7994,15 +8005,14 @@ argument restricts operation to running jobs.
 suspend [-f]
 @end example
 
-Suspend the execution of this shell until it receives a
-@code{SIGCONT} signal.
-A login shell cannot be suspended; the @option{-f}
-option can be used to override this and force the suspension.
+Pára a execução deste shell até que ele receba um sinal @code{SIGCONT}.
+Um shell de login não pode ser parado; a opção @option{-f} pode ser 
+utilizada para anular isso e forçar a suspensão.
 @end table
 
-When job control is not active, the @code{kill} and @code{wait}
-builtins do not accept @var{jobspec} arguments.  They must be
-supplied process @sc{id}s.
+Quando o controle de tarefa não está ativo, os comandos internos 
+@code{kill} e @code{wait} não aceitam argumentos @var{jobspec}.   Eles 
+devem necessariamente ser alimentados com @sc{id}s de processos.
 
 @node Job Control Variables
 @section Job Control Variables
