@@ -8055,27 +8055,31 @@ tarefa @samp{%}.
 @node Installing Bash
 @chapter Installing Bash
 
-This chapter provides basic instructions for installing Bash on
-the various supported platforms.  The distribution supports the
-@sc{gnu} operating systems, nearly every version of Unix, and several
-non-Unix systems such as BeOS and Interix.
-Other independent ports exist for
-@sc{ms-dos}, @sc{os/2}, and Windows platforms.
+Este capítulo provê instruções básicas para a instalação de Bash nas 
+várias plataformas suportadas.   A distribuição suporta os sistemas 
+operacionais @sc{gnu}, quase cada versão de Unix, e vários sistemas não 
+Unix tais como BeOS e Interix.
+Outras portagens independentes existem para @sc{ms-dos}, @sc{os/2}, e 
+plataformas Windows.
 
 @menu
-* Basic Installation::	Installation instructions.
-* Compilers and Options::	How to set special options for various
-				systems.
-* Compiling For Multiple Architectures::	How to compile Bash for more
-						than one kind of system from
-						the same source tree.
-* Installation Names::	How to set the various paths used by the installation.
-* Specifying the System Type::	How to configure Bash for a particular system.
-* Sharing Defaults::	How to share default configuration values among GNU
-			programs.
-* Operation Controls::	Options recognized by the configuration program.
-* Optional Features::	How to enable and disable optional features when
-			building Bash.
+* Basic Installation::	Instruções de instalação.
+* Compilers and Options::	Como configurar opções especiais para 
+				vários sistemas.
+* Compiling For Multiple Architectures::	Como compilar Bash para 
+						mais que um tipo de 
+						sistema a partir da 
+						mesma árvore de fonte.
+* Installation Names::	Como configurar os vários caminhos utilizados 
+			pela instalação.
+* Specifying the System Type::	Como configurar Bash para um sistema 
+				particular.
+* Sharing Defaults::	Como compartilhar valores padrão de configuração 
+			entre programas GNU.
+* Operation Controls::	Opções reconhecidas pelo programa de 
+			configuração.
+* Optional Features::	Como habilitar e desabilitar características 
+			opcionais quando da construção de Bash.
 @end menu
 
 @node Basic Installation
@@ -8085,135 +8089,138 @@ Other independent ports exist for
 @cindex Bash installation
 @cindex Bash configuration
 
-These are installation instructions for Bash.
+Estas são instruções de instalação para Bash.
 
-The simplest way to compile Bash is:
+A maneira mais simples de compilar Bash é:
 
 @enumerate
 @item
-@code{cd} to the directory containing the source code and type
-@samp{./configure} to configure Bash for your system.  If you're
-using @code{csh} on an old version of System V, you might need to
-type @samp{sh ./configure} instead to prevent @code{csh} from trying
-to execute @code{configure} itself.
+mudar (@code{cd}) para o diretório contendo o código fonte e digitar 
+@samp{./configure} para configurar Bash para o seu sistema.   Se você 
+estiver utilizando @code{csh} em uma versão antiga de System V, 
+pelo contrário talvez você precise digitar @samp{sh ./configure} para 
+prevenir @code{csh} de tentar executar o próprio @code{configure}.
 
-Running @code{configure} takes some time.
-While running, it prints messages telling which features it is
-checking for.
-
-@item
-Type @samp{make} to compile Bash and build the @code{bashbug} bug
-reporting script.
+A execução de @code{configure} leva algum tempo.
+Enquanto em execução, ele imprime mensagens dizendo quais 
+características ele está verificando.
 
 @item
-Optionally, type @samp{make tests} to run the Bash test suite.
+Digite @samp{make} para compilar Bash e contruir o script de relatamento 
+de erro @code{bashbug}.
 
 @item
-Type @samp{make install} to install @code{bash} and @code{bashbug}.
-This will also install the manual pages and Info file.
+Opcionalmente, digite @samp{make tests} para executar a suite de teste 
+do Bash.
+
+@item
+Digite @samp{make install} para instalar @code{bash} e @code{bashbug}.
+Isso também instalará as páginas de manual e arquivo Info.
 
 @end enumerate
 
-The @code{configure} shell script attempts to guess correct
-values for various system-dependent variables used during
-compilation.  It uses those values to create a @file{Makefile} in
-each directory of the package (the top directory, the
-@file{builtins}, @file{doc}, and @file{support} directories,
-each directory under @file{lib}, and several others).  It also creates a
-@file{config.h} file containing system-dependent definitions. 
-Finally, it creates a shell script named @code{config.status} that you
-can run in the future to recreate the current configuration, a
-file @file{config.cache} that saves the results of its tests to
-speed up reconfiguring, and a file @file{config.log} containing
-compiler output (useful mainly for debugging @code{configure}). 
-If at some point
-@file{config.cache} contains results you don't want to keep, you
-may remove or edit it. 
+O script de shell @code{configure} tenta advinhar os valores corretos 
+para várias variáveis dependentes de sistema utilizadas durante a 
+compilação.   Ele utiliza tais valores para criar um @file{Makefile} em 
+cada diretório do pacote (o diretório topo, dos diretórios 
+@file{builtins}, @file{doc}, e @file{support}, cada diretório sob 
+@file{lib}, e vários outros).   O script também cria um arquivo 
+@file{config.h} contendo definições dependents de sistema.
+Finalmente, ele cria um script de shell chamado @code{config.status} que 
+você pode executar no futuro para recriar a configuração atual, um 
+arquivo @file{config.cache} que salva os resultados de seus testes para 
+acelerar a reconfiguração, e um arquivo @file{config.log} contendo saída 
+do compilador (útil principalmente para depurar @code{configure}).
+Se em certo ponto @file{config.cache} contém resultados que você não 
+deseja manter, então você pode remover ou editá-lo.
 
-To find out more about the options and arguments that the
-@code{configure} script understands, type 
+Para descobrir mais sobre as opções e argumentos que o script 
+@code{configure} entende, digite
 
 @example
 bash-2.04$ ./configure --help
 @end example
 
 @noindent
-at the Bash prompt in your Bash source directory.
+no prompt do Bash no seu diretório de fonte do Bash.
 
-If you need to do unusual things to compile Bash, please
-try to figure out how @code{configure} could check whether or not
-to do them, and mail diffs or instructions to
-@email{bash-maintainers@@gnu.org} so they can be
-considered for the next release.
+Se você precisar fazer coisas fora do usual para compilar Bash, por 
+favor tente compreender como @code{configure} poderia verificar quando 
+ou não fazer tais coisas, e envie as instruções ou diffs, via mensagem, 
+para @email{bash-maintainers@@gnu.org} de forma que possam ser 
+consideradas para o próximo lançamento.
 
-The file @file{configure.ac} is used to create @code{configure}
-by a program called Autoconf.  You only need
-@file{configure.ac} if you want to change it or regenerate
-@code{configure} using a newer version of Autoconf.  If
-you do this, make sure you are using Autoconf version 2.50 or
-newer.
+O arquivo @file{configure.ac} é utilizado para criar @code{configure} 
+por um programa chamado Autoconf.   Você somente precisa de 
+@file{configure.ac} se você desejar modificá-lo ou regenerar 
+@code{configure} utilizando uma versão mais nova de Autoconf.   Se você 
+fizer isso, tenha certeza de que você está utilizando Autoconf versão 
+2.50 ou superior.
 
-You can remove the program binaries and object files from the
-source code directory by typing @samp{make clean}.  To also remove the
-files that @code{configure} created (so you can compile Bash for
-a different kind of computer), type @samp{make distclean}.
+Você pode remover os binários do programa e arquivos de objeto do 
+diretório de código fonte digitando @samp{make clean}.   Para remover 
+também os arquivos que @code{configure} criou (de forma que você pode 
+compilar Bash para um tipo diferente de computador), digite
+@samp{make distclean}.
 
 @node Compilers and Options
 @section Compilers and Options
 
-Some systems require unusual options for compilation or linking
-that the @code{configure} script does not know about.  You can
-give @code{configure} initial values for variables by setting
-them in the environment.  Using a Bourne-compatible shell, you
-can do that on the command line like this:
+Alguns sistemas exigem opções não usuais para compilação ou lincagem que 
+o script @code{configure} não conhece.   Você pode dar a 
+@code{configure} valores iniciais para variáveis configurando elas no 
+ambiente.   Na utilização de um shell compatível com Bourne, você pode 
+fazer isso em linha de comando como isto:
 
 @example
 CC=c89 CFLAGS=-O2 LIBS=-lposix ./configure
 @end example
 
-On systems that have the @code{env} program, you can do it like this:
+Em sistemas que tem o programa @code{env}, você pode fazê-lo assim:
 
 @example
 env CPPFLAGS=-I/usr/local/include LDFLAGS=-s ./configure
 @end example
 
-The configuration process uses GCC to build Bash if it
-is available.
+O processo de configuração utiliza GCC para construir Bash se GCC 
+estiver disponível.
 
 @node Compiling For Multiple Architectures
 @section Compiling For Multiple Architectures
 
-You can compile Bash for more than one kind of computer at the
-same time, by placing the object files for each architecture in their
-own directory.  To do this, you must use a version of @code{make} that
-supports the @code{VPATH} variable, such as GNU @code{make}.
-@code{cd} to the
-directory where you want the object files and executables to go and run
-the @code{configure} script from the source directory.  You may need to
-supply the @option{--srcdir=PATH} argument to tell @code{configure} where the
-source files are.  @code{configure} automatically checks for the
-source code in the directory that @code{configure} is in and in `..'.
+Você pode compilar Bash para mais que uma espécie de computador ao mesmo 
+tempo, colocando os arquivos objeto para cada arquitetura em seus 
+próprios diretórios.   Para fazer isso, você deve necessariamente 
+utilizar uma versão de @code{make} que suporte a variável @code{VPATH}, 
+tal como GNU @code{make}.
+Vá (@code{cd}) para o diretório onde você deseja que os executáveis e 
+arquivos objeto estejam e execute o script @code{configure} a partir do 
+diretório fonte.   Você talvez precise fornecer o argumento 
+@option{--srcdir=PATH} para informar a @code{configure} onde estão os 
+arquivos fonte.   @code{configure} automaticamente verifica o código 
+fonte no diretório que @code{configure} está e em `..'.
 
-If you have to use a @code{make} that does not supports the @code{VPATH}
-variable, you can compile Bash for one architecture at a
-time in the source code directory.  After you have installed
-Bash for one architecture, use @samp{make distclean} before
-reconfiguring for another architecture.
+Se você tiver que utilizar um @code{make} que não suporte a variável 
+@code{VPATH}, então você pode compilar Bash para uma arquitetura por vez 
+no diretório de código fonte.   Após você ter instalado Bash para uma 
+arquitetura, utilize @samp{make distclean} antes de reconfigurar para 
+uma outra arquitetura.
 
-Alternatively, if your system supports symbolic links, you can use the
-@file{support/mkclone} script to create a build tree which has
-symbolic links back to each file in the source directory.  Here's an
-example that creates a build directory in the current directory from a
-source directory @file{/usr/gnu/src/bash-2.0}:
+Alternativamente, se o seu sistema suporta links simbólicos, você pode 
+utilizar o script @file{support/mkclone} para criar uma árvore de 
+construção a qual tem link simbólicos de volta a cada arquivo no 
+diretório fonte.   Aqui está um exemplo que cria um diretório de 
+construção no diretório atual a partir de um diretório fonte 
+@file{/usr/gnu/src/bash-2.0}:
 
 @example
 bash /usr/gnu/src/bash-2.0/support/mkclone -s /usr/gnu/src/bash-2.0 .
 @end example
 
 @noindent
-The @code{mkclone} script requires Bash, so you must have already built
-Bash for at least one architecture before you can create build
-directories for other architectures.
+O script @code{mkclone} exige Bash, assim você deve necessariamente já 
+ter construído Bash para pelo menos uma arquitetura antes que você possa 
+criar diretórios de construção para outras arquiteturas.
 
 @node Installation Names
 @section Installation Names
