@@ -8225,343 +8225,364 @@ criar diretórios de construção para outras arquiteturas.
 @node Installation Names
 @section Installation Names
 
-By default, @samp{make install} will install into
-@file{/usr/local/bin}, @file{/usr/local/man}, etc.  You can
-specify an installation prefix other than @file{/usr/local} by
-giving @code{configure} the option @option{--prefix=@var{PATH}},
-or by specifying a value for the @code{DESTDIR} @samp{make}
-variable when running @samp{make install}.
+Por padrão, @samp{make install} instalará em @file{/usr/local/bin}, 
+@file{/usr/local/man}, etc.   Você pode especificar um outro prefixo de 
+instalação diferente de @file{/usr/local} dando a @code{configure} a 
+opção @option{--prefix=@var{PATH}}, ou especificando um valor para a 
+variável de @samp{make} @code{DESTDIR} quando da execução de
+@samp{make install}.
 
-You can specify separate installation prefixes for
-architecture-specific files and architecture-independent files. 
-If you give @code{configure} the option
-@option{--exec-prefix=@var{PATH}}, @samp{make install} will use
-@var{PATH} as the prefix for installing programs and libraries.
-Documentation and other data files will still use the regular prefix. 
+Você pode especificar prefixos de instalação separados para arquivos 
+específicos a uma arquitetura e arquivos independentes de arquitetura.
+Se você der a @code{configure} a opção 
+@option{--exec-prefix=@var{PATH}}, então @samp{make install} utilizará 
+@var{PATH} como o prefixo para a instalação de programas e bibliotecas.
+Documentação e outros arquivos de dados ainda utilizarão o prefixo 
+regular.
 
 @node Specifying the System Type
 @section Specifying the System Type
 
-There may be some features @code{configure} can not figure out
-automatically, but need to determine by the type of host Bash
-will run on.  Usually @code{configure} can figure that
-out, but if it prints a message saying it can not guess the host
-type, give it the @option{--host=TYPE} option.  @samp{TYPE} can
-either be a short name for the system type, such as @samp{sun4},
-or a canonical name with three fields: @samp{CPU-COMPANY-SYSTEM}
-(e.g., @samp{i386-unknown-freebsd4.2}).
+Talvez existam algumas características que @code{configure} não pode 
+compreender automaticamente, porém precisa determinar pelo tipo de 
+máquina na qual Bash executará.   Usualmente @code{configure} pode 
+compreender isso, mas se Bash imprime uma mensagem dizendo que não pode 
+advinhar o tipo de máquina, então dê a Bash a opção 
+@option{--host=TYPE}.   @samp{TYPE} pode ser ou um nome curto para o 
+tipo de sistema, tal como @samp{sun4}, ou um nome canônico com três 
+campos: @samp{CPU-COMPANY-SYSTEM}
+(por exemplo, @samp{i386-unknown-freebsd4.2}).
 
-See the file @file{support/config.sub} for the possible
-values of each field. 
+Veja-se o arquivo @file{support/config.sub} para os valores possíveis de 
+cada campo.
 
 @node Sharing Defaults
 @section Sharing Defaults
 
-If you want to set default values for @code{configure} scripts to
-share, you can create a site shell script called
-@code{config.site} that gives default values for variables like
-@code{CC}, @code{cache_file}, and @code{prefix}.  @code{configure}
-looks for @file{PREFIX/share/config.site} if it exists, then
-@file{PREFIX/etc/config.site} if it exists.  Or, you can set the
-@code{CONFIG_SITE} environment variable to the location of the site
-script.  A warning: the Bash @code{configure} looks for a site script,
-but not all @code{configure} scripts do.
+Se você desejar configurar valor padrão para os scripts @code{configure} 
+para compartilhar, você pode criar um script local de shell chamado 
+@code{config.site} o qual te dá valores padrão para variáveis como 
+@code{CC}, @code{cache_file}, e @code{prefix}.   @code{configure} 
+procura se @file{PREFIX/share/config.site} existe.   Ou, você pode 
+configurar a variável de ambiente @code{CONFIG_SITE} para a localização 
+do script local.   Um alerta: O @code{configure} de Bash procura por um 
+script local, porém nem todos os scripts @code{configure} o fazem.
 
 @node Operation Controls
 @section Operation Controls
 
-@code{configure} recognizes the following options to control how it
-operates.
+@code{configure} reconhece as seguintes opções para controlar como ele 
+opera.
 
 @table @code
 
 @item --cache-file=@var{file}
-Use and save the results of the tests in
-@var{file} instead of @file{./config.cache}.  Set @var{file} to
-@file{/dev/null} to disable caching, for debugging
-@code{configure}. 
+Utiliza e salva os resultados dos testes em @var{file} em vez de 
+@file{./config.cache}.   Configure @var{file} para @file{/dev/null} para 
+desabilitar o caching, para a depuração de @code{configure}.
 
 @item --help
-Print a summary of the options to @code{configure}, and exit.
+Imprime um sumário das opções para @code{configure}, e sai.
 
 @item --quiet
 @itemx --silent
 @itemx -q
-Do not print messages saying which checks are being made.
+Não imprime mensagens dizendo quais verificações estão sendo feitas.
 
 @item --srcdir=@var{dir}
-Look for the Bash source code in directory @var{dir}.  Usually
-@code{configure} can determine that directory automatically.
+Procura pelo código fonte de Bash no diretório @var{dir}.   Usualmente 
+@code{configure} pode determinar esse diretório automaticamente.
 
 @item --version
-Print the version of Autoconf used to generate the @code{configure}
-script, and exit.
+Imprime a versão de Autoconf utilizada para gerar o script 
+@code{configure}, e sai.
 @end table
 
-@code{configure} also accepts some other, not widely used, boilerplate
-options.  @samp{configure --help} prints the complete list.
+@code{configure} também aceita algumas outras, não amplamente 
+utilizadas, opções clichê.   @samp{configure --help} imprime a lista 
+completa.
 
 @node Optional Features
 @section Optional Features
 
-The Bash @code{configure} has a number of @option{--enable-@var{feature}}
-options, where @var{feature} indicates an optional part of Bash.
-There are also several @option{--with-@var{package}} options,
-where @var{package} is something like @samp{bash-malloc} or @samp{purify}.
-To turn off the default use of a package, use
-@option{--without-@var{package}}.  To configure Bash without a feature
-that is enabled by default, use @option{--disable-@var{feature}}.
+O @code{configure} de Bash tem um número de opções 
+@option{--enable-@var{feature}}, onde @var{feature} indica uma parte 
+opcional de Bash.
+Existem também várias opções @option{--with-@var{package}}, onde 
+@var{package} é alguma coisa como @samp{bash-malloc} ou @samp{purify}.
+Para desligar o uso padrão de um pacote, utilize 
+@option{--without-@var{package}}.   Para configurar Bash sem uma 
+característica que está habilitada por padrão, utilize 
+@option{--disable-@var{feature}}.
 
-Here is a complete list of the @option{--enable-} and
-@option{--with-} options that the Bash @code{configure} recognizes. 
+Aqui está uma lista completa das opções @option{--enable-} e 
+@option{--with-} que o @code{configure} de Bash reconhece.
 
 @table @code
 @item --with-afs
-Define if you are using the Andrew File System from Transarc.
+Define se você está utilizando o Sistema de Arquivo Andrew oriundo da 
+Transarc.
 
 @item --with-bash-malloc
-Use the Bash version of
-@code{malloc} in the directory @file{lib/malloc}.  This is not the same
-@code{malloc} that appears in @sc{gnu} libc, but an older version
-originally derived from the 4.2 @sc{bsd} @code{malloc}.  This @code{malloc}
-is very fast, but wastes some space on each allocation.
-This option is enabled by default.
-The @file{NOTES} file contains a list of systems for
-which this should be turned off, and @code{configure} disables this
-option automatically for a number of systems.
+Utilize a versão Bash de @code{malloc} no diretório @file{lib/malloc}.
+Esse não é o mesmo @code{malloc} que aparece em @sc{gnu} libc, mas uma 
+versão mais antiga originalmente derivada do @code{malloc} do @sc{bsd} 
+4.2.   Esse @code{malloc} é muito rápido, porém desperdiça algum espaço 
+em cada alocação.
+Essa opção está habilitada por padrão.
+O arquivo @file{NOTES} contém uma lista dos sistemas para os quais isso 
+deveria estar desligado, e @code{configure} desabilita essa opção 
+automaticamente para um número de sistemas.
 
 @item --with-curses
-Use the curses library instead of the termcap library.  This should
-be supplied if your system has an inadequate or incomplete termcap
-database.
+Utiliza a biblioteca curses em vez da biblioteca termcap.   Isso deveria 
+ser fornecido se o seu sistema tem uma base de dados termcap inadequada 
+ou incompleta.
 
 @item --with-gnu-malloc
-A synonym for @code{--with-bash-malloc}.
+Um sinônimo para @code{--with-bash-malloc}.
 
 @item --with-installed-readline[=@var{PREFIX}]
-Define this to make Bash link with a locally-installed version of Readline
-rather than the version in @file{lib/readline}.  This works only with
-Readline 5.0 and later versions.  If @var{PREFIX} is @code{yes} or not
-supplied, @code{configure} uses the values of the make variables
-@code{includedir} and @code{libdir}, which are subdirectories of @code{prefix}
-by default, to find the installed version of Readline if it is not in
-the standard system include and library directories.
-If @var{PREFIX} is @code{no}, Bash links with the version in
+Defina isso para fazer com que Bash vincule com uma versão instalada 
+localmente de Readline em vez da versão em @file{lib/readline}.   Isso 
+somente funciona com Readline 5.0 e versões posteriores.   Se 
+@var{PREFIX} for @code{yes} ou não fornecido, @code{configure} utilia os 
+valores das variáveis de make @code{includedir} e @code{libdir}, as 
+quais são sub-diretórios de @code{prefix} por padrão, para encontrar a 
+versão instalada de Readline se ela não estiver nos diretórios padrão de 
+sistema include e library.
+Se @var{PREFIX} for @code{no}, então Bash vinvula com a versão em 
 @file{lib/readline}.
-If @var{PREFIX} is set to any other value, @code{configure} treats it as
-a directory pathname and looks for
-the installed version of Readline in subdirectories of that directory
-(include files in @var{PREFIX}/@code{include} and the library in
+Se @var{PREFIX} estiver configurada para qualquer outro valor, então 
+@code{configure} a trata como um nome de caminho de diretório para a 
+versão instalada de Readline nos sub-diretórios daquele diretório 
+(arquivos include em @var{PREFIX}/@code{include} e a biblioteca em 
 @var{PREFIX}/@code{lib}).
 
 @item --with-purify
-Define this to use the Purify memory allocation checker from Rational
-Software.
+Defina isso para utilizar o verificador de alocação de memória Purify da 
+Rational Software.
 
 @item --enable-minimal-config
-This produces a shell with minimal features, close to the historical
-Bourne shell.
+Isso produz um shell com características mínimas, próximo do histórico 
+shell Bourne.
 @end table
 
-There are several @option{--enable-} options that alter how Bash is
-compiled and linked, rather than changing run-time features.
+Existem várias opções @option{--enable-} que alteram como Bash é 
+compilado e vinculado,  em vez de modificar características de tempo de 
+execução.
 
 @table @code
 @item --enable-largefile
-Enable support for @uref{http://www.sas.com/standards/large_file/x_open.20Mar96.html,
-large files} if the operating system requires special compiler options
-to build programs which can access large files.  This is enabled by
-default, if the operating system provides large file support.
+Habilita o suporte para 
+@uref{http://www.sas.com/standards/large_file/x_open.20Mar96.html,
+large files} se o sistema operacional exige opções especiais de 
+compilador para construir programas os quais podem acessar arquivos 
+grandes.   Isso está habilitado por padrão, se o sistema operacional 
+provê suporte a arquivo gande.
 
 @item --enable-profiling
-This builds a Bash binary that produces profiling information to be
-processed by @code{gprof} each time it is executed.
+Isso constrói um binário Bash que produz informação de perfil para ser 
+processada por @code{gprof} cada vez que for executada.
 
 @item --enable-static-link
-This causes Bash to be linked statically, if @code{gcc} is being used.
-This could be used to build a version to use as root's shell.
+Isso faz com que Bash seja vinculado estaticamente, se @code{gcc} 
+estiver sendo utiliado.
+Isso poderia ser empregado para construir uma versão para se utilizar 
+como o shell do root.
 @end table
 
-The @samp{minimal-config} option can be used to disable all of
-the following options, but it is processed first, so individual
-options may be enabled using @samp{enable-@var{feature}}. 
+A opção @samp{minimal-config} pode ser utilizada para desabilitar todas 
+as opções seguintes, mas ela é processada primeiro, de forma que as 
+opções individuais podem ser habilitadas utilizando-se 
+@samp{enable-@var{feature}}.
 
-All of the following options except for @samp{disabled-builtins},
-@samp{directpand-default}, and
-@samp{xpg-echo-default} are
-enabled by default, unless the operating system does not provide the
-necessary support.
+Todas as opções seguintes, exceto @samp{disabled-builtins}, 
+@samp{directpand-default}, e @samp{xpg-echo-default}, estão habilitadas 
+por padrão, a menos que o sistema operacional não forneça o suporte 
+necessário.
 
 @table @code
 @item --enable-alias
-Allow alias expansion and include the @code{alias} and @code{unalias}
-builtins (@pxref{Aliases}).
+Permite a expansão de apelido e inclui os comandos internos @code{alias} 
+e @code{unalias} (veja-se @ref{Aliases}).
 
 @item --enable-arith-for-command
-Include support for the alternate form of the @code{for} command
-that behaves like the C language @code{for} statement
-(@pxref{Looping Constructs}).
+Inclui suporte para o formato alternativo do comando @code{for} que se 
+comporta como a declaração @code{for} da linguagem C (veja-se 
+@ref{Looping Constructs}).
 
 @item --enable-array-variables
-Include support for one-dimensional array shell variables
-(@pxref{Arrays}).
+Incluie suporte para variáveis de shell vetor unidimensional 
+(veja-se @ref{Arrays}).
 
 @item --enable-bang-history
-Include support for @code{csh}-like history substitution
-(@pxref{History Interaction}).
+Inclue suporte para a substituição de histórico no estilo @code{csh} 
+(veja-se @ref{History Interaction}).
 
 @item --enable-brace-expansion
-Include @code{csh}-like brace expansion
+Inclui a expansão de chave ao estilo @code{csh}
 ( @code{b@{a,b@}c} @expansion{} @code{bac bbc} ).
-See @ref{Brace Expansion}, for a complete description.
+Veja-se @ref{Brace Expansion}, para uma descrição completa.
 
 @item --enable-casemod-attributes
-Include support for case-modifying attributes in the @code{declare} builtin
-and assignment statements.  Variables with the @var{uppercase} attribute,
-for example, will have their values converted to uppercase upon assignment.
+Inclui suporte para os atributos de modificação de caso no comando 
+interno @code{declare} e declarações de atribuição.   As variáveis com o 
+atributo @var{uppercase}, por exemplo, terão os seus valores convertidos 
+para maiúsculo quando da atribuição.
 
 @item --enable-casemod-expansion
-Include support for case-modifying word expansions.
+Inclui suporte para as expansões de palavra de modificação de caso.
 
 @item --enable-command-timing
-Include support for recognizing @code{time} as a reserved word and for
-displaying timing statistics for the pipeline following @code{time}
-(@pxref{Pipelines}).
-This allows pipelines as well as shell builtins and functions to be timed.
+Inclue suporte para o reconhecimento de @code{time} como sendo uma 
+palavra reservada e para a exibição de estatísticas de temporização para 
+o canal de comunicação seguinte a @code{time} (veja-se @ref{Pipelines}).
+Isso permite que os canais de comunicação bem como as funções e comandos 
+internos de shell sejam temporizados.
 
 @item --enable-cond-command
-Include support for the @code{[[} conditional command.
-(@pxref{Conditional Constructs}).
+Inclui suporte para o comando condicional @code{[[}.
+(veja-se @ref{Conditional Constructs}).
 
 @item --enable-cond-regexp
-Include support for matching @sc{posix} regular expressions using the
-@samp{=~} binary operator in the @code{[[} conditional command.
-(@pxref{Conditional Constructs}).
+Inclui suporte para se coincidir as expressões regulares @sc{posix} 
+utilizando-se o operador binário @samp{=~} no comando condicional 
+@code{[[}.
+(veja-se @ref{Conditional Constructs}).
 
 @item --enable-coprocesses
-Include support for coprocesses and the @code{coproc} reserved word
-(@pxref{Pipelines}).
+Inclui suporte para coprocessos e a palavra reservada @code{coproc} 
+(veja-se @ref{Pipelines}).
 
 @item --enable-debugger
-Include support for the bash debugger (distributed separately).
+Inclui suporte para o depurador bash (distribuido separadamente).
 
 @item --enable-direxpand-default
-Cause the @code{direxpand} shell option (@pxref{The Shopt Builtin})
-to be enabled by default when the shell starts.
-It is normally disabled by default.
+Faz com a opção de shell @code{direxpand} (veja-se 
+@pxref{The Shopt Builtin}) seja habilitada por padrão quando o shell 
+inicializa.
+Essa opção normalmente é desabilitada por padrão.
 
 @item --enable-directory-stack
-Include support for a @code{csh}-like directory stack and the
-@code{pushd}, @code{popd}, and @code{dirs} builtins
-(@pxref{The Directory Stack}).
+Inclui suporte para a pilha de diretório ao estilo @code{csh} e os 
+comandos internos @code{pushd}, @code{popd}, e @code{dirs}
+(veja-se @ref{The Directory Stack}).
 
 @item --enable-disabled-builtins
-Allow builtin commands to be invoked via @samp{builtin xxx}
-even after @code{xxx} has been disabled using @samp{enable -n xxx}.
-See @ref{Bash Builtins}, for details of the @code{builtin} and
-@code{enable} builtin commands.
+Permite que os comandos internos sejam invocados via @samp{builtin xxx} 
+mesmo após @code{xxx} tiver sido desabilitado utilizando-se 
+@samp{enable -n xxx}.
+Veja-se @ref{Bash Builtins}, para detalhes dos comandos internos 
+@code{builtin} e @code{enable}.
 
 @item --enable-dparen-arithmetic
-Include support for the @code{((@dots{}))} command
-(@pxref{Conditional Constructs}).
+Inclui suporte para o comando @code{((@dots{}))} 
+(veja-se @ref{Conditional Constructs}).
 
 @item --enable-extended-glob
-Include support for the extended pattern matching features described
-above under @ref{Pattern Matching}.
+Inclui suporte para as características de coincidência de padrão 
+extendidas descritas acima sob @ref{Pattern Matching}.
 
 @item --enable-extended-glob-default
-Set the default value of the @var{extglob} shell option described
-above under @ref{The Shopt Builtin} to be enabled.
+Configura o valor padrão da opção de shell @var{extglob}, descrita acima 
+sob @ref{The Shopt Builtin}, para ser habilitada.
 
 @item --enable-glob-asciirange-default
-Set the default value of the @var{globasciiranges} shell option described
-above under @ref{The Shopt Builtin} to be enabled.
-This controls the behavior of character ranges when used in pattern matching
-bracket expressions.
+Configura o valor padrão da opção de shell @var{globasciiranges}, 
+descrita acima sob @ref{The Shopt Builtin}, para ser habilitada.
+Isso controla o comportamento dos intervalos de caracteres utilizados 
+nas expressões de chave de coincidência de padrão.
 
 @item --enable-help-builtin
-Include the @code{help} builtin, which displays help on shell builtins and
-variables (@pxref{Bash Builtins}).
+Inclui o comando interno @code{help}, o qual exibe ajuda sobre os 
+comandos internos do shell e variáveis (veja-se @ref{Bash Builtins}).
 
 @item --enable-history
-Include command history and the @code{fc} and @code{history}
-builtin commands (@pxref{Bash History Facilities}).
+Inclui histórico de comando e os comandos internos @code{fc} e 
+@code{history} (veja-se @ref{Bash History Facilities}).
 
 @item --enable-job-control
-This enables the job control features (@pxref{Job Control}),
-if the operating system supports them.
+Isso habilita as características de controle de tarefa 
+(@pxref{Job Control}), se o sistema operacional as suporta.
 
 @item --enable-multibyte
-This enables support for multibyte characters if the operating
-system provides the necessary support.
+Isso habilita suporte a caracteres multibyte se o sistema operacional 
+provê o necessário suporte.
 
 @item --enable-net-redirections
-This enables the special handling of filenames of the form
-@code{/dev/tcp/@var{host}/@var{port}} and
+Isso habilita a manipulação especial de nomes de arquivo da forma
+@code{/dev/tcp/@var{host}/@var{port}} e
 @code{/dev/udp/@var{host}/@var{port}}
-when used in redirections (@pxref{Redirections}).
+quando utilizados nas redireções (veja-se @ref{Redirections}).
 
 @item --enable-process-substitution
-This enables process substitution (@pxref{Process Substitution}) if
-the operating system provides the necessary support.
+Isso habilita a substituição de processo (veja-se 
+@ref{Process Substitution}) se o sistema operacional provê o necessário 
+suporte.
 
 @item --enable-progcomp
-Enable the programmable completion facilities
-(@pxref{Programmable Completion}).
-If Readline is not enabled, this option has no effect.
+Habilita as facilidades de completação programáveis 
+(veja-se @ref{Programmable Completion}).
+Se Readline não estiver habilitada, então essa opção não tem efeito.
 
 @item --enable-prompt-string-decoding
-Turn on the interpretation of a number of backslash-escaped characters
-in the @env{$PS1}, @env{$PS2}, @env{$PS3}, and @env{$PS4} prompt
-strings.  See @ref{Controlling the Prompt}, for a complete list of prompt
-string escape sequences.
+Liga a interpretação de um número de caracteres encapsulados por barras 
+invertidas nas sequências de caracteres de prompt @env{$PS1}, 
+@env{$PS2}, @env{$PS3}, e @env{$PS4}.   Veja-se 
+@ref{Controlling the Prompt}, para uma lista completa das sequências de 
+encapsulamento de sequências de caracteres de prompt.
 
 @item --enable-readline
-Include support for command-line editing and history with the Bash
-version of the Readline library (@pxref{Command Line Editing}).
+Inclui suporte para a edição de linha de comando e histórico com a 
+versão Bash da biblioteca Readline (veja-se @ref{Command Line Editing}).
 
 @item --enable-restricted
-Include support for a @dfn{restricted shell}.  If this is enabled, Bash,
-when called as @code{rbash}, enters a restricted mode.  See
-@ref{The Restricted Shell}, for a description of restricted mode.
+Inclui suporte para a @dfn{restricted shell}.   Se isso estiver 
+habilitado, então Bash, quando chamado como @code{rbash}, entra em um 
+modo restrito.   Veja-se @ref{The Restricted Shell}, para uma descrição 
+do modo restrito.
 
 @item --enable-select
-Include the @code{select} compound command, which allows the generation of
-simple menus (@pxref{Conditional Constructs}).
+Inclui o comando composto @code{select}, o qual permite a geração de 
+menus simples (veja-se @ref{Conditional Constructs}).
 
 @item --enable-separate-helpfiles
-Use external files for the documentation displayed by the @code{help} builtin
-instead of storing the text internally.
+Utiliza arquivos externos para a documentação exibida pelo comando 
+interno @code{help} em vez de armazenar o texto internamente.
 
 @item --enable-single-help-strings
-Store the text displayed by the @code{help} builtin as a single string for
-each help topic.  This aids in translating the text to different languages.
-You may need to disable this if your compiler cannot handle very long string
-literals.
+Armazena o texto exibido pelo comando interno @code{help} como uma 
+sequência de caracteres única para tópico de ajuda.   Isso auxilia na 
+tradução do texto para linguagens diferentes.
+Você talvez precise desabilitar isso se o seu compilador não pode lidar 
+com literais de sequências de caracteres longa demais.
 
 @item --enable-strict-posix-default
-Make Bash @sc{posix}-conformant by default (@pxref{Bash POSIX Mode}).
+Faz com Bash fique conformante com o padrão @sc{posix} por padrão 
+(veja-se @ref{Bash POSIX Mode}).
 
 @item --enable-usg-echo-default
-A synonym for @code{--enable-xpg-echo-default}.
+Um sinônimo para @code{--enable-xpg-echo-default}.
 
 @item --enable-xpg-echo-default
-Make the @code{echo} builtin expand backslash-escaped characters by default,
-without requiring the @option{-e} option.
-This sets the default value of the @code{xpg_echo} shell option to @code{on},
-which makes the Bash @code{echo} behave more like the version specified in
-the Single Unix Specification, version 3.
-@xref{Bash Builtins}, for a description of the escape sequences that
-@code{echo} recognizes.
+Faz com que o comando interno @code{echo} expanda caracteres 
+encapsulados por barra invertida por padrão, sem exigir a opção 
+@option{-e}.
+Isso configura o valor padrão da opção de shell @code{xpg_echo} para 
+@code{on}, o qual faz com que @code{echo} do Bash se comporte mais como 
+a versão especificada na Single Unix Specification, versão 3.
+Veja-se @ref{Bash Builtins}, para uma descrição das sequências de 
+encapsulamento que @code{echo} reconhece.
 @end table
 
-The file @file{config-top.h} contains C Preprocessor
-@samp{#define} statements for options which are not settable from
+O arquivo @file{config-top.h} contém declarações @samp{#define} do 
+Pré-processador C para opções que não são configuráveis via 
 @code{configure}.
-Some of these are not meant to be changed; beware of the consequences if
-you do.
-Read the comments associated with each definition for more
-information about its effect.
+Algumas dessas não foram concebidas para serem modificadas; tenha 
+cuidado com as conseqências se você modificar.
+Leia os comentários associados com cada definição para mais informações 
+sobre seus efeitos.
 
 @node Reporting Bugs
 @appendix Reporting Bugs
@@ -9073,7 +9094,7 @@ The SVR4.2 shell behaves differently when invoked as @code{jsh}
 @node GNU Free Documentation License
 @appendix GNU Free Documentation License
 
-@include fdl.texi
+@include fdl-pt_BR.texi
 
 @node Indexes
 @appendix Indexes
