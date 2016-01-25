@@ -8,6 +8,9 @@
 		10.6 - Sharing Defaults
 		10.7 - Operation Controls
 		10.8 - Optional Features
+		Appendix A - Reporting Bugs
+		Appendix B - Major Differences From The Bourne Shell 
+		(until ${var/[/]pattern[/replacement]} expansion [point 24])
 		(Obs.: Chapter 8 - Command Line Editing and chapter 9 - 
 		Using History Interactively are in separate files, 
 		rluser.texi and hsuser.texi, respectively.  So, 
