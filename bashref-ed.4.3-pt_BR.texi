@@ -8046,9 +8046,9 @@ tarefa @samp{%}.
 @set readline-appendix
 @set history-appendix
 @cindex Readline, how to use
-@include rluser.texi
+@include rluser-pt_BR.texi
 @cindex History, how to use
-@include hsuser.texi
+@include hsuser-pt_BR.texi
 @clear readline-appendix
 @clear history-appendix
 
