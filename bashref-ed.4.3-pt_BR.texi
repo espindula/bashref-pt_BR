@@ -8587,175 +8587,183 @@ sobre seus efeitos.
 @node Reporting Bugs
 @appendix Reporting Bugs
 
-Please report all bugs you find in Bash.
-But first, you should
-make sure that it really is a bug, and that it appears in the latest
-version of Bash.
-The latest version of Bash is always available for FTP from
-@uref{ftp://ftp.gnu.org/pub/gnu/bash/}.
+Por favor, relate todos os bugs que você encontrar no Bash.
+Mas primeiro, você deveria ter certeza que é realmente um bug, e que 
+aparace na versão mais recente de Bash.
+A versão mais recente sempre está disponível para transferência via FTP 
+a partir de @uref{ftp://ftp.gnu.org/pub/gnu/bash/}.
 
-Once you have determined that a bug actually exists, use the
-@code{bashbug} command to submit a bug report.
-If you have a fix, you are encouraged to mail that as well!
-Suggestions and `philosophical' bug reports may be mailed
-to @email{bug-bash@@gnu.org} or posted to the Usenet
-newsgroup @code{gnu.bash.bug}.
+Uma vez que você determinou que um bug existe atualmente, utilize o 
+comando @code{bashbug} para submeter um relatório de bug.
+Se você tiver um reparo, você está encorajado a enviá-lo também!
+Sugestões e relatórios "filosóficos" de bug podem ser enviados para 
+@email{bug-bash@@gnu.org} ou postados no grupo de notícias Usenet 
+@code{gnu.bash.bug}.
 
-All bug reports should include:
+Todos os relatórios de bug deveriam incluir:
 @itemize @bullet
 @item
-The version number of Bash.
+O número de versão de Bash.
 @item
-The hardware and operating system.
+O hardware e sistema operacional.
 @item
-The compiler used to compile Bash.
+O compilador utilizado para compilar Bash.
 @item
-A description of the bug behaviour.
+Uma descrição do comportamento defeituoso.
 @item
-A short script or `recipe' which exercises the bug and may be used
-to reproduce it.
+Um script curto ou "receita" que exercite o bug e pode ser utilizado 
+para reproduzi-lo.
 @end itemize
 
 @noindent
-@code{bashbug} inserts the first three items automatically into
-the template it provides for filing a bug report.
+@code{bashbug} insere os primeiros três itens automaticamente no modelo 
+que fornece para preenchimento de um relatório de bug.
 
-Please send all reports concerning this manual to
+Por favor, envie todos os relatórios relativos a este manual para
 @email{bug-bash@@gnu.org}.
 
 @node Major Differences From The Bourne Shell
 @appendix Major Differences From The Bourne Shell
 
-Bash implements essentially the same grammar, parameter and
-variable expansion, redirection, and quoting as the Bourne Shell. 
-Bash uses the @sc{posix} standard as the specification of
-how these features are to be implemented.  There are some
-differences between the traditional Bourne shell and Bash; this
-section quickly details the differences of significance.  A
-number of these differences are explained in greater depth in
-previous sections.
-This section uses the version of @code{sh} included in SVR4.2 (the
-last version of the historical Bourne shell) as the baseline reference.
+Bash implementa essencialmente a mesma gramática, expansão de parâmetro 
+e variável, redireação, e encapsulamento entre aspas que o Bourne Shell.
+Bash utiliza o padrão @sc{posix} como a especificação de como essas 
+características devem ser implementadas.   Existem algumas diferenças 
+entre o tradicional shell Bourne e Bash; esta seção detalha rapidamente 
+as diferenças de significância.   Um número dessas diferenças estão 
+explanadas em maior profundidade nas seções anteriores.
+Esta seção utiliza a versão de @code{sh} inclusa no SVR4.2 (a última 
+versão do histórico shell Bourne) como a referência inicial.
 
 @itemize @bullet
 
 @item
-Bash is @sc{posix}-conformant, even where the @sc{posix} specification
-differs from traditional @code{sh} behavior (@pxref{Bash POSIX Mode}).
+Bash é conformante com @sc{posix}, mesmo onde a especificação @sc{posix} 
+difere do comportamento do @code{sh} tradicional 
+(veja-se @ref{Bash POSIX Mode}).
 
 @item
-Bash has multi-character invocation options (@pxref{Invoking Bash}).
+Bash tem opções de invocação multi-caracter 
+(veja-se @ref{Invoking Bash}).
 
 @item
-Bash has command-line editing (@pxref{Command Line Editing}) and
-the @code{bind} builtin.
+Bash tem edição de linha de comando (veja-se @ref{Command Line Editing}) 
+e o comando interno @code{bind}.
 
 @item
-Bash provides a programmable word completion mechanism
-(@pxref{Programmable Completion}), and builtin commands
-@code{complete}, @code{compgen}, and @code{compopt}, to
-manipulate it.
+Bash provê um mecanismo de completação de palavra programável 
+(veja-se @ref{Programmable Completion}), e comandos internos 
+@code{complete}, @code{compgen}, e @code{compopt}, para manipulá-los.
 
 @item
-Bash has command history (@pxref{Bash History Facilities}) and the
-@code{history} and @code{fc} builtins to manipulate it.
-The Bash history list maintains timestamp information and uses the
-value of the @code{HISTTIMEFORMAT} variable to display it.
+Bash tem histórico de comando (veja-se @ref{Bash History Facilities}) e 
+os comandos internos @code{history} e @code{fc} para manipulá-lo.
+A lista de histórico do Bash mantém informação de marcas temporais e 
+utiliza o valor da variável @code{HISTTIMEFORMAT} para exibi-las.
 
 @item
-Bash implements @code{csh}-like history expansion
-(@pxref{History Interaction}).
+Bash implementa a expansão de histórico ao estilo @code{csh} 
+(veja-se @ref{History Interaction}).
 
 @item
-Bash has one-dimensional array variables (@pxref{Arrays}), and the
-appropriate variable expansions and assignment syntax to use them.
-Several of the Bash builtins take options to act on arrays.
-Bash provides a number of built-in array variables.
+Bash tem variáveis vetor uni-dimensional (veja-se @ref{Arrays}), e as 
+apropriadas expansões de variável e sintaxe de atribuição para 
+utilizá-las.   Vários dos comandos internos do Bash tem opções para 
+atuar sobre os vetores.   Bash provê um número de variáveis vetor 
+internas.
 
 @item
-The @code{$'@dots{}'} quoting syntax, which expands ANSI-C
-backslash-escaped characters in the text between the single quotes,
-is supported (@pxref{ANSI-C Quoting}).
+A sintaxe de encapsulamento em aspas @code{$'@dots{}'}, o qual expande 
+os caracteres encapsulados por barra invertida do ANSI-C presentes no 
+texto entre as aspas simples, é suportada (veja-se 
+@ref{ANSI-C Quoting}).
 
 @item
-Bash supports the @code{$"@dots{}"} quoting syntax to do
-locale-specific translation of the characters between the double
-quotes.  The @option{-D}, @option{--dump-strings}, and @option{--dump-po-strings}
-invocation options list the translatable strings found in a script
-(@pxref{Locale Translation}).
+Bash suporta a sintaxe de encapsulamento em aspas @code{$"@dots{}"} para 
+fazer a tradução, ao estilo específico do local, dos caracteres entre as 
+aspas duplas.   As opções de invocação @option{-D}, 
+@option{--dump-strings}, e @option{--dump-po-strings} listam as 
+sequências de caracteres traduzíveis encontradas em um script 
+(veja-se @ref{Locale Translation}).
 
 @item
-Bash implements the @code{!} keyword to negate the return value of
-a pipeline (@pxref{Pipelines}).
-Very useful when an @code{if} statement needs to act only if a test fails.
-The Bash @samp{-o pipefail} option to @code{set} will cause a pipeline to
-return a failure status if any command fails.
+Bash implementa a palavra chave @code{!} para negar o valor de retorno 
+de um canal de comunicação (veja-se @ref{Pipelines}).
+Muito útil quando uma declaração @code{if} precisa atuar somente se um 
+teste falha.
+A opção de Bash @samp{-o pipefail} para @code{set} fará com que um canal 
+de comunicação retorne um estado de falha se qualquer comando falha.
 
 @item
-Bash has the @code{time} reserved word and command timing (@pxref{Pipelines}).
-The display of the timing statistics may be controlled with the
-@env{TIMEFORMAT} variable.
+Bash tem a palavra reservada @code{time} e temporizador de comando 
+(veja-se @ref{Pipelines}).
+A exibição das estatísticas de temporização pode ser controlada com a 
+variável @env{TIMEFORMAT}.
 
 @item
-Bash implements the @code{for (( @var{expr1} ; @var{expr2} ; @var{expr3} ))}
-arithmetic for command, similar to the C language (@pxref{Looping Constructs}).
+Bash implementa a aritmética 
+@code{for (( @var{expr1} ; @var{expr2} ; @var{expr3} ))} para comando, 
+similar a linguagem C (veja-se @ref{Looping Constructs}).
 
 @item
-Bash includes the @code{select} compound command, which allows the
-generation of simple menus (@pxref{Conditional Constructs}).
+Bash inclue o comando composto @code{select}, o qual permite a genação 
+de menus simples (veja-se @ref{Conditional Constructs}).
 
 @item
-Bash includes the @code{[[} compound command, which makes conditional
-testing part of the shell grammar (@pxref{Conditional Constructs}), including
-optional regular expression matching.
+Bash inclue o comando composto @code{[[}, o qual torna o teste 
+condicional parte da gramática do shell 
+(veja-se @ref{Conditional Constructs}), incluindo a coincidência de 
+expressão regular opcional.
 
 @item
-Bash provides optional case-insensitive matching for the @code{case} and
-@code{[[} constructs.
+Bash provê a coincidência opcional sem distinção entre maiúsculas e 
+minúsculas para os contrutores @code{case} e @code{[[}.
 
 @item
-Bash includes brace expansion (@pxref{Brace Expansion}) and tilde
-expansion (@pxref{Tilde Expansion}).
+Bash inclue a expansão de chave (veja-se @ref{Brace Expansion}) e 
+expansão de til (veja-se @ref{Tilde Expansion}).
 
 @item
-Bash implements command aliases and the @code{alias} and @code{unalias}
-builtins (@pxref{Aliases}).
+Bash implementa apelidos de comando e os comandos internos @code{alias} 
+e @code{unalias} (veja-se @ref{Aliases}).
 
 @item
-Bash provides shell arithmetic, the @code{((} compound command
-(@pxref{Conditional Constructs}),
-and arithmetic expansion (@pxref{Shell Arithmetic}).
+Bash provê aritmética de shell, o comando composto @code{((} 
+(veja-se @ref{Conditional Constructs}), e a expansão aritmética 
+(veja-se @ref{Shell Arithmetic}).
 
 @item
-Variables present in the shell's initial environment are automatically
-exported to child processes.  The Bourne shell does not normally do
-this unless the variables are explicitly marked using the @code{export}
-command.
+As variáveis presentes no ambiente inicial do shell são automaticamente 
+exportadas para os processos filhos.   O shell Bourne normalmente não 
+faz isso, a menos que as variáveis sejam explicitamente marcadas 
+utilizando-se o comando @code{export}.
 
 @item
-Bash supports the @samp{+=} assignment operator, which appends to the value
-of the variable named on the left hand side.
+Bash suporta o operador de atribuição @samp{+=}, o qual acrescenta ao 
+valor da variável nominada no lado esquerdo.
 
 @item
-Bash includes the @sc{posix} pattern removal @samp{%}, @samp{#}, @samp{%%}
-and @samp{##} expansions to remove leading or trailing substrings from
-variable values (@pxref{Shell Parameter Expansion}).
+Bash inclui as expansões @sc{posix} de remoção de padrão @samp{%}, 
+@samp{#}, @samp{%%} e @samp{##} para remover sequências de caracteres 
+iniciais ou finais dos valores das variáveis 
+(veja-se @ref{Shell Parameter Expansion}).
 
 @item
-The expansion @code{$@{#xx@}}, which returns the length of @code{$@{xx@}},
-is supported (@pxref{Shell Parameter Expansion}).
+A expansão @code{$@{#xx@}}, a qual retorna o comprimento de 
+@code{$@{xx@}}, é suportado (veja-se @ref{Shell Parameter Expansion}).
 
 @item
-The expansion @code{$@{var:}@var{offset}@code{[:}@var{length}@code{]@}},
-which expands to the substring of @code{var}'s value of length
-@var{length}, beginning at @var{offset}, is present
-(@pxref{Shell Parameter Expansion}).
+A expansão @code{$@{var:}@var{offset}@code{[:}@var{length}@code{]@}}, a 
+qual expande para a subsequência de caracteres do valor de @code{var} do 
+comprimento @var{length}, iniciando em @var{offset}, está presente
+(veja-se @ref{Shell Parameter Expansion}).
 
 @item
-The expansion
+A expansão
 @code{$@{var/[/]}@var{pattern}@code{[/}@var{replacement}@code{]@}},
-which matches @var{pattern} and replaces it with @var{replacement} in
-the value of @code{var}, is available (@pxref{Shell Parameter Expansion}).
+a qual coincide com @var{pattern} e a substitue com @var{replacement} no 
+valor de @code{var}, está disponível 
+(veja-se @ref{Shell Parameter Expansion}).
 
 @item
 The expansion @code{$@{!@var{prefix}*@}} expansion, which expands to
