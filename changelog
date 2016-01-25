@@ -3,6 +3,11 @@
 		10.1 - Basic Installation
 		10.2 - Compilers and Options
 		10.3 - Compiling For Multiple Architectures
+		10.4 - Installation Names
+		10.5 - Specifyins the System Type
+		10.6 - Sharing Defaults
+		10.7 - Operation Controls
+		10.8 - Optional Features
 		(Obs.: Chapter 8 - Command Line Editing and chapter 9 - 
 		Using History Interactively are in separate files, 
 		rluser.texi and hsuser.texi, respectively.  So, 
