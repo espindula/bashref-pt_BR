@@ -8020,22 +8020,26 @@ devem necessariamente ser alimentados com @sc{id}s de processos.
 @vtable @code
 
 @item auto_resume
-This variable controls how the shell interacts with the user and
-job control.  If this variable exists then single word simple
-commands without redirections are treated as candidates for resumption
-of an existing job.  There is no ambiguity allowed; if there is
-more than one job beginning with the string typed, then
-the most recently accessed job will be selected.
-The name of a stopped job, in this context, is the command line
-used to start it.  If this variable is set to the value @samp{exact},
-the string supplied must match the name of a stopped job exactly;
-if set to @samp{substring},
-the string supplied needs to match a substring of the name of a
-stopped job.  The @samp{substring} value provides functionality
-analogous to the @samp{%?} job @sc{id} (@pxref{Job Control Basics}).
-If set to any other value, the supplied string must
-be a prefix of a stopped job's name; this provides functionality
-analogous to the @samp{%} job @sc{id}.
+Essa variável controla como o shell interage com o usuário e o controle 
+de tarefa.   Se essa variável existir, então os comandos simples de 
+palavra única sem redireções são tratados como candidatos para o 
+reinínio de uma tarefa existente.   Não existe ambiguidade que seja 
+permitida; se existe mais que uma tarefa iniciando com a sequência de 
+caracteres digitada, então a mais rececentemente acessada tarefa será 
+selecionada.
+O nome de uma tarefa parada, nesse contexto, é a linha de comando 
+utilizada para iniciá-la.   Se essa variável for configurada para o 
+valor @samp{exact}, então a sequência de caracteres fornecida deve 
+necessariamente coincidir exatamente com o nome de uma tarefa parada; se 
+configurada para @samp{substring}, então a sequência de caracteres 
+fornecida precida coincidir com uma parte da sequência de caracteres do 
+nome de uma tarefa parada.   O valor de @samp{substring}, provê 
+funcionalidade análoga para o @sc{id} de tarefa @samp{%?}
+(veja-se @ref{Job Control Basics}).
+Se configurada para qualquer outro valor, então a sequência de 
+caracteres fornecida deve necessariamente ser um prefixo de um nome da 
+tarefa parada; isso provê funcionalidade analóga para o @sc{id} de 
+tarefa @samp{%}.
 
 @end vtable
 
