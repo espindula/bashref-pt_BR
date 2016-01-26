@@ -1,3 +1,13 @@
+2016-jan-26	Translated the following sections and subsections:
+		Appendix B - Major Differences From The Bourne Shell 
+		(from ${!prefix*} expansion up to the end)
+		B.1 - Implementation Differences From The SVR 4.2 Shell
+		(Obs.: Chapter 8 - Command Line Editing and chapter 9 - 
+		Using History Interactively are in separate files, 
+		rluser.texi and hsuser.texi, respectively.  So, 
+		translation furthered to chapter 10, which is in 
+		bashref-ed.4.3-pt_BR.texi, like previous ones)
+
 2016-jan-25	Translated the following sections and subsections:
 		10 - Installing Bash
 		10.1 - Basic Installation
