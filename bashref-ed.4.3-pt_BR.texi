@@ -8766,337 +8766,359 @@ valor de @code{var}, está disponível
 (veja-se @ref{Shell Parameter Expansion}).
 
 @item
-The expansion @code{$@{!@var{prefix}*@}} expansion, which expands to
-the names of all shell variables whose names begin with @var{prefix},
-is available (@pxref{Shell Parameter Expansion}).
+A expansão @code{$@{!@var{prefix}*@}} expansão, a qual expande para os 
+nomes de todas as variáveis de shell cujs os nomes se iniciam com 
+@var{prefix}, está disponível (veja-se @ref{Shell Parameter Expansion}).
 
 @item
-Bash has @var{indirect} variable expansion using @code{$@{!word@}}
-(@pxref{Shell Parameter Expansion}).
+Bash tem expansão de variável @var{indireta} utilizando @code{$@{!word@}}
+(veja-se @ref{Shell Parameter Expansion}).
 
 @item
-Bash can expand positional parameters beyond @code{$9} using
+Bash pode expandir parâmetros posicionais além de @code{$9} utilizando
 @code{$@{@var{num}@}}.
 
 @item
-The @sc{posix} @code{$()} form of command substitution
-is implemented (@pxref{Command Substitution}),
-and preferred to the Bourne shell's @code{``} (which
-is also implemented for backwards compatibility).
+A forma @sc{posix} @code{$()} de substituição de comando está 
+implementada (veja-se @ref{Command Substitution}), e é preferida a 
+@code{``} do shell Bourne (a qual também está implementada para 
+compatibilidade com versões anteriores).
 
 @item
-Bash has process substitution (@pxref{Process Substitution}).
+Bash tem substituição de processo (veja-se @ref{Process Substitution}).
 
 @item
-Bash automatically assigns variables that provide information about the
-current user (@env{UID}, @env{EUID}, and @env{GROUPS}), the current host
-(@env{HOSTTYPE}, @env{OSTYPE}, @env{MACHTYPE}, and @env{HOSTNAME}),
-and the instance of Bash that is running (@env{BASH},
-@env{BASH_VERSION}, and @env{BASH_VERSINFO}).  @xref{Bash Variables},
-for details.
+Bash atribui valores automaticamente às variáveis que provêem informação 
+sobre o usuário atual (@env{UID}, @env{EUID}, e @env{GROUPS}); a máquina 
+atual (@env{HOSTTYPE}, @env{OSTYPE}, @env{MACHTYPE}, e @env{HOSTNAME}); 
+e a instância de Bash que está em execução (@env{BASH}, 
+@env{BASH_VERSION}, e @env{BASH_VERSINFO}).   Veja-se 
+@ref{Bash Variables}, para detalhes.
 
 @item
-The @env{IFS} variable is used to split only the results of expansion,
-not all words (@pxref{Word Splitting}).
-This closes a longstanding shell security hole.
+A variável @env{IFS} é utilizada para dividir somente os resultados da 
+expansão, e não todas as palavras (veja-se @ref{Word Splitting}).
+Isso fecha uma brecha de segurança do shell de longa data.
 
 @item
-The filename expansion bracket expression code uses @samp{!} and @samp{^}
-to negate the set of characters between the brackets.
-The Bourne shell uses only @samp{!}.
+O código da expansão de chave da expansão de nome de arquivo utiliza 
+@samp{!} e @samp{^} para negar o conjunto de caracteres entre as chaves.
+O shell Bourne utiliza somente @samp{!}.
 
 @item
-Bash implements the full set of @sc{posix} filename expansion operators,
-including @var{character classes}, @var{equivalence classes}, and
-@var{collating symbols} (@pxref{Filename Expansion}).
+Bash implementa o conjunto completo de operadores de expansão de nome de 
+arquivo @sc{posix}, incluindo @var{character classes}, @var{equivalence 
+classes}, e @var{collating symbols} (veja-se @ref{Filename Expansion}).
 
 @item
-Bash implements extended pattern matching features when the @code{extglob}
-shell option is enabled (@pxref{Pattern Matching}).
+Bash implementa características de coincidência de padrão extendidas 
+quando a opções de shell @code{extglob} está habilitada 
+(veja-se @ref{Pattern Matching}).
 
 @item
-It is possible to have a variable and a function with the same name;
-@code{sh} does not separate the two name spaces.
+É possível ter uma variável e uma função com o mesmo nome; @code{sh} não 
+separa os dois espaços de nomes.
 
 @item
-Bash functions are permitted to have local variables using the
-@code{local} builtin, and thus useful recursive functions may be written
-(@pxref{Bash Builtins}).
+É permitido às funções do Bash  ter variáveis locais utilizando o 
+comando interno @code{local}, e assim funções recursivas úteis podem ser 
+escritas (veja-se @ref{Bash Builtins}).
 
 @item
-Variable assignments preceding commands affect only that command, even
-builtins and functions (@pxref{Environment}).
-In @code{sh}, all variable assignments 
-preceding commands are global unless the command is executed from the
-file system.
+As atribuições a variáveis precedendo a comandos afetam somente aquele 
+comando, mesmo comandos internos e funções (veja-se @ref{Environment}).
+No @code{sh}, todas as atribuições a variáveis precedendo a comandos são 
+globais, a menos que o comando seja executado a partir do sistema de 
+arquivo.
 
 @item
-Bash performs filename expansion on filenames specified as operands
-to input and output redirection operators (@pxref{Redirections}).
+Bash realiza expansão de nome de arquivo sobre nomes de arquivo 
+especificados como operandos para operadores de redireção de entrada e 
+saída (veja-se @ref{Redirections}).
 
 @item
-Bash contains the @samp{<>} redirection operator, allowing a file to be
-opened for both reading and writing, and the @samp{&>} redirection
-operator, for directing standard output and standard error to the same
-file (@pxref{Redirections}).
+Bash contém o operador de redireção @samp{<>}, permitindo que um arquivo 
+seja aberto tanto para leitura quanto para escrita, e o operador de 
+redireção @samp{&>}, para direcionamento da saída padrão e do erro 
+padrão para o mesmo arquivo (veja-se @ref{Redirections}).
 
 @item
-Bash includes the @samp{<<<} redirection operator, allowing a string to
-be used as the standard input to a command.
+Bash inclui o operador de rdireção @samp{<<<}, permitindo que uma 
+sequência de caracteres seja utilizada como a entrada padrão para um 
+comando.
 
 @item
-Bash implements the @samp{[n]<&@var{word}} and @samp{[n]>&@var{word}}
-redirection operators, which move one file descriptor to another.
+Bash implementa os operadores de redireção @samp{[n]<&@var{word}} e 
+@samp{[n]>&@var{word}}, os quais movem um descritor de arquivo para 
+outro.
 
 @item
-Bash treats a number of filenames specially when they are
-used in redirection operators (@pxref{Redirections}).
+Bash trata um número de nomes de arquivo especialmente quando eles estão 
+sendo utilizados em peradores de redireção (veja-se @ref{Redirections}).
 
 @item
-Bash can open network connections to arbitrary machines and services
-with the redirection operators (@pxref{Redirections}).
+Bash pode abrir conexões de rede para máquinas arbitrárias e serviços 
+com os operadores de redireção (veja-se @ref{Redirections}).
 
 @item
-The @code{noclobber} option is available to avoid overwriting existing
-files with output redirection (@pxref{The Set Builtin}).
-The @samp{>|} redirection operator may be used to override @code{noclobber}.
+A opção @code{noclobber} está disponível para evitar a sobrescrita de 
+arquivos existentes com a redireção de saída 
+(veja-se @ref{The Set Builtin}).
+O operador de redireção @samp{>|} pode ser utilizado para substituir 
+@code{noclobber}.
 
 @item
-The Bash @code{cd} and @code{pwd} builtins (@pxref{Bourne Shell Builtins})
-each take @option{-L} and @option{-P} options to switch between logical and
-physical modes.
+Os comandos internos @code{cd} e @code{pwd} 
+(veja-se @ref{Bourne Shell Builtins}) cada tomam as opções @option{-L} e 
+@option{-P} para permutar entre os modos lógico e físico.
 
 @item
-Bash allows a function to override a builtin with the same name, and provides
-access to that builtin's functionality within the function via the
-@code{builtin} and @code{command} builtins (@pxref{Bash Builtins}).
+Bash permite que uma função neutralize um comando interno com o mesmo 
+nome, e provê acesso àquela funcionalidade do comando interno dentro da 
+função via comandos internos @code{builtin} e @code{command} 
+(veja-se @ref{Bash Builtins}).
 
 @item
-The @code{command} builtin allows selective disabling of functions
-when command lookup is performed (@pxref{Bash Builtins}).
+O comando interno @code{command} permite a desabilitação seletiva de 
+funções quando uma pesquisa de comando é realizada 
+(veja-se @ref{Bash Builtins}).
 
 @item
-Individual builtins may be enabled or disabled using the @code{enable}
-builtin (@pxref{Bash Builtins}).
+Comandos internos individuais podem ser habilitados ou desabilitados 
+utilizando o comando interno @code{enable} 
+(veja-se @ref{Bash Builtins}).
 
 @item
-The Bash @code{exec} builtin takes additional options that allow users
-to control the contents of the environment passed to the executed
-command, and what the zeroth argument to the command is to be
-(@pxref{Bourne Shell Builtins}).
+O comando interno @code{exec} toma opções adicionais que permitem que 
+usuários controlem o conteúdo do ambiente passado para o comando 
+executado, e o que o argumento zero para o comando é para ser
+(veja-se @ref{Bourne Shell Builtins}).
 
 @item
-Shell functions may be exported to children via the environment
-using @code{export -f} (@pxref{Shell Functions}).
+As funções de shell podem ser exportadas aos filhos via ambiente 
+utilizando-se @code{export -f} (veja-se @ref{Shell Functions}).
 
 @item
-The Bash @code{export}, @code{readonly}, and @code{declare} builtins can
-take a @option{-f} option to act on shell functions, a @option{-p} option to
-display variables with various attributes set in a format that can be
-used as shell input, a @option{-n} option to remove various variable
-attributes, and @samp{name=value} arguments to set variable attributes
-and values simultaneously.
+Os comandos internos de Bash @code{export}, @code{readonly}, e 
+@code{declare} podem receber uma opção @option{-f} para atuar sobre 
+funções de shell; uma opção @option{-p} para exibir variáveis com vários 
+atributos configurados em um formato que pode ser utilizado como entrada 
+de shell; uma opção @option{-n} para remover vários atributos de 
+variáveis; e argumentos @samp{name=value} para configurar atributos e 
+valores de variáveis simultâneamente.
 
 @item
-The Bash @code{hash} builtin allows a name to be associated with
-an arbitrary filename, even when that filename cannot be found by
-searching the @env{$PATH}, using @samp{hash -p}
-(@pxref{Bourne Shell Builtins}).
+O comando interno @code{hash} permite que um nome seja associado com um 
+nome arbitrário de arquivo, mesmo quando esse nome de arquivo não pode 
+ser encontrado pesquisando-se o @env{$PATH}, utilizando-se 
+@samp{hash -p} (veja-se @ref{Bourne Shell Builtins}).
 
 @item
-Bash includes a @code{help} builtin for quick reference to shell
-facilities (@pxref{Bash Builtins}).
+Bash inclui um comando interno @code{help} para referência rápida às 
+facilidades de shell (veja-se @ref{Bash Builtins}).
 
 @item
-The @code{printf} builtin is available to display formatted output
-(@pxref{Bash Builtins}).
+O comando interno @code{printf} está disponível para exibir saída 
+formatada (veja-se @ref{Bash Builtins}).
 
 @item
-The Bash @code{read} builtin (@pxref{Bash Builtins})
-will read a line ending in @samp{\} with
-the @option{-r} option, and will use the @env{REPLY} variable as a
-default if no non-option arguments are supplied.
-The Bash @code{read} builtin
-also accepts a prompt string with the @option{-p} option and will use
-Readline to obtain the line when given the @option{-e} option.
-The @code{read} builtin also has additional options to control input:
-the @option{-s} option will turn off echoing of input characters as
-they are read, the @option{-t} option will allow @code{read} to time out
-if input does not arrive within a specified number of seconds, the
-@option{-n} option will allow reading only a specified number of
-characters rather than a full line, and the @option{-d} option will read
-until a particular character rather than newline.
+O comando interno @code{read} (veja-se @ref{Bash Builtins}) lerá uma 
+linha terminando em @samp{\} com a opção @option{-r}, e utilizará a 
+variável @env{REPLY} como um padrão se nenhum argumento não opção for 
+fornecido.
+O comando interno @code{read} também aceita uma sequência de caracteres 
+de prompt com a opção @option{-p} e utilizará Readline para obter a 
+linha quando lhe for dada a opção @option{-e}.
+O comando interno @code{read} também tem opções adicionais para 
+controlar entrada: a opção @option{-s} desligará o eco de caracteres de 
+entrada conforme forem lidos; a opção @option{-t} permitirá a 
+@code{read} um intervalo de tempo se a entrada não chegar dentro de um 
+número especificado de segundos; a opção @option{-n} permitirá a leitura 
+somente de um número especificados de caracteres, em vez de uma linha 
+inteira; e a opção @option{-d} lerá até um carácter particular, em vez 
+de um marcador de nova linha.
 
 @item
-The @code{return} builtin may be used to abort execution of scripts
-executed with the @code{.} or @code{source} builtins
-(@pxref{Bourne Shell Builtins}).
+O comando interno @code{return} pode ser utilizado para abortar a 
+execução de scripts executados com os comandos internos @code{.} ou 
+@code{source} (veja-se @ref{Bourne Shell Builtins}).
 
 @item
-Bash includes the @code{shopt} builtin, for finer control of shell
-optional capabilities (@pxref{The Shopt Builtin}), and allows these options
-to be set and unset at shell invocation (@pxref{Invoking Bash}).
+Bash inclui o comando interno @code{shopt}, para controle mais apurado 
+das capacidades opcionais de shell (veja-se @ref{The Shopt Builtin}), e 
+permite que essas opções sejam configuradas ou desconfiguradas na 
+invocação de shell (veja-se @ref{Invoking Bash}).
 
 @item
-Bash has much more optional behavior controllable with the @code{set}
-builtin (@pxref{The Set Builtin}).
+Bash tem muito mais comportamento opcional controlável com o comando 
+interno @code{set} (veja-se @ref{The Set Builtin}).
 
 @item
-The @samp{-x} (@option{xtrace}) option displays commands other than
-simple commands when performing an execution trace
-(@pxref{The Set Builtin}).
+A opção @samp{-x} (@option{xtrace}) exibe comandos outros que não os 
+comandos simples quando realizando um rastreamento de execução
+(veja-se @ref{The Set Builtin}).
 
 @item
-The @code{test} builtin (@pxref{Bourne Shell Builtins})
-is slightly different, as it implements the @sc{posix} algorithm,
-which specifies the behavior based on the number of arguments.
+O comando interno @code{test} (veja-se @ref{Bourne Shell Builtins}) é 
+ligeiramente diferente, dado que ele implementa o algoritmo @sc{posix}, 
+o qual especifica o comportamento baseado em um número de argumentos.
 
 @item
-Bash includes the @code{caller} builtin, which displays the context of
-any active subroutine call (a shell function or a script executed with
-the @code{.} or @code{source} builtins).  This supports the bash
-debugger.
+Bash inclui o comando interno @code{caller}, o qual exibe o contexto de 
+qualquer chamada de subrotina ativa (uma função de shell ou um script 
+executado com os comandos internos @code{.} ou @code{source}).   Isso 
+suporta o depurador de bash.
 
 @item
-The @code{trap} builtin (@pxref{Bourne Shell Builtins}) allows a
-@code{DEBUG} pseudo-signal specification, similar to @code{EXIT}.
-Commands specified with a @code{DEBUG} trap are executed before every
-simple command, @code{for} command, @code{case} command,
-@code{select} command, every arithmetic @code{for} command, and before
-the first command executes in a shell function.
-The @code{DEBUG} trap is not inherited by shell functions unless the
-function has been given the @code{trace} attribute or the
-@code{functrace} option has been enabled using the @code{shopt} builtin.
-The @code{extdebug} shell option has additional effects on the
-@code{DEBUG} trap.
+O comando interno @code{trap} (veja-se @ref{Bourne Shell Builtins}) 
+permite uma especificação de pseudo-sinal @code{DEBUG}, similar a 
+@code{EXIT}.   Os comandos especificados com um coletor @code{DEBUG} são 
+executados antes de cada comando simples, comando @code{for}, comando 
+@code{case}, comando @code{select}, cada comando @code{for} aritmético, 
+e antes do primeiro comando executar em uma função de shell.
+O coletor @code{DEBUG} não é herdado por funções de shell, a menos que a 
+função tenha dado o atributo @code{trace} ou a opção @code{functrace} 
+tenha sido habilitada utilizando o comando interno @code{shopt}.
+A opção de shell @code{extdebug} tem efeitos adicionais sobre o coletor 
+@code{DEBUG}.
 
-The @code{trap} builtin (@pxref{Bourne Shell Builtins}) allows an
-@code{ERR} pseudo-signal specification, similar to @code{EXIT} and @code{DEBUG}.
-Commands specified with an @code{ERR} trap are executed after a simple
-command fails, with a few exceptions.
-The @code{ERR} trap is not inherited by shell functions unless the
-@code{-o errtrace} option to the @code{set} builtin is enabled.
+O comando interno @code{trap} (veja-se @ref{Bourne Shell Builtins}) 
+permite uma especificação de pseudo-sinal @code{ERR}, similar a 
+@code{EXIT} e @code{DEBUG}.
+Os comandos especificados com um coletor @code{ERR} são executados após 
+um comando simples falhar, com umas poucas exceções.
+O coletor @code{ERR} não é herdado pelas funções de shell, a menos que a 
+opção @code{-o errtrace} para o comando interno @code{set} esteja 
+habilitada.
 
-The @code{trap} builtin (@pxref{Bourne Shell Builtins}) allows a
-@code{RETURN} pseudo-signal specification, similar to
-@code{EXIT} and @code{DEBUG}.
-Commands specified with an @code{RETURN} trap are executed before
-execution resumes after a shell function or a shell script executed with
-@code{.} or @code{source} returns.
-The @code{RETURN} trap is not inherited by shell functions unless the
-function has been given the @code{trace} attribute or the
-@code{functrace} option has been enabled using the @code{shopt} builtin.
-
-@item
-The Bash @code{type} builtin is more extensive and gives more information
-about the names it finds (@pxref{Bash Builtins}).
-
-@item
-The Bash @code{umask} builtin permits a @option{-p} option to cause
-the output to be displayed in the form of a @code{umask} command
-that may be reused as input (@pxref{Bourne Shell Builtins}).
+O comando interno @code{trap} (veja-se @ref{Bourne Shell Builtins}) 
+permite uma especificação de pseudo-sinal @code{RETURN}, similar a 
+@code{EXIT} e @code{DEBUG}.
+Os comandos especificados com um coletor @code{RETURN} são executados 
+antes que a execução retome após uma função de shell ou um script de 
+shell com @code{.} ou @code{source} retorne.
+O coletor @code{RETURN} não é herdado pelas funções de shell, a menos 
+que a função tenha dado o atributo @code{trace} ou a opção 
+@code{functrace} tenha sido habilitada utilizando o comando interno 
+@code{shopt}.
 
 @item
-Bash implements a @code{csh}-like directory stack, and provides the
-@code{pushd}, @code{popd}, and @code{dirs} builtins to manipulate it
-(@pxref{The Directory Stack}).
-Bash also makes the directory stack visible as the value of the
-@env{DIRSTACK} shell variable.
+O comando interno @code{type} é mais extensivo e dá mais informação 
+acerca dos nomes que ele encontra (veja-se @ref{Bash Builtins}).
 
 @item
-Bash interprets special backslash-escaped characters in the prompt
-strings when interactive (@pxref{Controlling the Prompt}).
+O comando interno @code{umask} permite à opção @option{-p} fazer com que 
+a saída seja exibida na forma de um comando @code{umask} que pode ser 
+reutilizado como entrada (veja-se @ref{Bourne Shell Builtins}).
 
 @item
-The Bash restricted mode is more useful (@pxref{The Restricted Shell});
-the SVR4.2 shell restricted mode is too limited.
+Bash implementa uma pilha de diretório ao estilo @code{csh}, e provê os 
+comandos internos @code{pushd}, @code{popd}, e @code{dirs} para 
+manipulá-la (veja-se @ref{The Directory Stack}).
+Bash também torna a pilha de diretório visível como um valor da variável 
+de shell @env{DIRSTACK}.
 
 @item
-The @code{disown} builtin can remove a job from the internal shell
-job table (@pxref{Job Control Builtins}) or suppress the sending
-of @code{SIGHUP} to a job when the shell exits as the result of a
-@code{SIGHUP}.
+Bash interpreta caracteres especiais encapsulados por barra invertida 
+nas sequências de caracteres de prompt, quando interativo 
+(veja-se @ref{Controlling the Prompt}).
 
 @item
-Bash includes a number of features to support a separate debugger for
-shell scripts.
+O modo restrito de Bash é mais útil
+(veja-se @ref{The Restricted Shell}); o modo restrito do shell SVR4.2 é 
+limitado demais.
 
 @item
-The SVR4.2 shell has two privilege-related builtins
-(@code{mldmode} and @code{priv}) not present in Bash.
+O comando interno @code{disown} pode remover uma tarefa da tabela 
+interna de tarefa de shell (veja-se @ref{Job Control Builtins}) ou 
+suprimir o envio de @code{SIGHUP} para uma tarefa quando o shell sai 
+como o resultado de um @code{SIGHUP}.
 
 @item
-Bash does not have the @code{stop} or @code{newgrp} builtins.
+Bash inclui um número de características para suportar um depurador 
+separado para scripts de shell.
 
 @item
-Bash does not use the @env{SHACCT} variable or perform shell accounting.
+O shell SVR4.2 tem dois comandos internos relacionados aos privilégios, 
+(@code{mldmode} e @code{priv}),  não presentes no Bash.
 
 @item
-The SVR4.2 @code{sh} uses a @env{TIMEOUT} variable like Bash uses
+Bash não tem os comandos internos @code{stop} ou @code{newgrp}.
+
+@item
+Bash não utiliza a variável @env{SHACCT} ou realiza contabilidade de 
+shell.
+
+@item
+O @code{sh} SVR4.2 utiliza uma variável @env{TIMEOUT} como Bash utiliza 
 @env{TMOUT}.
 
 @end itemize
 
 @noindent
-More features unique to Bash may be found in @ref{Bash Features}.
+Mais características únicas a Bash podem ser encontradas em 
+@ref{Bash Features}.
 
 
 @appendixsec Implementation Differences From The SVR4.2 Shell
 
-Since Bash is a completely new implementation, it does not suffer from
-many of the limitations of the SVR4.2 shell.  For instance:
+Dado que Bash é uma implementação completamente nova, ele não sofre de 
+muitas das limitações do shell SVR4.2.   Por exemplo:
 
 @itemize @bullet
 
 @item
-Bash does not fork a subshell when redirecting into or out of
-a shell control structure such as  an @code{if} or @code{while}
-statement.
+Bash não bifurca um subshell quando da redireção em ou fora de uma 
+estrutura de controle de shell tal como uma declaração @code{if} ou 
+@code{while}.
 
 @item
-Bash does not allow unbalanced quotes.  The SVR4.2 shell will silently
-insert a needed closing quote at @code{EOF} under certain circumstances.
-This can be the cause of some hard-to-find errors.
+Bash não permite cotas desbalenceadas.   O shell SVR4.2 inserirá 
+silenciosamente uma aspa necessária de fechamento no @code{EOF} sob 
+certas circunstâncias.   Isso pode ser a causa de alguns erros difíceis 
+de encontrar.
 
 @item
-The SVR4.2 shell uses a baroque memory management scheme based on
-trapping @code{SIGSEGV}.  If the shell is started from a process with
-@code{SIGSEGV} blocked (e.g., by using the @code{system()} C library
-function call), it misbehaves badly.
+O shell SVR4.2 utiliza um esquema de gerenciamento de memória barroco 
+baseado no coletamento de @code{SIGSEGV}.   Se o shell for inicializado 
+a partir de um processo com @code{SIGSEGV} (por exemplo, utilisando-se a 
+chamada de função da biblioteca C @code{system()}), então o SVR4.2 se 
+comporta realmente muito mal.
 
 @item
-In a questionable attempt at security, the SVR4.2 shell,
-when invoked without the @option{-p} option, will alter its real
-and effective @sc{uid} and @sc{gid} if they are less than some
-magic threshold value, commonly 100.
-This can lead to unexpected results.
+Em uma tentativa questionável na segurança, o shell SVR4.2, quando 
+invicado sem a opção @option{-p}, alterará seu real e efetivo @sc{uid} 
+e @sc{gid}, se eles são menores que algum valor limite mágico, 
+normalmente 100.
+Isso pode levar a resultados inesperados.
 
 @item
-The SVR4.2 shell does not allow users to trap @code{SIGSEGV},
-@code{SIGALRM}, or @code{SIGCHLD}.
+O shell SVR4.2 não permite a usuários coletar @code{SIGSEGV},
+@code{SIGALRM}, ou @code{SIGCHLD}.
 
 @item
-The SVR4.2 shell does not allow the @env{IFS}, @env{MAILCHECK},
-@env{PATH}, @env{PS1}, or @env{PS2} variables to be unset.
+O shell SVR4.2 não permite que as variáveis @env{IFS}, @env{MAILCHECK},
+@env{PATH}, @env{PS1}, ou @env{PS2} sejam desconfiguradas.
 
 @item
-The SVR4.2 shell treats @samp{^} as the undocumented equivalent of
+O shell SVR4.2 trata @samp{^} como o equivalente não documentado de 
 @samp{|}.
 
 @item
-Bash allows multiple option arguments when it is invoked (@code{-x -v});
-the SVR4.2 shell allows only one option argument (@code{-xv}).  In
-fact, some versions of the shell dump core if the second argument begins
-with a @samp{-}.
+Bash permite argumentos de opções múltiplas quando é invocado 
+(@code{-x -v}); o shell SVR4.2 somente permite um argumento de opção 
+(@code{-xv}).   De fato, algumas versões do shell apagam tudo se o 
+segundo argumento inicia com um @samp{-}.
 
 @item
-The SVR4.2 shell exits a script if any builtin fails; Bash exits
-a script only if one of the @sc{posix} special builtins fails, and
-only for certain failures, as enumerated in the @sc{posix} standard.
+O shell SVR4.2 sai de um scrip se qualquer comando interno falha; Bash 
+sai de um script somente se um dos comandos internos especiais 
+@sc{posix} falha, e apenas para certas falhas, conforme enumerado no 
+padrão @sc{posix}.
 
-@item 
-The SVR4.2 shell behaves differently when invoked as @code{jsh}
-(it turns on job control).
+@item
+O shell SVR4.2 se comporta diferentemente quando invocado como 
+@code{jsh} (ele liga o controle de tarefa).
 @end itemize
 
 @node GNU Free Documentation License
@@ -9108,13 +9130,14 @@ The SVR4.2 shell behaves differently when invoked as @code{jsh}
 @appendix Indexes
 
 @menu
-* Builtin Index::		Index of Bash builtin commands.
-* Reserved Word Index::		Index of Bash reserved words.
-* Variable Index::		Quick reference helps you find the
-				variable you want.
-* Function Index::		Index of bindable Readline functions.
-* Concept Index::		General index for concepts described in
-				this manual.
+* Builtin Index::		Indice dos comandos internos de Bash.
+* Reserved Word Index::		Indice das palavras reservadas de Bash.
+* Variable Index::		Referência rápida ajuda você a encontrar 
+a variável que deseja.
+* Function Index::		Indice das funções de Readline 
+vinculáveis.
+* Concept Index::		Indice geral para conceitos descritos 
+neste manual.
 @end menu
 
 @node Builtin Index
@@ -9139,9 +9162,10 @@ The SVR4.2 shell behaves differently when invoked as @code{jsh}
 
 @bye
 
+Jamenson Ferreira Espindula de Almeida Melo
+Usuário GNU/Linux nº 166197
+https://linuxcounter.net/cert/166197.png
 
+Impressão digital da chave:
+234D 1914 4224 7C53 BD13  6855 2AE0 25C0 08A8 6180
 
-
-
-
-  
