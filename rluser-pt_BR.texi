@@ -1,35 +1,39 @@
 @comment %**start of header (This is for running Texinfo on a region.)
-@setfilename rluser.info
+@setfilename rluser-pt_BR.info
 @comment %**end of header (This is for running Texinfo on a region.)
 
 @ignore
-This file documents the end user interface to the GNU command line
-editing features.  It is to be an appendix to manuals for programs which
-use these features.  There is a document entitled "readline.texinfo"
-which contains both end-user and programmer documentation for the
-GNU Readline Library.
+Este arquivo documenta a interface de usuário final para as 
+características de edição de linha de comando da GNU.   Ele é para ser 
+um apêndice a manuais para programas os quais utilizam estas 
+características.   Existe um documento intitulado "readline.texinfo" o 
+qual contém ambas as documentações para usuário final e programador para 
+a biblioteca GNU Readline.
 
-Copyright (C) 1988--2014 Free Software Foundation, Inc.
+Direitos autorais @copyright{} 2015 da versão modificada traduzida para 
+o português do Brasil: Jamenson Ferreira Espindula de Almeida Melo.
 
-Authored by Brian Fox and Chet Ramey.
+Direitos autorais @copyright{} 1988--2014 Free Software Foundation, Inc.
 
-Permission is granted to process this file through Tex and print the
-results, provided the printed document carries copying permission notice
-identical to this one except for the removal of this paragraph (this
-paragraph not being relevant to the printed manual).
+Da autoria de Brian Fox e Chet Ramey.
 
-Permission is granted to make and distribute verbatim copies of this manual
-provided the copyright notice and this permission notice are preserved on
-all copies.
+É dada permissão para processar este arquivo por meio de Tex e imprimir 
+o resultado, contanto que o documento impresso carregue uma notícia de 
+permissão de cópia idêntica a esta, exceto pela remoção deste parágrafo 
+(este parágrafo não sendo relevante para o manual impresso).
 
-Permission is granted to copy and distribute modified versions of this
-manual under the conditions for verbatim copying, provided also that the
-GNU Copyright statement is available to the distributee, and provided that
-the entire resulting derived work is distributed under the terms of a
-permission notice identical to this one.
+É dada permissão para produzir e distribuir cópias literais deste 
+manual, contanto que a notícia de direitos autorais e esta notícia de 
+permissão sejam preservadas em todas as cópias.
 
-Permission is granted to copy and distribute translations of this manual
-into another language, under the above conditions for modified versions.
+É dada permissão para copiar e distribuir versões modificadas deste 
+manual sob as condições para cópias literais, contanto também que a 
+declaração de Direitos Autorais GNU esteja disponível para o 
+distribuidor, e contanto que o trabalho derivado resultante inteiro seja 
+distribuido sob os termos de uma notícia de permissão idêntica a esta.
+
+É dada permissão para copiar e distribuir traduções deste manual em 
+outra língua, sob as condições acima para versões modificadas.
 @end ignore
 
 @comment If you are including this manual as an appendix, then set the
@@ -42,78 +46,89 @@ into another language, under the above conditions for modified versions.
 @node Command Line Editing
 @chapter Command Line Editing
 
-This chapter describes the basic features of the @sc{gnu}
-command line editing interface.
+Este capítulo descreve as características básicas da interface de edição 
+de linha de comando @sc{gnu}.
 @ifset BashFeatures
-Command line editing is provided by the Readline library, which is
-used by several different programs, including Bash.
-Command line editing is enabled by default when using an interactive shell,
-unless the @option{--noediting} option is supplied at shell invocation.
-Line editing is also used when using the @option{-e} option to the
-@code{read} builtin command (@pxref{Bash Builtins}).
-By default, the line editing commands are similar to those of Emacs.
-A vi-style line editing interface is also available.
-Line editing can be enabled at any time using the @option{-o emacs} or
-@option{-o vi} options to the @code{set} builtin command
-(@pxref{The Set Builtin}), or disabled using the @option{+o emacs} or 
-@option{+o vi} options to @code{set}.
+A edição de linha de comando é provida pela biblioteca Readline, a qual 
+é utilizada por vários programas diferentes, incluindo Bash.
+A edição de linha de comando está habilitada por padrão quando da 
+utilização de um shell interativo, a menos que a opção 
+@option{--noediting} seja fornecida na invocação de shell.
+A edição de linha também é utilizada quando da utilização da opção 
+@option{-e} para o comando interno @code{read} 
+(veja-se @ref{Bash Builtins}).
+Por padrão, os comandos de edição de linha são similares àqueles de 
+Emacs.
+Uma interface de edição de linha ao estilo do vi também está disponível.
+A edição de linha pode ser habilitada a qualquer tempo utilizando-se as 
+opções @option{-o emacs} ou @option{-o vi} para o comando interno 
+@code{set} (veja-se @ref{The Set Builtin}), ou desabilitadas 
+utilizando-se as opções @option{+o emacs} ou @option{+o vi} para 
+@code{set}.
 @end ifset
 
 @menu
-* Introduction and Notation::	Notation used in this text.
-* Readline Interaction::	The minimum set of commands for editing a line.
-* Readline Init File::		Customizing Readline from a user's view.
-* Bindable Readline Commands::	A description of most of the Readline commands
-				available for binding
-* Readline vi Mode::		A short description of how to make Readline
-				behave like the vi editor.
+* Introduction and Notation::	Notação utilizada neste texto.
+* Readline Interaction::	O conjunto minimo de comandos para se 
+				editar uma linha.
+* Readline Init File::		Personalizando Readine a partir da visão 
+				do usuário.
+* Bindable Readline Commands::	Uma descrição da maioria dos comandos de 
+				Readline disponíveis para vinculação.
+* Readline vi Mode::		Uma descrição curta de como fazer com 
+				que Readline se comporte como o editor 
+				vi.
 @ifset BashFeatures
-* Programmable Completion::	How to specify the possible completions for
-				a specific command.
-* Programmable Completion Builtins::	Builtin commands to specify how to
-				complete arguments for a particular command.
-* A Programmable Completion Example::	An example shell function for
-				generating possible completions.
+* Programmable Completion::	Como especificar as completações 
+				possíveis para um comando específico.
+* Programmable Completion Builtins::	Comandos internos para 
+					especificar como completar 
+					argumentos para um comando 
+					particular.
+* A Programmable Completion Example::	Uma função de shell exemplo para 
+					gerar possíveis completações.
 @end ifset
 @end menu
 
 @node Introduction and Notation
 @section Introduction to Line Editing
 
-The following paragraphs describe the notation used to represent
-keystrokes.
+Os parágrafos seguintes descrevem a notação utilizada para representar 
+toques de tecla.
 
-The text @kbd{C-k} is read as `Control-K' and describes the character
-produced when the @key{k} key is pressed while the Control key
-is depressed.
+O texto @kbd{C-k} é lido como `Control-K' e descreve o carácter 
+produzido quando a tecla @key{k} é teclada enquanto a tecla Control 
+está mantida pressionada.
 
-The text @kbd{M-k} is read as `Meta-K' and describes the character
-produced when the Meta key (if you have one) is depressed, and the @key{k}
-key is pressed.
-The Meta key is labeled @key{ALT} on many keyboards.
-On keyboards with two keys labeled @key{ALT} (usually to either side of
-the space bar), the @key{ALT} on the left side is generally set to
-work as a Meta key.
-The @key{ALT} key on the right may also be configured to work as a
-Meta key or may be configured as some other modifier, such as a
-Compose key for typing accented characters.
+O texto @kbd{M-k} é lido como `Meta-K' e descreve o carácter produzido 
+quando a tecla Meta (se você tiver uma) é mantida pressionada, e a tecla 
+@key{k} é teclada.
+A tecla Meta é rotulada como @key{ALT} em muitos teclados.
+Em teclados com duas tecladas rotuladas como @key{ALT} (usualmente em 
+ambos os lados da barra de espaços), o @key{ALT} no lado esquerdo é 
+geralmente configurado para funcionar como uma tecla Meta.
+A tecla @key{ALT} na direita também pode ser configurada para funcionar 
+como uma tecla Meta ou pode ser configurada como algum outro 
+modificador, tal como uma tecla Compose para a digitação de caracteres 
+acentuados.
 
-If you do not have a Meta or @key{ALT} key, or another key working as
-a Meta key, the identical keystroke can be generated by typing @key{ESC}
-@emph{first}, and then typing @key{k}.
-Either process is known as @dfn{metafying} the @key{k} key.
+Se você não tiver uma tecla Meta ou @key{ALT}, ou outra tecla 
+funcionando como uma tecla Meta, o pressionamento de tecla idêntico pode 
+ser gerado digitando-se @key{ESC} @emph{primeiro}, e então digitando 
+@key{k}.
+Qualquer dos processos é conhecido como @dfn{metafying} a tecla @key{k}.
 
-The text @kbd{M-C-k} is read as `Meta-Control-k' and describes the
-character produced by @dfn{metafying} @kbd{C-k}.
+O texto @kbd{M-C-k} é lido como `Meta-Control-k' e descreve o carácter 
+produzido por @dfn{metafying} @kbd{C-k}.
 
-In addition, several keys have their own names.  Specifically,
-@key{DEL}, @key{ESC}, @key{LFD}, @key{SPC}, @key{RET}, and @key{TAB} all
-stand for themselves when seen in this text, or in an init file
-(@pxref{Readline Init File}).
-If your keyboard lacks a @key{LFD} key, typing @key{C-j} will
-produce the desired character.
-The @key{RET} key may be labeled @key{Return} or @key{Enter} on
-some keyboards.
+Adicionalmente, várias teclas tem seus próprios nomes.   
+Especificamente, @key{DEL}, @key{ESC}, @key{LFD}, @key{SPC}, @key{RET}, 
+e @key{TAB} todas significam elas mesmas quando vistas neste texto, ou 
+em um arquivo init (veja-se @ref{Readline Init File}).
+Se no seu teclado falta uma tecla @key{LFD}, a digitação de @key{C-j} 
+produzirá o carácter desejado.
+A tecla @key{RET} pode ser rotulada como @key{Return} ou @key{Enter} em 
+alguns teclados.
 
 @node Readline Interaction
 @section Readline Interaction
