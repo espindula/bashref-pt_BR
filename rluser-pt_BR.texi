@@ -141,10 +141,10 @@ conjunto de comandos para manipular o texto a medida que você o digita,
 te permitindo simplesmente consertar seu erro, e não te forçando a 
 redigitar a maioria da linha.   Utilizando esses comandos de edição, 
 você movimenta o cursor para o local que necessita de correção, e deleta 
-ou insere o texto das correções.   Então, que voc^estiver satisfeito com 
-a linha, você simplesmente pressiona @key{RET}.   Você não precisa estar 
-ao final da linha para pressionar @key{RET}.; a linha inteira é aceita 
-independentemente da localização do cursor dentro da linha.
+ou insere o texto das correções.   Então, que você estiver satisfeito 
+com a linha, você simplesmente pressiona @key{RET}.   Você não precisa 
+estar ao final da linha para pressionar @key{RET}.; a linha inteira é 
+aceita independentemente da localização do cursor dentro da linha.
 
 @menu
 * Readline Bare Essentials::	O mínimo que você precisa saber sobre 
@@ -300,98 +300,110 @@ isso se o comando anterior for @kbd{C-y} ou @kbd{M-y}.
 @node Readline Arguments
 @subsection Readline Arguments
 
-You can pass numeric arguments to Readline commands.  Sometimes the
-argument acts as a repeat count, other times it is the @i{sign} of the
-argument that is significant.  If you pass a negative argument to a
-command which normally acts in a forward direction, that command will
-act in a backward direction.  For example, to kill text back to the
-start of the line, you might type @samp{M-- C-k}.
+Você pode passar argumentos numéricos aos comandos Readline.   Algumas 
+vezes o argumento atua como um contador de repetição, outras é o 
+@i{sinal} do argumento que é significante.   Se você passar um argumento 
+negativo para um comando o qual normalmente atua na direção para frente, 
+então esse comando atuará na direção para tras.   Por exemplo, para 
+"kill" texto de volta para o começo da linha, você pode digitar 
+@samp{M-- C-k}.
 
-The general way to pass numeric arguments to a command is to type meta
-digits before the command.  If the first `digit' typed is a minus
-sign (@samp{-}), then the sign of the argument will be negative.  Once
-you have typed one meta digit to get the argument started, you can type
-the remainder of the digits, and then the command.  For example, to give
-the @kbd{C-d} command an argument of 10, you could type @samp{M-1 0 C-d},
-which will delete the next ten characters on the input line.
+A maneira geral de passar argumentos numéricos para um comando é digitar 
+meta dígitos antes do comando.   Se o primeiro "dígito" digitado for um 
+sinal de menos (@samp{-}), então o sinal do argumento será negativo.   
+Uma vez que você tenha digitado um meta dígito para iniciar o argumento, 
+você pode digitar o restante dos dígitos, e então o comando.   Por 
+exemplo, para dar o argumento 10 para o comando @kbd{C-d}, você poderia 
+digitar @samp{M-1 0 C-d},, o qual deletaria os próximos dez caracteres 
+na linha de entrada.
 
 @node Searching
 @subsection Searching for Commands in the History
 
-Readline provides commands for searching through the command history
+Readline provê comandos para a busca ao longo do histórico de comando
 @ifset BashFeatures
-(@pxref{Bash History Facilities})
+(veja-se @ref{Bash History Facilities})
 @end ifset
-for lines containing a specified string.
-There are two search modes:  @dfn{incremental} and @dfn{non-incremental}.
+por linhas contendo a sequência de caracteres especificada.
+Existem dois modos @dfn{incremental} e @dfn{não-incremental}.
 
-Incremental searches begin before the user has finished typing the
-search string.
-As each character of the search string is typed, Readline displays
-the next entry from the history matching the string typed so far.
-An incremental search requires only as many characters as needed to
-find the desired history entry.
-To search backward in the history for a particular string, type
-@kbd{C-r}.  Typing @kbd{C-s} searches forward through the history.
-The characters present in the value of the @code{isearch-terminators} variable
-are used to terminate an incremental search.
-If that variable has not been assigned a value, the @key{ESC} and
-@kbd{C-J} characters will terminate an incremental search.
-@kbd{C-g} will abort an incremental search and restore the original line.
-When the search is terminated, the history entry containing the
-search string becomes the current line.
+As buscas incrementais iniciam antes que o usuário tenha finalizado a 
+digitação da sequência de caracteres de busca.
+A medida que cada carácter da sequência de caracteres de busca é 
+digitado, Readline exibe a próxima entrada a partir do histórico que 
+coincida com a sequência de caracteres digitada até agora.
+Uma busca incremental exige apenas tantos caracteres quantos necessários 
+para encontrar a entrada de histórico desejada.
+Para pesquisar por uma sequência de caracteres particular para trás no 
+histórico, digite @kbd{C-r}.   Digitando-se @kbd{C-s} pesquisa-se para 
+frente no histórico.
+Os caracteres presentes no valor da variável @code{isearch-terminators} 
+são utilizados para terminar um pesquisa incremental.
+Se a essa variável não foi atribuido um valor, então os caracteres 
+@key{ESC} e @kbd{C-J} terminarão uma pesquisa incremental.
+@kbd{C-g} abortará uma pesquisa incremental e restaurará a linha 
+original.
+Quando a pesquisa é terminada, a entrada de histórico contendo a 
+sequência de caracteres de busca se torna a linha atual.
 
-To find other matching entries in the history list, type @kbd{C-r} or
-@kbd{C-s} as appropriate.
-This will search backward or forward in the history for the next
-entry matching the search string typed so far.
-Any other key sequence bound to a Readline command will terminate
-the search and execute that command.
-For instance, a @key{RET} will terminate the search and accept
-the line, thereby executing the command from the history list.
-A movement command will terminate the search, make the last line found
-the current line, and begin editing.
+Para encontrar outras entradas coincidentes na lista de histórico, 
+digite @kbd{C-r} ou @kbd{C-s}, conforme apropriado.
+Isso pesquisará para trás ou para frente no histórico pela próxima 
+entrada que coincida com a sequência de caracteres de pesquisa digitada 
+até agora.
+Qualquer outras sequência de tecla vinculada a um comando Readline 
+terminará a pesquisa e executará aquele comando.
+Por exemplo, um @key{RET} (enter) terminará a pesquisa e aceitará a 
+linha, por conseguinte executando o comando a partir da lista de 
+histórico.
+Um comando de movimento terminará a pesquisa, tornará a última linha 
+encontrada a linha atual, e iniciar a edição.
 
-Readline remembers the last incremental search string.  If two
-@kbd{C-r}s are typed without any intervening characters defining a new
-search string, any remembered search string is used.
+Readline se lembra da última sequência de caracteres de pesquisa 
+incremental.   Se dois @kbd{C-r}s forem digitados sem quaisquer 
+caracteres intervenientes que definam uma nova sequência de caracteres 
+de busca, então qualquer sequência de caracteres de busca guardada é 
+utilizada.
 
-Non-incremental searches read the entire search string before starting
-to search for matching history lines.  The search string may be
-typed by the user or be part of the contents of the current line.
+As buscas não incrementais lêem a sequência de caracteres de pesquisa 
+inteira antes de iniciar a busca por linhas de histórico coincidentes.
+A sequência de caracteres de busca pode ser digitada pelo usuário ou ser 
+parte do conteúdo da linha atual.
 
 @node Readline Init File
 @section Readline Init File
 @cindex initialization file, readline
 
-Although the Readline library comes with a set of Emacs-like
-keybindings installed by default, it is possible to use a different set
-of keybindings.
-Any user can customize programs that use Readline by putting
-commands in an @dfn{inputrc} file, conventionally in his home directory.
-The name of this
+Apesar que a biblioteca Readline vem com um conjunto de vínculos de 
+tecla estilo Emacs instalado por padrão, é possível se utilizar um 
+conjunto diferente de vínculos de tecla.
+Qualquer usuário pode personalizar programas que utilizem Readline 
+colocando comandos em um arquivo @dfn{inputrc}, convencionalmente dentro 
+de seu diretório "home".
+O nome dessa
 @ifset BashFeatures
 file is taken from the value of the shell variable @env{INPUTRC}.  If
 @end ifset
 @ifclear BashFeatures
 file is taken from the value of the environment variable @env{INPUTRC}.  If
 @end ifclear
-that variable is unset, the default is @file{~/.inputrc}.  If that
-file does not exist or cannot be read, the ultimate default is
-@file{/etc/inputrc}.
+essa variável estiver desconfigurada, então o padrão é @file{~/.inputrc}.
+Se esse arquivo não existir ou não puder ser lido, então o padrão final 
+é @file{/etc/inputrc}.
 
-When a program which uses the Readline library starts up, the
-init file is read, and the key bindings are set.
+Quando um programa que utiliza a biblioteca Readline inicializa, o 
+arquivo init é lido, e as vinculações de tecla são configuradas.
 
-In addition, the @code{C-x C-r} command re-reads this init file, thus
-incorporating any changes that you might have made to it.
+Adicionalmente, o comando @code{C-x C-r} re-lê esse arquivo init, assim 
+incorporando quaisquer modificações que você eventualmente possa ter 
+feito nele.
 
 @menu
-* Readline Init File Syntax::	Syntax for the commands in the inputrc file.
-
-* Conditional Init Constructs::	Conditional key bindings in the inputrc file.
-
-* Sample Init File::		An example inputrc file.
+* Readline Init File Syntax::	Sintaxe para os comandos no arquivo 
+				inputrc.
+* Conditional Init Constructs::	Vinculações de tecla condicionais no 
+				arquivo inputrc.
+* Sample Init File::		Um arquivo inputrc de exemplo.
 @end menu
 
 @node Readline Init File Syntax
