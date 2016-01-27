@@ -380,9 +380,9 @@ conjunto diferente de vínculos de tecla.
 Qualquer usuário pode personalizar programas que utilizem Readline 
 colocando comandos em um arquivo @dfn{inputrc}, convencionalmente dentro 
 de seu diretório "home".
-O nome dessa
+O nome desse
 @ifset BashFeatures
-file is taken from the value of the shell variable @env{INPUTRC}.  If
+arquivo é tomado do valor da variável de shell @env{INPUTRC}.   Se
 @end ifset
 @ifclear BashFeatures
 file is taken from the value of the environment variable @env{INPUTRC}.  If
