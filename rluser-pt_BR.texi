@@ -134,23 +134,27 @@ alguns teclados.
 @section Readline Interaction
 @cindex interaction, readline
 
-Often during an interactive session you type in a long line of text,
-only to notice that the first word on the line is misspelled.  The
-Readline library gives you a set of commands for manipulating the text
-as you type it in, allowing you to just fix your typo, and not forcing
-you to retype the majority of the line.  Using these editing commands,
-you move the cursor to the place that needs correction, and delete or
-insert the text of the corrections.  Then, when you are satisfied with
-the line, you simply press @key{RET}.  You do not have to be at the
-end of the line to press @key{RET}; the entire line is accepted
-regardless of the location of the cursor within the line.
+Frequentemente, durante uma sessão interativa, você digita uma linha 
+longa de texto, apenas para se dar conta de que a primeira palavra 
+naquela linha está escrita errada.   A biblioteca Readline te dá um 
+conjunto de comandos para manipular o texto a medida que você o digita, 
+te permitindo simplesmente consertar seu erro, e não te forçando a 
+redigitar a maioria da linha.   Utilizando esses comandos de edição, 
+você movimenta o cursor para o local que necessita de correção, e deleta 
+ou insere o texto das correções.   Então, que voc^estiver satisfeito com 
+a linha, você simplesmente pressiona @key{RET}.   Você não precisa estar 
+ao final da linha para pressionar @key{RET}.; a linha inteira é aceita 
+independentemente da localização do cursor dentro da linha.
 
 @menu
-* Readline Bare Essentials::	The least you need to know about Readline.
-* Readline Movement Commands::	Moving about the input line.
-* Readline Killing Commands::	How to delete text, and how to get it back!
-* Readline Arguments::		Giving numeric arguments to commands.
-* Searching::			Searching through previous lines.
+* Readline Bare Essentials::	O mínimo que você precisa saber sobre 
+				Readline.
+* Readline Movement Commands::	Movimentando-se ao longo da linha de 
+				entrada.
+* Readline Killing Commands::	Como deletar texto, e como resgatá-lo.
+* Readline Arguments::		Dando argumentos numéricos a comandos.
+* Searching::			Procurando ao longo das linhas 
+				anteriores.
 @end menu
 
 @node Readline Bare Essentials
@@ -159,72 +163,77 @@ regardless of the location of the cursor within the line.
 @cindex command editing
 @cindex editing command lines
 
-In order to enter characters into the line, simply type them.  The typed
-character appears where the cursor was, and then the cursor moves one
-space to the right.  If you mistype a character, you can use your
-erase character to back up and delete the mistyped character.
+Para colocar caracteres em uma linha, simplesmente digite-os.   O 
+carácter digitado aparece onde o cursor estava, e então o cursor se 
+movimenta um espaço para a direita.   Se você errar a digitação de um 
+carácter, você pode utilizar o seu carácter de apagamento para voltar e 
+deletar o carácter digitado errado.
 
-Sometimes you may mistype a character, and
-not notice the error until you have typed several other characters.  In
-that case, you can type @kbd{C-b} to move the cursor to the left, and then
-correct your mistake.  Afterwards, you can move the cursor to the right
-with @kbd{C-f}.
+Algumas vezes você pode digitar um carácter errado, e não se dar conta 
+do erro até que você tenha digitado vários outros caracteres.   Nesse 
+caso, você pode digitar @kbd{C-b} para movimentar o cursor para a 
+esquerda, e então corrigir seu erro.   Posteriormente, você pode mover o 
+cursor para a direita com @kbd{C-f}.
 
-When you add text in the middle of a line, you will notice that characters
-to the right of the cursor are `pushed over' to make room for the text
-that you have inserted.  Likewise, when you delete text behind the cursor,
-characters to the right of the cursor are `pulled back' to fill in the
-blank space created by the removal of the text.  A list of the bare
-essentials for editing the text of an input line follows.
+Quando você adiciona texto no meio de uma linha, você notará que os 
+caracteres do lado direito do cursor são "empurrados" para dar espaço 
+para o texto que você acabou de inserir.   Da mesma maneira, quando você 
+deleta texto sob o cursor, os caracteres do lado direito do cursor são 
+"puxados" para preencher o espaço em braco criado pela remoção do texto.
+Segue uma lista do essencial para a edição do texto de uma linha de 
+entrada.
 
 @table @asis
 @item @kbd{C-b}
-Move back one character.
+Movimenta um carácter para tras.
 @item @kbd{C-f}
-Move forward one character.
-@item @key{DEL} or @key{Backspace}
-Delete the character to the left of the cursor.
+Movimenta um carácter para frente.
+@item @key{DEL} ou @key{Backspace}
+Apaga o carácter a esquerda do cursor.
 @item @kbd{C-d}
-Delete the character underneath the cursor.
+Apaga o carácter embaixo do cursor.
 @item @w{Printing characters}
-Insert the character into the line at the cursor.
-@item @kbd{C-_} or @kbd{C-x C-u}
-Undo the last editing command.  You can undo all the way back to an
-empty line.
+Insere o carácter na linha na posição do cursor.
+@item @kbd{C-_} ou @kbd{C-x C-u}
+Desfaz o comando de edição mais recente.   Você pode desfazer todo o 
+comando até uma linha vazia.
 @end table
 
 @noindent
-(Depending on your configuration, the @key{Backspace} key be set to
-delete the character to the left of the cursor and the @key{DEL} key set
-to delete the character underneath the cursor, like @kbd{C-d}, rather
-than the character to the left of the cursor.)
+(Dependendo da sua configuração, a tecla @key{Backspace} está 
+configurada para apagar o carácter a esquerda do cursor e a tecla 
+@key{DEL} configurada para apagar o carácter embaixo do cursor, como 
+@kbd{C-d}, em vez do carácter a esquerda do cursor).
 
 @node Readline Movement Commands
 @subsection Readline Movement Commands
 
 
-The above table describes the most basic keystrokes that you need
-in order to do editing of the input line.  For your convenience, many
-other commands have been added in addition to @kbd{C-b}, @kbd{C-f},
-@kbd{C-d}, and @key{DEL}.  Here are some commands for moving more rapidly
-about the line.
+A tabela acima descreve os toques mais básicos que você precisa com o 
+objetivo de editar a linha de entrada.   Para a sua conveniência, muitos 
+outros comandos foram adicionados juntamente a @kbd{C-b}, @kbd{C-f}, 
+@kbd{C-d}, e @key{DEL}.   Aqui estão alguns comandos para movimentar-se 
+mais rapidamente ao longo da linha.
 
 @table @kbd
 @item C-a
-Move to the start of the line.
+Movimenta para o início da linha.
 @item C-e
-Move to the end of the line.
+Movimenta para o final da linha.
 @item M-f
-Move forward a word, where a word is composed of letters and digits.
+Movimenta uma palavra para frente, onde uma palavra é composta de letras 
+e dígitos.
 @item M-b
-Move backward a word.
+Movimenta uma palavra para tras.
 @item C-l
-Clear the screen, reprinting the current line at the top.
+Limpa a tela, reimprimindo a linha atual no topo.
 @end table
 
-Notice how @kbd{C-f} moves forward a character, while @kbd{M-f} moves
-forward a word.  It is a loose convention that control keystrokes
-operate on characters while meta keystrokes operate on words.
+Perceba como @kbd{C-f} movimenta o cursor um carácter para frente, 
+enquanto que @kbd{M-f} movimenta o cursor uma palavra para frente.   É 
+uma convenção não escrita que o pressionamento de teclas de controle 
+opera sobre caracteres enquanto que o pressionamento de tecla meta opera 
+sobre palavras.
 
 @node Readline Killing Commands
 @subsection Readline Killing Commands
@@ -232,55 +241,60 @@ operate on characters while meta keystrokes operate on words.
 @cindex killing text
 @cindex yanking text
 
-@dfn{Killing} text means to delete the text from the line, but to save
-it away for later use, usually by @dfn{yanking} (re-inserting)
-it back into the line.
-(`Cut' and `paste' are more recent jargon for `kill' and `yank'.)
+@dfn{Killing} texto significa retirar o texto da linha, porém 
+salvá-lo fora para uso posterior, usualmente com @dfn{yanking} 
+(re-inserir) o texto de volta na linha.
+("Recortar" e "colar" são jargão mais recente para `kill' e `yank').
 
-If the description for a command says that it `kills' text, then you can
-be sure that you can get the text back in a different (or the same)
-place later.
+Se a descrição para um comando diz que ele `kills' texto, então você 
+pode ter certeza que você pode ter o texto de volta em um local 
+diferente (ou o mesmo) depois.
 
-When you use a kill command, the text is saved in a @dfn{kill-ring}.
-Any number of consecutive kills save all of the killed text together, so
-that when you yank it back, you get it all.  The kill
-ring is not line specific; the text that you killed on a previously
-typed line is available to be yanked back later, when you are typing
-another line.
+Quando você utiliza um comando kill, o texto é salvo em um 
+@dfn{kill-ring}.   Qualquer número de kills consecutivos salva todo o 
+texto killed junto, de forma que quando você yank o texto de volta, você 
+obtém o texto todo.   O "kill ring" não é específico de linha; o texto 
+que você "matou" em uma linha digitada previamente está disponível para 
+ser "arrancado" de volta mais tarde, quando você estiver digitando outra 
+linha.
 @cindex kill ring
 
-Here is the list of commands for killing text.
+Aqui está a lista de comandos para matar "killing" texto.
 
 @table @kbd
 @item C-k
-Kill the text from the current cursor position to the end of the line.
+Mata o texto a partir da posição atual do cursor até o final da linha.
 
 @item M-d
-Kill from the cursor to the end of the current word, or, if between
-words, to the end of the next word.
-Word boundaries are the same as those used by @kbd{M-f}.
+Mata a partir do cursor até o final da palavra atual, ou, se entre 
+palavras, até o final da próxima palavra.
+Os limites de palavra são os mesmos que aqueles utilizados por 
+@kbd{M-f}.
 
 @item M-@key{DEL}
-Kill from the cursor the start of the current word, or, if between
-words, to the start of the previous word.
-Word boundaries are the same as those used by @kbd{M-b}.
+Mata a partir do cursor o início da palavra atual, ou, se entre 
+palavras, até o início da palavra anterior.
+Os limites de palavra são os mesmos que aqueles utilizados por 
+@kbd{M-b}.
 
 @item C-w
-Kill from the cursor to the previous whitespace.  This is different than
-@kbd{M-@key{DEL}} because the word boundaries differ.
+Mata a partir do cursor até o espaço em braco anterior.   Isso é 
+diferente de @kbd{M-@key{DEL}}, pois os limites de palavra diferem.
 
 @end table
 
-Here is how to @dfn{yank} the text back into the line.  Yanking
-means to copy the most-recently-killed text from the kill buffer.
+Aqui está como "arrancar" (@dfn{yank}) o texto de volta para a linha.
+Yanking significa copiar o texto mais recentemente "killed" a partir da 
+área intermediária de memória "kill".
 
 @table @kbd
 @item C-y
-Yank the most recently killed text back into the buffer at the cursor.
+"Yank" o texto mais recentemente "killed" de volta na área intermediária 
+de memória no cursor.
 
 @item M-y
-Rotate the kill-ring, and yank the new top.  You can only do this if
-the prior command is @kbd{C-y} or @kbd{M-y}.
+Rotaciona o "kill-ring", e "yank" o novo topo.   Você somente pode fazer 
+isso se o comando anterior for @kbd{C-y} ou @kbd{M-y}.
 @end table
 
 @node Readline Arguments
