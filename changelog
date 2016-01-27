@@ -3,7 +3,10 @@
 		8.2 - Readline Interaction
 		8.2.1 - Readline Bare Essentials
 		8.2.2 - Readline Movement Commands
-		8.2.3 - Readline Klling Commands
+		8.2.3 - Readline Killing Commands
+		8.2.4 - Readline Arguments
+		8.2.5 - Searching for Commands in the History
+		8.3 - Readline Init File
 
 2016-jan-26	Translated the following sections and subsections (in 
 		bashref-ed.4.3-pt_BR.texi):
