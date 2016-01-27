@@ -1,7 +1,19 @@
-2016-jan-26	Translated the following sections and subsections:
+2016-jan-27	Translated the following sections and subsections (in 
+		rluser-pt_BR.texi):
+		8.2 - Readline Interaction
+		8.2.1 - Readline Bare Essentials
+		8.2.2 - Readline Movement Commands
+		8.2.3 - Readline Klling Commands
+
+2016-jan-26	Translated the following sections and subsections (in 
+		bashref-ed.4.3-pt_BR.texi):
 		Appendix B - Major Differences From The Bourne Shell 
 		(from ${!prefix*} expansion up to the end)
 		B.1 - Implementation Differences From The SVR 4.2 Shell
+		
+		Translation of bashref-ed.4.3.texi is complete!
+		
+		(in rluser-pt_BR.texi):
 		8 - Command Line Editing
 		8.1 - Introduction to Line Editing
 		(Obs.: Chapter 8 - Command Line Editing and chapter 9 - 
@@ -28,6 +40,9 @@
 		rluser.texi and hsuser.texi, respectively.  So, 
 		translation furthered to chapter 10, which is in 
 		bashref-ed.4.3-pt_BR.texi, like previous ones)
+		
+		Created two new files: rluser-pt_BR.texi and 
+		hsuser-pt_BR.tex
 
 2016-jan-24	Translated the following sections and subsections:
 		7 - Job Control
