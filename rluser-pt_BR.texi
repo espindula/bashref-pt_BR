@@ -409,216 +409,231 @@ feito nele.
 @node Readline Init File Syntax
 @subsection Readline Init File Syntax
 
-There are only a few basic constructs allowed in the
-Readline init file.  Blank lines are ignored.
-Lines beginning with a @samp{#} are comments.
-Lines beginning with a @samp{$} indicate conditional
-constructs (@pxref{Conditional Init Constructs}).  Other lines
-denote variable settings and key bindings.
+Existem somente umas poucas construções básicas permitidas no arquivo 
+init de Readline.   As linhas em branco são ignoradas.
+As linhas iniciando com um @samp{#} são comentários.
+As linhas começando com um @samp{$} indicam construções condicionais 
+(veja-se @ref{Conditional Init Constructs}).   Outras linhas denotam 
+configurações de variáveis e vinculações de teclas.
 
 @table @asis
-@item Variable Settings
-You can modify the run-time behavior of Readline by
-altering the values of variables in Readline
-using the @code{set} command within the init file.
-The syntax is simple:
+@item Configurações de Variáveis
+
+Você pode modificar o comportamento em tempo de execução de Readline 
+alterando os valores de variáveis em Readline utilizando o comando 
+@code{set} dentro do arquivo init.
+A sintaxe é simples:
 
 @example
 set @var{variable} @var{value}
 @end example
 
 @noindent
-Here, for example, is how to
-change from the default Emacs-like key binding to use
-@code{vi} line editing commands:
+Aqui, por exemplo, está como alternar da vinculação padrão de tecla 
+estilo Emacs para utilizar comandos de edição de linha @code{vi}:
 
 @example
 set editing-mode vi
 @end example
 
-Variable names and values, where appropriate, are recognized without regard
-to case.  Unrecognized variable names are ignored.
+Os nomes de variáveis e valores, onde apropriado, são reconhecidos sem 
+levar em consideração maiúsculas e minúsculas.   Os nomes de variável 
+não reconhecidos são ignorados.
 
-Boolean variables (those that can be set to on or off) are set to on if
-the value is null or empty, @var{on} (case-insensitive), or 1.  Any other
-value results in the variable being set to off.
+As variáveis booleanas (aquelas que podem ser configuradas para ligada 
+ou desligada) são configuradas para ligada se o valor for nulo ou vazio, 
+@var{on} (sem levar em consideração maiúsculas e minúsculas), ou 1.
+Qualquer outro valor resulta na variável sendo configurada para 
+desligada.
 
 @ifset BashFeatures
-The @w{@code{bind -V}} command lists the current Readline variable names
-and values.  @xref{Bash Builtins}.
+O comando @w{@code{bind -V}} lista os nomes e valores atuais da variável 
+Readline.   Veja-se @ref{Bash Builtins}.
 @end ifset
 
-A great deal of run-time behavior is changeable with the following
-variables.
+Uma grande parte do comportamento em tempo de execução é modificável com 
+as seguintes variáveis.
 
 @cindex variables, readline
 @table @code
 
 @item bell-style
 @vindex bell-style
-Controls what happens when Readline wants to ring the terminal bell.
-If set to @samp{none}, Readline never rings the bell.  If set to
-@samp{visible}, Readline uses a visible bell if one is available.
-If set to @samp{audible} (the default), Readline attempts to ring
-the terminal's bell.
+Controla o que acontece quando Readline deseja soar o alerta sonoro do 
+terminal.
+Se configurado para @samp{none}, então Readline nunca soa o alerta.   Se 
+configurada para @samp{visible}, então Readline utiliza um alerta 
+visível se um estiver disponível.   Se configurado para @samp{audible} 
+(o padrão), Readline tenta soar o alerta sonoro do terminal.
 
 @item bind-tty-special-chars
 @vindex bind-tty-special-chars
-If set to @samp{on}, Readline attempts to bind the control characters  
-treated specially by the kernel's terminal driver to their Readline
-equivalents.
+Se configurado para @samp{on}, Readline tenta vincular os caracteres de 
+controle tratados especialmente pelo controlador de terminal do kernel 
+para o equivalente Readline deles.
 
 @item colored-stats
 @vindex colored-stats
-If set to @samp{on}, Readline displays possible completions using different
-colors to indicate their file type.
-The color definitions are taken from the value of the @env{LS_COLORS}
-environment variable.
-The default is @samp{off}.
+Se configurado para @samp{on}, Readline exibe as completações possíveis 
+utilizando cores diferentes para indicar o tipo de arquivo delas.
+As definições de cor são tomadas do valor da variável de ambiente 
+@env{LS_COLORS}.
+O padrão é @samp{off}.
 
 @item comment-begin
 @vindex comment-begin
-The string to insert at the beginning of the line when the
-@code{insert-comment} command is executed.  The default value
-is @code{"#"}.
+A sequência de caracteres a inserir no inicio da linha quando o comando 
+@code{insert-comment} for executado.   O valor padrão é @code{"#"}.
 
 @item completion-display-width
 @vindex completion-display-width
-The number of screen columns used to display possible matches
-when performing completion.
-The value is ignored if it is less than 0 or greater than the terminal
-screen width.
-A value of 0 will cause matches to be displayed one per line.
-The default value is -1.
+O número de colunas de tela utilizado para exibir possíveis 
+coincidências quando da realização de completação.
+O valor é ignorado se for menor que 0 ou maior que a largura de tela do 
+terminal.
+Um valor de 0 fará com que coincidências sejam exibidas uma por linha.
+O valor pré-definido é -1.
 
 @item completion-ignore-case
 @vindex completion-ignore-case
-If set to @samp{on}, Readline performs filename matching and completion
-in a case-insensitive fashion.
-The default value is @samp{off}.
+Se configurado para @samp{on}, Readline realiza coincidência de nome de 
+arquivo e completação em uma forma que não leva em consideração 
+maiúsculas e minúsculas.
+O valor pré-definido é @samp{off}.
 
 @item completion-map-case
 @vindex completion-map-case
-If set to @samp{on}, and @var{completion-ignore-case} is enabled, Readline
-treats hyphens (@samp{-}) and underscores (@samp{_}) as equivalent when
-performing case-insensitive filename matching and completion.
+Se configurado para @samp{on}, e @var{completion-ignore-case} estiver 
+habilitada, então Readline trata hifens (@samp{-}) e sublinhados 
+(@samp{_}) como equivalentes, quando da realização de coincidência e 
+completação, sem levar em consideração maiúsculas e minúsculas, de nome 
+de arquivo.
 
 @item completion-prefix-display-length
 @vindex completion-prefix-display-length
-The length in characters of the common prefix of a list of possible
-completions that is displayed without modification.  When set to a
-value greater than zero, common prefixes longer than this value are
-replaced with an ellipsis when displaying possible completions.
+O comprimento em caracteres do prefixo comum de uma lista de 
+completações possiveis que é exibida sem modificação.   Quando 
+configurado para um valor maior que zero, os prefixos comuns maiores que 
+esse valor são substituidos com uma elipse, quando da exibição de 
+completações possiveis.
 
 @item completion-query-items
 @vindex completion-query-items
-The number of possible completions that determines when the user is
-asked whether the list of possibilities should be displayed.
-If the number of possible completions is greater than this value,
-Readline will ask the user whether or not he wishes to view
-them; otherwise, they are simply listed.
-This variable must be set to an integer value greater than or equal to 0.
-A negative value means Readline should never ask.
-The default limit is @code{100}.
+O número das completações possiveis que determina quando o usuário é 
+questionado se a lista de possibilidades deveria ser exibida.
+Se o número de completações possiveis for maior que esse valor, então 
+Readline perguntará ao usuário se ou não deseja visualizá-las; do 
+contrário, elas simplesmente são listadas.
+Essa variável deve necessariamente ser configurada para um número 
+inteiro maior que ou igual a 0.
+Um valor negativo significa que Readline nunca deveria perguntar.
+O limite pré-definido é @code{100}.
 
 @item convert-meta
 @vindex convert-meta
-If set to @samp{on}, Readline will convert characters with the
-eighth bit set to an @sc{ascii} key sequence by stripping the eighth
-bit and prefixing an @key{ESC} character, converting them to a
-meta-prefixed key sequence.  The default value is @samp{on}.
+Se configurado para @samp{on}, então Readline converterá caracteres com 
+o oitavo bit ligado para uma sequência de tecla @sc{ascii}, descartando 
+o oitavo bit e prefixando um carácter @key{ESC}, convertendo-os para um 
+sequência de tecla meta-prefixada.   O valor pré-definido é @samp{on}.
 
 @item disable-completion
 @vindex disable-completion
-If set to @samp{On}, Readline will inhibit word completion.
-Completion  characters will be inserted into the line as if they had
-been mapped to @code{self-insert}.  The default is @samp{off}.
+Se configurado para @samp{On}, Readline inibirá a completação de 
+palavra.   Os caracteres de completação será inseridos na linha como se 
+tivessem sido mapeados para @code{self-insert}.
+O valor pré-definido é @samp{off}.
 
 @item editing-mode
 @vindex editing-mode
-The @code{editing-mode} variable controls which default set of
-key bindings is used.  By default, Readline starts up in Emacs editing
-mode, where the keystrokes are most similar to Emacs.  This variable can be
-set to either @samp{emacs} or @samp{vi}.
+A variável @code{editing-mode} controla qual conjunto pré-definido de 
+vinvulações de tecla é utilizado.   Por pré-definição, Readline 
+inicializa no modo de edição Emacs, onde os toques de tecla são mais 
+similares ao Emacs.   Essa variável pode ser configurada para ou 
+@samp{emacs} ou @samp{vi}.
 
 @item echo-control-characters
-When set to @samp{on}, on operating systems that indicate they support it,
-readline echoes a character corresponding to a signal generated from the
-keyboard.  The default is @samp{on}.
+Quando configurado para @samp{on}, em sistemas operacionais que indicam 
+que os suportam, Readline ecoa um carácter correspondente a um sinal 
+gerado a partir do teclado.   O valor pré-definido é @samp{on}.
 
 @item enable-keypad
 @vindex enable-keypad
-When set to @samp{on}, Readline will try to enable the application
-keypad when it is called.  Some systems need this to enable the
-arrow keys.  The default is @samp{off}.
+Quando configurado para @samp{on}, Readline tentará habilitar o teclado 
+numérico da aplicação quando ele for chamado.   Alguns sistemas 
+necessitam disso para habilitar as teclas direcionais.
+O valor pré-definido é @samp{off}.
 
 @item enable-meta-key
-When set to @samp{on}, Readline will try to enable any meta modifier
-key the terminal claims to support when it is called.  On many terminals,
-the meta key is used to send eight-bit characters.
-The default is @samp{on}.
+Quando configurado para @samp{on}, Readline tentará habilitar qualquer 
+tecla meta modificadora que o terminal alegue suportar, quando for 
+chamado.   Em muitos terminais, a tecla meta é utilizada para enviar 
+caracteres de oito bits.
+O valor pré-definido é @samp{on}.
 
 @item expand-tilde
 @vindex expand-tilde
-If set to @samp{on}, tilde expansion is performed when Readline
-attempts word completion.  The default is @samp{off}.
+Se configurado para @samp{on}, a expansão de til é realizada quando 
+Readline tenta a completação de palavra.   O valor pré-definido é 
+@samp{off}.
 
 @item history-preserve-point
 @vindex history-preserve-point
-If set to @samp{on}, the history code attempts to place the point (the
-current cursor position) at the
-same location on each history line retrieved with @code{previous-history}
-or @code{next-history}.  The default is @samp{off}.
+Se configurado para @samp{on}, o código de histórico tenta colocar o 
+ponto (a posição atual do cursor) na mesma localização em cada linha de 
+histórico recuperada com @code{previous-history} ou @code{next-history}.
+O valor pré-definido é @samp{off}.
 
 @item history-size
 @vindex history-size
-Set the maximum number of history entries saved in the history list.
-If set to zero, any existing history entries are deleted and no new entries
-are saved.
-If set to a value less than zero, the number of history entries is not
-limited.
-By default, the number of history entries is not limited.
+Configura o número máximo de entradas de histórico salvas na lista de 
+histórico.   Se configurada para zero, então quaisquer entradas de 
+histórico existentes são deletadas e nenhuma entrada nova é salva.
+Se configurada para um valor menor que zero, então o número de entradas 
+de histórico não é limitada.
+Por pré-definição, o número de entradas de histórico não é limitada.
 
 @item horizontal-scroll-mode
 @vindex horizontal-scroll-mode
-This variable can be set to either @samp{on} or @samp{off}.  Setting it
-to @samp{on} means that the text of the lines being edited will scroll
-horizontally on a single screen line when they are longer than the width
-of the screen, instead of wrapping onto a new screen line.  By default,
-this variable is set to @samp{off}.
+Essa variável pode ser configurada para ou @samp{on} ou @samp{off}.
+A configuração dela para @samp{on} significa que o texto das linhas 
+sendo editadas passará na tela horizontalmente em uma única linha de 
+tela quando forem maiores que a largura da tela, em vez de 
+acondicioná-lo em uma nova linha de tela.   Por pré-definição, essa 
+variável é configurada para @samp{off}.
 
 @item input-meta
 @vindex input-meta
 @vindex meta-flag
-If set to @samp{on}, Readline will enable eight-bit input (it
-will not clear the eighth bit in the characters it reads),
-regardless of what the terminal claims it can support.  The
-default value is @samp{off}.  The name @code{meta-flag} is a
-synonym for this variable.
+Se configurado para @samp{on}, Readline habilitará a entrada de oito 
+bits (não limpará o oitavo bit nos caracteres que lê), independentemente 
+do que o terminal alega que pode suportar.   O valor pré-definido é 
+@samp{off}.   O nome @code{meta-flag} é um sinônimo para essa variável.
 
 @item isearch-terminators
 @vindex isearch-terminators
-The string of characters that should terminate an incremental search without
-subsequently executing the character as a command (@pxref{Searching}).
-If this variable has not been given a value, the characters @key{ESC} and
-@kbd{C-J} will terminate an incremental search.
+A sequência de caracteres dos caracteres que deveriam terminar uma 
+pesquisa incremental sem executar subsequentemente o carácter como um 
+comando (veja-se @ref{Searching}).
+Se a essa variável não tiver sido dado um valor, então os caracteres 
+@key{ESC} e @kbd{C-J} terminarão uma pesquisa incremental.
 
 @item keymap
 @vindex keymap
-Sets Readline's idea of the current keymap for key binding commands.
-Acceptable @code{keymap} names are
+Configura a ideia de Readline acerca do mapa de teclas atual para os 
+comandos de vinculação de tecla.
+Os nomes aceitáveis de @code{keymap} são
 @code{emacs},
 @code{emacs-standard},
 @code{emacs-meta},
 @code{emacs-ctlx},
 @code{vi},
 @code{vi-move},
-@code{vi-command}, and
+@code{vi-command}, e
 @code{vi-insert}.
-@code{vi} is equivalent to @code{vi-command}; @code{emacs} is
-equivalent to @code{emacs-standard}.  The default value is @code{emacs}.
-The value of the @code{editing-mode} variable also affects the
-default keymap.
+@code{vi} é equivalente a @code{vi-command}; @code{emacs} é equivalente 
+a @code{emacs-standard}.   O valor pré-definido é @code{emacs}.
+O valor da variável @code{editing-mode} também afeta o mapa de teclas 
+pré-definido.
 
 @item keyseq-timeout
 Specifies the duration Readline will wait for a character when reading an
