@@ -1,3 +1,8 @@
+2016-jan-28	Translated the following sections and subsections (in 
+		rluser-pt_BR.texi):
+		8.3.1 - Readline Init File Syntax (up to "keymap" 
+		variable)
+
 2016-jan-27	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.2 - Readline Interaction
