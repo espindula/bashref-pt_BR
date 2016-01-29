@@ -30,7 +30,7 @@ permissão sejam preservadas em todas as cópias.
 manual sob as condições para cópias literais, contanto também que a 
 declaração de Direitos Autorais GNU esteja disponível para o 
 distribuidor, e contanto que o trabalho derivado resultante inteiro seja 
-distribuido sob os termos de uma notícia de permissão idêntica a esta.
+distribuído sob os termos de uma notícia de permissão idêntica a esta.
 
 É dada permissão para copiar e distribuir traduções deste manual em 
 outra língua, sob as condições acima para versões modificadas.
@@ -185,7 +185,7 @@ entrada.
 
 @table @asis
 @item @kbd{C-b}
-Movimenta um carácter para tras.
+Movimenta um carácter para trás.
 @item @kbd{C-f}
 Movimenta um carácter para frente.
 @item @key{DEL} ou @key{Backspace}
@@ -224,7 +224,7 @@ Movimenta para o final da linha.
 Movimenta uma palavra para frente, onde uma palavra é composta de letras 
 e dígitos.
 @item M-b
-Movimenta uma palavra para tras.
+Movimenta uma palavra para trás.
 @item C-l
 Limpa a tela, reimprimindo a linha atual no topo.
 @end table
@@ -304,7 +304,7 @@ Você pode passar argumentos numéricos aos comandos Readline.   Algumas
 vezes o argumento atua como um contador de repetição, outras é o 
 @i{sinal} do argumento que é significante.   Se você passar um argumento 
 negativo para um comando o qual normalmente atua na direção para frente, 
-então esse comando atuará na direção para tras.   Por exemplo, para 
+então esse comando atuará na direção para trás.   Por exemplo, para 
 "kill" texto de volta para o começo da linha, você pode digitar 
 @samp{M-- C-k}.
 
@@ -339,7 +339,7 @@ histórico, digite @kbd{C-r}.   Digitando-se @kbd{C-s} pesquisa-se para
 frente no histórico.
 Os caracteres presentes no valor da variável @code{isearch-terminators} 
 são utilizados para terminar um pesquisa incremental.
-Se a essa variável não foi atribuido um valor, então os caracteres 
+Se a essa variável não foi atribuído um valor, então os caracteres 
 @key{ESC} e @kbd{C-J} terminarão uma pesquisa incremental.
 @kbd{C-g} abortará uma pesquisa incremental e restaurará a linha 
 original.
@@ -365,7 +365,7 @@ caracteres intervenientes que definam uma nova sequência de caracteres
 de busca, então qualquer sequência de caracteres de busca guardada é 
 utilizada.
 
-As buscas não incrementais lêem a sequência de caracteres de pesquisa 
+As buscas não incrementais leem a sequência de caracteres de pesquisa 
 inteira antes de iniciar a busca por linhas de histórico coincidentes.
 A sequência de caracteres de busca pode ser digitada pelo usuário ou ser 
 parte do conteúdo da linha atual.
@@ -394,7 +394,7 @@ Se esse arquivo não existir ou não puder ser lido, então o padrão final
 Quando um programa que utiliza a biblioteca Readline inicializa, o 
 arquivo init é lido, e as vinculações de tecla são configuradas.
 
-Adicionalmente, o comando @code{C-x C-r} re-lê esse arquivo init, assim 
+Adicionalmente, o comando @code{C-x C-r} relê esse arquivo init, assim 
 incorporando quaisquer modificações que você eventualmente possa ter 
 feito nele.
 
@@ -512,16 +512,16 @@ de arquivo.
 @item completion-prefix-display-length
 @vindex completion-prefix-display-length
 O comprimento em caracteres do prefixo comum de uma lista de 
-completações possiveis que é exibida sem modificação.   Quando 
+completações possíveis que é exibida sem modificação.   Quando 
 configurado para um valor maior que zero, os prefixos comuns maiores que 
-esse valor são substituidos com uma elipse, quando da exibição de 
-completações possiveis.
+esse valor são substituídos com uma elipse, quando da exibição de 
+completações possíveis.
 
 @item completion-query-items
 @vindex completion-query-items
-O número das completações possiveis que determina quando o usuário é 
+O número das completações possíveis que determina quando o usuário é 
 questionado se a lista de possibilidades deveria ser exibida.
-Se o número de completações possiveis for maior que esse valor, então 
+Se o número de completações possíveis for maior que esse valor, então 
 Readline perguntará ao usuário se ou não deseja visualizá-las; do 
 contrário, elas simplesmente são listadas.
 Essa variável deve necessariamente ser configurada para um número 
@@ -546,7 +546,7 @@ O valor pré-definido é @samp{off}.
 @item editing-mode
 @vindex editing-mode
 A variável @code{editing-mode} controla qual conjunto pré-definido de 
-vinvulações de tecla é utilizado.   Por pré-definição, Readline 
+vinculações de tecla é utilizado.   Por predefinição, Readline 
 inicializa no modo de edição Emacs, onde os toques de tecla são mais 
 similares ao Emacs.   Essa variável pode ser configurada para ou 
 @samp{emacs} ou @samp{vi}.
@@ -590,7 +590,7 @@ histórico.   Se configurada para zero, então quaisquer entradas de
 histórico existentes são deletadas e nenhuma entrada nova é salva.
 Se configurada para um valor menor que zero, então o número de entradas 
 de histórico não é limitada.
-Por pré-definição, o número de entradas de histórico não é limitada.
+Por predefinição, o número de entradas de histórico não é limitada.
 
 @item horizontal-scroll-mode
 @vindex horizontal-scroll-mode
@@ -598,7 +598,7 @@ Essa variável pode ser configurada para ou @samp{on} ou @samp{off}.
 A configuração dela para @samp{on} significa que o texto das linhas 
 sendo editadas passará na tela horizontalmente em uma única linha de 
 tela quando forem maiores que a largura da tela, em vez de 
-acondicioná-lo em uma nova linha de tela.   Por pré-definição, essa 
+acondicioná-lo em uma nova linha de tela.   Por predefinição, essa 
 variável é configurada para @samp{off}.
 
 @item input-meta
@@ -636,122 +636,132 @@ O valor da variável @code{editing-mode} também afeta o mapa de teclas
 pré-definido.
 
 @item keyseq-timeout
-Specifies the duration Readline will wait for a character when reading an
-ambiguous key sequence (one that can form a complete key sequence using
-the input read so far, or can take additional input to complete a longer
-key sequence).
-If no input is received within the timeout, Readline will use the shorter
-but complete key sequence.
-Readline uses this value to determine whether or not input is
-available on the current input source (@code{rl_instream} by default).
-The value is specified in milliseconds, so a value of 1000 means that
-Readline will wait one second for additional input.
-If this variable is set to a value less than or equal to zero, or to a
-non-numeric value, Readline will wait until another key is pressed to
-decide which key sequence to complete.
-The default value is @code{500}.
+Especifica a duração que Readline aguardará por um carácter quando da 
+leitura de uma sequência de tecla ambigua (aquela que pode formar uma 
+sequência de tecla completa utilizando a entrada lida até agora, ou pode 
+tomar entrada adicional para completar uma sequência de tecla mais 
+longa).
+Se nenhuma entrada é recebida dentro do intervalo de tempo, então 
+Readline utilizará a sequência de tecla mais curta, porém completa.
+Readline utiliza esse valor para determinar quando ou não a entrada está 
+disponível na fonte atual de entrada (por 
+pré-definição @code{rl_instream}).
+O valor é especificado em milisegundos, de forma que um valor de 1000 
+significa que Readline aguardará um segundo por entrada adicional.
+Se essa variável não estiver configurada para um valor menor que ou 
+igual a zero, ou para um valor não numérico, então Readline aguardará 
+até que outra tecla seja pressionada para decidir qual sequência de 
+tecla completar.
+O valor pré-definido é @code{500}.
 
 @item mark-directories
-If set to @samp{on}, completed directory names have a slash
-appended.  The default is @samp{on}.
+Se configurado para @samp{on}, então os nomes completados de diretórios 
+terão uma barra acrescentada. O valor pré-definido é @samp{on}.
 
 @item mark-modified-lines
 @vindex mark-modified-lines
-This variable, when set to @samp{on}, causes Readline to display an
-asterisk (@samp{*}) at the start of history lines which have been modified.
-This variable is @samp{off} by default.
+Essa variável, quando configurada para @samp{on}, faz com que Readline 
+exiba um asterisco (@samp{*}) no inicio de linhas de histórico que 
+tenham sido modificadas.
+Essa variável está @samp{off} por pré-definição.
 
 @item mark-symlinked-directories
 @vindex mark-symlinked-directories
-If set to @samp{on}, completed names which are symbolic links
-to directories have a slash appended (subject to the value of
-@code{mark-directories}).
-The default is @samp{off}.
+Se configurada para @samp{on}, então os nomes completados que sejam 
+vinculos simbólicos para diretórios terão uma barra acrescentada 
+(sujeita ao valor de @code{mark-directories}).
+O valor pré-definido é @samp{off}.
 
 @item match-hidden-files
 @vindex match-hidden-files
-This variable, when set to @samp{on}, causes Readline to match files whose
-names begin with a @samp{.} (hidden files) when performing filename
-completion.
-If set to @samp{off}, the leading @samp{.} must be
-supplied by the user in the filename to be completed.
-This variable is @samp{on} by default.
+Essa variável, quando configurada para @samp{on}, faz com que Readline 
+coincida arquivos cujos nomes iniciem com um @samp{.} (arquivos ocultos) 
+quando da realização de completação de nome de arquivo.
+Se configurada para @samp{off}, então o @samp{.} inicial deve 
+necessariamente ser fornecido pelo usuário no nome de arquivo para ser 
+completado.
+Essa variável está @samp{on} por pré-definição.
 
 @item menu-complete-display-prefix
 @vindex menu-complete-display-prefix
-If set to @samp{on}, menu completion displays the common prefix of the
-list of possible completions (which may be empty) before cycling through
-the list.  The default is @samp{off}.
+Se configurada para @samp{on}, então a completação de menu exibe o 
+prefixo comum da lista de possíveis completações (as quais podem estar 
+vazias) antes de circular ao longo da lista.   O valor pré-definido é 
+@samp{off}.
 
 @item output-meta
 @vindex output-meta
-If set to @samp{on}, Readline will display characters with the
-eighth bit set directly rather than as a meta-prefixed escape
-sequence.  The default is @samp{off}.
+Se configurada para @samp{on}, então Readline exibirá caracteres com o 
+oitavo bit configurado diretamente, em vez de uma sequência de escape 
+meta prefixada.   O valor pré-definido é @samp{off}.
 
 @item page-completions
 @vindex page-completions
-If set to @samp{on}, Readline uses an internal @code{more}-like pager
-to display a screenful of possible completions at a time.
-This variable is @samp{on} by default.
+Se configurada para @samp{on}, então Readline utiliza um paginador 
+interno estilo @code{more} para exibir uma tela completa de possiveis 
+completações por vez.
+Essa variável está @samp{on} por pré-definição.
 
 @item print-completions-horizontally
-If set to @samp{on}, Readline will display completions with matches
-sorted horizontally in alphabetical order, rather than down the screen.
-The default is @samp{off}.
+Se configurada para @samp{on}, então Readline exibirá as completações 
+com as coincidências ordenadas horizontalmente em ordem alfabética, em 
+vez de o fazer tela abaixo.
+O valor pré-definido é @samp{off}.
 
 @item revert-all-at-newline
 @vindex revert-all-at-newline
-If set to @samp{on}, Readline will undo all changes to history lines
-before returning when @code{accept-line} is executed.  By default,
-history lines may be modified and retain individual undo lists across
-calls to @code{readline}.  The default is @samp{off}.
+Se configurada para @samp{on}, então Readline desfazerá todas as 
+modificações para as linhas de histórico antes do retorno quando 
+@code{accept-line} for executada.   Por pré-definição, as linhas de 
+histórico podem ser modificadas e reter listas individuais de desfazer 
+entre chamadas a @code{readline}.   O valor pré-definido é @samp{off}.
 
 @item show-all-if-ambiguous
 @vindex show-all-if-ambiguous
-This alters the default behavior of the completion functions.  If
-set to @samp{on}, 
-words which have more than one possible completion cause the
-matches to be listed immediately instead of ringing the bell.
-The default value is @samp{off}.
+Isso altera o comportamento pré-definido das funções de completação.
+Se configurada para @samp{on}, então as palavras as quais tenham mais 
+que uma completação possivel fazem com que as coincidências sejam 
+listadas imediatamente, em vez de soar o alarme sonoro.
+O valor pré-definido é @samp{off}.
 
 @item show-all-if-unmodified
 @vindex show-all-if-unmodified
-This alters the default behavior of the completion functions in
-a fashion similar to @var{show-all-if-ambiguous}.
-If set to @samp{on}, 
-words which have more than one possible completion without any
-possible partial completion (the possible completions don't share
-a common prefix) cause the matches to be listed immediately instead
-of ringing the bell.
-The default value is @samp{off}.
+Isso altera o comportamento pré-definido das funções de completação de 
+uma maneira similar a @var{show-all-if-ambiguous}.
+Se configurada para @samp{on}, então as palavras as quais tenham mais 
+que uma completação possivel sem qualquer possivel completação parcial 
+(as completações possiveis não compartilham um prefixo comum) fazem com 
+que as coincidências sejam listadas imediatamente, em vez de soar o 
+alarme sonoro.
+O valor pré-definido é @samp{off}.
 
 @item show-mode-in-prompt
 @vindex show-mode-in-prompt
-If set to @samp{on}, add a character to the beginning of the prompt
-indicating the editing mode: emacs (@samp{@@}), vi command (@samp{:}),
-or vi insertion (@samp{+}).
-The default value is @samp{off}.
+Se configurado para @samp{on}, então adiciona um carácter ao inicio do 
+prompt, indicando o modo de edição: emacs (@samp{@@}); comando vi 
+(@samp{:}); ou inserção vi (@samp{+}).
+O valor pré-definido é @samp{off}.
 
 @item skip-completed-text
 @vindex skip-completed-text
-If set to @samp{on}, this alters the default completion behavior when
-inserting a single match into the line.  It's only active when
-performing completion in the middle of a word.  If enabled, readline
-does not insert characters from the completion that match characters
-after point in the word being completed, so portions of the word
-following the cursor are not duplicated.
-For instance, if this is enabled, attempting completion when the cursor
-is after the @samp{e} in @samp{Makefile} will result in @samp{Makefile}
-rather than @samp{Makefilefile}, assuming there is a single possible
-completion.
-The default value is @samp{off}.
+Se configurada para @samp{on}, então isso altera o comportamento 
+pré-definido de completação quando da inserção, na linha, de uma 
+coincidência única.   Essa facilidade está ativa somente quando da 
+realização de completação no meio de uma palavra.   Se habilitada, 
+Readline não insere caracteres a partir da completação que coincidam com 
+caracteres após o ponto na palavra sendo completada, de forma que as 
+porções da palavra seguintes ao cursor não são duplicadas.
+Por exemplo, se habilitada, a tentativa de completação quando o cursor 
+estiver após o @samp{e} em @samp{Makefile} resultará em @samp{Makefile}, 
+em vez de @samp{Makefilefile}, presumindo que exista uma única 
+completação possivel.
+O valor pré-definido é @samp{off}.
 
 @item visible-stats
 @vindex visible-stats
-If set to @samp{on}, a character denoting a file's type
-is appended to the filename when listing possible
-completions.  The default is @samp{off}.
+Se configurada para @samp{on}, então um carácter denotando um tipo do 
+arquivo é acrescentado ao nome do arquivo, quando da listagem das 
+completações possiveis.   O valor pré-definido é @samp{off}.
 
 @end table
 
