@@ -200,7 +200,7 @@ subsequentes.
 
 Ao tempo em que executar comandos é essencial, a maior parte do poder (e 
 complexidade) dos shells é devida às suas linguagens de programação 
-embutidas.   Como qualquer linguagem de alto-nível, o shell fornece 
+embutidas.   Como qualquer linguagem de alto nível, o shell fornece 
 variáveis, construtores de fluxo de controle, citações e funções.
 
 Shells oferecem recursos especificamente voltados para uso interativo ao 
@@ -1238,24 +1238,24 @@ O status de saída de ambas dessas construções é o status de saída de
 
 Um @code{coprocess} é um comando de shell precedido pela palavra 
 reservada @code{coproc}.
-Um coprocesso é executado assincronamente em um sub shell, como se o 
+Um co-processo é executado assincronamente em um sub shell, como se o 
 comando tivesse sido finalizado com o operador de controle @samp{&}, com 
 um tubo de mão dupla estabelecido entre o shell em execução e o 
-coprocesso.
+co-processo.
 
-O formato de um coprocesso é:
+O formato de um co-processo é:
 @example
 coproc [@var{NAME}] @var{command} [@var{redirections}]
 @end example
 
 @noindent
-Isso cria um coprocesso chamado @var{NAME}.
+Isso cria um co-processo chamado @var{NAME}.
 Se @var{NAME} não for informado, então o nome padrão é @var{COPROC}.
 @var{NAME} deve necessariamente não ser informado se @var{command} for 
 um comando simples (@pxref{Simple Commands}); do contrário, @var{NAME} é 
 interpretada como sendo a primeira palavra do comando simples.
 
-Quando o coprocesso é executado, o shell cria um vetor variável 
+Quando o co-processo é executado, o shell cria um vetor variável 
 (@pxref{Arrays}) chamado @env{NAME} no contexto do shell em execução.
 A saída padrão de @var{command} é conectada via tubo ao arquivo 
 descritor no shell em execução, e esse arquivo descritor é atribuído ao 
@@ -1271,14 +1271,14 @@ padrão.
 Os descritores de arquivo não estão disponíveis em sub shells.
 
 O Identificador (ID) de processo do shell gerado para executar o 
-coprocesso está disponível como sendo o valor da variável 
+co-processo está disponível como sendo o valor da variável 
 @env{NAME}_PID.
 O comando interno @code{wait} pode ser utilizado para aguardar o 
-coprocesso finalizar.
+co-processo finalizar.
 
-Dado que o coprocesso é criado como um comando assíncrono, o comando 
+Dado que o co-processo é criado como um comando assíncrono, o comando 
 @code{coproc} sempre retorna sucesso.
-O status de retorno de um coprocesso é o status de saída de 
+O status de retorno de um co-processo é o status de saída de 
 @var{command}.
 
 @node GNU Parallel
@@ -1906,7 +1906,7 @@ Do contrário, o tilde-prefix é substituído pelo diretório home associado
 com o nome de login especificado.
 
 Se o prefix-tilde for @samp{~+}, então o valor da variável de shell 
-@env{PWD} substitue o tilde-prefix.
+@env{PWD} substitui o tilde-prefix.
 Se o tilde-prefix for @samp{~-}, então o valor da variável de shell 
 @env{OLDPWD}, se ele estiver configurado, é substituído.
 
@@ -2569,7 +2569,7 @@ coincidência são reconhecidos.
 Na descrição seguinte, uma @var{pattern-list} é uma lista de um ou mais 
 padrões separados por um @samp{|}.
 Padrões de composição podem serem formados utilizando-se um ou mais dos 
-subpadrões seguintes:
+sub-padrões seguintes:
 
 @table @code
 @item ?(@var{pattern-list})
@@ -3081,17 +3081,17 @@ Um comando invocado nesse ambiente separado não pode afetar o ambiente
 de execução do shell.
 
 Substituição de comando, comandos agrupados entre parênteses, e comandos 
-assíncronos são invocados em um ambiente de subshell que é uma cópia do 
+assíncronos são invocados em um ambiente de sub-shell que é uma cópia do 
 ambiente de shell, exceto que os coletores capturados pelo shell são 
 reconfigurados para os valores que o shell herdou do pai dele quando da 
 invocação.   Comandos internos que são invocados como parte de um canal 
 de comunicação (pipeline) são executados também em um ambiente de 
-subshell.   Mudanças feitas no ambiente de subshell não podem afetar o 
+sub-shell.   Mudanças feitas no ambiente de sub-shell não podem afetar o 
 ambiente de execução do shell.
 
-Subshell gerados para executar substituições de comandos herdam o valor 
+Sub-shell gerados para executar substituições de comandos herdam o valor 
 da opção @option{-e} do shell pai.   Quando não em modo @sc{posix}, Bash 
-limpa a opção @option{-e} em tais subshells.
+limpa a opção @option{-e} em tais sub-shells.
 
 Se um comando for seguido por um sinal @samp{&} e o controle de tarefa 
 não estiver ativo, o arquivo descritor de entrada padronizada padrão 
@@ -3239,7 +3239,7 @@ fornecidos, então os parâmetros posicionais são desconfigurados.
 Um script de shell pode ser feito executável utilizando-se o comando 
 @code{chmod} para se ligar o bit executável.   Quando Bash encontra um 
 tal arquivo enquanto procura por um comando no @env{$PATH}, ele gera um 
-subshell para executá-lo.   Em outras palavras, executar
+sub-shell para executá-lo.   Em outras palavras, executar
 @example
 nome_arquivo @var{arguments}
 @end example
@@ -3250,7 +3250,7 @@ bash nome_arquivo @var{arguments}
 @end example
 @noindent
 Se @code{nome_arquivo} for um script de shell executável.
-Tal subshell reinicializa a si próprio, de maneira que o efeito é como 
+Tal sub-shell reinicializa a si próprio, de maneira que o efeito é como 
 se um shell novo tivesse sido invocado para interpretar o script, com a 
 exceção de que as localizações dos comandos relembradas pelo pai 
 (veja-se a descrição de @code{hash} em @ref{Bourne Shell Builtins}) são 
@@ -3457,7 +3457,7 @@ retorno é zero.
 exec [-cl] [-a @var{nome}] [@var{comando} [@var{argumentos}]]
 @end example
 
-If @var{comando} for fornecido, então ele substitue o shell sem criar um 
+If @var{comando} for fornecido, então ele substitui o shell sem criar um 
 processo novo.
 Se a opção @option{-l} for fornecida, então o shell coloca um traço no 
 início do argumento zero passado para @var{comando}.
@@ -3835,7 +3835,7 @@ Essas são as mesmas condições obedecidas pela opção @code{errexit}
 Sinais são ignorados após as entradas ao shell não puderem ser coletadas 
 ou reconfiguradas.
 Sinais coletados que não estão sendo ignorados são reconfigurados para 
-os valores originais deles em um subshell ou ambiente de subshell quando 
+os valores originais deles em um sub-shell ou ambiente de sub-shell quando 
 um for criado.
 
 O código de retorno é zero, a menos que um @var{sigspec} não especifique 
@@ -3982,7 +3982,7 @@ Lê vínculos de tecla a partir de @var{filename}.
 Consulta sobre quais teclas invocam a @var{function} nominada.
 
 @item -u @var{function}
-Descinvula todas as teclas vinculadas à @var{function} nominada.
+Desvincula todas as teclas vinculadas à @var{function} nominada.
 
 @item -r @var{keyseq}
 Remove qualquer vinculação atual para a sequência de tecla @var{keyseq}.
@@ -4028,20 +4028,20 @@ um comando interno ao shell.
 caller [@var{expr}]
 @end example
 
-Retorna o contexto de qualquer chamada de subrotina ativa (uma função de 
+Retorna o contexto de qualquer chamada de sub-rotina ativa (uma função de 
 shell ou um script executado com os comandos internos @code{.} ou 
 @code{source}).
 
 Sem o parâmetro @var{expr}, @code{caller} exibe o número da linha e nome 
-do arquivo fonte da chamada de subrotina atual.
+do arquivo fonte da chamada de sub rotina atual.
 Se um número inteiro não negativo for fornecido como @var{expr}, então 
-@code{caller} exibe o número da linha, nome da subrotina, e arquivo 
+@code{caller} exibe o número da linha, nome da sub-rotina, e arquivo 
 fonte correspondente àquela posição na pilha de chamada de execução 
 atual.   Essa informação extra talvez possa ser utilizada, por exemplo, 
 para imprimir um rastreamento da pilha.   O quadro atual é o frame 0.
 
 O código de retorno é 0 a menos que o shell não esteja executando uma 
-chamada de subrotina ou @var{expr} não corresponda a uma posição válida 
+chamada de sub-rotina ou @var{expr} não corresponda a uma posição válida 
 na pilha de chamada.
 
 @item command
@@ -4055,8 +4055,8 @@ ignorando qualquer função de shell chamada @var{command}.
 Apenas comandos internos ao shell ou comandos encontrados pela busca no 
 caminho @env{PATH} são executados.
 Se existir uma função de shell chamada @code{ls}, a execução de 
-@samp{command ls} no âmbito da função executará o comando extorno 
-@code{ls} ao inves de chamar a função recursivamente.
+@samp{command ls} no âmbito da função executará o comando estorno 
+@code{ls} ao invés de chamar a função recursivamente.
 A opção @option{-p} significa utilizar um valor padrão para @env{PATH} 
 que garante encontrar todos os utilitários padrão.
 O código de retorno nesse caso é 127 se @var{command} não puder ser 
@@ -4299,7 +4299,7 @@ Exibe uma descrição curta de cada @var{pattern}
 Exibe a descrição de cada @var{pattern} em um formato parecido com 
 página de manual.
 @item -s
-Exibe apenas uma sinópse curta de uso para cada @var{pattern}
+Exibe apenas uma sinopse curta de uso para cada @var{pattern}
 @end table
 
 O código de retorno é zero a menos que nenhum comando coincida com 
@@ -4439,8 +4439,8 @@ Isso é uma exceção ao comportamento usual de @code{printf}.
 Os argumentos para os especificadores de formato que não sejam 
 sequências de caracteres são tratados como constantes da linguagem C, 
 exceto que é permitido no início um sinal mais ou um menos, e se o 
-caracter inicial for uma aspa simples ou uma dupla, então o valor é o 
-valor ASCII do caracter seguinte.
+carácter inicial for uma aspa simples ou uma dupla, então o valor é o 
+valor ASCII do carácter seguinte.
 
 O @var{formato} é reutilizado conforme necessário para consumir todos os 
 @var{argumentos}.   Se o @var{formato} necessitar de mais 
@@ -4467,8 +4467,8 @@ então aos nomes remanescentes serão atribuídos valores vazios.
 Os caracteres no valor da variável @env{IFS} são utilizados para dividir 
 a linha em palavras utilizando-se as mesmas regras que o shell utiliza 
 para expansão (descrita acima em @ref{Word Splitting}).
-O caracter "barra invertida" @samp{\} pode ser utilizado para remover 
-qualquer significado especial do próximo caracter lido e para 
+O carácter "barra invertida" @samp{\} pode ser utilizado para remover 
+qualquer significado especial do próximo carácter lido e para 
 continuação de linha.
 Se nenhum nome for fornecido, então a linha lida é atribuída à variável 
 @env{REPLY}.
@@ -4489,7 +4489,7 @@ Todos os elementos são removidos do @var{aname} antes da atribuição.
 Outros argumentos @var{aname} são ignorados.
 
 @item -d @var{delim}
-O primeiro caracter de @var{delim} é utilizado para terminar a linha de 
+O primeiro carácter de @var{delim} é utilizado para terminar a linha de 
 entrada, ao invés do marcador newline.
 
 @item -e
@@ -4500,7 +4500,7 @@ edição de linha não foi previamente ativada).
 
 @item -i @var{text}
 Se Readline está sendo utilizada para ler a linha, então @var{text} é 
-colocado na área de edição antes que a edição propriamente dita começe.
+colocado na área de edição antes que a edição propriamente dita comece.
 
 @item -n @var{nchars}
 @code{read} retorna após a leitura de @var{nchars} caracteres ao invés 
@@ -4523,7 +4523,7 @@ ler qualquer entrada.
 O prompt é exibido apenas se a entrada estiver vindo de um terminal.
 
 @item -r
-Se essa opção for dada, a barra invertida não atua como um caracter de 
+Se essa opção for dada, a barra invertida não atua como um carácter de 
 escape.   A barra invertida é considerada como fazendo parte da linha.
 Em particular, um par barra invertida + newline não pode ser utilizado 
 como uma continuação de linha.
@@ -4670,7 +4670,7 @@ O tamanho máximo do conjunto residente (muitos sistemas não respeitam
 esse limite).
 
 @item -n
-O número máximo de descritores de arquivo arbertos (muitos sistemas não 
+O número máximo de descritores de arquivo abertos (muitos sistemas não 
 permitem que esse valor seja configurado).
 
 @item -p
@@ -4797,20 +4797,20 @@ qualquer comando comando executado em uma lista @code{&&} ou @code{||},
 exceto o comando seguinte ao @code{&&} ou @code{||} final, qualquer 
 comando em um canal de comunicação menos o último, ou se o código de 
 retorno do comando estiver sendo invertido com @code{!}.
-Se um comando composto outro que não um subshell retornar um código 
+Se um comando composto outro que não um sub-shell retornar um código 
 diferente de zero por causa que um comando falhou enquanto @option{-e} 
 estava sendo ignorado, então o shell não sai.
 Um coletor sobre @code{ERR}, se configurado, é executado antes que o 
 shell saia.
 
-Essa opção se aplica ao ambiente de shell e a cada ambiente de subshell 
+Essa opção se aplica ao ambiente de shell e a cada ambiente de sub-shell 
 separadamente (veja-se @ref{Command Execution Environment}), e pode 
-fazer com que subshells saiam antes de executar todos os comandos no 
-subshell.
+fazer com que sub-shells saiam antes de executar todos os comandos no 
+sub-shell.
 
 Se um comando composto ou uma função de shell executar em um contexto 
 onde @option{-e} estiver sendo ignorada, então nenhum dos comandos 
-executados dentro do comando composto ou corpo da função seram afetados 
+executados dentro do comando composto ou corpo da função S afetados 
 pela configuração @option{-e}, mesmo se @option{-e} estiver configurada 
 e um comando retornar um código de falha.
 Se um comando composto ou função de shell configura @option{-e} quando 
@@ -4914,7 +4914,7 @@ O mesmo que @code{-P}.
 @item pipefail
 Se configurado, o valor de retorno de um canal de comunicação é o valor 
 do último (mais à direita) comando a sair com um código diferente de 
-zero, ou zero se todos os comandos no canal de comunicação sairem com 
+zero, ou zero se todos os comandos no canal de comunicação saírem com 
 sucesso.
 Essa opção é desabilitada por padrão.
 
@@ -4986,7 +4986,7 @@ redireção de saída utilizando @samp{>}, @samp{>&}, e @samp{<>}.
 @item -E
 Se configurado, qualquer coletor sobre @code{ERR} é herdado pelas 
 funções de shell, substituições de comando, e comandos executados em um 
-ambiente de subshell.
+ambiente de sub-shell.
 O coletor @code{ERR} normalmente não é herdado em tais casos.
 
 @item -H
@@ -5022,7 +5022,7 @@ $ cd ..; pwd
 @item -T
 Se configurado, quaisquer coletores sobre @code{DEBUG} e @code{RETURN} 
 são herdados pelas funções de shell, substituições de comando, e 
-comandos executados em um ambiente de subshell.
+comandos executados em um ambiente de sub-shell.
 Os coletores @code{DEBUG} e @code{RETURN} normalmente não são herdados 
 em tais casos.
 
@@ -5034,7 +5034,7 @@ um @samp{-}.
 
 @item -
 Sinaliza o final das opções, faz com todos os @var{arguments} restantes 
-sejam atribuidos aos parâmetros posicionais.   As opções @option{-x} e 
+sejam atribuídos aos parâmetros posicionais.   As opções @option{-x} e 
 @option{-v} são desligadas.
 Se não existirem argumentos, então os parâmetros posicionais permanecem 
 não modificados.
@@ -5046,7 +5046,7 @@ invocação do shell.   O conjunto atual de opções pode ser encontrado em
 @code{$-}.
 
 Os restantes N @var{arguments} são parâmetros posicionais e são 
-atribuidos, em ordem, a @code{$1}, @code{$2}, @dots{}  @code{$N}.
+atribuídos, em ordem, a @code{$1}, @code{$2}, @dots{}  @code{$N}.
 O parâmetro especial @code{#} é configurado para N.
 
 O código de retorno sempre é zero a menos que uma opção inválida seja 
@@ -5197,12 +5197,12 @@ substituição na expansão de palavra de substituição de padrão utilizando
 remoção de aspas.
 
 @item complete_fullquote
-Se configurado, Bash encapsula entre aspas todos os metacaracteres de 
+Se configurado, Bash encapsula entre aspas todos os meta-caracteres de 
 shell em nomes de arquivo e em nomes de diretório quando da realização 
 da completação.
-Se não configurado, Bash remove metacaracteres tais como o sinal de 
+Se não configurado, Bash remove meta-caracteres tais como o sinal de 
 dólar do conjunto de caracteres que serão encapsulados entre aspas em 
-nomes de arquivos completados quando esses metacaracteres aparecerem em 
+nomes de arquivos completados quando esses meta-caracteres aparecerem em 
 referências de variáveis de shell em palavras sejam completados.
 Isso significa que os sinais de dólar em nomes de variáveis que expandam 
 para diretórios não serão encapsulados em aspas; entretanto, quaisquer 
@@ -5210,22 +5210,22 @@ sinais de dólar que aparecerem em nomes de arquivo não serão
 encapsulados em aspas, entretanto.
 Isso está ativo apenas quando bash está utilizando barras invertidas 
 para encapsular em aspas nomes de arquivos completados.
-Essa variável é consigurada por padrão, o qual é o comportamento padrão 
+Essa variável é configurada por padrão, o qual é o comportamento padrão 
 de Bash em versões durante 4.2.
 
 @item direxpand
-Se configurado, Bash substitue os nomes de diretório com os resultados 
+Se configurado, Bash substitui os nomes de diretório com os resultados 
 da expansão de palavra quando da realização da completação de nome de 
-arquivo.   Isso modifica o conteúdo da área de edição do readline.
+arquivo.   Isso modifica o conteúdo da área de edição do Readline.
 Se não configurado, Bash tenta preservar o que o usuário digitou.
 
 @item dirspell
 Se configurado, Bash tenta a correção ortográfica em nomes de diretórios 
-durante a completação de palavra se o nome de diretórioinicialmente 
+durante a completação de palavra se o nome de diretório inicialmente 
 fornecido não existir.
 
 @item dotglob
-Se configurado, Bash inclue nomes de arquivo iniciando com um `.' nos 
+Se configurado, Bash inclui nomes de arquivo iniciando com um `.' nos 
 resultados da expansão de nome de arquivo.
 
 @item execfail
@@ -5237,7 +5237,7 @@ comando interno @code{exec}.   Um shell interativo não sai se
 @item expand_aliases
 Se configurado, apelidos são expandidos conforme descrito abaixo sob 
 Apelidos, @ref{Aliases}.
-Essa opção está habiltada por padrão para shells interativos.
+Essa opção está habilitada por padrão para shells interativos.
 
 @item extdebug
 Se configurado, o comportamento concebido para uso por depuradores é 
@@ -5256,7 +5256,7 @@ diferente de zero, então o próximo comando é ignorado e não executado.
 
 @item
 Se o comando executado pelo coletor @code{DEBUG} retornar o valor 2, e o 
-shell estiver executando em uma subrotina (uma função de shell ou um 
+shell estiver executando em uma sub-rotina (uma função de shell ou um 
 script de shell executado pelos comandos internos @code{.} ou 
 @code{source}, então uma chamada a @code{return} é simulada.
 
@@ -5266,18 +5266,18 @@ nas descrições deles (veja-se @ref{Bash Variables}).
 
 @item
 O rastreamento de função é habilitado: substituição de comando, funções 
-de shell, e subshells invocados com @code{( @var{command} )} herdam os 
+de shell, e sub-shells invocados com @code{( @var{command} )} herdam os 
 coletores @code{DEBUG} e @code{RETURN}.
 
 @item
 O rastreamento de erro é habilitado: substituição de comando, funções de 
-shell, e subshells invocados com @code{( @var{command} )} herdam o 
+shell, e sub-shells invocados com @code{( @var{command} )} herdam o 
 coletor @code{ERR}.
 @end enumerate
 
 @item extglob
 
-Se configurado, as características de coincidência extendida de padrões 
+Se configurado, as características de coincidência estendida de padrões 
 descritas acima (veja-se @ref{Pattern Matching}) são habilitadas.
 
 @item extquote
@@ -5309,7 +5309,7 @@ cotejados juntos.
 
 @item globstar
 Se configurado, o padrão @samp{**} utilizado em um contexto de expansão 
-de nome de arquivo conincidirá com todos os arquivos e zero ou mais 
+de nome de arquivo coincidirá com todos os arquivos e zero ou mais 
 diretórios e subdiretórios.
 Se o padrão for seguido por uma @samp{/}, então apenas diretórios e 
 subdiretórios coincidem.
@@ -5357,7 +5357,7 @@ segundo plano no ambiente de shell atual.
 @item lithist
 Se habilitado, e a opção @code{cmdhist} estiver habilitada, comandos de 
 múltiplas linhas são salvos no histórico com marcadores de novas linhas 
-embutidos an invés de utilizar separadores de ponto e vírgula onde 
+embutidos ao invés de utilizar separadores de ponto e vírgula onde 
 possível.
 
 @item login_shell
@@ -5502,7 +5502,7 @@ O valor dessa variável também é utilizado pela expansão de til
 (veja-se @ref{Tilde Expansion}).
 
 @item IFS
-Uma lista de caracters que separam campos; utilizada quando o shell 
+Uma lista de caracteres que separam campos; utilizada quando o shell 
 divide palavras como parte da expansão.
 
 @item MAIL
@@ -5575,7 +5575,7 @@ arquivos de inicialização.   Essa variável é somente leitura.
 
 @item BASHPID
 Expande para o ID de processo do processo Bash atual.
-Isso difere de @code{$$} sob certas circunstâncias, tais como subshells 
+Isso difere de @code{$$} sob certas circunstâncias, tais como sub-shells 
 que não exigem que Bash seja reinicializado.
 
 @item BASH_ALIASES
@@ -5589,22 +5589,22 @@ da lista de apelidos.
 @item BASH_ARGC
 Uma variável de vetor cujos valores são o número de parâmetros em cada 
 quadro da pilha de chamada de execução do bash atual.   O número de 
-parâmetros para a subrotina atual (função de shell ou script executado 
+parâmetros para a sub-rotina atual (função de shell ou script executado 
 com @code{.} ou @code{source}) está no topo da pilha.   Quando uma 
-subrotina é executada, o número de parâmetros passado é empurrado em 
+sub-rotina é executada, o número de parâmetros passado é empurrado em 
 @code{BASH_ARGC}.
 O shell configura @code{BASH_ARGC} somente quando estiver em modo de 
-depuração extendido (veja-se @ref{The Shopt Builtin} para uma descrição 
+depuração estendido (veja-se @ref{The Shopt Builtin} para uma descrição 
 da opção @code{extdebug} para o comando interno @code{shopt}).
 
 @item BASH_ARGV
 Um variável de vetor contendo todos os parâmetros na pilha de chamada de 
 execução do bash atual.   O parâmetro final da última chamada de 
-subrotina está no topo da pilha; o primeiro parâmetro da chamada inicial 
-está embaixo.   Quando uma subrotina é executada, os parâmetros 
+sub-rotina está no topo da pilha; o primeiro parâmetro da chamada inicial 
+está embaixo.   Quando uma sub-rotina é executada, os parâmetros 
 fornecidos são empurrados em @code{BASH_ARGV}.
 O shell configura @code{BASH_ARGV} somente quando estiver em modo de 
-depuração extendido (veja-se @ref{The Shopt Builtin} para uma descrição 
+depuração estendido (veja-se @ref{The Shopt Builtin} para uma descrição 
 da opção @code{extdebug} para o comando interno @code{shopt}).
 
 @item BASH_CMDS
@@ -5658,13 +5658,13 @@ outra função de shell).
 Utilize @code{LINENO} para obter o número de linha atual.
 
 @item BASH_REMATCH
-Uma variável vetor cujos membros são atribuidos pelo operador binário 
+Uma variável vetor cujos membros são atribuídos pelo operador binário 
 @samp{=~} para o comando condicional @code{[[}
 (veja-se @ref{Conditional Constructs}).
-O elemento com indice 0 é a porção da sequência de caracteres que 
+O elemento com índice 0 é a porção da sequência de caracteres que 
 coincide com a expressão regular inteira.
-O elemento com indice @var{n} é a porção da sequência de caracteres que 
-coincide com a @var{n}ézima subexpressão nos parênteses.
+O elemento com índice @var{n} é a porção da sequência de caracteres que 
+coincide com a @var{n}ésima sub-expressão nos parênteses.
 Essa variável é somente leitura.
 
 @item BASH_SOURCE
@@ -5676,14 +5676,14 @@ A função de shell @code{$@{FUNCNAME[$i]@}} está definida no arquivo
 @code{$@{BASH_SOURCE[$i+1]@}}
 
 @item BASH_SUBSHELL
-Incrementada de um dentro de cada subshell ou ambiente de subshell 
+Incrementada de um dentro de cada sub-shell ou ambiente de sub-shell 
 quando o shell inicia sua execução dentro daquele ambiente.
 O valor inicial é 0.
 
 @item BASH_VERSINFO
 Uma variável vetor somente leitura (veja-se @ref{Arrays}) cujos membros 
 mantém informação de versão para essa instância de Bash.
-Os valores atribuidos aos membros do vetor são conforme a seguir:
+Os valores atribuídos aos membros do vetor são conforme a seguir:
 
 @table @code
 
@@ -5716,7 +5716,7 @@ quando @samp{set -x} for habilitada para aquele descritor de arquivo.
 Isso permite que a saída de rastreamento seja separada das mensagens de 
 diagnóstico e erro.
 O descritor de arquivo é fechado quando @code{BASH_XTRACEFD} for 
-desconfigurado ou um novo valor for atribuido.
+desconfigurado ou um novo valor for atribuído.
 Desconfigurar @code{BASH_XTRACEFD} ou lhe atribuir a sequência de 
 caracteres vazia faz com que a saída de rastreamento seja enviada para a 
 saída de erro padrão.
@@ -5725,7 +5725,7 @@ de erro padrão) e então desconfigurá-lo resultará na saída de erro
 padrão ser fechada.
 
 @item CHILD_MAX
-Configura o número de valores de estado de processos filhos que sairam 
+Configura o número de valores de estado de processos filhos que saíram 
 para que o shell se lembre.
 Bash não permitirá que esse valor seja decrementado abaixo de um mínimo 
 do obrigado pelo padrão @sc{posix}, e existe um valor minimo (atualmente 
@@ -5740,7 +5740,7 @@ habilitada (veja-se @ref{The Shopt Builtin}), ou em um shell interativo
 quando do recebimento de um @code{SIGWINCH}.
 
 @item COMP_CWORD
-Um indice em @env{$@{COMP_WORDS@}} de uma palavra contendo a posição 
+Um índice em @env{$@{COMP_WORDS@}} de uma palavra contendo a posição 
 atual do cursor.
 Essa variável está disponível apenas em funções de shell invocadas pelas 
 facilidades de completação programáveis (veja-se
@@ -5748,15 +5748,15 @@ facilidades de completação programáveis (veja-se
 
 @item COMP_LINE
 A linha de comando atual.
-Essa variável está disponivel somente em funções de shell e comandos 
+Essa variável está disponível somente em funções de shell e comandos 
 externos invocados pelas facilidades de completação programáveis
 @ref{Programmable Completion}).
 
 @item COMP_POINT
-O indice da posição atual do cursor relativo ao inicio do comando atual.
+O índice da posição atual do cursor relativo ao inicio do comando atual.
 Se a posição atual do cursor estiver no inicio do comando atual, então o 
 valor dessa variável é igual a @code{$@{#COMP_LINE@}}.
-Essa variável está disponivel somente em funções de shell e comandos 
+Essa variável está disponível somente em funções de shell e comandos 
 externos invocados pelas facilidades de completação programáveis
 @ref{Programmable Completion}).
 
@@ -5769,7 +5769,7 @@ tentada que fez com que uma função de completação fosse chamada:
 @samp{@@}, para listar completações, se a palavra não estiver 
 imodificada, ou
 @samp{%}, para completação de menu.
-Essa variável está disponivel somente em funções de shell e comandos 
+Essa variável está disponível somente em funções de shell e comandos 
 externos invocados pelas facilidades de completação programáveis
 @ref{Programmable Completion}).
 
@@ -5788,19 +5788,19 @@ Uma variável vetor consistente de palavras individuais na linha de
 comando atual.
 A linha é dividida em palavras como Readline as dividiria, utilizando 
 @code{COMP_WORDBREAKS} conforme descrito acima.
-Essa variável está disponivel somente em funções de shell invocadas 
+Essa variável está disponível somente em funções de shell invocadas 
 pelas facilidades de completação programáveis (veja-se 
 @ref{Programmable Completion}).
 
 @item COMPREPLY
-Uma variável vetor a partir de quem Bash lê as completações possiveis 
+Uma variável vetor a partir de quem Bash lê as completações possíveis 
 geradas por uma função de shell invocada pela facilidade de completação 
 programável (veja-se @ref{Programmable Completion}).
-Cada elemento do vetor contém uma possivel completação.
+Cada elemento do vetor contém uma possível completação.
 
 @item COPROC
 Uma variável vetor criada para manter os descritores de arquivo para 
-saída de e entrada para um coprocesso não nomeado 
+saída de e entrada para um co-processo não nomeado 
 (veja-se @ref{Coprocesses}).
 
 @item DIRSTACK
@@ -5836,15 +5836,15 @@ comando interno @code{fc}.
 Uma lista separada por vírgula de sufixos a serem ignorados quando da 
 realização da completação de nome de arquivo.
 Um nome de arquivo cujo sufixo coincide com uma das entradas em 
-@env{FIGNORE} é excluido da lista de nomes de arquivos coincididos. Um 
+@env{FIGNORE} é excluído da lista de nomes de arquivos coincididos. Um 
 valor modelo é @samp{.o:~}
 
 @item FUNCNAME
 Uma variável vetor contendo os nomes de todas as funções de shell 
 atualmente na pilha de chamada de execução.
-O elemento com indice 0 é o nome de qualquer função de shell atualmente 
+O elemento com índice 0 é o nome de qualquer função de shell atualmente 
 em execução.
-O elemento mais embaixo (aquele com o indice mais alto) é @code{"main"}.
+O elemento mais embaixo (aquele com o índice mais alto) é @code{"main"}.
 Essa variável existe somente quando uma função de shell está executando.
 Atribuições a @env{FUNCNAME} não tem efeito e retornam um código de 
 erro.
@@ -5885,20 +5885,20 @@ especiais, mesmo se for reconfigurada subsequentemente.
 Até três caracteres os quais controlam a expansão de histórico, 
 substituição rápida, e "tokenização" (veja-se
 @ref{History Interaction}).
-O primeiro caracter é o caracter de @var{history expansion}, isto é, o 
-caracter que significa o início de uma expansão de histórico, 
-normalmente @samp{!}.   O segundo caracter é o caracter que significa 
-"substituição rápida" quando visto como o primeiro caracter em uma 
-linha, normalmente @samp{^}.   O terceiro caracter opcional é o caracter 
+O primeiro carácter é o carácter de @var{history expansion}, isto é, o 
+carácter que significa o início de uma expansão de histórico, 
+normalmente @samp{!}.   O segundo carácter é o carácter que significa 
+"substituição rápida" quando visto como o primeiro carácter em uma 
+linha, normalmente @samp{^}.   O terceiro carácter opcional é o carácter 
 que indica que o restante da linha é um comentário quando encontrado 
-como o primeiro caracter de uma palavra, usualmente @samp{#}.   O 
-caracter de comentário do histórico faz com que a substituição de 
+como o primeiro carácter de uma palavra, usualmente @samp{#}.   O 
+carácter de comentário do histórico faz com que a substituição de 
 histórico seja saltada para as palavras restantes na linha.   Isso não 
 necessariamente faz com que o analisador do shell trate o resto da linha 
 como um comentário.
 
 @item HISTCMD
-O número do histórico, ou indice na lista de histórico, do comando 
+O número do histórico, ou índice na lista de histórico, do comando 
 atual.   Se @env{HISTCMD} for desconfigurada, então ela perde suas 
 propriedades especiais, mesmo se for reconfigurada subsequentemente.
 
@@ -5906,7 +5906,7 @@ propriedades especiais, mesmo se for reconfigurada subsequentemente.
 Uma lista de valores separados por vírgula que controlam como os 
 comandos são salvos na lista de histórico.
 Se a lista de valores inclui @samp{ignorespace}, então as linhas as 
-quais começam com um caracter espaço não são salvas na lista de 
+quais começam com um carácter espaço não são salvas na lista de 
 histórico.
 Um valor de @samp{ignoredups} faz com que as linhas que coincidam com 
 entradas prévias de histórico não sejam salvas.
@@ -5919,7 +5919,7 @@ Qualquer valor que não esteja na lista acima é ignorado.
 Se @env{HISTCONTROL} for desconfigurada, ou não incluir um valor válido, 
 então todas as linhas lidas pelo analisador do shell são salvas na lista 
 de histórico, sujeito ao valor de @env{HISTIGNORE}.
-A segunda e subsequentes linhas de um comando composto multi-linha não 
+A segunda e subsequentes linhas de um comando composto multilinha não 
 são testadas, e são adicionadas ao histórico independentemente do valor 
 de @env{HISTCONTROL}.
 
@@ -5949,9 +5949,9 @@ padrão é testado contra a linha após as checagens especificadas por
 @env{HISTCONTROL} serem aplicadas.   Em adição aos caracteres de 
 coincidência de padrão normais do shell, @samp{&} coincide com a linha 
 prévia de histórico.   @samp{&} pode ser encapsulada utilizando-se um 
-barra invertida; a barra invertida é removida antes da textativa de 
+barra invertida; a barra invertida é removida antes da tentativa de 
 coincidência.
-A segunda e subsequentes linhas de um comando composto multi-linha não 
+A segunda e subsequentes linhas de um comando composto multilinha não 
 são testadas, e são adicionadas ao histórico independentemente do valor 
 de @env{HISTIGNORE}.
 
@@ -5978,7 +5978,7 @@ de histórico exibida pelo comando interno @code{history}.
 Se essa variável for configurada, então as marcas temporais são escritas 
 no arquivo de histórico de forma que elas podem ser preservadas entre 
 sessões de shell.
-Isso utiliza o caracter de comentário de histórico para distinguir 
+Isso utiliza o carácter de comentário de histórico para distinguir 
 marcas temporais de outras linhas de histórico.
 
 @item HOSTFILE
@@ -6002,10 +6002,10 @@ Uma sequência de caracteres descrevendo a máquina onde Bash está em
 execução.
 
 @item IGNOREEOF
-Controla a ação do shell quando do recebimento de um caracter @code{EOF} 
+Controla a ação do shell quando do recebimento de um carácter @code{EOF} 
 como a entrada única.   Se configurada, o valor denota o número de 
 caracteres @code{EOF} consecutivos que podem ser lidos como o primeiro 
-caracter em uma linha de entrada antes que o shell saia.   Se a variável 
+carácter em uma linha de entrada antes que o shell saia.   Se a variável 
 existir, porém não tiver um valor numérico (ou não tiver valor), então o 
 padrão é 10.
 Se a variável não existir, então @code{EOF} significa o fim de entrada 
@@ -6021,12 +6021,12 @@ não selecionada especialmente com uma variável inicializando com
 @code{LC_}.
 
 @item LC_ALL
-Essa variável prevalesce sobre o valor de @env{LANG} e qualquer outra 
+Essa variável prevalece sobre o valor de @env{LANG} e qualquer outra 
 variável @code{LC_} especificando uma categoria de local.
 
 @item LC_COLLATE
 Essa variável determina a ordem de colação utilizada quando da ordenação 
-dos resultados da expansão de nome de arquivo, e detrmina o 
+dos resultados da expansão de nome de arquivo, e determina o 
 comportamento de expressões de intervalo, classes de equivalência, e 
 sequência de colacionamento dentro de expansão de nome de arquivo e 
 coincidências de padrão (veja-se @ref{Filename Expansion}).
@@ -6057,7 +6057,7 @@ quando do recebimento de um @code{SIGWINCH}.
 
 @item MACHTYPE
 Uma sequência de caracteres que descreve completamente o tipo de sistema 
-no qual Bash estã em execução, no format  padrão @sc{gnu} 
+no qual Bash está em execução, no formato  padrão @sc{gnu} 
 @var{cpu-company-system}
 
 @item MAILCHECK
@@ -6118,7 +6118,7 @@ Se configurada para um número maior que zero, então o valor é utilizado
 como o número de componentes finais de diretórios a reter quando da 
 expansão dos escapes de sequência de caracteres de prompt @code{\w} e 
 @code{\W} (veja-se @ref{Controlling the Prompt}).
-Os caracteres removidos são substituidos com uma elipse.
+Os caracteres removidos são substituídos com uma elipse.
 
 @item PS3
 O valor dessa variável é utilizado como o prompt para o comando 
@@ -6129,7 +6129,7 @@ comando @code{select} sinaliza com @samp{#? }
 O valor é o prompt impresso antes que a linha de comando seja ecoada 
 quando a opção @option{-x} for configurada (veja-se
 @ref{The Set Builtin}).
-O primeiro caracter de @env{PS4} é replicado múltiplas vezes, conforme 
+O primeiro carácter de @env{PS4} é replicado múltiplas vezes, conforme 
 necessário, para indicar níveis múltiplos de sentido.
 O padrão é @samp{+ }.
 
@@ -6184,7 +6184,7 @@ os seus shells Bash estão aninhados.
 O valor desse parâmetro é utilizado como uma sequência de caracteres de 
 formato especificando como a informação de temporização para canais de 
 comunicação com a palavra reservada @code{time} deveria ser exibida.
-O caracter @samp{%} introduz uma sequência de escape que é expandida 
+O carácter @samp{%} introduz uma sequência de escape que é expandida 
 para um valor de tempo ou outra informação.
 As sequências de escape e os significados delas são conforme segue; as 
 chaves denotam porções opcionais.
@@ -6216,7 +6216,7 @@ Se @var{p} não for especificado, então o valor 3 é utilizado.
 
 O @code{l} opcional especifica um formato longo, incluindo minutos, da 
 forma @var{MM}m@var{SS}.@var{FF}s.
-O valor de @var{p} determina quando ou não a fração é incluida.
+O valor de @var{p} determina quando ou não a fração é incluída.
 
 Se essa variável não for configurada, então Bash atua como se ela 
 tivesse o valor
@@ -6285,17 +6285,17 @@ bash [long-opt] [-abefhkmnptuvxdBCDHP] [-o @var{option}] [-O @var{shopt_option}]
 bash [long-opt] -s [-abefhkmnptuvxdBCDHP] [-o @var{option}] [-O @var{shopt_option}] [@var{argument} @dots{}]
 @end example
 
-Todas as opções de caracter simples utilizadas com o comando interno 
+Todas as opções de carácter simples utilizadas com o comando interno 
 @code{set} (veja-se @ref{The Set Builtin}) podem ser utilizadas como 
 opções quando o shell for invocado.
-Adcionalmente, existem várias opções multi-caracter que você pode 
+Adicionalmente, existem várias opções multi-carácter que você pode 
 utilizar.   Essas opções devem necessariamente aparecer na linha de 
-comando antes das opções de caracter simples serem reconhecidas.
+comando antes das opções de carácter simples serem reconhecidas.
 
 @table @code
 @item --debugger
 Organiza para que o perfil de depurador seja executado antes que o shell 
-inicialize.   Liga o modo extendido de depuração (veja-se
+inicialize.   Liga o modo estendido de depuração (veja-se
 @ref{The Shopt Builtin} para uma descrição da opção @code{extdebug} para 
 o comando interno @code{shopt}.
 
@@ -6350,11 +6350,11 @@ Equivalente a @option{-v}.   Imprime as linhas de entrada do shell
 conforme elas sejam lidas.
 
 @item --version
-Mosta informação de versão para esta instância de Bash na saída padrão e 
+Mostra informação de versão para esta instância de Bash na saída padrão e 
 sai com sucesso.
 @end table
 
-Existem várias opções de caracter simples que podem ser fornecidas na 
+Existem várias opções de carácter simples que podem ser fornecidas na 
 invocação as quais não estão disponíveis com o comando interno 
 @code{set}.
 
@@ -6362,7 +6362,7 @@ invocação as quais não estão disponíveis com o comando interno
 @item -c
 Lê e executa comandos a partir da primeira não opção @var{argument} após 
 o processamento das opções, então sai.
-Quaisquer argumentos remanescentes são atribuidos aos parâmetros 
+Quaisquer argumentos remanescentes são atribuídos aos parâmetros 
 posicionais, iniciando com @code{$0}.
 
 @item -i
@@ -6416,7 +6416,7 @@ arquivos e argumentos.
 @end table
 
 @cindex login shell
-Um shell de @emph{login} é um cujo primeiro caracter do argumento zero é 
+Um shell de @emph{login} é um cujo primeiro carácter do argumento zero é 
 @samp{-}, ou um invocado com a opção @option{--login}.
 
 @cindex interactive shell
@@ -6637,7 +6637,7 @@ sinais de controle de tarefa gerados via teclado @code{SIGTTIN},
 @item
 Bash expande e exibe @env{PS1} antes de ler a primeira linha de um 
 comando, e expande e exibe @env{PS2} antes de ler a segunda e 
-subsequentes linhas de um comando multi-linha.
+subsequentes linhas de um comando multilinha.
 
 @item
 Bash executa o valor da variável @env{PROMPT_COMMAND} como um comando 
@@ -6746,9 +6746,9 @@ descritor 0, 1 ou 2, respectivamente, é verificado.
 
 Quando utilizado com @code{[[}, os operadores @samp{<} e @samp{>} 
 ordenam lexicograficamente utilizando o local atual.
-O comando @code{test} empregaordenamento ASCII.
+O comando @code{test} emprega ordenamento ASCII.
 
-menos que especificadode outra maneira, primários que operam sobre 
+menos que especificado de outra maneira, primários que operam sobre 
 arquivos seguem links simbólicos e operam sobre o alvo do link, ao invés 
 do próprio link.
 
@@ -6899,7 +6899,7 @@ expansões de shell ou pelo @code{let} e a opção @option{-i} para os
 comandos internos @code{declare}.
 
 A avaliação é feita em números inteiros de tamanho fixo sem verificação 
-de excesso, apesar que a devisão por 0 é coletada e rotulada como um 
+de excesso, apesar que a divisão por 0 é coletada e rotulada como um 
 erro.
 Os operadores e suas precedências, associatividade, e valores são os 
 mesmos que na linguagem C.
@@ -6964,7 +6964,7 @@ atribuição
 vírgula
 @end table
 
-As varíaveis do shell funcionam como operandos; expansão de parâmetro é 
+As variável do shell funcionam como operandos; expansão de parâmetro é 
 realizada antes que a expressão seja avaliada.
 Dentro de uma expressão, variáveis de shell também podem ser 
 referenciadas pelo nome sem se utilizar a sintaxe de expansão de 
@@ -6974,13 +6974,13 @@ quando referenciada pelo nome sem se utilizar a sintaxe de expansão de
 parâmetro.
 O valor de uma variável é avaliado como uma expressão aritmética quando 
 ela for referenciada, ou quando uma variável para a qual tenha sido dado 
-o atributo @var{integer} utilizando @samp{declare -i} for atribuido um 
+o atributo @var{integer} utilizando @samp{declare -i} for atribuído um 
 valor.
 Um valor nulo resulta em 0.
 Uma variável de shell precisa não ter o atributo @var{integer} dela 
 ligado para ser utilizada em uma expressão.
 
-Constantes com um 0 inicial são interpretradas como números octais.
+Constantes com um 0 inicial são interpretadas como números octais.
 Um @samp{0x} ou @samp{0X} denota um número hexadecimal.   Do contrário, 
 os números tomam a forma [@var{base}@code{#}]@var{n}, onde o opcional 
 @var{base} é um número decimal compreendido entre 2 e 64, representando 
@@ -7002,7 +7002,7 @@ precedência acima.
 @cindex alias expansion
 
 Apelidos @var{Aliases} permitem que uma sequência de caracteres seja 
-substituida por uma palavra quando forem utilizados como a primeira 
+substituída por uma palavra quando forem utilizados como a primeira 
 palavra de um comando simples.
 
 O shell mantém uma lista dos apelidos, que podem ser configurados ou 
@@ -7010,14 +7010,14 @@ desconfigurados com os comandos internos @code{alias} e @code{unalias}.
 
 A primeira palavra de cada comando simples, se não encapsulados entre 
 aspas, é verificada para ser se ela tem um apelido.
-Se tiver, essa palavra é substituida pelo texto do apelido.
+Se tiver, essa palavra é substituída pelo texto do apelido.
 Os caracteres @samp{/}, @samp{$}, @samp{`}, @samp{=} e quaisquer dos 
-metacaracteres do shell ou caracteres de encapsulamento de aspas 
+meta-caracteres do shell ou caracteres de encapsulamento de aspas 
 listados acima podem não aparecer em um nome de apelido.
 O texto de substituição pode conter qualquer entrada de shell válida, 
-incluindo metacaracteres de shell.
+incluindo meta-caracteres de shell.
 A primeira palavra do texto de substituição é testado para apelidos, 
-porém uma palavra que for identica a um apelido sendo expandido não é 
+porém uma palavra que for idêntica a um apelido sendo expandido não é 
 expandida uma segunda vez.
 Isso significa que alguém pode apelidar @code{ls} para @code{"ls -F"}, 
 por exemplo, e Bash não tenta recursivamente expandir o texto de 
@@ -7066,16 +7066,16 @@ Bash provê variáveis vetor indexado unidimensional e associativo.
 Qualquer variável pode ser utilizada como um vetor indexado; o comando 
 interno @code{declare} explicitamente declarará um vetor.
 Não existe limite máximo para o tamanho de um vetor, nem qualquer 
-exigência de que os membros sejam indexados ou atribuidos contiguamente.
+exigência de que os membros sejam indexados ou atribuídos contiguamente.
 Os vetores indexados são referenciados utilizando-se números inteiros 
 (incluindo expressões aritméticas (veja-se @ref{Shell Arithmetic}) e são 
 baseados em zero; vetores associativos utilizam sequências de caracteres 
 arbitrárias.
-A menos que informado do contrário, os indices de vetor indexado devem 
+A menos que informado do contrário, os índices de vetor indexado devem 
 necessariamente ser números inteiros não negativos.
 
-Um vetor indexado é criado automaticamente se qualquer veriável for 
-atribuida a ele utilizando-se a sintaxe
+Um vetor indexado é criado automaticamente se qualquer variável for 
+atribuída a ele utilizando-se a sintaxe
 @example
 @var{name}[@var{subscript}]=@var{value}
 @end example
@@ -7112,12 +7112,12 @@ Vetores recebem valores utilizando-se atribuições compostas da forma
 @noindent
 onde cada @var{value} é da forma @code{[@var{subscript}]=}@var{string}.
 Atribuições de vetor indexado não exigem nada exceto @var{string}.
-Quando da atribuição a vetores indexados, se o subscript opcional for 
-fornecido, então aquele indice recebe a atribuição; do contrário o 
-indice do elemento atribuido é o último indice atribuido pela declaração 
+Quando da atribuição a vetores indexados, se o sub-script opcional for 
+fornecido, então aquele índice recebe a atribuição; do contrário o 
+índice do elemento atribuído é o último índice atribuído pela declaração 
 mais um.   A indexação inicia no zero.
 
-Quando da atribuição a um vetor associativo, o subscript é exigido.
+Quando da atribuição a um vetor associativo, o sub-script é exigido.
 
 Essa sintaxe também é aceita pelo comando interno @code{declare}.
 Pode-se atribuir valores aos elementos individuais de um vetor 
@@ -7126,8 +7126,8 @@ apresentada acima.
 
 Quando da atribuição a um vetor indexado, se @var{name} for subscrita 
 por um número negativo, então esse número é interpretado como relativo a 
-um maior que o indice máximo de @var{name}, de maneira que indices 
-negativos contam do final do vetor para o início, e um indice de -1 faz 
+um maior que o índice máximo de @var{name}, de maneira que índices 
+negativos contam do final do vetor para o início, e um índice de -1 faz 
 referência ao último elemento.
 
 Qualquer elemento de um vetor pode ser referenciado utilizando-se
@@ -7156,22 +7156,22 @@ O referenciamento a uma variável vetor sem um subscrito é equivalente a
 referenciar com um subscrito 0.
 Se o @var{subscript} utilizado para referenciar um elemento de um vetor 
 indexado resultar em um número menor que zero, então ele é interpretado 
-como relativo a um maior que o indice máximo do vetor, de forma que 
-indices negativos contam do final do vetor para o seu início, e um 
-indice de -1 se refere ao último elemento.
+como relativo a um maior que o índice máximo do vetor, de forma que 
+índices negativos contam do final do vetor para o seu início, e um 
+índice de -1 se refere ao último elemento.
 
 Uma variável vetor é considerada configurada se um subscrito tiver sido 
-atribuido ao valor.   A sequência de caracteres nula é um valor válido.
+atribuído ao valor.   A sequência de caracteres nula é um valor válido.
 
-É possivel se obter as chaves (indices) de um vetor bem os valores.
-$@{!@var{name}[@@]@} e $@{!@var{name}[*]@} expandem para os indices 
-atribuidos na variável de vetor @var{name}.
+É possível se obter as chaves (índices) de um vetor bem os valores.
+$@{!@var{name}[@@]@} e $@{!@var{name}[*]@} expandem para os índices 
+atribuídos na variável de vetor @var{name}.
 O tratamento quando em aspas duplas é semelhante ao da expansão dos 
 parâmetros especiais @samp{@@} e @samp{*} dentro de aspas duplas.
 
 O comando interno @code{unset} é utilizado para destruir vetores.
 @code{unset @var{name}[@var{subscript}]} destrói o elemento do vetor no 
-indice @var{subscript}.
+índice @var{subscript}.
 Subscritos negativos para vetores indexados são interpretados conforme 
 descrito acima.
 Deve-se necessariamente tomar cuidado para se evitar efeitos colaterais 
@@ -7238,7 +7238,7 @@ Faz com @code{dirs} imprima a pilha de diretório com uma entrada por
 linha.
 @item -v
 Faz com que @code{dirs} imprima a pilha de diretório com uma entrada por 
-linha, prefixando cada entrada com seu indice na pilha.
+linha, prefixando cada entrada com seu índice na pilha.
 @item +@var{N}
 Exibe o @var{N}ésimo diretório (contando-se a partir da esquerda da 
 lista impressa por @code{dirs} quando invocado sem opções), iniciando 
@@ -7380,7 +7380,7 @@ utilizado para embutir uma sequência de controle de terminal no prompt.
 Finaliza uma sequência de caracteres não imprimíveis.
 @end table
 
-O númedo de comando e o número de histórico são usualmente diferentes: o 
+O número de comando e o número de histórico são usualmente diferentes: o 
 número de histórico de um comando é a posição dele na lista de 
 histórico, a qual pode incluir comandos restaurados a partir do arquivo 
 de histórico (veja-se @ref{Bash History Facilities}), enquanto que o 
@@ -7548,7 +7548,7 @@ palavra na redireção.
 @item
 Os nomes de função devem necessariamente ser @code{name}s válidos de 
 shell.   Isto é, eles não podem conter outros caracteres que não letras, 
-dígitos, e sublinhados, e não podeminiciar com um dígito.   Declarar uma 
+dígitos, e sublinhados, e não podem iniciar com um dígito.   Declarar uma 
 função com um nome inválido causa um erro fatal de sintaxe em shells não 
 interativos.
 
@@ -7643,9 +7643,9 @@ atual em busca de argumento de nome de arquivo se o argumento não for
 encontrado pesquisando-se @env{PATH}.
 
 @item
-Os subshells criados para executar substituições de comando herdam o 
+Os sub-shells criados para executar substituições de comando herdam o 
 valor da opção @option{-e} do shell pai.   Quando não no modo 
-@sc{posix}, Bash limpa a opção @option{-e} em tais subshells.
+@sc{posix}, Bash limpa a opção @option{-e} em tais sub-shells.
 
 @item
 A expansão de apelido sempre está habilitada, mesmo em shells não 
@@ -7663,12 +7663,12 @@ exibe definições e nomes de função de shell.
 @item
 Quando o comando interno @code{set} for invocado sem opções, ele exibe 
 valores de variáveis sem aspas, a menos que eles contenham 
-metacaracteres de shell, mesmo se o resultado contém caracteres não 
+meta-caracteres de shell, mesmo se o resultado contém caracteres não 
 imprimíveis.
 
 @item
 Quando o comando interno @code{cd} for invocado no modo @var{logical}, e 
-o nome de caminho contruido a partir de @code{$PWD}e o nome de diretório 
+o nome de caminho construído a partir de @code{$PWD}e o nome de diretório 
 fornecido como um argumento não se refere a um diretório existente, 
 @code{cd} falhará, ao invés de retornar ao modo @var{physical}.
 
@@ -7678,7 +7678,7 @@ mesmo que o diretório atual, mesmo se não for pedido a ele para checar o
 sistema de arquivo com a opção @option{-P}.
 
 @item
-Quando da listagem do histórico, o comando interno @code{fc} não inclue 
+Quando da listagem do histórico, o comando interno @code{fc} não inclui 
 uma indicação de quando ou não uma entrada de histórico foi modificada.
 
 @item
@@ -7715,7 +7715,7 @@ O comando interno @code{read} pode ser interrompido por um sinal para o
 qual um coletor tenha sido configurado.
 Se Bash recebe um sinal coletado enquanto executando @code{read}, então 
 o manipulador de coletor executa e @code{read}, retorna um código de 
-saida maior que 128.
+saída maior que 128.
 
 @end enumerate
 
@@ -7817,7 +7817,7 @@ carácter @samp{%} introduz uma especificação de tarefa (@var{jobspec}).
 Um número de tarefa @code{n} pode ser referenciado como @samp{%n}.
 Os símbolos @samp{%%} e @samp{%+} se referem à noção do shell da tarefa 
 atual, a qual é a última tarefa parada enquanto ela estava no primeiro 
-plano ou inicialiada no segundo plano.
+plano ou inicializada no segundo plano.
 
 Um único @samp{%} (sem acompanhamento da especificação de tarefa) também 
 se refere à tarefa atual.
@@ -7828,7 +7828,7 @@ Na saída relativa à tarefas (por exemplo, a saída do comando
 @code{jobs}), a tarefa atual sempre é rotulada com um @samp{+}, e a 
 tarefa prévia com um @samp{-}.
 
-Uma tarefa também pode sr referenciada utilizando-se um prefixo do nome 
+Uma tarefa também pode ser referenciada utilizando-se um prefixo do nome 
 utilizado para inicializá-la, ou utilizando-se uma parte da sequência de 
 caracteres que aparece na sua linha de comando.   Por exemplo, 
 @samp{%ce} se refere à tarefa @code{ce} parada.   Utilizando-se 
@@ -7840,7 +7840,7 @@ tarefa, então Bash reporta um erro.
 Em poucas palavras, uma tarefa pode ser utilizada para se trazer para o 
 primeiro plano: @samp{%1} é um sinônimo para @samp{fg %1}, trazendo a 
 tarefa 1 do segundo plano para o primeiro plano.   Similarmente, 
-@samp{%1 &} suspende a tarefa 1 no primeir plano, equivalente a
+@samp{%1 &} suspende a tarefa 1 no primeiro plano, equivalente a
 @samp{bg %1}.
 
 O shell aprende imediatamente quando uma tarefa muda de estado.
@@ -7934,7 +7934,7 @@ aquela tarefa.
 Se @var{jobspec} não for fornecida, então a situação de todas as tarefas 
 é listada.
 
-Se a opção @option{-x} for fornecida, então @code{jobs} substitue 
+Se a opção @option{-x} for fornecida, então @code{jobs} substitui 
 qualquer @var{jobspec} encontrado em @var{command} ou @var{arguments} 
 com o correspondente @sc{id} de grupo de processo, e executa 
 @var{command}, passando a ele @var{argument}s, retornando seu código de 
@@ -8005,7 +8005,7 @@ um argumento @var{jobspec} restringe a operação a tarefas em execução.
 suspend [-f]
 @end example
 
-Pára a execução deste shell até que ele receba um sinal @code{SIGCONT}.
+Para a execução deste shell até que ele receba um sinal @code{SIGCONT}.
 Um shell de login não pode ser parado; a opção @option{-f} pode ser 
 utilizada para anular isso e forçar a suspensão.
 @end table
@@ -8023,22 +8023,22 @@ devem necessariamente ser alimentados com @sc{id}s de processos.
 Essa variável controla como o shell interage com o usuário e o controle 
 de tarefa.   Se essa variável existir, então os comandos simples de 
 palavra única sem redireções são tratados como candidatos para o 
-reinínio de uma tarefa existente.   Não existe ambiguidade que seja 
+reinício de uma tarefa existente.   Não existe ambiguidade que seja 
 permitida; se existe mais que uma tarefa iniciando com a sequência de 
-caracteres digitada, então a mais rececentemente acessada tarefa será 
+caracteres digitada, então a mais recentemente acessada tarefa será 
 selecionada.
 O nome de uma tarefa parada, nesse contexto, é a linha de comando 
 utilizada para iniciá-la.   Se essa variável for configurada para o 
 valor @samp{exact}, então a sequência de caracteres fornecida deve 
 necessariamente coincidir exatamente com o nome de uma tarefa parada; se 
 configurada para @samp{substring}, então a sequência de caracteres 
-fornecida precida coincidir com uma parte da sequência de caracteres do 
+fornecida precisa coincidir com uma parte da sequência de caracteres do 
 nome de uma tarefa parada.   O valor de @samp{substring}, provê 
 funcionalidade análoga para o @sc{id} de tarefa @samp{%?}
 (veja-se @ref{Job Control Basics}).
 Se configurada para qualquer outro valor, então a sequência de 
 caracteres fornecida deve necessariamente ser um prefixo de um nome da 
-tarefa parada; isso provê funcionalidade analóga para o @sc{id} de 
+tarefa parada; isso provê funcionalidade análoga para o @sc{id} de 
 tarefa @samp{%}.
 
 @end vtable
@@ -8106,11 +8106,11 @@ Enquanto em execução, ele imprime mensagens dizendo quais
 características ele está verificando.
 
 @item
-Digite @samp{make} para compilar Bash e contruir o script de relatamento 
+Digite @samp{make} para compilar Bash e construir o script de relatamento 
 de erro @code{bashbug}.
 
 @item
-Opcionalmente, digite @samp{make tests} para executar a suite de teste 
+Opcionalmente, digite @samp{make tests} para executar a suíte de teste 
 do Bash.
 
 @item
@@ -8119,13 +8119,13 @@ Isso também instalará as páginas de manual e arquivo Info.
 
 @end enumerate
 
-O script de shell @code{configure} tenta advinhar os valores corretos 
+O script de shell @code{configure} tenta adivinhar os valores corretos 
 para várias variáveis dependentes de sistema utilizadas durante a 
 compilação.   Ele utiliza tais valores para criar um @file{Makefile} em 
 cada diretório do pacote (o diretório topo, dos diretórios 
 @file{builtins}, @file{doc}, e @file{support}, cada diretório sob 
 @file{lib}, e vários outros).   O script também cria um arquivo 
-@file{config.h} contendo definições dependents de sistema.
+@file{config.h} contendo definições dependentes de sistema.
 Finalmente, ele cria um script de shell chamado @code{config.status} que 
 você pode executar no futuro para recriar a configuração atual, um 
 arquivo @file{config.cache} que salva os resultados de seus testes para 
@@ -8247,7 +8247,7 @@ Talvez existam algumas características que @code{configure} não pode
 compreender automaticamente, porém precisa determinar pelo tipo de 
 máquina na qual Bash executará.   Usualmente @code{configure} pode 
 compreender isso, mas se Bash imprime uma mensagem dizendo que não pode 
-advinhar o tipo de máquina, então dê a Bash a opção 
+adivinhar o tipo de máquina, então dê a Bash a opção 
 @option{--host=TYPE}.   @samp{TYPE} pode ser ou um nome curto para o 
 tipo de sistema, tal como @samp{sun4}, ou um nome canônico com três 
 campos: @samp{CPU-COMPANY-SYSTEM}
@@ -8346,16 +8346,16 @@ Um sinônimo para @code{--with-bash-malloc}.
 Defina isso para fazer com que Bash vincule com uma versão instalada 
 localmente de Readline em vez da versão em @file{lib/readline}.   Isso 
 somente funciona com Readline 5.0 e versões posteriores.   Se 
-@var{PREFIX} for @code{yes} ou não fornecido, @code{configure} utilia os 
+@var{PREFIX} for @code{yes} ou não fornecido, @code{configure} utiliza os 
 valores das variáveis de make @code{includedir} e @code{libdir}, as 
-quais são sub-diretórios de @code{prefix} por padrão, para encontrar a 
+quais são subdiretórios de @code{prefix} por padrão, para encontrar a 
 versão instalada de Readline se ela não estiver nos diretórios padrão de 
 sistema include e library.
-Se @var{PREFIX} for @code{no}, então Bash vinvula com a versão em 
+Se @var{PREFIX} for @code{no}, então Bash vincula com a versão em 
 @file{lib/readline}.
 Se @var{PREFIX} estiver configurada para qualquer outro valor, então 
 @code{configure} a trata como um nome de caminho de diretório para a 
-versão instalada de Readline nos sub-diretórios daquele diretório 
+versão instalada de Readline nos subdiretórios daquele diretório 
 (arquivos include em @var{PREFIX}/@code{include} e a biblioteca em 
 @var{PREFIX}/@code{lib}).
 
@@ -8379,7 +8379,7 @@ Habilita o suporte para
 large files} se o sistema operacional exige opções especiais de 
 compilador para construir programas os quais podem acessar arquivos 
 grandes.   Isso está habilitado por padrão, se o sistema operacional 
-provê suporte a arquivo gande.
+provê suporte a arquivo grande.
 
 @item --enable-profiling
 Isso constrói um binário Bash que produz informação de perfil para ser 
@@ -8387,7 +8387,7 @@ processada por @code{gprof} cada vez que for executada.
 
 @item --enable-static-link
 Isso faz com que Bash seja vinculado estaticamente, se @code{gcc} 
-estiver sendo utiliado.
+estiver sendo utilizado.
 Isso poderia ser empregado para construir uma versão para se utilizar 
 como o shell do root.
 @end table
@@ -8413,11 +8413,11 @@ comporta como a declaração @code{for} da linguagem C (veja-se
 @ref{Looping Constructs}).
 
 @item --enable-array-variables
-Incluie suporte para variáveis de shell vetor unidimensional 
+Inclui suporte para variáveis de shell vetor unidimensional 
 (veja-se @ref{Arrays}).
 
 @item --enable-bang-history
-Inclue suporte para a substituição de histórico no estilo @code{csh} 
+Inclui suporte para a substituição de histórico no estilo @code{csh} 
 (veja-se @ref{History Interaction}).
 
 @item --enable-brace-expansion
@@ -8435,7 +8435,7 @@ para maiúsculo quando da atribuição.
 Inclui suporte para as expansões de palavra de modificação de caso.
 
 @item --enable-command-timing
-Inclue suporte para o reconhecimento de @code{time} como sendo uma 
+Inclui suporte para o reconhecimento de @code{time} como sendo uma 
 palavra reservada e para a exibição de estatísticas de temporização para 
 o canal de comunicação seguinte a @code{time} (veja-se @ref{Pipelines}).
 Isso permite que os canais de comunicação bem como as funções e comandos 
@@ -8452,11 +8452,11 @@ utilizando-se o operador binário @samp{=~} no comando condicional
 (veja-se @ref{Conditional Constructs}).
 
 @item --enable-coprocesses
-Inclui suporte para coprocessos e a palavra reservada @code{coproc} 
+Inclui suporte para co-processos e a palavra reservada @code{coproc} 
 (veja-se @ref{Pipelines}).
 
 @item --enable-debugger
-Inclui suporte para o depurador bash (distribuido separadamente).
+Inclui suporte para o depurador bash (distribuído separadamente).
 
 @item --enable-direxpand-default
 Faz com a opção de shell @code{direxpand} (veja-se 
@@ -8482,7 +8482,7 @@ Inclui suporte para o comando @code{((@dots{}))}
 
 @item --enable-extended-glob
 Inclui suporte para as características de coincidência de padrão 
-extendidas descritas acima sob @ref{Pattern Matching}.
+estendidas descritas acima sob @ref{Pattern Matching}.
 
 @item --enable-extended-glob-default
 Configura o valor padrão da opção de shell @var{extglob}, descrita acima 
@@ -8507,7 +8507,7 @@ Isso habilita as características de controle de tarefa
 (@pxref{Job Control}), se o sistema operacional as suporta.
 
 @item --enable-multibyte
-Isso habilita suporte a caracteres multibyte se o sistema operacional 
+Isso habilita suporte a caracteres multi-byte se o sistema operacional 
 provê o necessário suporte.
 
 @item --enable-net-redirections
@@ -8577,10 +8577,10 @@ encapsulamento que @code{echo} reconhece.
 @end table
 
 O arquivo @file{config-top.h} contém declarações @samp{#define} do 
-Pré-processador C para opções que não são configuráveis via 
+Preprocessador C para opções que não são configuráveis via 
 @code{configure}.
 Algumas dessas não foram concebidas para serem modificadas; tenha 
-cuidado com as conseqências se você modificar.
+cuidado com as consequências se você modificar.
 Leia os comentários associados com cada definição para mais informações 
 sobre seus efeitos.
 
@@ -8626,7 +8626,7 @@ Por favor, envie todos os relatórios relativos a este manual para
 @appendix Major Differences From The Bourne Shell
 
 Bash implementa essencialmente a mesma gramática, expansão de parâmetro 
-e variável, redireação, e encapsulamento entre aspas que o Bourne Shell.
+e variável, redireção, e encapsulamento entre aspas que o Bourne Shell.
 Bash utiliza o padrão @sc{posix} como a especificação de como essas 
 características devem ser implementadas.   Existem algumas diferenças 
 entre o tradicional shell Bourne e Bash; esta seção detalha rapidamente 
@@ -8643,7 +8643,7 @@ difere do comportamento do @code{sh} tradicional
 (veja-se @ref{Bash POSIX Mode}).
 
 @item
-Bash tem opções de invocação multi-caracter 
+Bash tem opções de invocação multi-carácter 
 (veja-se @ref{Invoking Bash}).
 
 @item
@@ -8666,7 +8666,7 @@ Bash implementa a expansão de histórico ao estilo @code{csh}
 (veja-se @ref{History Interaction}).
 
 @item
-Bash tem variáveis vetor uni-dimensional (veja-se @ref{Arrays}), e as 
+Bash tem variáveis vetor unidimensional (veja-se @ref{Arrays}), e as 
 apropriadas expansões de variável e sintaxe de atribuição para 
 utilizá-las.   Vários dos comandos internos do Bash tem opções para 
 atuar sobre os vetores.   Bash provê um número de variáveis vetor 
@@ -8706,21 +8706,21 @@ Bash implementa a aritmética
 similar a linguagem C (veja-se @ref{Looping Constructs}).
 
 @item
-Bash inclue o comando composto @code{select}, o qual permite a genação 
+Bash inclui o comando composto @code{select}, o qual permite a geração 
 de menus simples (veja-se @ref{Conditional Constructs}).
 
 @item
-Bash inclue o comando composto @code{[[}, o qual torna o teste 
+Bash inclui o comando composto @code{[[}, o qual torna o teste 
 condicional parte da gramática do shell 
 (veja-se @ref{Conditional Constructs}), incluindo a coincidência de 
 expressão regular opcional.
 
 @item
 Bash provê a coincidência opcional sem distinção entre maiúsculas e 
-minúsculas para os contrutores @code{case} e @code{[[}.
+minúsculas para os construtores @code{case} e @code{[[}.
 
 @item
-Bash inclue a expansão de chave (veja-se @ref{Brace Expansion}) e 
+Bash inclui a expansão de chave (veja-se @ref{Brace Expansion}) e 
 expansão de til (veja-se @ref{Tilde Expansion}).
 
 @item
@@ -8761,13 +8761,13 @@ comprimento @var{length}, iniciando em @var{offset}, está presente
 @item
 A expansão
 @code{$@{var/[/]}@var{pattern}@code{[/}@var{replacement}@code{]@}},
-a qual coincide com @var{pattern} e a substitue com @var{replacement} no 
+a qual coincide com @var{pattern} e a substitui com @var{replacement} no 
 valor de @code{var}, está disponível 
 (veja-se @ref{Shell Parameter Expansion}).
 
 @item
 A expansão @code{$@{!@var{prefix}*@}} expansão, a qual expande para os 
-nomes de todas as variáveis de shell cujs os nomes se iniciam com 
+nomes de todas as variáveis de shell cujos os nomes se iniciam com 
 @var{prefix}, está disponível (veja-se @ref{Shell Parameter Expansion}).
 
 @item
@@ -8788,7 +8788,7 @@ compatibilidade com versões anteriores).
 Bash tem substituição de processo (veja-se @ref{Process Substitution}).
 
 @item
-Bash atribui valores automaticamente às variáveis que provêem informação 
+Bash atribui valores automaticamente às variáveis que proveem informação 
 sobre o usuário atual (@env{UID}, @env{EUID}, e @env{GROUPS}); a máquina 
 atual (@env{HOSTTYPE}, @env{OSTYPE}, @env{MACHTYPE}, e @env{HOSTNAME}); 
 e a instância de Bash que está em execução (@env{BASH}, 
@@ -8811,7 +8811,7 @@ arquivo @sc{posix}, incluindo @var{character classes}, @var{equivalence
 classes}, e @var{collating symbols} (veja-se @ref{Filename Expansion}).
 
 @item
-Bash implementa características de coincidência de padrão extendidas 
+Bash implementa características de coincidência de padrão estendidas 
 quando a opções de shell @code{extglob} está habilitada 
 (veja-se @ref{Pattern Matching}).
 
@@ -8843,7 +8843,7 @@ redireção @samp{&>}, para direcionamento da saída padrão e do erro
 padrão para o mesmo arquivo (veja-se @ref{Redirections}).
 
 @item
-Bash inclui o operador de rdireção @samp{<<<}, permitindo que uma 
+Bash inclui o operador de redireção @samp{<<<}, permitindo que uma 
 sequência de caracteres seja utilizada como a entrada padrão para um 
 comando.
 
@@ -8854,7 +8854,7 @@ outro.
 
 @item
 Bash trata um número de nomes de arquivo especialmente quando eles estão 
-sendo utilizados em peradores de redireção (veja-se @ref{Redirections}).
+sendo utilizados em operadores de redireção (veja-se @ref{Redirections}).
 
 @item
 Bash pode abrir conexões de rede para máquinas arbitrárias e serviços 
@@ -8905,7 +8905,7 @@ funções de shell; uma opção @option{-p} para exibir variáveis com vários
 atributos configurados em um formato que pode ser utilizado como entrada 
 de shell; uma opção @option{-n} para remover vários atributos de 
 variáveis; e argumentos @samp{name=value} para configurar atributos e 
-valores de variáveis simultâneamente.
+valores de variáveis simultaneamente.
 
 @item
 O comando interno @code{hash} permite que um nome seja associado com um 
@@ -8965,7 +8965,7 @@ o qual especifica o comportamento baseado em um número de argumentos.
 
 @item
 Bash inclui o comando interno @code{caller}, o qual exibe o contexto de 
-qualquer chamada de subrotina ativa (uma função de shell ou um script 
+qualquer chamada de sub-rotina ativa (uma função de shell ou um script 
 executado com os comandos internos @code{.} ou @code{source}).   Isso 
 suporta o depurador de bash.
 
@@ -9068,12 +9068,12 @@ muitas das limitações do shell SVR4.2.   Por exemplo:
 @itemize @bullet
 
 @item
-Bash não bifurca um subshell quando da redireção em ou fora de uma 
+Bash não bifurca um sub-shell quando da redireção em ou fora de uma 
 estrutura de controle de shell tal como uma declaração @code{if} ou 
 @code{while}.
 
 @item
-Bash não permite cotas desbalenceadas.   O shell SVR4.2 inserirá 
+Bash não permite cotas desbalanceadas.   O shell SVR4.2 inserirá 
 silenciosamente uma aspa necessária de fechamento no @code{EOF} sob 
 certas circunstâncias.   Isso pode ser a causa de alguns erros difíceis 
 de encontrar.
@@ -9081,13 +9081,13 @@ de encontrar.
 @item
 O shell SVR4.2 utiliza um esquema de gerenciamento de memória barroco 
 baseado no coletamento de @code{SIGSEGV}.   Se o shell for inicializado 
-a partir de um processo com @code{SIGSEGV} (por exemplo, utilisando-se a 
+a partir de um processo com @code{SIGSEGV} (por exemplo, utilizando-se a 
 chamada de função da biblioteca C @code{system()}), então o SVR4.2 se 
 comporta realmente muito mal.
 
 @item
 Em uma tentativa questionável na segurança, o shell SVR4.2, quando 
-invicado sem a opção @option{-p}, alterará seu real e efetivo @sc{uid} 
+invocado sem a opção @option{-p}, alterará seu real e efetivo @sc{uid} 
 e @sc{gid}, se eles são menores que algum valor limite mágico, 
 normalmente 100.
 Isso pode levar a resultados inesperados.
@@ -9111,7 +9111,7 @@ Bash permite argumentos de opções múltiplas quando é invocado
 segundo argumento inicia com um @samp{-}.
 
 @item
-O shell SVR4.2 sai de um scrip se qualquer comando interno falha; Bash 
+O shell SVR4.2 sai de um script se qualquer comando interno falha; Bash 
 sai de um script somente se um dos comandos internos especiais 
 @sc{posix} falha, e apenas para certas falhas, conforme enumerado no 
 padrão @sc{posix}.
@@ -9130,13 +9130,13 @@ O shell SVR4.2 se comporta diferentemente quando invocado como
 @appendix Indexes
 
 @menu
-* Builtin Index::		Indice dos comandos internos de Bash.
-* Reserved Word Index::		Indice das palavras reservadas de Bash.
+* Builtin Index::		Índice dos comandos internos de Bash.
+* Reserved Word Index::		Índice das palavras reservadas de Bash.
 * Variable Index::		Referência rápida ajuda você a encontrar 
 a variável que deseja.
-* Function Index::		Indice das funções de Readline 
+* Function Index::		Índice das funções de Readline 
 vinculáveis.
-* Concept Index::		Indice geral para conceitos descritos 
+* Concept Index::		Índice geral para conceitos descritos 
 neste manual.
 @end menu
 
