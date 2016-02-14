@@ -1,3 +1,8 @@
+2016-fev-14	Translated the following sections and subsections (in 
+		rluser-pt_BR.texi):
+		8.4 - Bindable Readline Commands
+		8.4.1 - Commands For Moving
+
 2016-fev-13	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.3.1 - Readline Init File Syntax (Key Bindings)
