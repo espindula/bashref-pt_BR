@@ -907,64 +907,66 @@ insira uma única @samp{\} na linha:
 @node Conditional Init Constructs
 @subsection Conditional Init Constructs
 
-Readline implements a facility similar in spirit to the conditional
-compilation features of the C preprocessor which allows key
-bindings and variable settings to be performed as the result
-of tests.  There are four parser directives used.
+Readline implementa uma facilidade similar em espírito às 
+características de compilação condicional do pré-processador C, o qual 
+permite que as configurações de variáveis e vinculações de tecla sejam 
+realizadas como resultado de testes.   Existem quatro diretivas de 
+analisador utilizadas.
 
 @table @code
 @item $if
-The @code{$if} construct allows bindings to be made based on the
-editing mode, the terminal being used, or the application using
-Readline.  The text of the test extends to the end of the line;
-no characters are required to isolate it.
+O contrutor @code{$if} permite que vinculações sejam feitas baseadas no 
+modo de edição, o terminal sendo utilizado, ou a aplicação utilizando 
+Readline.   O texto do teste estende para o fim da linha; nenhum 
+carácter é exigido para isolá-lo.
 
 @table @code
 @item mode
-The @code{mode=} form of the @code{$if} directive is used to test
-whether Readline is in @code{emacs} or @code{vi} mode.
-This may be used in conjunction
-with the @samp{set keymap} command, for instance, to set bindings in
-the @code{emacs-standard} and @code{emacs-ctlx} keymaps only if
-Readline is starting out in @code{emacs} mode.
+A forma @code{mode=} da diretiva @code{$if} é utilizada para testar se 
+Readline está no modo @code{emacs} ou @code{vi}.
+Isso pode ser utilizado conjuntamente com o comando @samp{set keymap}, 
+por exemplo, para configurar vinculações nos mapas de teclas 
+@code{emacs-standard} e @code{emacs-ctlx} somente se Readline for 
+inicializado em modo @code{emacs}.
 
 @item term
-The @code{term=} form may be used to include terminal-specific
-key bindings, perhaps to bind the key sequences output by the
-terminal's function keys.  The word on the right side of the
-@samp{=} is tested against both the full name of the terminal and
-the portion of the terminal name before the first @samp{-}.  This
-allows @code{sun} to match both @code{sun} and @code{sun-cmd},
-for instance.
+A forma @code{term=} pode ser utilizada para incluir vinculações de 
+tecla específicas para determinado terminal, talvez para vincular as 
+saídas de sequências de tecla pelas teclas de função do terminal.   A 
+palavra no lado direito do @samp{=} é testada contra ambas o nome 
+completo do terminal e a porção do nome do terminal antes do primeiro 
+@samp{-}.   Isso permite que @code{sun} coincida com ambos @code{sun} e 
+@code{sun-cmd}, por exemplo.
 
 @item application
-The @var{application} construct is used to include
-application-specific settings.  Each program using the Readline
-library sets the @var{application name}, and you can test for
-a particular value. 
-This could be used to bind key sequences to functions useful for
-a specific program.  For instance, the following command adds a
-key sequence that quotes the current or previous word in Bash:
+O construtor @var{application} é utilizado para incluir configurações 
+específicas para determinada aplicação.   Cada programa utilizando a 
+biblioteca Readline configura o @var{application name}, e você pode 
+testar para um valor em particular.
+Isso poderia ser utilizado para vincular sequências de tecla a funções 
+úteis para um programa específico.   Por exemplo, o seguinte comando 
+adiciona uma sequência de tecla que encapsula a palavra atual ou a 
+prévia no Bash:
 @example
 $if Bash
-# Quote the current or previous word
+# Encapsula a palavra atual ou a prévia
 "\C-xq": "\eb\"\ef\""
 $endif
 @end example
 @end table
 
 @item $endif
-This command, as seen in the previous example, terminates an
-@code{$if} command.
+Esse comando, conforme visto no exemplo anterior, termina um comando 
+@code{$if}.
 
 @item $else
-Commands in this branch of the @code{$if} directive are executed if
-the test fails.
+Os comandos nesta ramificação da diretiva @code{$if} são executados se o 
+teste falhar.
 
 @item $include
-This directive takes a single filename as an argument and reads commands
-and bindings from that file.
-For example, the following directive reads from @file{/etc/inputrc}:
+Essa diretiva toma um único nome de arquivo como um argumento e lê 
+comandos e vinculações a partir daquele arquivo.
+Por exemplo, a seguinte diretiva lê a partir de @file{/etc/inputrc}:
 @example
 $include /etc/inputrc
 @end example
@@ -973,54 +975,54 @@ $include /etc/inputrc
 @node Sample Init File
 @subsection Sample Init File
 
-Here is an example of an @var{inputrc} file.  This illustrates key
-binding, variable assignment, and conditional syntax.
+Eis aqui um exemplo de um arquivo @var{inputrc}.   Isso ilustra 
+vinculação de tecla, atribuição de variável e sintaxe condicional.
 
 @example
 @page
-# This file controls the behaviour of line input editing for
-# programs that use the GNU Readline library.  Existing
-# programs include FTP, Bash, and GDB.
+# Este arquivo controla o comportamento de edição de entrada de linha
+# para programas que utilizam a biblioteca GNU Readline.   Programas
+# existentes são FTP, Bash e GDB.
 #
-# You can re-read the inputrc file with C-x C-r.
-# Lines beginning with '#' are comments.
+# Você pode re-ler o arquivo inputrc com C-x C-r.
+# As linhas começando com '#' são comentários.
 #
-# First, include any system-wide bindings and variable
-# assignments from /etc/Inputrc
+# Primeiro, incluir quaisquer vinculações para todo o sistema e
+# atribuições de variável a partir de /etc/Inputrc
 $include /etc/Inputrc
 
 #
-# Set various bindings for emacs mode.
+# Configura várias vinculações para o modo emacs.
 
-set editing-mode emacs 
+set editing-mode emacs
 
 $if mode=emacs
 
-Meta-Control-h:	backward-kill-word	Text after the function name is ignored
+Meta-Control-h:	backward-kill-word	Texto após o nome de função é ignorado
 
 #
-# Arrow keys in keypad mode
+# Teclas de setas direcionais no modo mini teclado
 #
 #"\M-OD":        backward-char
 #"\M-OC":        forward-char
 #"\M-OA":        previous-history
 #"\M-OB":        next-history
 #
-# Arrow keys in ANSI mode
+# Teclas de setas direcionais no modo ANSI
 #
 "\M-[D":        backward-char
 "\M-[C":        forward-char
 "\M-[A":        previous-history
 "\M-[B":        next-history
 #
-# Arrow keys in 8 bit keypad mode
+# Teclas de setas direcionais no modo mini teclado de 8 bits
 #
 #"\M-\C-OD":       backward-char
 #"\M-\C-OC":       forward-char
 #"\M-\C-OA":       previous-history
 #"\M-\C-OB":       next-history
 #
-# Arrow keys in 8 bit ANSI mode
+# Teclas de setas direcionais no modo ANSI de 8 bits
 #
 #"\M-\C-[D":       backward-char
 #"\M-\C-[C":       forward-char
@@ -1031,47 +1033,48 @@ C-q: quoted-insert
 
 $endif
 
-# An old-style binding.  This happens to be the default.
+# Uma vinculação estilo antigo.   Isso chega a ser o padrão.
 TAB: complete
 
-# Macros that are convenient for shell interaction
+# Macros que são convenientes para interação de shell
 $if Bash
-# edit the path
+# editar o caminho
 "\C-xp": "PATH=$@{PATH@}\e\C-e\C-a\ef\C-f"
-# prepare to type a quoted word --
-# insert open and close double quotes
-# and move to just after the open quote
+# preparar para digitar uma palavra entre aspas --
+# insere aspas duplas abrindo e fechando
+# e move para logo após a aspa de abrir
 "\C-x\"": "\"\"\C-b"
-# insert a backslash (testing backslash escapes
-# in sequences and macros)
+# insere uma barra invertida (testando escapes de barra invertida
+# em sequências e macros)
 "\C-x\\": "\\"
-# Quote the current or previous word
+# Encapsula a palavra atual e a prévia
 "\C-xq": "\eb\"\ef\""
-# Add a binding to refresh the line, which is unbound
+# Adiciona uma vinculação para atualizar/redesenhar a linha, a qual é
+# desvinculada
 "\C-xr": redraw-current-line
-# Edit variable on current line.
+# Editar variável na linha atual.
 "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y="
 $endif
 
-# use a visible bell if one is available
+# utiliza um alerta visível se um estiver disponível
 set bell-style visible
 
-# don't strip characters to 7 bits when reading
+# não reduz caracteres para 7 bits quando da leitura
 set input-meta on
 
-# allow iso-latin1 characters to be inserted rather
-# than converted to prefix-meta sequences
+# permite que caracteres iso-latin1 sejam inseridos em vez de
+# convertidos para sequências de meta prefixo
 set convert-meta off
 
-# display characters with the eighth bit set directly
-# rather than as meta-prefixed characters
+# exibe caracteres com o oitavo bit configurado diretamente em vez de os
+# exibir como caracteres meta prefixados
 set output-meta on
 
-# if there are more than 150 possible completions for
-# a word, ask the user if he wants to see all of them
+# se existirem mais que 150 complementações possíveis para uma palavra,
+# pergunta ao usuário se esse deseja ver todas elas
 set completion-query-items 150
 
-# For FTP
+# Para FTP
 $if Ftp
 "\C-xg": "get \M-?"
 "\C-xt": "put \M-?"
