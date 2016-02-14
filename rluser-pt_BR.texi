@@ -766,48 +766,48 @@ completações possiveis.   O valor pré-definido é @samp{off}.
 @end table
 
 @item Key Bindings
-The syntax for controlling key bindings in the init file is
-simple.  First you need to find the name of the command that you
-want to change.  The following sections contain tables of the command
-name, the default keybinding, if any, and a short description of what
-the command does.
+A sintaxe para controle das vinculações de tecla no arquivo init é 
+simples.   Primeiro, você precisa encontrar o nome do comando que você 
+deseja modificar.   As seções seguintes contém tabelas de nome de 
+comando, a vinculação padrão, se existente, e uma breve descrição do que 
+o comando faz.
 
-Once you know the name of the command, simply place on a line
-in the init file the name of the key
-you wish to bind the command to, a colon, and then the name of the
-command.
-There can be no space between the key name and the colon -- that will be
-interpreted as part of the key name.
-The name of the key can be expressed in different ways, depending on
-what you find most comfortable.
+Uma vez que você saiba o nome do comando, simplesmente coloque em uma 
+linha no arquivo init o nome da tecla a qual você deseja vincular o 
+comando, uma vírgula, e então o nome do comando.
+Não pode existir espaço em branco entre o nome da tecla e a vírgula -- 
+isso será interpretado como sendo parte do nome da tecla.
+O nome da tecla pode ser expresso em diferentes maneiras, dependendo do 
+que você acha mais confortável.
 
-In addition to command names, readline allows keys to be bound
-to a string that is inserted when the key is pressed (a @var{macro}).
+Adicionalmente a nomes de comando, Readline permite que teclas sejam 
+vinculadas a uma sequência de caracteres que é inserida quando a tecla 
+for pressionada (uma @var{macro}).
 
 @ifset BashFeatures
-The @w{@code{bind -p}} command displays Readline function names and
-bindings in a format that can put directly into an initialization file.
-@xref{Bash Builtins}.
+O comando @w{@code{bind -p}} exibe nomes de função Readline e 
+vinculações em um formato que pode ser colocado diretamente em um 
+arquivo de inicialização.
+veja-se @ref{Bash Builtins}.
 @end ifset
 
 @table @asis
 @item @w{@var{keyname}: @var{function-name} or @var{macro}}
-@var{keyname} is the name of a key spelled out in English.  For example:
+@var{keyname} é o nome de uma tecla escrito em Inglês.   Por exemplo:
 @example
 Control-u: universal-argument
 Meta-Rubout: backward-kill-word
 Control-o: "> output"
 @end example
 
-In the above example, @kbd{C-u} is bound to the function
-@code{universal-argument},
-@kbd{M-DEL} is bound to the function @code{backward-kill-word}, and
-@kbd{C-o} is bound to run the macro
-expressed on the right hand side (that is, to insert the text
-@samp{> output} into the line).
+No exemplo acima, @kbd{C-u} é vinculada à função 
+@code{universal-argument}, @kbd{M-DEL} é vinculada à função 
+@code{backward-kill-word}, e @kbd{C-o} é vinculada para executar a 
+macro expressa no lado direito (isto é, para inserir o texto 
+@samp{> output} na linha).
 
-A number of symbolic character names are recognized while
-processing this key binding syntax:
+Um número de nomes simbólicos de caracteres são reconhecidos quando do 
+processamento dessa sintaxe de vinculação de tecla:
 @var{DEL},
 @var{ESC},
 @var{ESCAPE},
@@ -822,11 +822,12 @@ and
 @var{TAB}.
 
 @item @w{"@var{keyseq}": @var{function-name} or @var{macro}}
-@var{keyseq} differs from @var{keyname} above in that strings
-denoting an entire key sequence can be specified, by placing
-the key sequence in double quotes.  Some @sc{gnu} Emacs style key
-escapes can be used, as in the following example, but the
-special character names are not recognized.
+@var{keyseq} se difere de @var{keyname} acima na medida em que 
+sequências de caracteres que denotam uma sequência de tecla inteira 
+podem ser especificadas, colocando-se a sequência de tecla entre aspas 
+duplas.   Alguns escapes de tecla estilo @sc{gnu} Emacs podem ser 
+utilizados, como no seguinte exemplo, porém os nomes especiais de 
+caracteres não são reconhecidos.
 
 @example
 "\C-u": universal-argument
@@ -834,68 +835,69 @@ special character names are not recognized.
 "\e[11~": "Function Key 1"
 @end example
 
-In the above example, @kbd{C-u} is again bound to the function
-@code{universal-argument} (just as it was in the first example),
-@samp{@kbd{C-x} @kbd{C-r}} is bound to the function @code{re-read-init-file},
-and @samp{@key{ESC} @key{[} @key{1} @key{1} @key{~}} is bound to insert
-the text @samp{Function Key 1}.
+No exemplo acima, @kbd{C-u} é novamente vinculada à função 
+@code{universal-argument} (da mesma forma que o foi no primeiro 
+exemplo), @samp{@kbd{C-x} @kbd{C-r}} é vinculada à função 
+@code{re-read-init-file}, e @samp{@key{ESC} @key{[} @key{1} @key{1} 
+@key{~}} é vinculada para inserir o texto @samp{Function Key 1}.
 
 @end table
 
-The following @sc{gnu} Emacs style escape sequences are available when
-specifying key sequences:
+As seguintes sequências de escape estilo @sc{gnu} Emacs estão 
+disponíveis quando da especificação de sequência de tecla:
 
 @table @code
 @item @kbd{\C-}
-control prefix
+prefixo control
 @item @kbd{\M-}
-meta prefix
+prefixo meta
 @item @kbd{\e}
-an escape character
+um carácter de escape
 @item @kbd{\\}
-backslash
+barra invertida
 @item @kbd{\"}
-@key{"}, a double quotation mark
+@key{"}, uma marca de aspa dupla
 @item @kbd{\'}
-@key{'}, a single quote or apostrophe
+@key{'}, uma aspa simples ou apóstrofo
 @end table
 
-In addition to the @sc{gnu} Emacs style escape sequences, a second
-set of backslash escapes is available:
+Adicionalmente às sequências de escape estilo @sc{gnu} Emacs, um segundo 
+conjunto de escapes de barra invertida está disponível:
 
 @table @code
 @item \a
-alert (bell)
+alerta sonoro (sino)
 @item \b
 backspace
 @item \d
 delete
 @item \f
-form feed
+alimentar formulário
 @item \n
-newline
+nova linha
 @item \r
-carriage return
+retorno de carro
 @item \t
-horizontal tab
+tab horizontal
 @item \v
-vertical tab
+tab vertical
 @item \@var{nnn}
-the eight-bit character whose value is the octal value @var{nnn}
-(one to three digits)
+o carácter de oito bits cujo valor é o valor octal @var{nnn} (um a três 
+dígitos)
 @item \x@var{HH}
-the eight-bit character whose value is the hexadecimal value @var{HH}
-(one or two hex digits)
+o carácter de oito bit cujo valor é o valor hexadecimal @var{HH} (um ou 
+dois dígitos hexadecimais)
 @end table
 
-When entering the text of a macro, single or double quotes must
-be used to indicate a macro definition.
-Unquoted text is assumed to be a function name.
-In the macro body, the backslash escapes described above are expanded.
-Backslash will quote any other character in the macro text,
-including @samp{"} and @samp{'}.
-For example, the following binding will make @samp{@kbd{C-x} \}
-insert a single @samp{\} into the line:
+Quando da entrada de texto de uma macro, aspas siples ou duplas devem 
+necessariamente ser utilizadas para indicar uma definição de macro.
+Texto sem aspas é presumido que seja um nome de função.
+No corpo da macro, os escapes de barra invertida descritos acima são 
+expandidos.
+Barra invertida encapsulará qualquer outro carácter no texto da macro, 
+incluindo @samp{"} e @samp{'}.
+Por exemplo, o seguinte vinculamento fará com que @samp{@kbd{C-x} \} 
+insira uma única @samp{\} na linha:
 @example
 "\C-x\\": "\\"
 @end example
