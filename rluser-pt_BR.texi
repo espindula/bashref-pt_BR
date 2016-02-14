@@ -915,7 +915,7 @@ analisador utilizadas.
 
 @table @code
 @item $if
-O contrutor @code{$if} permite que vinculações sejam feitas baseadas no 
+O construtor @code{$if} permite que vinculações sejam feitas baseadas no 
 modo de edição, o terminal sendo utilizado, ou a aplicação utilizando 
 Readline.   O texto do teste estende para o fim da linha; nenhum 
 carácter é exigido para isolá-lo.
@@ -1086,69 +1086,75 @@ $endif
 @section Bindable Readline Commands
 
 @menu
-* Commands For Moving::		Moving about the line.
-* Commands For History::	Getting at previous lines.
-* Commands For Text::		Commands for changing text.
-* Commands For Killing::	Commands for killing and yanking.
-* Numeric Arguments::		Specifying numeric arguments, repeat counts.
-* Commands For Completion::	Getting Readline to do the typing for you.
-* Keyboard Macros::		Saving and re-executing typed characters
-* Miscellaneous Commands::	Other miscellaneous commands.
+* Commands For Moving::		Movendo-se ao longo da linha.
+* Commands For History::	Posicionando-se em linhas anteriores.
+* Commands For Text::		Comandos para modificação de texto.
+* Commands For Killing::	Comandos para killing e yanking.
+* Numeric Arguments::		Especificando argumentos numéricos, 
+contadores de repetição.
+* Commands For Completion::	Fazendo com que Readline faça a 
+digitação para você.
+* Keyboard Macros::		Salvando e re-executando caracteres 
+digitados.
+* Miscellaneous Commands::	Outros comandos em geral.
 @end menu
 
-This section describes Readline commands that may be bound to key
-sequences.
+Esta seção descreve os comandos Readline que podem ser vinculados à 
+sequências de tecla.
 @ifset BashFeatures
-You can list your key bindings by executing
-@w{@code{bind -P}} or, for a more terse format, suitable for an
-@var{inputrc} file, @w{@code{bind -p}}.  (@xref{Bash Builtins}.)
+Você pode listar as suas vinculações de tecla executando
+@w{@code{bind -P}} ou, para um formato mais conciso, adequado para um 
+arquivo @var{inputrc}, @w{@code{bind -p}}.   (veja-se
+@ref{Bash Builtins}).
 @end ifset
-Command names without an accompanying key sequence are unbound by default.
+Os nomes de comando sem uma sequência de tecla que as acompanhe são 
+desvinculados por padrão.
 
-In the following descriptions, @dfn{point} refers to the current cursor
-position, and @dfn{mark} refers to a cursor position saved by the
-@code{set-mark} command.
-The text between the point and mark is referred to as the @dfn{region}.
+Nas seguintes descrições, @dfn{point} se refere à posição atual do 
+cursor, e @dfn{mark} se refere à posição do cursor salva pelo comando 
+@code{set-mark}.
+O testo entre o ponto e a marca é referenciado como sendo a 
+@dfn{region}.
 
 @node Commands For Moving
 @subsection Commands For Moving
 @ftable @code
 @item beginning-of-line (C-a)
-Move to the start of the current line.
+Move para o início da linha atual.
 
 @item end-of-line (C-e)
-Move to the end of the line.
+Move para o fim da linha.
 
 @item forward-char (C-f)
-Move forward a character.
+Move um carácter para frente.
 
 @item backward-char (C-b)
-Move back a character.
+Move um carácter para trás.
 
 @item forward-word (M-f)
-Move forward to the end of the next word.
-Words are composed of letters and digits.
+Move para frente para o fim da próxima palavra.
+Palavras são compostas de letras e dígitos.
 
 @item backward-word (M-b)
-Move back to the start of the current or previous word.
-Words are composed of letters and digits.
+Move para trás para o início da palavra atual ou da anterior.
+Palavras são compostas de letras e dígitos.
 
 @ifset BashFeatures
 @item shell-forward-word ()
-Move forward to the end of the next word.
-Words are delimited by non-quoted shell metacharacters.
+Move para frente para o fim da próxima palavra.
+Palavras são delimitadas por meta caracteres de shell não encapsulados.
 
 @item shell-backward-word ()
-Move back to the start of the current or previous word.
-Words are delimited by non-quoted shell metacharacters.
+Move para trás para o início da palavra atual ou da anterior.
+Palavras são delimitadas por meta caracteres de shell não encapsulados.
 @end ifset
 
 @item clear-screen (C-l)
-Clear the screen and redraw the current line,
-leaving the current line at the top of the screen.
+Limpa a tela e redesenha a linha atual, deixando a linha atual no topo 
+da tela.
 
 @item redraw-current-line ()
-Refresh the current line.  By default, this is unbound.
+Atualiza a linha atual.   Por padrão, isso é desvinculado.
 
 @end ftable
 
@@ -1158,103 +1164,114 @@ Refresh the current line.  By default, this is unbound.
 @ftable @code
 @item accept-line (Newline or Return)
 @ifset BashFeatures
-Accept the line regardless of where the cursor is.
-If this line is
-non-empty, add it to the history list according to the setting of
-the @env{HISTCONTROL} and @env{HISTIGNORE} variables.
-If this line is a modified history line, then restore the history line
-to its original state.
+Aceita a linha independentemente de onde o cursor estiver.
+Se essa linha não estiver vazia, adiciona ela à lista de histórico de 
+acordo com a configuração das variáveis @env{HISTCONTROL} e 
+@env{HISTIGNORE}.
+Se essa linha for uma linha de histórico modificada, então restaura a 
+linha de histórico ao estado original dela.
 @end ifset
 @ifclear BashFeatures
-Accept the line regardless of where the cursor is.
-If this line is
-non-empty, it may be added to the history list for future recall with
-@code{add_history()}.
-If this line is a modified history line, the history line is restored
-to its original state.
+Aceita a linha independentemente de onde o cursor estiver.
+Se essa linha não estiver vazia, ela pode ser adicionada à lista de 
+histórico para rechamada futura com @code{add_history()}.
+Se essa linha for uma linha de histórico modificada, a linha de 
+histórico é restaurada ao estado original dela.
 @end ifclear
 
 @item previous-history (C-p)
-Move `back' through the history list, fetching the previous command.
+Move "para trás" ao longo da lista de histórico, resgatando o comando 
+anterior.
 
 @item next-history (C-n)
-Move `forward' through the history list, fetching the next command.
+Move "para frente" ao longo da lista de histórico, resgatando o próximo 
+comando.
 
 @item beginning-of-history (M-<)
-Move to the first line in the history.
+Move para a primeira linha no histórico.
 
 @item end-of-history (M->)
-Move to the end of the input history, i.e., the line currently
-being entered.
+Move para o final do histórico de entrada, isto é, a linha atualmente 
+sendo fornecida.
 
 @item reverse-search-history (C-r)
-Search backward starting at the current line and moving `up' through
-the history as necessary.  This is an incremental search.
+Pesquisa na direção reversa iniciando na linha atual e movendo "para 
+cima" ao longo do histórico conforme necessário.   Isso é uma pesquisa 
+incremental.
 
 @item forward-search-history (C-s)
-Search forward starting at the current line and moving `down' through
-the the history as necessary.  This is an incremental search.
+Pesquisa para frente iniciando na linha atual e movendo "para baixo" ao 
+longo do histórico conforme necessário.   Isso é uma pesquisa 
+incremental.
 
 @item non-incremental-reverse-search-history (M-p)
-Search backward starting at the current line and moving `up'
-through the history as necessary using a non-incremental search
-for a string supplied by the user.
+Pesquisa na direção reversa iniciando na linha atual e movendo "para 
+cima" ao longo do histórico conforme necessário utilizando uma pesquisa 
+não incremental para uma sequência de caracteres fornecida pelo usuário.
 
 @item non-incremental-forward-search-history (M-n)
-Search forward starting at the current line and moving `down'
-through the the history as necessary using a non-incremental search
-for a string supplied by the user.
+Pesquisa para frente iniciando na linha atual e movendo "para baixo" ao 
+longo do histórico conforme necessário utilizando uma pesquisa não 
+incremental para uma sequência de caracteres fornecida pelo usuário.
 
 @item history-search-forward ()
-Search forward through the history for the string of characters
-between the start of the current line and the point.
-The search string must match at the beginning of a history line.
-This is a non-incremental search.
-By default, this command is unbound.
+Pesquisa para frente ao longo do histórico por uma sequência de 
+caracteres entre o início da linha atual e o ponto.
+A sequência de caracteres de pesquisa deve necessariamente coincidir no 
+início de uma linha de histórico.
+Isso é uma pesquisa não incremental.
+Por padrão, esse comando é desvinculado.
 
 @item history-search-backward ()
-Search backward through the history for the string of characters
-between the start of the current line and the point.
-The search string must match at the beginning of a history line.
-This is a non-incremental search.
-By default, this command is unbound.
+Pesquisa na direção reversa ao longo do histórico por uma sequência de 
+caracteres entre o início da linha atual e o ponto.
+A sequência de caracteres de pesquisa deve necessariamente coincidir no 
+início de uma linha de histórico.
+Isso é uma pesquisa não incremental.
+Por padrão, esse comando é desvinculado.
 
 @item history-substr-search-forward ()
-Search forward through the history for the string of characters
-between the start of the current line and the point.
-The search string may match anywhere in a history line.
-This is a non-incremental search.
-By default, this command is unbound.
+Pesquisa para frente ao longo do histórico por uma sequência de 
+caracteres entre o início da linha atual e o ponto.
+A sequência de caracteres de pesquisa pode coincidir em qualquer lugar 
+em uma linha de histórico.
+Isso é uma pesquisa não incremental.
+Por padrão, esse comando é desvinculado.
 
 @item history-substr-search-backward ()
-Search backward through the history for the string of characters
-between the start of the current line and the point.
-The search string may match anywhere in a history line.
-This is a non-incremental search.
-By default, this command is unbound.
+Pesquisa na direção reversa ao longo do histórico por uma sequência de 
+caracteres entre o início da linha atual e o ponto.
+A sequência de caracteres de pesquisa pode coincidir em qualquer lugar 
+em uma linha de histórico.
+Isso é uma pesquisa não incremental.
+Por padrão, esse comando é desvinculado.
 
 @item yank-nth-arg (M-C-y)
-Insert the first argument to the previous command (usually
-the second word on the previous line) at point.
-With an argument @var{n},
-insert the @var{n}th word from the previous command (the words
-in the previous command begin with word 0).  A negative argument
-inserts the @var{n}th word from the end of the previous command.
-Once the argument @var{n} is computed, the argument is extracted
-as if the @samp{!@var{n}} history expansion had been specified.
+Insere o primeiro argumento ao comando anterior (normalmente a segunda 
+palavra na linha anterior) no ponto.
+Com um argumento @var{n}, insere a @var{n}ésima palavra a partir do 
+comando anterior (as palavras no comando anterior começam com palavra 
+0).   Um argumento negativo insere a @var{n}ésima palavra a partir do 
+final do comando anterior.
+Tão logo o argumento @var{n} seja computado, o argumento é extraído como 
+se a expansão de histórico @samp{!@var{n}} tivesse sido especificada.
 
 @item yank-last-arg (M-. or M-_)
-Insert last argument to the previous command (the last word of the
-previous history entry).
-With a numeric argument, behave exactly like @code{yank-nth-arg}.
-Successive calls to @code{yank-last-arg} move back through the history
-list, inserting the last word (or the word specified by the argument to
-the first call) of each line in turn.
-Any numeric argument supplied to these successive calls determines
-the direction to move through the history.  A negative argument switches
-the direction through the history (back or forward).
-The history expansion facilities are used to extract the last argument,
-as if the @samp{!$} history expansion had been specified.
+Insere o último argumento para o comando anterior (a última palavra da 
+entrada de histórico anterior).
+Com um argumento numérico, se comporta exatamente como 
+@code{yank-nth-arg}.
+As chamadas sucessivas a @code{yank-last-arg} movem para trás ao longo 
+da lista de histórico, inserindo a última palavra (ou a palavra 
+especificada pelo argumento à primeira chamada) de cada linha em 
+sequência.
+Qualquer argumento numérico fornecido a essas chamadas sucessivas 
+determina a direção a se mover ao longo do histórico.   Um argumento 
+negativo permuta a direção ao lonto do histórico (para trás ou para 
+frente).
+As facilidades de expansão de histórico são utilizadas para extrair o 
+último argumento, como se a expansão de histórico @samp{!$} tivesse sido 
+especificada.
 
 @end ftable
 
