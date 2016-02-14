@@ -1,6 +1,8 @@
 2016-fev-13	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.3.1 - Readline Init File Syntax (Key Bindings)
+		8.3.2 - Conditional Init Constructs
+		8.3.3 - Sample Init File
 
 2016-jan-28	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
