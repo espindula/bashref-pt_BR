@@ -1,3 +1,8 @@
+2016-fev-18	Translated the following sections and subsections (in 
+		rluser-pt_BR.texi):
+		8.4.2 - Commands For Manipulating The History
+		8.4.3 - Commands For Changing Text
+
 2016-fev-14	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.4 - Bindable Readline Commands
