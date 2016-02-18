@@ -1281,76 +1281,79 @@ especificada.
 @ftable @code
 
 @item @i{end-of-file} (usually C-d)
-The character indicating end-of-file as set, for example, by
-@code{stty}.  If this character is read when there are no characters
-on the line, and point is at the beginning of the line, Readline
-interprets it as the end of input and returns @sc{eof}.
+O carácter que indica o final de arquivo conforme configurado, por 
+exemplo, por @code{stty}.   Se esse carácter for lido quando não 
+existirem caracteres na linha, e o ponto estiver no início da linha, 
+Readline o interpreta como o fim da entrada e retorna @sc{eof}.
 
 @item delete-char (C-d)
-Delete the character at point.  If this function is bound to the
-same character as the tty @sc{eof} character, as @kbd{C-d}
-commonly is, see above for the effects.
+Deleta o carácter no ponto.   Se essa função estiver vinculada ao mesmo 
+carácter como o carácter @sc{eof} do tty, como @kbd{C-d} comumente está, 
+veja acima para os efeitos.
 
 @item backward-delete-char (Rubout)
-Delete the character behind the cursor.  A numeric argument means
-to kill the characters instead of deleting them.
+Deleta o carácter por trás do cursor.   Um argumento numérico significa 
+kill ("recortar") os caracteres ao invés de deletá-los.
 
 @item forward-backward-delete-char ()
-Delete the character under the cursor, unless the cursor is at the
-end of the line, in which case the character behind the cursor is
-deleted.  By default, this is not bound to a key.
+Deleta o carácter sob o cursor, a menos que o cursor esteja no fim da 
+linha, caso no qual o carácter por trás do cursor é deletado.  Por 
+padrão, isso não é vinculado a uma tecla.
 
 @item quoted-insert (C-q or C-v)
-Add the next character typed to the line verbatim.  This is
-how to insert key sequences like @kbd{C-q}, for example.
+Adiciona o próximo carácter digitado à linha literal.   Isso é como 
+inserir sequências de tecla como @kbd{C-q}, por exemplo.
 
 @ifclear BashFeatures
 @item tab-insert (M-@key{TAB})
-Insert a tab character.
+Insere um carácter tab.
 @end ifclear
 
 @item self-insert (a, b, A, 1, !, @dots{})
-Insert yourself.
+Insere a si mesmo.
 
 @item transpose-chars (C-t)
-Drag the character before the cursor forward over
-the character at the cursor, moving the
-cursor forward as well.  If the insertion point
-is at the end of the line, then this
-transposes the last two characters of the line.
-Negative arguments have no effect.
+Arrasta o carácter antes do cursor para frente por sobre o carácter no 
+cursor, movendo o cursor para frente também.   Se o ponto de inserção 
+estiver no final da linha, então isso transpõe os últimos dois 
+carácteres da linha.
+Argumentos negativos não tem efeito.
 
 @item transpose-words (M-t)
-Drag the word before point past the word after point,
-moving point past that word as well.
-If the insertion point is at the end of the line, this transposes
-the last two words on the line.
+Arrasta a palavra antes do ponto e cola a palavra após o ponto, movendo 
+o ponto e colando aquela palavra também.
+Se o ponto de inserção estiver no fim da linha, isso transpõe as últimas 
+duas palavras na linha.
 
 @item upcase-word (M-u)
-Uppercase the current (or following) word.  With a negative argument,
-uppercase the previous word, but do not move the cursor.
+Torna a palavra atual (ou seguinte) em maiúscula.   Com um argumento 
+negativo, torna um letras maiúsculas a palavra anterior, porém não move 
+o cursor.
 
 @item downcase-word (M-l)
-Lowercase the current (or following) word.  With a negative argument,
-lowercase the previous word, but do not move the cursor.
+Torna a palavra atual (ou seguinte) em minúscula.   Com um argumento 
+negativo, torna um letras minúsculas a palavra anterior, porém não move 
+o cursor.
 
 @item capitalize-word (M-c)
-Capitalize the current (or following) word.  With a negative argument,
-capitalize the previous word, but do not move the cursor.
+Torna a primeira letra da palavra atual (ou seguinte) em maiúscula.   
+Com um argumento negativo, torna em maiúscula a primeira letra da 
+palavra anterior, porém não move o cursor.
 
 @item overwrite-mode ()
-Toggle overwrite mode.  With an explicit positive numeric argument,
-switches to overwrite mode.  With an explicit non-positive numeric
-argument, switches to insert mode.  This command affects only
-@code{emacs} mode; @code{vi} mode does overwrite differently.
-Each call to @code{readline()} starts in insert mode.
+Permuta para o modo de sobrescrita.   Com um argumento numérico positivo 
+explícito, passa para o modo de sobrescrita.   Com um argumento numérico 
+não positivo explícito, passa para o modo de inserção.   Esse comando 
+afeta somente o modo @code{emacs}; o modo @code{vi} faz sobrescrita 
+diferentemente.
+Cada chamada a @code{readline()} inicia no modo de inserção.
 
-In overwrite mode, characters bound to @code{self-insert} replace
-the text at point rather than pushing the text to the right.
-Characters bound to @code{backward-delete-char} replace the character
-before point with a space.
+No modo de sobrescrita, os carácteres vinculados ao @code{self-insert} 
+substituem o texto no ponto em vez de empurrar o texto para a direita.
+Os caracteres vinculados a @code{backward-delete-char} substituem o 
+carácter antes do ponto com um espaço.
 
-By default, this command is unbound.
+Por padrão, esse comando é desvinculado.
 
 @end ftable
 
