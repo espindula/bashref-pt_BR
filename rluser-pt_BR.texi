@@ -1776,85 +1776,99 @@ de edição @code{vi}.
 @node Readline vi Mode
 @section Readline vi Mode
 
-While the Readline library does not have a full set of @code{vi}
-editing functions, it does contain enough to allow simple editing
-of the line.  The Readline @code{vi} mode behaves as specified in
-the @sc{posix} standard.
+Enquanto a biblioteca Readline não tem um conjunto completo de funções 
+de edição @code{vi}, ela contém o suficiente para permitir a edição 
+simples da linha.   O modo @code{vi} de Readline se comporta conforme 
+especificado no padrão @sc{posix}.
 
 @ifset BashFeatures
-In order to switch interactively between @code{emacs} and @code{vi}
-editing modes, use the @samp{set -o emacs} and @samp{set -o vi}
-commands (@pxref{The Set Builtin}).
+Com o objetivo de trocar interativamente entre os modos de edição 
+@code{emacs} e @code{vi}, utilize os comandos @samp{set -o emacs} e 
+@samp{set -o vi} (veja-se @ref{The Set Builtin}).
 @end ifset
 @ifclear BashFeatures
-In order to switch interactively between @code{emacs} and @code{vi}
-editing modes, use the command @kbd{M-C-j} (bound to emacs-editing-mode
-when in @code{vi} mode and to vi-editing-mode in @code{emacs} mode).
+Com o objetivo de trocar interativamente entre os modos de edição 
+@code{emacs} e @code{vi}, utilize o comando @kbd{M-C-j} (vinculado a 
+emacs-editing-mode quando no modo @code{vi} e a vi-editing-mode no modo 
+@code{emacs}).
 @end ifclear
-The Readline default is @code{emacs} mode.
+O padrão de Readline é o modo @code{emacs}.
 
-When you enter a line in @code{vi} mode, you are already placed in
-`insertion' mode, as if you had typed an @samp{i}.  Pressing @key{ESC}
-switches you into `command' mode, where you can edit the text of the
-line with the standard @code{vi} movement keys, move to previous
-history lines with @samp{k} and subsequent lines with @samp{j}, and
-so forth.
+Quando você entra uma linha no modo @code{vi}, você já está colocado no 
+modo de "inserção", como se você tivesse digitado um @samp{i}.   
+Pressionar-se @key{ESC} troca-se para o modo de "comando", onde você 
+pode editar o texto da linha com as teclas de movimento padrão do 
+@code{vi}, mover para as linhas de histórico prévias com @samp{k} e 
+linhas subsequentes com @samp{j}, e assim por diante.
 
 @ifset BashFeatures
 @node Programmable Completion
 @section Programmable Completion
 @cindex programmable completion
 
-When word completion is attempted for an argument to a command for
-which a completion specification (a @var{compspec}) has been defined
-using the @code{complete} builtin (@pxref{Programmable Completion Builtins}),
-the programmable completion facilities are invoked. 
+Quando a complementação de palavra for tentada para um argumento a um 
+comando para o qual uma especificação de complementação (uma 
+@var{compspec}) tiver sido definida utilizando-se o comando interno 
+@code{complete} (veja-se @ref{Programmable Completion Builtins}), as 
+facilidades de complementação programáveis são invocadas.
 
-First, the command name is identified.
-If a compspec has been defined for that command, the
-compspec is used to generate the list of possible completions for the word.
-If the command word is the empty string (completion attempted at the
-beginning of an empty line), any compspec defined with
-the @option{-E} option to @code{complete} is used.
-If the command word is a full pathname, a compspec for the full
-pathname is searched for first.
-If no compspec is found for the full pathname, an attempt is made to
-find a compspec for the portion following the final slash.
-If those searches do not result in a compspec, any compspec defined with
-the @option{-D} option to @code{complete} is used as the default.
+Primeiro, o nome do comando é identificado.
+Se uma compspec tiver sido definida para aquele comando, então a 
+compspec é utilizada para gerar a lista das complementações possíveis 
+para a palavra.
+Se a palavra do comando for a sequência de caracteres vazia 
+(complementação tentada no início de uma linha vazia), então qualquer 
+compspec definida com a opção @option{-E} para @code{complete} é 
+utilizada.
+Se a palavra de comando for um nome de caminho completo, uma compspec 
+para o nome de caminho completo é pesquisada primeiramente.
+Se nenhuma compspec for encontrada para o nome de caminho completo, 
+então uma tentativa é feita para encontrar uma compspec para a porção 
+seguinte à barra final.
+Se essas buscas não resultarem em uma compspec, então qualquer compspec 
+definida com a opção @option{-D} para @code{complete} é utilizada como o 
+padrão.
 
-Once a compspec has been found, it is used to generate the list of
-matching words.
-If a compspec is not found, the default Bash completion
-described above (@pxref{Commands For Completion}) is performed.
+Uma vez que uma compspec tenha sido encontrada, ela é utilizada para 
+gerar a lista de palavras coincidentes.
+Se uma compspec não for encontrada, a complementação padrão de Bash 
+descrita abaixo (veja-se @ref{Commands For Completion}) é realizada.
 
-First, the actions specified by the compspec are used.
-Only matches which are prefixed by the word being completed are
-returned.
-When the @option{-f} or @option{-d} option is used for filename or
-directory name completion, the shell variable @env{FIGNORE} is
-used to filter the matches.
-@xref{Bash Variables}, for a description of @env{FIGNORE}.
+Primeiro, as ações especificadas pela compspec são utilizadas.
+Somente coincidências as quais sejam prefixadas pela palavra sendo 
+completada são retornadas.
+Quando a opção @option{-f} ou a @option{-d} forem utilizadas para 
+complementação de nome de arquivo ou de nome de diretório, a variável de 
+shell @env{FIGNORE} é utilizada para filtrar as coincidências.
+Veja-se @ref{Bash Variables}, para uma descrição de @env{FIGNORE}.
 
-Any completions specified by a filename expansion pattern to the
-@option{-G} option are generated next.
-The words generated by the pattern need not match the word being completed.
-The @env{GLOBIGNORE} shell variable is not used to filter the matches,
-but the @env{FIGNORE} shell variable is used.
+Quaisquer complementações especificadas por um modelo de expansão de 
+nome de arquivo para a opção @option{-G} são geradas depois.
+As palavras geradas pelo modelo precisam coincidir com a palavra sendo 
+complementada.
+A variável de shell @env{GLOBIGNORE} não é utilizada para filtrar as 
+coincidências, porém a variável de shell @env{FIGNORE} é utilizada.
 
-Next, the string specified as the argument to the @option{-W} option
-is considered.
-The string is first split using the characters in the @env{IFS}
-special variable as delimiters.
-Shell quoting is honored.
-Each word is then expanded using
-brace expansion, tilde expansion, parameter and variable expansion,
-command substitution, and arithmetic expansion,
-as described above (@pxref{Shell Expansions}).
-The results are split using the rules described above
-(@pxref{Word Splitting}).
-The results of the expansion are prefix-matched against the word being
-completed, and the matching words become the possible completions.
+Depois, a sequência de caracteres especificada como um argumento para a 
+opção @option{-W} é considerada.
+A sequência de caracteres é primeiro dividida utlizando os caracteres na 
+variável especial @env{IFS} como delimitadores.
+O encapsulamento do shell é respeitado.
+Cada palavra é então expandida utilizando a expansão de chave, expansão 
+de til, expansão de parâmetro e variável, substituição de comando, e 
+expansão aritmética, conforme descrito abaixo 
+(veja-se @ref{Shell Expansions}).
+Os resultados são divididos utilizando-se as regras descritas acima 
+(veja-se @ref{Word Splitting}).
+Os resultados da expansão são coincididos no prefixo contra a palavra 
+sendo complementada, e as palavras coincidentes se tornam as 
+complementações possíveis.
+
+
+
+
+
+
 
 After these matches have been generated, any shell function or command
 specified with the @option{-F} and @option{-C} options is invoked.
