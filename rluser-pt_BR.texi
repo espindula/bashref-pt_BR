@@ -1588,19 +1588,19 @@ esteja disponível para o shell (veja-se @ref{Brace Expansion}).
 @ftable @code
 
 @item start-kbd-macro (C-x ()
-Begin saving the characters typed into the current keyboard macro.
+Inicia o salvamento de caracteres digitados na macro de teclado atual.
 
 @item end-kbd-macro (C-x ))
-Stop saving the characters typed into the current keyboard macro
-and save the definition.
+Pára o salvamento de caracteres digitados na macro de teclado atual e 
+salva a definição.
 
 @item call-last-kbd-macro (C-x e)
-Re-execute the last keyboard macro defined, by making the characters
-in the macro appear as if typed at the keyboard.
+Re-executa a última macro de teclado definida, fazendo com que os 
+caracteres na macro aparecam como se digitados ao teclado.
 
 @item print-last-kbd-macro ()
-Print the last keboard macro defined in a format suitable for the
-@var{inputrc} file.
+Imprime a última macro de teclado definida em uma formato adequado para 
+o arquivo @var{inputrc}.
 
 @end ftable
 
@@ -1609,29 +1609,29 @@ Print the last keboard macro defined in a format suitable for the
 @ftable @code
 
 @item re-read-init-file (C-x C-r)
-Read in the contents of the @var{inputrc} file, and incorporate
-any bindings or variable assignments found there.
+Lê o conteúdo do arquivo @var{inputrc}, e incorpora quaisquer 
+vinculações ou atribuições à variáveis encontradas.
 
 @item abort (C-g)
-Abort the current editing command and
-ring the terminal's bell (subject to the setting of
-@code{bell-style}).
+Aborta o comando de edição atual e soa o alarme sonoro do terminal 
+(objeto da configuração de @code{bell-style}).
 
 @item do-uppercase-version (M-a, M-b, M-@var{x}, @dots{})
-If the metafied character @var{x} is lowercase, run the command
-that is bound to the corresponding uppercase character.
+Se o carácter de meta campo @var{x} for minúsculo, executa o comando que 
+está vinculado ao correspondente carácter maiúsculo.
 
 @item prefix-meta (@key{ESC})
-Metafy the next character typed.  This is for keyboards
-without a meta key.  Typing @samp{@key{ESC} f} is equivalent to typing
+"Metifica" o próximo carácter digitado.   Isso é para teclados sem a 
+tecla meta.   Digitar-se @samp{@key{ESC} f} é equivalente a se digitar 
 @kbd{M-f}.
 
 @item undo (C-_ or C-x C-u)
-Incremental undo, separately remembered for each line.
+Desfazer incremental, relembrado separadamente para cada linha.
 
 @item revert-line (M-r)
-Undo all changes made to this line.  This is like executing the @code{undo}
-command enough times to get back to the beginning.
+Desfazer todas as modificações feitas para esta linha.   Isso é como se 
+executar o comando @code{undo} suficientes vezes para se voltar ao 
+início.
 
 @ifset BashFeatures
 @item tilde-expand (M-&)
@@ -1639,132 +1639,135 @@ command enough times to get back to the beginning.
 @ifclear BashFeatures
 @item tilde-expand (M-~)
 @end ifclear
-Perform tilde expansion on the current word.
+Realiza a expansão de til sobre a palavra atual.
 
 @item set-mark (C-@@)
-Set the mark to the point.  If a
-numeric argument is supplied, the mark is set to that position.
+Configura a marca para o ponto.   Se um argumento numérico for 
+fornecido, então a marca é configurada para aquela posição.
 
 @item exchange-point-and-mark (C-x C-x)
-Swap the point with the mark.  The current cursor position is set to
-the saved position, and the old cursor position is saved as the mark.
+Troca o ponto pela marca.   A posição atual do cursor é configurada para 
+a posição salva, e a posição anterior do cursor é salva como a marca.
 
 @item character-search (C-])
-A character is read and point is moved to the next occurrence of that
-character.  A negative count searches for previous occurrences.
+Um carácter é lido e o ponto é movido para a próxima ocorrência daquele 
+carácter.   Um contador negativo busca pelas ocorrências prévias.
 
 @item character-search-backward (M-C-])
-A character is read and point is moved to the previous occurrence
-of that character.  A negative count searches for subsequent
-occurrences.
+Um carácter é lido e o ponto é movido para a ocorrência prévia daquele 
+carácter.   Um contador negativo busca pelas ocorrências subsequentes.
 
 @item skip-csi-sequence ()
-Read enough characters to consume a multi-key sequence such as those
-defined for keys like Home and End.  Such sequences begin with a
-Control Sequence Indicator (CSI), usually ESC-[.  If this sequence is
-bound to "\e[", keys producing such sequences will have no effect
-unless explicitly bound to a readline command, instead of inserting
-stray characters into the editing buffer.  This is unbound by default,
-but usually bound to ESC-[.
+Lê caracteres suficientes para consumir uma sequência multi tecla como 
+aqueas definidas para teclas como Home e End.   Tais sequências iniciam 
+com um Indicador de Sequência de Controle (ISC), geralmente ESC-[.
+Se essa sequência estiver vinculada à "\e[", então as teclas que 
+produzem tais sequências não terão efeito, a menos que explicitamente 
+vinculadas a um comando readline, em vez de inserir caracteres perdidos 
+na área de memória intermediária de edição.   Isso está desvinculado por 
+padrão, porém usualmente vinculado a ESC-[.
 
 @item insert-comment (M-#)
-Without a numeric argument, the value of the @code{comment-begin}
-variable is inserted at the beginning of the current line.
-If a numeric argument is supplied, this command acts as a toggle:  if
-the characters at the beginning of the line do not match the value
-of @code{comment-begin}, the value is inserted, otherwise
-the characters in @code{comment-begin} are deleted from the beginning of
-the line.
-In either case, the line is accepted as if a newline had been typed.
+Sem um argumento numérico, o valor da variável @code{comment-begin} é 
+inserido no início da linha atual.
+Se um argumento numérico for fornecido, esse comando atua como um 
+alternador: se os caracteres no início da linha não coincidirem com o 
+valor de @code{comment-begin}, então o valor é inserido; do contrário, 
+os caracteres em @code{comment-begin}, são deletados desde o início da 
+linha.
+Em qualquer caso, a linha é aceita como se um newline tivesse sido 
+digitado.
 @ifset BashFeatures
-The default value of @code{comment-begin} causes this command
-to make the current line a shell comment.
-If a numeric argument causes the comment character to be removed, the line
-will be executed by the shell.
+O valor padrão de @code{comment-begin} faz com que esse comando torne a 
+linha atual um comentário de shell.
+Se um argumento numérico, faz com que o carácter de comentário seja 
+removido, a linha será executada pelo shell.
 @end ifset
 
 @item dump-functions ()
-Print all of the functions and their key bindings to the
-Readline output stream.  If a numeric argument is supplied,
-the output is formatted in such a way that it can be made part
-of an @var{inputrc} file.  This command is unbound by default.
+Imprime todas as funções e suas vinculações de tecla para o fluxo de 
+saída de Readline.   Se um argumento numérico for fornecido, então a 
+saída é formatada de tal maneira que ela pode se tornar parte de um 
+arquivo @var{inputrc}.   Esse comando é desvinculado por padrão.
 
 @item dump-variables ()
-Print all of the settable variables and their values to the
-Readline output stream.  If a numeric argument is supplied,
-the output is formatted in such a way that it can be made part
-of an @var{inputrc} file.  This command is unbound by default.
+Imprime todas as variáveis configuráveis e seus valores para o fluxo de 
+saída de Readline.   Se um argumento numérico for fornecido, então a 
+saída é formatada de tal maneira que ela pode ser parte de um arquivo 
+@var{inputrc}.   Esse comando é desvinculado por padrão.
 
 @item dump-macros ()
-Print all of the Readline key sequences bound to macros and the
-strings they output.  If a numeric argument is supplied,
-the output is formatted in such a way that it can be made part
-of an @var{inputrc} file.  This command is unbound by default.
+Imprime todas as sequências de tecla Readline vinculadas à macro e as 
+sequências de caracteres que elas produzem como saída.   Se um argumento 
+numérico for fornecido, a saída é formatada de tal maneira que ela pode 
+ser parte de um arquivo @var{inputrc}.   Esse comando é desvinculado 
+por padrão.
 
 @ifset BashFeatures
 @item glob-complete-word (M-g)
-The word before point is treated as a pattern for pathname expansion,
-with an asterisk implicitly appended.  This pattern is used to
-generate a list of matching file names for possible completions.
+A palavra antes do ponto é tratada como um modelo para a expansão de 
+nome de caminho, com um asterisco adicionado implicitamente.   Esse 
+modelo é utilizado para gerar a lista de nomes de arquivo de 
+coincidentes para complementações possíveis.
 
 @item glob-expand-word (C-x *)
-The word before point is treated as a pattern for pathname expansion,
-and the list of matching file names is inserted, replacing the word.
-If a numeric argument is supplied, a @samp{*} is appended before
-pathname expansion.
+A palavra antes do ponto é tratada como um modelo para a expansão de 
+nome de caminho, e a lista de nomes de arquivos coincidentes é inserida, 
+substituindo a palavra.
+Se um argumento numérico for fornecido, então um @samp{*} é acrescentado 
+antes da expansão de nome de caminho.
 
 @item glob-list-expansions (C-x g)
-The list of expansions that would have been generated by
-@code{glob-expand-word} is displayed, and the line is redrawn.
-If a numeric argument is supplied, a @samp{*} is appended before
-pathname expansion.
+A lista de expansões que deveria ter sido gerada por 
+@code{glob-expand-word} é exibida, e a linha é redesenhada.
+Se um argumento numérico for fornecido, então um @samp{*} é acrescentado 
+antes da expansão de nome de caminho.
 
 @item display-shell-version (C-x C-v)
-Display version information about the current instance of Bash.
+Exibe informação de versão acerca da instância atual de Bash.
 
 @item shell-expand-line (M-C-e)
-Expand the line as the shell does.
-This performs alias and history expansion as well as all of the shell
-word expansions (@pxref{Shell Expansions}).
+Expande a linha como o shell faz.
+Isso realiza expansão de histórico e de apelido bem como todas as 
+expansões de palavras do shell (veja-se @ref{Shell Expansions}).
 
 @item history-expand-line (M-^)
-Perform history expansion on the current line.
+Realiza expansão de histórico sobre a linha atual.
 
 @item magic-space ()
-Perform history expansion on the current line and insert a space
-(@pxref{History Interaction}).
+Realiza expansão de histórico sobre a linha atual e insere um espaço 
+(veja-se @ref{History Interaction}).
 
 @item alias-expand-line ()
-Perform alias expansion on the current line (@pxref{Aliases}).
+Realiza expansão de apelido sobre a linha atual (veja-se @ref{Aliases}).
 
 @item history-and-alias-expand-line ()
-Perform history and alias expansion on the current line.
+Realiza expansão de apelido e de histórico sobre a linha atual.
 
 @item insert-last-argument (M-. or M-_)
-A synonym for @code{yank-last-arg}.
+Um sinônimo para @code{yank-last-arg}.
 
 @item operate-and-get-next (C-o)
-Accept the current line for execution and fetch the next line
-relative to the current line from the history for editing.  Any
-argument is ignored.
+Aceita a linha atual para execução e traz a próxima linha relativa à 
+linha atual a partir do histórico para edição.   Qualquer argumento é 
+ignorado.
 
-@item edit-and-execute-command (C-xC-e)
-Invoke an editor on the current command line, and execute the result as shell
-commands.
-Bash attempts to invoke
-@code{$VISUAL}, @code{$EDITOR}, and @code{emacs}
-as the editor, in that order.
+@item edit-and-execute-command (C-x C-e)
+Invoca um editor sobre a linha de comando atual, e executa e resultado 
+como comandos de shell.
+Bash tenta invocar @code{$VISUAL}, @code{$EDITOR}, e @code{emacs} como o 
+editor, nessa ordem.
 
 @end ifset
 
 @ifclear BashFeatures
 @item emacs-editing-mode (C-e)
-When in @code{vi} command mode, this causes a switch to @code{emacs}
-editing mode.
+Quando no modo de comando @code{vi}, isso causa uma troca para o modo de 
+edição @code{emacs}.
 
 @item vi-editing-mode (M-C-j)
-When in @code{emacs} editing mode, this causes a switch to @code{vi}
-editing mode.
+Quando no modo de edição @code{emacs}, isso causa uma troca para o modo 
+de edição @code{vi}.
 
 @end ifclear
 
