@@ -1,26 +1,31 @@
 @ignore
-This file documents the user interface to the GNU History library.
+Este arquivo documenta a interface de usuário para a biblioteca GNU 
+History.
 
-Copyright (C) 1988--2014 Free Software Foundation, Inc.
-Authored by Brian Fox and Chet Ramey.
+Direitos autorais @copyright{} 2015 da versão modificada traduzida para 
+o português do Brasil: Jamenson Ferreira Espindula de Almeida Melo.
 
-Permission is granted to make and distribute verbatim copies of this manual
-provided the copyright notice and this permission notice are preserved on
-all copies.
+Direitos autorais @copyright{} 1988--2014 Free Software Foundation, Inc.
 
-Permission is granted to process this file through Tex and print the
-results, provided the printed document carries copying permission notice
-identical to this one except for the removal of this paragraph (this
-paragraph not being relevant to the printed manual).
+Da autoria de Brian Fox e Chet Ramey.
 
-Permission is granted to copy and distribute modified versions of this
-manual under the conditions for verbatim copying, provided also that the
-GNU Copyright statement is available to the distributee, and provided that
-the entire resulting derived work is distributed under the terms of a
-permission notice identical to this one.
+É dada permissão para processar este arquivo por meio de Tex e imprimir 
+o resultado, contanto que o documento impresso carregue uma notícia de 
+permissão de cópia idêntica a esta, exceto pela remoção deste parágrafo 
+(este parágrafo não sendo relevante para o manual impresso).
 
-Permission is granted to copy and distribute translations of this manual
-into another language, under the above conditions for modified versions.
+É dada permissão para produzir e distribuir cópias literais deste 
+manual, contanto que a notícia de direitos autorais e esta notícia de 
+permissão sejam preservadas em todas as cópias.
+
+É dada permissão para copiar e distribuir versões modificadas deste 
+manual sob as condições para cópias literais, contanto também que a 
+declaração de Direitos Autorais GNU esteja disponível para o 
+distribuidor, e contanto que o trabalho derivado resultante inteiro seja 
+distribuído sob os termos de uma notícia de permissão idêntica a esta.
+
+É dada permissão para copiar e distribuir traduções deste manual em 
+outra língua, sob as condições acima para versões modificadas.
 @end ignore
 
 @node Using History Interactively
@@ -31,31 +36,34 @@ into another language, under the above conditions for modified versions.
 @end ifclear
 
 @ifset BashFeatures
-This chapter describes how to use the @sc{gnu} History Library
-interactively, from a user's standpoint.
-It should be considered a user's guide.
-For information on using the @sc{gnu} History Library in other programs,
-see the @sc{gnu} Readline Library Manual.
+Este capítulo descreve como utilizar a biblioteca @sc{gnu} History 
+interativamente, a partir do ponto de vista do usuário.
+Ele deveria ser considerado um guia do usuário.
+Para informação sobre a utilização da biblioteca @sc{gnu} History em 
+outros programas, veja-se o Manual da Biblioteca @sc{gnu} Readline.
 @end ifset
 @ifclear BashFeatures
-This chapter describes how to use the @sc{gnu} History Library interactively,
-from a user's standpoint.  It should be considered a user's guide.  For
-information on using the @sc{gnu} History Library in your own programs,
-@pxref{Programming with GNU History}.
+Este capítulo descreve como utilizar a Biblioteca @sc{gnu} History 
+interativamente, a partir do ponto de vista do usuário.   Ele deveria 
+ser consideradoum guia do usuário.   Para informação sobre a utilização 
+da Biblioteca @sc{gnu} History em seus próprios programas, veja-se 
+@ref{Programming with GNU History}.
 @end ifclear
 
 @ifset BashFeatures
 @menu
-* Bash History Facilities::	How Bash lets you manipulate your command
-				history.
-* Bash History Builtins::	The Bash builtin commands that manipulate
-				the command history.
-* History Interaction::		What it feels like using History as a user.
+* Bash History Facilities::	Como Bash te permite manipular seu 
+histórico de comando.
+* Bash History Builtins::	Os comandos internos de Bash que 
+manipulam o histórico de comando.
+* History Interaction::		Qual é o sentimento ao se utilizar 
+History como um usuário.
 @end menu
 @end ifset
 @ifclear BashFeatures
 @menu
-* History Interaction::		What it feels like using History as a user.
+* History Interaction::		Qual é o sentimento ao se utilizar 
+History como um usuário.
 @end menu
 @end ifclear
 
@@ -65,66 +73,65 @@ information on using the @sc{gnu} History Library in your own programs,
 @cindex command history
 @cindex history list
 
-When the @option{-o history} option to the @code{set} builtin
-is enabled (@pxref{The Set Builtin}),
-the shell provides access to the @dfn{command history},
-the list of commands previously typed.
-The value of the @env{HISTSIZE} shell variable is used as the
-number of commands to save in a history list.
-The text of the last @env{$HISTSIZE}
-commands (default 500) is saved.
-The shell stores each command in the history list prior to
-parameter and variable expansion
-but after history expansion is performed, subject to the
-values of the shell variables
-@env{HISTIGNORE} and @env{HISTCONTROL}.
+Quando a opção @option{-o history} ao comando interno @code{set} está 
+habilitada (veja-se @ref{The Set Builtin}), o shell provê acesso ao 
+@dfn{histórico de comandos}, a lista de comandos previamente digitados.
+O valor da variável de shell @env{HISTSIZE} é utilizada como o número de 
+comandos a salvar em uma lista de histórico.
+O texto dos últimos @env{$HISTSIZE} comandos (padrão 500) é salvo.
+O shell armazena cada comando em uma lista de histórico prévia a 
+expansão de parâmetro e variável, porém após a expansão de histórico ser 
+realizada, objeto dos valores das variáveis de shell @env{HISTIGNORE} e 
+@env{HISTCONTROL}.
 
-When the shell starts up, the history is initialized from the
-file named by the @env{HISTFILE} variable (default @file{~/.bash_history}).
-The file named by the value of @env{HISTFILE} is truncated, if
-necessary, to contain no more than the number of lines specified by
-the value of the @env{HISTFILESIZE} variable.
-When a shell with history enabled exits, the last
-@env{$HISTSIZE} lines are copied from the history list to the file
-named by @env{$HISTFILE}.
-If the @code{histappend} shell option is set (@pxref{Bash Builtins}),
-the lines are appended to the history file,
-otherwise the history file is overwritten.
-If @env{HISTFILE}
-is unset, or if the history file is unwritable, the history is not saved.
-After saving the history, the history file is truncated
-to contain no more than @env{$HISTFILESIZE} lines.
-If @env{HISTFILESIZE} is unset, or set to null, a non-numeric value, or
-a numeric value less than zero, the history file is not truncated.
+Quando o shell inicializa, o histórico é inicializado a partir do 
+arquivo noneado pela variável @env{HISTFILE} (padrão 
+@file{~/.bash_history}).
+O arquivo nomeado pelo valor de @env{HISTFILE} é truncado, se 
+necessário, para conter não mais que o número de linhas especificadas 
+pelo valor da variável @env{HISTFILESIZE}.
+Quando um shell com histórico habilitado sai, as últimas @env{$HISTSIZE} 
+linhas são copiadas a partir da lista de histórico para o arquivo 
+nonimado por @env{$HISTFILE}.
+Se a opção de shell @code{histappend} for configurada 
+(veja-se @ref{Bash Builtins}), então as linhas são acrescentadas ao 
+final do arquivo de histórico, do contrário o arquivo de histórico é 
+sobrescrito.
+Se @env{HISTFILE} for desconfigurada, ou se o arquivo de histórico 
+estiver sem permissão de escrita, então o histórico não é salvo.
+Após o salvamento do histórico, o arquivo de histórico é truncado para 
+conter não mais que @env{$HISTFILESIZE} linhas.
+Se @env{HISTFILESIZE} estiver desconfigurada, ou configurada para 
+"null", para um valor não numérico ou um valor numérico menor que zero, 
+então o arquivo de histórico não é truncado.
 
-If the @env{HISTTIMEFORMAT} is set, the time stamp information
-associated with each history entry is written to the history file,
-marked with the history comment character.
-When the history file is read, lines beginning with the history
-comment character followed immediately by a digit are interpreted
-as timestamps for the previous history line.
+Se a @env{HISTTIMEFORMAT} estiver configurada, então a informação de 
+marca temporal associada com cada entrada de histórico é escrita no 
+arquivo de histórico, marcada com o carácter de comentário de histórico.
+Quando o arquivo de histórico é lido, as linhas iniciando com o carácter 
+de comentário de histórico seguidas imediatamente por um dígito são 
+interpretadas como marcas temporais para a linha de histórico prévia.
 
-The builtin command @code{fc} may be used to list or edit and re-execute
-a portion of the history list.
-The @code{history} builtin may be used to display or modify the history
-list and manipulate the history file.
-When using command-line editing, search commands
-are available in each editing mode that provide access to the
-history list (@pxref{Commands For History}).
+O comando interno @code{fc} pode ser utilizado para listar ou editar e 
+re-executar uma porção da lista de histórico.
+O comando interno @code{history} pode ser utilizado para exibir ou 
+modificar a lista de histórico e manipular o arquivo de histórico.
+Quando da utilização da edição de linha de comando, os comandos de busca 
+estão disponíveis em cada modo de edição que provê acesso à lista de 
+histórico (veja-se @ref{Commands For History}).
 
-The shell allows control over which commands are saved on the history
-list.  The @env{HISTCONTROL} and @env{HISTIGNORE}
-variables may be set to cause the shell to save only a subset of the
-commands entered.
-The @code{cmdhist}
-shell option, if enabled, causes the shell to attempt to save each
-line of a multi-line command in the same history entry, adding
-semicolons where necessary to preserve syntactic correctness.
-The @code{lithist}
-shell option causes the shell to save the command with embedded newlines
-instead of semicolons.
-The @code{shopt} builtin is used to set these options.
-@xref{Bash Builtins}, for a description of @code{shopt}.
+O shell permite controle sobre quais comandos são salvos na lista de 
+histórico.   As variáveis @env{HISTCONTROL} e @env{HISTIGNORE} podem ser 
+configuradas para fazer com que o shell salve somente um subconjunto dos 
+comandos fornecidos.
+A opção de shell @code{cmdhist}, se habilitada, faz com que o shell 
+tente salvar cada linha de um comando multi-linha na mesma entrada de 
+histórico, adicionando ponto e vírgula onde for necessário para 
+preservar a correção sintática.
+A opção de shell @code{lithist} faz com o shell salve o comando com 
+marcadores "newline" embutidos, em vez de ponto e vírgula.
+O comando interno @code{shopt} é utilizado para configurar essas opções.
+Veja-se @ref{Bash Builtins}, para uma descrição de @code{shopt}.
 
 @node Bash History Builtins
 @section Bash History Builtins
