@@ -3,6 +3,10 @@
 		8.7 - Programmable Completion Builtins
 		8.8 - A Programmable Completion Example
 		(rluser-pt_BR.texi file translation finnished).
+		
+		(in hsuser-pt_BR.texi):
+		9 - Using History Interactively
+		9.1 - Bash History Facilities
 
 2016-fev-20	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
