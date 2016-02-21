@@ -137,8 +137,8 @@ Veja-se @ref{Bash Builtins}, para uma descrição de @code{shopt}.
 @section Bash History Builtins
 @cindex history builtins
 
-Bash provides two builtin commands which manipulate the
-history list and history file.
+Bash provê dois comandos internos os quais manipulam a lista de 
+histórico e o arquivo de histórico.
 
 @table @code
 
@@ -149,33 +149,36 @@ history list and history file.
 @code{fc -s [@var{pat}=@var{rep}] [@var{command}]}
 @end example
 
-The first form selects a range of commands from @var{first} to
-@var{last} from the history list and displays or edits and re-executes
-them.
-Both @var{first} and
-@var{last} may be specified as a string (to locate the most recent
-command beginning with that string) or as a number (an index into the
-history list, where a negative number is used as an offset from the
-current command number).  If @var{last} is not specified it is set to
-@var{first}.  If @var{first} is not specified it is set to the previous
-command for editing and @minus{}16 for listing.  If the @option{-l} flag is
-given, the commands are listed on standard output.  The @option{-n} flag
-suppresses the command numbers when listing.  The @option{-r} flag
-reverses the order of the listing.  Otherwise, the editor given by
-@var{ename} is invoked on a file containing those commands.  If
-@var{ename} is not given, the value of the following variable expansion
-is used: @code{$@{FCEDIT:-$@{EDITOR:-vi@}@}}.  This says to use the
-value of the @env{FCEDIT} variable if set, or the value of the
-@env{EDITOR} variable if that is set, or @code{vi} if neither is set.
-When editing is complete, the edited commands are echoed and executed.
+A primeira forma seleciona um intervalo de comandos, desde @var{first} 
+até @var{last}, da lista de histórico e exibe ou edita e os re-executa.
+@var{first} e @var{last} podem ser especificadas como uma sequência de 
+caracteres (para localizar o mais recente comando iniciando com aquela 
+sequência de caracteres) ou como um número (um indice na lista de 
+histórico, onde um número negativo é utilizado como uma compensação a 
+partir do número atual de comando).   Se @var{last} não for 
+especificado, então é configurado para @var{first}.   Se @var{first} não 
+for especificado, então é configurado para o comando prévio para edição 
+e @minus{}16 para listagem.   Se o sinalizador @option{-l} for dado, 
+então os comandos são listados na saída padrão.  O sinalizador 
+@option{-n} suprime os números de comando quando da listagem.   O 
+sinalizador @option{-r} reverte a ordem da listagem.   Do contrário, o 
+editor dado por @var{ename} é invocado sobre um arquivo contendo aqueles 
+comandos.   Se @var{ename} não for dado, então o valor da seguinte 
+expansão de variável é utilizado: @code{$@{FCEDIT:-$@{EDITOR:-vi@}@}}. 
+Isso diz para utilizar o valor da variável @env{FCEDIT} se configurado, 
+ou o valor da variável @env{EDITOR} se essa estiver configurada, ou 
+@code{vi} se nenhuma delas estiver configurada.
+Quando a edição estiver completa, os comandos editados são ecoados e 
+executados.
 
-In the second form, @var{command} is re-executed after each instance
-of @var{pat} in the selected command is replaced by @var{rep}.
-@var{command} is intepreted the same as @var{first} above.
+Na segunda forma, @var{command} é re-executado após cada instância de 
+@var{pat} no comando selecionado ser substituida por @var{rep}.
+@var{command} é interpretado do mesmo jeito que @var{first} acima.
 
-A useful alias to use with the @code{fc} command is @code{r='fc -s'}, so
-that typing @samp{r cc} runs the last command beginning with @code{cc}
-and typing @samp{r} re-executes the last command (@pxref{Aliases}).
+Um apelido útil para se utilizar com o comando @code{fc} é 
+@code{r='fc -s'}, de maneira que digitar @samp{r cc} executa o último 
+comando iniciando com @code{cc} e digitar @samp{r} re-executa o último 
+comando (veja-se @ref{Aliases}).
 
 @item history
 @btindex history
@@ -187,58 +190,59 @@ history [-anrw] [@var{filename}]
 history -ps @var{arg}
 @end example
 
-With no options, display the history list with line numbers.
-Lines prefixed with a @samp{*} have been modified.
-An argument of @var{n} lists only the last @var{n} lines.
-If the shell variable @env{HISTTIMEFORMAT} is set and not null,
-it is used as a format string for @var{strftime} to display
-the time stamp associated with each displayed history entry.
-No intervening blank is printed between the formatted time stamp
-and the history line.
+Sem opções, exibe a lista de histórico com números de linha.
+As linhas prefixadas com um @samp{*} foram modificadas.
+Um argumento de @var{n} lista somente as últimas @var{n} linhas.
+Se a variável de shell @env{HISTTIMEFORMAT} estiver configurada e não 
+nula, então ela é utilizada como uma sequência de caracteres de formato 
+para @var{strftime} exibir a marca temporal associada com cada entrada 
+de histórico exibida.
+Nenhum espaço em branco interveniente é impresso entre a marca temporal 
+formatada e a linha de histórico.
 
-Options, if supplied, have the following meanings:
+As opções, se fornecidas, tem os seguintes significados:
 
 @table @code
 @item -c
-Clear the history list.  This may be combined
-with the other options to replace the history list completely.
+Limpa a lista de histórico.   Isso pode ser combinado com as outras 
+opções para substituir a lista de histórico completamente.
 
 @item -d @var{offset}
-Delete the history entry at position @var{offset}.
-@var{offset} should be specified as it appears when the history is
-displayed.
+Deleta a entrada de histórico na posição @var{offset}.
+@var{offset} deveria ser especificado conforme aparece quando o 
+histórico é exibido.
 
 @item -a
-Append the new
-history lines (history lines entered since the beginning of the
-current Bash session) to the history file.
+Acrescenta ao final as novas linhas de histórico (linhas de histórico 
+entradas desde o início da sessão atual de Bash) ao arquivo de 
+histórico.
 
 @item -n
-Append the history lines not already read from the history file
-to the current history list.  These are lines appended to the history
-file since the beginning of the current Bash session.
+Acrescenta as linhas de histórico ainda não lidas a partir do arquivo de 
+histórico à atual lista de histórico.   Essas são linhas adicionadas ao 
+arquivo de histórico desde o início da sessão atual de Bash.
 
 @item -r
-Read the history file and append its contents to
-the history list.
+Lê o arquivo de histórico e adiciona seu conteúno à lista de histórico.
 
 @item -w
-Write out the current history list to the history file.
+Escreve a atual lista de histórico ao arquivo de histórico.
 
 @item -p
-Perform history substitution on the @var{arg}s and display the result
-on the standard output, without storing the results in the history list.
+Realiza substituição de histórico sobre os @var{arg}s e exibe o 
+resultado na sa'da padrão, sem armazenar os resultados na lista de 
+histórico.
 
 @item -s
-The @var{arg}s are added to the end of
-the history list as a single entry.
+Os @var{arg}s são adicionados ao final da lista de histórico como uma 
+entrada única.
 
 @end table
 
-When any of the @option{-w}, @option{-r}, @option{-a}, or @option{-n} options is
-used, if @var{filename}
-is given, then it is used as the history file.  If not, then
-the value of the @env{HISTFILE} variable is used.
+Quando qualquer das opções @option{-w}, @option{-r}, @option{-a}, ou 
+@option{-n} é utilizada, se @var{filename} for dado, então ele é 
+utilizado como o arquivo de histórico.   Se não, então o valor da 
+variável @env{HISTFILE} é utilizada.
 
 @end table
 @end ifset
