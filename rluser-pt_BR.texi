@@ -1972,9 +1972,10 @@ complete -D -F _completion_loader -o bashdefault -o default
 @section Programmable Completion Builtins
 @cindex completion builtins
 
-Three builtin commands are available to manipulate the programmable completion
-facilities: one to specify how the arguments to a particular command are to
-be completed, and two to modify the completion as it is happening.
+Três comandos internos estão disponíveis para manipular as facilidades 
+de complementação programáveis: uma para especificar como os argumentos 
+a um comando particular são para ser complementados, e dois para 
+modificar a complementação conforme ela está ocorrendo.
 
 @table @code
 @item compgen
@@ -1983,23 +1984,22 @@ be completed, and two to modify the completion as it is happening.
 @code{compgen [@var{option}] [@var{word}]}
 @end example
 
-Generate possible completion matches for @var{word} according to
-the @var{option}s, which may be any option accepted by the
-@code{complete}
-builtin with the exception of @option{-p} and @option{-r}, and write
-the matches to the standard output.
-When using the @option{-F} or @option{-C} options, the various shell variables
-set by the programmable completion facilities, while available, will not
-have useful values.
+Gera coincidências de complementação possíveis para @var{word} de acordo 
+com as @var{option}s, o qual pode ser qualquer opção aceita pelo comando 
+interno @code{complete} com exceção de @option{-p} e @option{-r}, e 
+escreve as coincidências para a saída padrão.
+Quando da utilização das opções @option{-F} ou @option{-C}, as várias 
+variáveis de shell configuradas pelas facilidades de complementação 
+programáveis, enquanto disponíveis, não terão valores úteis.
 
-The matches will be generated in the same way as if the programmable
-completion code had generated them directly from a completion specification
-with the same flags.
-If @var{word} is specified, only those completions matching @var{word}
-will be displayed.
+As coincidências serão geradas da mesma maneira como se o código de 
+complementação programável as tivesse gerado diretamente a partir da 
+especificação de complementação com os mesmos flags.
+Se @var{word} for especificada, somente aquelas complementação que 
+coincidirem com @var{word} serão exibidas.
 
-The return value is true unless an invalid option is supplied, or no
-matches were generated.
+O valor de retorno é verdadeiro, a menos que uma opção inválida seja 
+fornecida, ou nenhuma coincidência seja gerada.
 
 @item complete
 @btindex complete
@@ -2010,151 +2010,164 @@ matches were generated.
 @code{complete -pr [-DE] [@var{name} @dots{}]}
 @end example
 
-Specify how arguments to each @var{name} should be completed.
-If the @option{-p} option is supplied, or if no options are supplied, existing
-completion specifications are printed in a way that allows them to be
-reused as input.
-The @option{-r} option removes a completion specification for
-each @var{name}, or, if no @var{name}s are supplied, all
-completion specifications.
-The @option{-D} option indicates that the remaining options and actions should
-apply to the ``default'' command completion; that is, completion attempted
-on a command for which no completion has previously been defined.
-The @option{-E} option indicates that the remaining options and actions should
-apply to ``empty'' command completion; that is, completion attempted on a 
-blank line.
+Especifica como argumentos a cada @var{name} deveriam ser 
+complementados.
+Se a opção @option{-p} for fornecida, ou se nenhuma opção for fornecida, 
+as especificações de complementação existentes são impressas de uma 
+maneira a permitir que sejam reutilizadas como entrada.
+A opção @option{-r} remove uma especificação de complementação para cada 
+@var{name}, ou, se nenhum @var{name} for fornecido, todas as 
+especificações de complementação.
+A opção @option{-D} indica que as opções remanescentes e ações deveriam 
+se aplicar à complementação "padrão" de comando; isto é, a 
+complementação tentada sobre um comando para o qual nenhuma 
+complementação tenha sido definida previamente.
+A opção @option{-E} indica que as opções restantes e ações deveriam se 
+aplicar a complementação "vazia" de comando; isto é, a complementação 
+tentada sobre uma linha em branco.
 
-The process of applying these completion specifications when word completion
-is attempted is described above (@pxref{Programmable Completion}).  The
-@option{-D} option takes precedence over @option{-E}.
+O processo de aplicação dessas especificações de complementação quando a 
+complementação de palavra é tentada está descrita acima 
+(veja-se @ref{Programmable Completion}).   A opção @option{-D} tem 
+precedência sobre @option{-E}.
 
-Other options, if specified, have the following meanings.
-The arguments to the @option{-G}, @option{-W}, and @option{-X} options
-(and, if necessary, the @option{-P} and @option{-S} options)
-should be quoted to protect them from expansion before the
-@code{complete} builtin is invoked.
+Outras opções, se especificadas, tem os seguintes significados.
+Os argumentos para as opções @option{-G}, @option{-W}, e @option{-X} (e, 
+se necessário, as opções @option{-P} e @option{-S}) deveriam estar 
+encapsuladas para protegê-las da expansão antes que o comando interno 
+@code{complete} seja invocado.
 
 
 @table @code
 @item -o @var{comp-option}
-The @var{comp-option} controls several aspects of the compspec's behavior
-beyond the simple generation of completions.
-@var{comp-option} may be one of: 
+@var{comp-option} controla vários aspectos do comportamento de compspec 
+além da simples geração de complementações.
+@var{comp-option} pode ser um de:
 
 @table @code
 
 @item bashdefault
-Perform the rest of the default Bash completions if the compspec
-generates no matches.
+Realiza o restante das complementações padrão de Bash se o compspec não 
+gerar coincidências.
 
 @item default
-Use Readline's default filename completion if the compspec generates
-no matches.
+Utiliza a complementação de nome de arquivo padrão de Readline se o 
+compspec não gerar coincidências.
 
 @item dirnames
-Perform directory name completion if the compspec generates no matches.
+Realiza complementação de nome de diretório se o compspec não gerar 
+coincidências.
 
 @item filenames
-Tell Readline that the compspec generates filenames, so it can perform any
-filename-specific processing (like adding a slash to directory names
-quoting special characters, or suppressing trailing spaces).
-This option is intended to be used with shell functions specified
-with @option{-F}.
+Informa a Readline que a compspec gera nomes de arquivo, de forma que 
+possa realizar qualquer processamento específico de nome de arquivo 
+(como adicionar uma barra aos nomes de diretório; encapsular caracteres 
+especiais; ou suprimir espaços em branco ao final).
+Essa opção é concebida para ser utilizada com funções de shell 
+especificadas com @option{-F}.
 
 @item noquote
-Tell Readline not to quote the completed words if they are filenames
-(quoting filenames is the default).
+Informa a Readline para não encapsular as palavras complementadas se 
+elas forem nomes de arquivo (o encapsulamento de nomes de arquivo é o 
+padrão).
 
 @item nospace
-Tell Readline not to append a space (the default) to words completed at
-the end of the line.
+Informa a Readline para não acrescentar um espaço (o padrão) a palavras 
+complementadas no fim da linha.
 
 @item plusdirs
-After any matches defined by the compspec are generated, 
-directory name completion is attempted and any
-matches are added to the results of the other actions.
+Após quaisquer coincidências definidas pela compspec serem geradas, a 
+complementação de nome de diretório é tentada e quaisquer coincidências 
+são adicionadas aos resultados de outras ações.
 
 @end table
 
 @item -A @var{action}
-The @var{action} may be one of the following to generate a list of possible
-completions:
+@var{action} pode ser um do seguinte para gerar uma lista de possíveis 
+complementações:
 
 @table @code
 @item alias
-Alias names.  May also be specified as @option{-a}.
+Nomes de apelidos.   Também pode ser especificada como @option{-a}.
 
 @item arrayvar
-Array variable names.
+Nomes de variáveis vetor.
 
 @item binding
-Readline key binding names (@pxref{Bindable Readline Commands}).
+Nomes de vinculação de tecla de Readline 
+(veja-se @ref{Bindable Readline Commands}).
 
 @item builtin
-Names of shell builtin commands.  May also be specified as @option{-b}.
+Nomes de comandos internos ao shell.   Também pode ser especificada como 
+@option{-b}.
 
 @item command
-Command names.  May also be specified as @option{-c}.
+Nomes de comando.   Também pode ser especificada como @option{-c}.
 
 @item directory
-Directory names.  May also be specified as @option{-d}.
+Nomes de diretório.   Também pode ser especificada como @option{-d}.
 
 @item disabled
-Names of disabled shell builtins.
+Nomes de comandos internos ao shell desabilitados.
 
 @item enabled
-Names of enabled shell builtins.
+Nomes de comandos internos ao shell habilitados.
 
 @item export
-Names of exported shell variables.  May also be specified as @option{-e}.
+Nomes de variáveis de shell exportadas.   Também pode ser especificada 
+como @option{-e}.
 
 @item file
-File names.  May also be specified as @option{-f}.
+Nomes de arquivo.   Também pode ser especificada como @option{-f}.
 
 @item function
-Names of shell functions.
+Nomes de funções de shell.
 
 @item group
-Group names.  May also be specified as @option{-g}.
+Nomes de grupo.   Também pode ser especificada como @option{-g}.
 
 @item helptopic
-Help topics as accepted by the @code{help} builtin (@pxref{Bash Builtins}).
+Tópicos de ajuda conforme aceitos pelo comando interno @code{help} 
+(veja-se @ref{Bash Builtins}).
 
 @item hostname
-Hostnames, as taken from the file specified by the
-@env{HOSTFILE} shell variable (@pxref{Bash Variables}).
+Nomes de máquina, conforme extraídos a partir do arquivo especificado 
+pela variável de shell @env{HOSTFILE} (veja-se @ref{Bash Variables}).
 
 @item job
-Job names, if job control is active.  May also be specified as @option{-j}.
+Nomes de tarefa, se o controle de tarefa estiver ativo.   Também pode 
+ser especificada como @option{-j}.
 
 @item keyword
-Shell reserved words.  May also be specified as @option{-k}.
+Palavras reservadas de shell.   Também pode ser especificada como 
+@option{-k}.
 
 @item running
-Names of running jobs, if job control is active.
+Nomes de tarefas em execução, se o controle de tarefas estiver ativo.
 
 @item service
-Service names.  May also be specified as @option{-s}.
+Nomes de serviço.   Também pode ser especificada como @option{-s}.
 
 @item setopt
-Valid arguments for the @option{-o} option to the @code{set} builtin
-(@pxref{The Set Builtin}).
+Argumentos válidos para a opção @option{-o} ao comando interno 
+@code{set} (veja-se @ref{The Set Builtin}).
 
 @item shopt
-Shell option names as accepted by the @code{shopt} builtin
-(@pxref{Bash Builtins}).
+Nomes de opção do shell conforme aceitos pelo comando interno 
+@code{shopt} (veja-se @ref{Bash Builtins}).
 
 @item signal
-Signal names.
+Nomes de sinal.
 
 @item stopped
-Names of stopped jobs, if job control is active.
+Nomes de tarefas paradas, se o controle de tarefas estiver ativo.
 
 @item user
-User names.  May also be specified as @option{-u}.
+Nomes de usuário.   Também pode ser especificada como @option{-u}.
 
 @item variable
-Names of all shell variables.  May also be specified as @option{-v}.
+Nomes de todas as variáveis do shell.   Também pode ser especificada 
+como @option{-v}.
 @end table
 
 @item -C @var{command}
