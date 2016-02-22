@@ -1,4 +1,13 @@
-2016-fev-21	Translated the following sections and subsections (in 
+2016-feb-22	Translated the following sections and subsections (in 
+		hsuser-pt_BR.texi):
+		9.2 - Bash History Builtins
+		9.3 - History Expansion
+		9.3.1 - Event Designators
+		9.3.2 - Word Designators
+		9.3.3 - Modifiers
+		(hsuser-pt_BR.texi file translation finnished).
+
+2016-feb-21	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.7 - Programmable Completion Builtins
 		8.8 - A Programmable Completion Example
@@ -8,7 +17,7 @@
 		9 - Using History Interactively
 		9.1 - Bash History Facilities
 
-2016-fev-20	Translated the following sections and subsections (in 
+2016-feb-20	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.4.6 - Letting Readline Type For You
 		8.4.7 - Keyboard Macros
@@ -16,22 +25,22 @@
 		8.5 - Readline vi Mode
 		8.6 - Programmable Completion
 
-2016-fev-19	Translated the following sections and subsections (in 
+2016-feb-19	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.4.4 - Killing And Yanking
 		8.4.5 - Specifying Numeric Arguments
 
-2016-fev-18	Translated the following sections and subsections (in 
+2016-feb-18	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.4.2 - Commands For Manipulating The History
 		8.4.3 - Commands For Changing Text
 
-2016-fev-14	Translated the following sections and subsections (in 
+2016-feb-14	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.4 - Bindable Readline Commands
 		8.4.1 - Commands For Moving
 
-2016-fev-13	Translated the following sections and subsections (in 
+2016-feb-13	Translated the following sections and subsections (in 
 		rluser-pt_BR.texi):
 		8.3.1 - Readline Init File Syntax (Key Bindings)
 		8.3.2 - Conditional Init Constructs
@@ -213,4 +222,4 @@
 
 2015-jun-24	Translated from <1. Introduction; 1.1. What is Bash?> up to <3.2.2 Pipelines>.
 
-2015-jun-23 	Initial commit
+2015-jun-23	Initial commit
