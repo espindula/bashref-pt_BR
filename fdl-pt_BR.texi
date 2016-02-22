@@ -1,69 +1,76 @@
-@c The GNU Free Documentation License.
-@center Version 1.3, 3 November 2008
+@c A Licença de Documentação Livre GNU
+@center Versão 1.3, 03 de novembro de 2008
 
-@c This file is intended to be included within another document,
-@c hence no sectioning command or @node.
+@c Este arquivo é entendido para ser incluído juntamente com outro 
+@c documento, portanto sem comando de seccionamento ou @node.
 
 @display
-Copyright @copyright{} 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc.
-@uref{http://fsf.org/}
+Direitos autorais @copyright{} 2000, 2001, 2002, 2007, 2008 Free 
+Software Foundation, Inc. @uref{http://fsf.org/}
 
-Everyone is permitted to copy and distribute verbatim copies
-of this license document, but changing it is not allowed.
+A qualquer pessoa é permitido copiar e distribuir cópias literais deste 
+documento de licença, porém modificá-lo não é permitido.
 @end display
 
 @enumerate 0
 @item
-PREAMBLE
+PREÂMBULO
 
-The purpose of this License is to make a manual, textbook, or other
-functional and useful document @dfn{free} in the sense of freedom: to
-assure everyone the effective freedom to copy and redistribute it,
-with or without modifying it, either commercially or noncommercially.
-Secondarily, this License preserves for the author and publisher a way
-to get credit for their work, while not being considered responsible
-for modifications made by others.
+O propósito desta licença é tornar um manual, livro de texto, ou outro 
+documento funcional e útil @dfn{livre} no sentido da liberdade: para 
+assegurar a qualquer pessoa a libredade efetiva para copiar e 
+redistribui-lo, com ou sem modificações, ambos comercialmente ou não 
+comercialmente.
+Secundariamente, esta Licença preserva para o autor e editor uma maneira 
+de obter crédito pelos seus trabalhos, ao mesmo tempo não sendo 
+considerado responsável por modificações feitas por outros.
 
-This License is a kind of ``copyleft'', which means that derivative
-works of the document must themselves be free in the same sense.  It
-complements the GNU General Public License, which is a copyleft
-license designed for free software.
+Esta Licença é uma espécie de ``copyleft'' (``esquerdos autorais''), o 
+que significa que trabalhos derivados do documento devem necessariamente 
+eles mesmos serem livres no mesmo sentido.   Ela complementa a Licença 
+Pública Geral GNU, a qual é uma lecença de esquerdos autorais projetada 
+para software livre.
 
-We have designed this License in order to use it for manuals for free
-software, because free software needs free documentation: a free
-program should come with manuals providing the same freedoms that the
-software does.  But this License is not limited to software manuals;
-it can be used for any textual work, regardless of subject matter or
-whether it is published as a printed book.  We recommend this License
-principally for works whose purpose is instruction or reference.
+Nós projetamos esta Licença para utilizá-la para manuais para software 
+livre, porque softare livre precisa de documentação livre: um programa 
+livre deveria vir com manuais provendo as mesmas liberdades que o 
+software provê.   Porém esta Licença não é limitada a manuais de 
+software; ela pode ser utilizada para qualquer trabalho textual, 
+independentemente de questões de assunto ou se o trabalho textual for 
+publicado como um livro impresso.   Nós recomendamos esta Licença 
+principalmente para trabalhos cujo propósito seja instrução ou 
+referência.
 
 @item
-APPLICABILITY AND DEFINITIONS
+APLICABILIDADE E DEFINIÇÕES
 
-This License applies to any manual or other work, in any medium, that
-contains a notice placed by the copyright holder saying it can be
-distributed under the terms of this License.  Such a notice grants a
-world-wide, royalty-free license, unlimited in duration, to use that
-work under the conditions stated herein.  The ``Document'', below,
-refers to any such manual or work.  Any member of the public is a
-licensee, and is addressed as ``you''.  You accept the license if you
-copy, modify or distribute the work in a way requiring permission
-under copyright law.
+Esta Licença se aplica a qualquer manual ou outro trabalho, em qualquer 
+meio, que contenha uma notícia colocada pelo detentor dos direitos 
+autorais dizendo que ele pode ser distribuido sob os termos desta 
+Licença.   Tal notícia concede uma licença mundial, livre de patente, 
+ilimitada na duração, para utilizar aquele trabalho sob as condições 
+nela declaradas.   O ``Documento'', abaixo, se refere a quaisquer desses 
+manuais ou trabalhos.   Qualquer membro do publico é um títular da 
+licença, e é mencionado como ``você''.   Você aceita a licença se você 
+copiar, modificar ou distribuir o trabalho em uma forma que exija 
+permissão sob lei de direitos autorais.
 
-A ``Modified Version'' of the Document means any work containing the
-Document or a portion of it, either copied verbatim, or with
-modifications and/or translated into another language.
+Uma ``Versão Modificada'' do Documento significa qualquer trabalho 
+contendo o Documento ou uma porção dele, seja literalmente copiado, ou 
+com modificações e/ou traduzido em outra língua.
 
-A ``Secondary Section'' is a named appendix or a front-matter section
-of the Document that deals exclusively with the relationship of the
-publishers or authors of the Document to the Document's overall
-subject (or to related matters) and contains nothing that could fall
-directly within that overall subject.  (Thus, if the Document is in
-part a textbook of mathematics, a Secondary Section may not explain
-any mathematics.)  The relationship could be a matter of historical
-connection with the subject or with related matters, or of legal,
-commercial, philosophical, ethical or political position regarding
-them.
+Uma ``Seção Secundária'' é um apêndice nomeado ou uma seção pré-textual 
+do Documento que lida exclusivamente com o relacionamento dos editores 
+ou autores do Documento para com o assunto global do Documento (ou com 
+questões relacionadas) e não contém nada que possa se conformar 
+diretamente com aquele assunto global.   (Assim, se o Documento for em 
+parte um livro texto de matemática, uma Seção Secundária não pode 
+explanar nada acerca de cálculos matemáticos).   O relacionamento 
+poderia ser uma questão de conexão histórica com o assunto ou com 
+questões relacionadas, ou de posicionamento legal, comercial, 
+filosófico, ético ou político respeitante a eles.
+
+
 
 The ``Invariant Sections'' are certain Secondary Sections whose titles
 are designated, as being those of Invariant Sections, in the notice
