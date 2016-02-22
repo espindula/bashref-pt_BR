@@ -19,7 +19,7 @@ PREÂMBULO
 O propósito desta licença é tornar um manual, livro de texto, ou outro 
 documento funcional e útil @dfn{livre} no sentido da liberdade: para 
 assegurar a qualquer pessoa a liberdade efetiva para copiar e 
-redistribui-lo, com ou sem modificações, ambos comercialmente ou não 
+redistribuí-lo, com ou sem modificações, ambos comercialmente ou não 
 comercialmente.
 Secundariamente, esta Licença preserva para o autor e editor uma maneira 
 de obter crédito pelos seus trabalhos, ao mesmo tempo não sendo 
@@ -46,11 +46,11 @@ APLICABILIDADE E DEFINIÇÕES
 
 Esta Licença se aplica a qualquer manual ou outro trabalho, em qualquer 
 meio, que contenha uma notícia colocada pelo detentor dos direitos 
-autorais dizendo que ele pode ser distribuido sob os termos desta 
+autorais dizendo que ele pode ser distribuído sob os termos desta 
 Licença.   Tal notícia concede uma licença mundial, livre de patente, 
 ilimitada na duração, para utilizar aquele trabalho sob as condições 
 nela declaradas.   O ``Documento'', abaixo, se refere a quaisquer desses 
-manuais ou trabalhos.   Qualquer membro do publico é um títular da 
+manuais ou trabalhos.   Qualquer membro do publico é um titular da 
 licença, e é mencionado como ``você''.   Você aceita a licença se você 
 copiar, modificar ou distribuir o trabalho em uma forma que exija 
 permissão sob lei de direitos autorais.
@@ -88,7 +88,7 @@ Uma cópia ``Transparente'' do Documento significa uma cópia legível por
 máquina, representada em um formato cuja especificação está disponível 
 para o público em geral, que é adequada para revisar o documento 
 diretamente com editores de texto genéricos ou (para imagens compostas 
-de pixels) programas de pintura genéricos ou (para desenhos) algum 
+de pixeis) programas de pintura genéricos ou (para desenhos) algum 
 editor de desenho disponível amplamente, e que seja adequado para 
 entrada a formatadores de texto ou para tradução automática a uma 
 variedade de formatos próprios para entrada a formatadores de texto.
@@ -116,7 +116,7 @@ processadores de palavra apenas para propósitos de saída.
 
 A ``Página de Título'' significa, para um livro impresso, a própria 
 página de título, mais tantas páginas seguintes quantas sejam 
-necessárias para manter, legívelmente, o material que esta Licença exige 
+necessárias para manter, legivelmente, o material que esta Licença exige 
 para aparecer na página de título.   Para trabalhos em formatos que não 
 tenham qualquer página de título como tal, ``Página de Título'' 
 significa o texto próximo da mais proeminente aparição do título do 
@@ -166,21 +166,21 @@ Se você publicar cópias impressas (ou cópias em mídia que geralmente tem
 capas impressas) do Documento, em número maior que cem (100), e a 
 notícia de licença do Documento exigir Textos de Capa, você deve 
 necessariamente encartar as cópias em capas que transportem, claramente 
-e legívelmente, todos estes Textos de Capa: Textos de Primeira Capa na 
-primeira capa, e Textos de Quarta Capa na capa trazeira.   Ambas as 
-capas devem necessariamente também claramente e legívelmente identificar 
+e legivelmente, todos estes Textos de Capa: Textos de Primeira Capa na 
+primeira capa, e Textos de Quarta Capa na capa traseira.   Ambas as 
+capas devem necessariamente também claramente e legivelmente identificar 
 você como o editor dessas cópias.   A capa frontal deve necessariamente 
 apresentar o título completo com todas as palavras do título igualmente 
-proeminentes e visíveis.   Voce pode adicionar outros materiais nas 
+proeminentes e visíveis.   Você pode adicionar outros materiais nas 
 capas adicionalmente.
 As cópias com modificações limitadas às capas, tanto quanto preservem o 
 título do Documento e satisfaçam essas condições, podem ser tratadas 
 como cópias literais em relação a outros aspectos.
 
 Se os textos exigidos para ambas as capas forem muito volumosos para 
-caber legívelmente, você deveria colocar os primeiros listados (tantos 
+caber legivelmente, você deveria colocar os primeiros listados (tantos 
 quantos caibam razoavelmente) na capa atual, e continuar o restante em 
-páginas adjascentes.
+páginas adjacentes.
 
 Se você publicar ou distribuir cópias Opacas do Documento em número 
 maior que cem (100), você deve necessariamente ou incluir uma cópia 
@@ -193,7 +193,7 @@ cópia Transparente completa do Documento, livre do material adicionado.
 Se você se utilizar da última opção, você deve necessariamente adotar 
 razoavelmente passos prudentes, quando você iniciar a distribuição de 
 cópias Opacas em quantidade, para se assegurar que essa cópia 
-Tranparente permanecerá então acessível na localização declarada até 
+Transparente permanecerá então acessível na localização declarada até 
 pelo menos um ano após a última vez que você distribuiu uma cópia Opaca 
 (diretamente ou por intermédio dos seus agentes ou varejistas) daquela 
 edição ao público.
@@ -237,7 +237,7 @@ Preserve todas as notícias de direitos autorais do Documento.
 
 @item
 Adicione uma notícia apropriada de direitos autorais para suas 
-modificações, adjascente às outras notícias de direitos autorais.
+modificações, adjacente às outras notícias de direitos autorais.
 
 @item
 Inclua, imediatamente após as notícias de direitos autorais, uma notícia 
@@ -285,7 +285,7 @@ considerados parte dos títulos de seção.
 
 @item
 Delete quaisquer seções Intituladas ``Patrocínios''.   Tal seção não 
-pode ser incluida na Versão Modificada.
+pode ser incluída na Versão Modificada.
 
 @item
 Não reintitule qualquer seção existente para Intitulada ``Patrocínios'' 
