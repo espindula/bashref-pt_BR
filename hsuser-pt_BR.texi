@@ -45,7 +45,7 @@ outros programas, veja-se o Manual da Biblioteca @sc{gnu} Readline.
 @ifclear BashFeatures
 Este capítulo descreve como utilizar a Biblioteca @sc{gnu} History 
 interativamente, a partir do ponto de vista do usuário.   Ele deveria 
-ser consideradoum guia do usuário.   Para informação sobre a utilização 
+ser considerado um guia do usuário.   Para informação sobre a utilização 
 da Biblioteca @sc{gnu} History em seus próprios programas, veja-se 
 @ref{Programming with GNU History}.
 @end ifclear
@@ -85,14 +85,14 @@ realizada, objeto dos valores das variáveis de shell @env{HISTIGNORE} e
 @env{HISTCONTROL}.
 
 Quando o shell inicializa, o histórico é inicializado a partir do 
-arquivo noneado pela variável @env{HISTFILE} (padrão 
+arquivo nomeado pela variável @env{HISTFILE} (padrão 
 @file{~/.bash_history}).
 O arquivo nomeado pelo valor de @env{HISTFILE} é truncado, se 
 necessário, para conter não mais que o número de linhas especificadas 
 pelo valor da variável @env{HISTFILESIZE}.
 Quando um shell com histórico habilitado sai, as últimas @env{$HISTSIZE} 
 linhas são copiadas a partir da lista de histórico para o arquivo 
-nonimado por @env{$HISTFILE}.
+nominado por @env{$HISTFILE}.
 Se a opção de shell @code{histappend} for configurada 
 (veja-se @ref{Bash Builtins}), então as linhas são acrescentadas ao 
 final do arquivo de histórico, do contrário o arquivo de histórico é 
@@ -125,7 +125,7 @@ histórico.   As variáveis @env{HISTCONTROL} e @env{HISTIGNORE} podem ser
 configuradas para fazer com que o shell salve somente um subconjunto dos 
 comandos fornecidos.
 A opção de shell @code{cmdhist}, se habilitada, faz com que o shell 
-tente salvar cada linha de um comando multi-linha na mesma entrada de 
+tente salvar cada linha de um comando multilinha na mesma entrada de 
 histórico, adicionando ponto e vírgula onde for necessário para 
 preservar a correção sintática.
 A opção de shell @code{lithist} faz com o shell salve o comando com 
@@ -153,7 +153,7 @@ A primeira forma seleciona um intervalo de comandos, desde @var{first}
 até @var{last}, da lista de histórico e exibe ou edita e os re-executa.
 @var{first} e @var{last} podem ser especificadas como uma sequência de 
 caracteres (para localizar o mais recente comando iniciando com aquela 
-sequência de caracteres) ou como um número (um indice na lista de 
+sequência de caracteres) ou como um número (um índice na lista de 
 histórico, onde um número negativo é utilizado como uma compensação a 
 partir do número atual de comando).   Se @var{last} não for 
 especificado, então é configurado para @var{first}.   Se @var{first} não 
@@ -172,7 +172,7 @@ Quando a edição estiver completa, os comandos editados são ecoados e
 executados.
 
 Na segunda forma, @var{command} é re-executado após cada instância de 
-@var{pat} no comando selecionado ser substituida por @var{rep}.
+@var{pat} no comando selecionado ser substituída por @var{rep}.
 @var{command} é interpretado do mesmo jeito que @var{first} acima.
 
 Um apelido útil para se utilizar com o comando @code{fc} é 
@@ -223,14 +223,14 @@ histórico à atual lista de histórico.   Essas são linhas adicionadas ao
 arquivo de histórico desde o início da sessão atual de Bash.
 
 @item -r
-Lê o arquivo de histórico e adiciona seu conteúno à lista de histórico.
+Lê o arquivo de histórico e adiciona seu conteúdo à lista de histórico.
 
 @item -w
 Escreve a atual lista de histórico ao arquivo de histórico.
 
 @item -p
 Realiza substituição de histórico sobre os @var{arg}s e exibe o 
-resultado na sa'da padrão, sem armazenar os resultados na lista de 
+resultado na saída padrão, sem armazenar os resultados na lista de 
 histórico.
 
 @item -s
@@ -262,7 +262,7 @@ os argumentos ao comando anterior na linha de entrada atual, ou corrigir
 erros em comandos anteriores rapidamente.
 
 A expansão de histórico tem lugar em duas partes.   A primeira é para 
-determinar qual linha a partir da lista de histórico severia ser 
+determinar qual linha a partir da lista de histórico deveria ser 
 utilizada durante a substituição.   A segunda é selecionar porções 
 daquela linha para inclusão na atual.   A linha selecionada a partir do 
 histórico é chamada o @dfn{evento}, e as porções daquela linha sobre as 
@@ -279,7 +279,7 @@ carácter de expansão de histórico.
 
 @ifset BashFeatures
 Várias opções de shell configuráveis com o comando interno @code{shopt} 
-(veja-se @ref{Bash Builtins}) pordem ser utilizados para adaptar o 
+(veja-se @ref{Bash Builtins}) podem ser utilizados para adaptar o 
 comportamento da expansão de histórico.   Se a opção de shell 
 @code{histverify} estiver habilitada, e Readline estiver sendo 
 utilizada, então as substituições de histórico não são passadas 
@@ -401,11 +401,11 @@ Aqui estão os designadores de palavra:
 @table @code
 
 @item 0 (zero)
-A @code{0}enézima palavra.   Para muitas aplicações, isso é a palavra do 
+A @code{0}enésima palavra.   Para muitas aplicações, isso é a palavra do 
 comando.
 
 @item @var{n}
-A @var{n}ézima palavra.
+A @var{n}ésima palavra.
 
 @item ^
 O primeiro argumento; isto é, palavra 1.
@@ -420,7 +420,7 @@ A palavra coincidida pela mais recente busca @samp{?@var{string}?}.
 Um intervalo de palavras; @samp{-@var{y}} abrevia @samp{0-@var{y}}.
 
 @item *
-Todas as palavras, exceto a @code{0}enézima.   Isso é um sinônimo para 
+Todas as palavras, exceto a @code{0}enésima.   Isso é um sinônimo para 
 @samp{1-$}.   É um erro utilizar @samp{*} se existir apenas uma palavra 
 no evento; a sequência de caracteres vazia é retornada nesse caso.
 
@@ -464,20 +464,20 @@ Imprime o comando novo, porém não o executa.
 
 @ifset BashFeatures
 @item q
-Encapsula as palavras substituidas, encapsulando substituições 
+Encapsula as palavras substituídas, encapsulando substituições 
 adicionais.
 
 @item x
-Encapsula as palavras substituidas como com @samp{q}, porém quebra em 
+Encapsula as palavras substituídas como com @samp{q}, porém quebra em 
 palavras nos espaços, tabs, e nos marcadores newline.
 @end ifset
 
 @item s/@var{old}/@var{new}/
-Substitue @var{new} para a primeira ocorrência de @var{old} na linha de 
+Substitui @var{new} para a primeira ocorrência de @var{old} na linha de 
 evento.   Qualquer delimitador pode ser utilizado no lugar de @samp{/}.
 O delimitador pode ser encapsulado em @var{old} e @var{new} com uma 
 barra invertida única.   Se @samp{&} aparece em @var{new}, então ele é 
-substituido por @var{old}.   Uma barra invertida única encapsulará o 
+substituído por @var{old}.   Uma barra invertida única encapsulará o 
 @samp{&}.   O delimitador final é opcional se ele for o último carácter 
 na linha de entrada.
 
