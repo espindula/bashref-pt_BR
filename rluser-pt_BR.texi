@@ -243,7 +243,7 @@ sobre palavras.
 
 @dfn{Killing} texto significa retirar o texto da linha, porém 
 salvá-lo fora para uso posterior, usualmente com @dfn{yanking} 
-(re-inserir) o texto de volta na linha.
+(reinserir) o texto de volta na linha.
 ("Recortar" e "colar" são jargão mais recente para `kill' e `yank').
 
 Se a descrição para um comando diz que ele `kills' texto, então você 
@@ -637,7 +637,7 @@ pré-definido.
 
 @item keyseq-timeout
 Especifica a duração que Readline aguardará por um carácter quando da 
-leitura de uma sequência de tecla ambigua (aquela que pode formar uma 
+leitura de uma sequência de tecla ambígua (aquela que pode formar uma 
 sequência de tecla completa utilizando a entrada lida até agora, ou pode 
 tomar entrada adicional para completar uma sequência de tecla mais 
 longa).
@@ -645,8 +645,8 @@ Se nenhuma entrada é recebida dentro do intervalo de tempo, então
 Readline utilizará a sequência de tecla mais curta, porém completa.
 Readline utiliza esse valor para determinar quando ou não a entrada está 
 disponível na fonte atual de entrada (por 
-pré-definição @code{rl_instream}).
-O valor é especificado em milisegundos, de forma que um valor de 1000 
+predefinição @code{rl_instream}).
+O valor é especificado em milissegundos, de forma que um valor de 1000 
 significa que Readline aguardará um segundo por entrada adicional.
 Se essa variável não estiver configurada para um valor menor que ou 
 igual a zero, ou para um valor não numérico, então Readline aguardará 
@@ -663,12 +663,12 @@ terão uma barra acrescentada. O valor pré-definido é @samp{on}.
 Essa variável, quando configurada para @samp{on}, faz com que Readline 
 exiba um asterisco (@samp{*}) no inicio de linhas de histórico que 
 tenham sido modificadas.
-Essa variável está @samp{off} por pré-definição.
+Essa variável está @samp{off} por predefinição.
 
 @item mark-symlinked-directories
 @vindex mark-symlinked-directories
 Se configurada para @samp{on}, então os nomes completados que sejam 
-vinculos simbólicos para diretórios terão uma barra acrescentada 
+vínculos simbólicos para diretórios terão uma barra acrescentada 
 (sujeita ao valor de @code{mark-directories}).
 O valor pré-definido é @samp{off}.
 
@@ -680,7 +680,7 @@ quando da realização de completação de nome de arquivo.
 Se configurada para @samp{off}, então o @samp{.} inicial deve 
 necessariamente ser fornecido pelo usuário no nome de arquivo para ser 
 completado.
-Essa variável está @samp{on} por pré-definição.
+Essa variável está @samp{on} por predefinição.
 
 @item menu-complete-display-prefix
 @vindex menu-complete-display-prefix
@@ -698,9 +698,9 @@ meta prefixada.   O valor pré-definido é @samp{off}.
 @item page-completions
 @vindex page-completions
 Se configurada para @samp{on}, então Readline utiliza um paginador 
-interno estilo @code{more} para exibir uma tela completa de possiveis 
+interno estilo @code{more} para exibir uma tela completa de possíveis 
 completações por vez.
-Essa variável está @samp{on} por pré-definição.
+Essa variável está @samp{on} por predefinição.
 
 @item print-completions-horizontally
 Se configurada para @samp{on}, então Readline exibirá as completações 
@@ -712,7 +712,7 @@ O valor pré-definido é @samp{off}.
 @vindex revert-all-at-newline
 Se configurada para @samp{on}, então Readline desfazerá todas as 
 modificações para as linhas de histórico antes do retorno quando 
-@code{accept-line} for executada.   Por pré-definição, as linhas de 
+@code{accept-line} for executada.   Por predefinição, as linhas de 
 histórico podem ser modificadas e reter listas individuais de desfazer 
 entre chamadas a @code{readline}.   O valor pré-definido é @samp{off}.
 
@@ -720,7 +720,7 @@ entre chamadas a @code{readline}.   O valor pré-definido é @samp{off}.
 @vindex show-all-if-ambiguous
 Isso altera o comportamento pré-definido das funções de completação.
 Se configurada para @samp{on}, então as palavras as quais tenham mais 
-que uma completação possivel fazem com que as coincidências sejam 
+que uma completação possível fazem com que as coincidências sejam 
 listadas imediatamente, em vez de soar o alarme sonoro.
 O valor pré-definido é @samp{off}.
 
@@ -729,8 +729,8 @@ O valor pré-definido é @samp{off}.
 Isso altera o comportamento pré-definido das funções de completação de 
 uma maneira similar a @var{show-all-if-ambiguous}.
 Se configurada para @samp{on}, então as palavras as quais tenham mais 
-que uma completação possivel sem qualquer possivel completação parcial 
-(as completações possiveis não compartilham um prefixo comum) fazem com 
+que uma completação possível sem qualquer possível completação parcial 
+(as completações possíveis não compartilham um prefixo comum) fazem com 
 que as coincidências sejam listadas imediatamente, em vez de soar o 
 alarme sonoro.
 O valor pré-definido é @samp{off}.
@@ -754,14 +754,14 @@ porções da palavra seguintes ao cursor não são duplicadas.
 Por exemplo, se habilitada, a tentativa de completação quando o cursor 
 estiver após o @samp{e} em @samp{Makefile} resultará em @samp{Makefile}, 
 em vez de @samp{Makefilefile}, presumindo que exista uma única 
-completação possivel.
+completação possível.
 O valor pré-definido é @samp{off}.
 
 @item visible-stats
 @vindex visible-stats
 Se configurada para @samp{on}, então um carácter denotando um tipo do 
 arquivo é acrescentado ao nome do arquivo, quando da listagem das 
-completações possiveis.   O valor pré-definido é @samp{off}.
+completações possíveis.   O valor pré-definido é @samp{off}.
 
 @end table
 
@@ -889,7 +889,7 @@ o carácter de oito bit cujo valor é o valor hexadecimal @var{HH} (um ou
 dois dígitos hexadecimais)
 @end table
 
-Quando da entrada de texto de uma macro, aspas siples ou duplas devem 
+Quando da entrada de texto de uma macro, aspas simples ou duplas devem 
 necessariamente ser utilizadas para indicar uma definição de macro.
 Texto sem aspas é presumido que seja um nome de função.
 No corpo da macro, os escapes de barra invertida descritos acima são 
@@ -908,7 +908,7 @@ insira uma única @samp{\} na linha:
 @subsection Conditional Init Constructs
 
 Readline implementa uma facilidade similar em espírito às 
-características de compilação condicional do pré-processador C, o qual 
+características de compilação condicional do preprocessador C, o qual 
 permite que as configurações de variáveis e vinculações de tecla sejam 
 realizadas como resultado de testes.   Existem quatro diretivas de 
 analisador utilizadas.
@@ -1267,7 +1267,7 @@ especificada pelo argumento à primeira chamada) de cada linha em
 sequência.
 Qualquer argumento numérico fornecido a essas chamadas sucessivas 
 determina a direção a se mover ao longo do histórico.   Um argumento 
-negativo permuta a direção ao lonto do histórico (para trás ou para 
+negativo permuta a direção ao longo do histórico (para trás ou para 
 frente).
 As facilidades de expansão de histórico são utilizadas para extrair o 
 último argumento, como se a expansão de histórico @samp{!$} tivesse sido 
@@ -1463,7 +1463,7 @@ O contador de argumento é inicialmente um, de forma que a execução dessa
 função pela primeira vez faz com que o argumento contabilize quatro; uma 
 segunda vez faz com que o argumento contabilize dezesseis; e assim por 
 diante.
-Por padrão, issi não é vinculado a uma tecla.
+Por padrão, isso não é vinculado a uma tecla.
 @end ftable
 
 @node Commands For Completion
@@ -1475,7 +1475,7 @@ Tenta realizar a complementação sobre o teste antes do ponto.
 A atual complementação realizada é específica da aplicação.
 @ifset BashFeatures
 Bash tenta a complementação tratando o texto como uma variável (se o 
-texto se inícia com @samp{$}); nome de usuário (se o texto se inicia com 
+texto se inicia com @samp{$}); nome de usuário (se o texto se inicia com 
 @samp{~}); nome de máquina (se o texto se inicia com @samp{@@}); ou 
 comando (incluindo apelidos e funções) em sequência.   Se nenhuma dessas 
 produzir uma coincidência, então a complementação de nome de arquivo é 
@@ -1591,12 +1591,12 @@ esteja disponível para o shell (veja-se @ref{Brace Expansion}).
 Inicia o salvamento de caracteres digitados na macro de teclado atual.
 
 @item end-kbd-macro (C-x ))
-Pára o salvamento de caracteres digitados na macro de teclado atual e 
+Para o salvamento de caracteres digitados na macro de teclado atual e 
 salva a definição.
 
 @item call-last-kbd-macro (C-x e)
 Re-executa a última macro de teclado definida, fazendo com que os 
-caracteres na macro aparecam como se digitados ao teclado.
+caracteres na macro apareçam como se digitados ao teclado.
 
 @item print-last-kbd-macro ()
 Imprime a última macro de teclado definida em uma formato adequado para 
@@ -1659,7 +1659,7 @@ carácter.   Um contador negativo busca pelas ocorrências subsequentes.
 
 @item skip-csi-sequence ()
 Lê caracteres suficientes para consumir uma sequência multi tecla como 
-aqueas definidas para teclas como Home e End.   Tais sequências iniciam 
+aquelas definidas para teclas como Home e End.   Tais sequências iniciam 
 com um Indicador de Sequência de Controle (ISC), geralmente ESC-[.
 Se essa sequência estiver vinculada à "\e[", então as teclas que 
 produzem tais sequências não terão efeito, a menos que explicitamente 
@@ -1851,7 +1851,7 @@ coincidências, porém a variável de shell @env{FIGNORE} é utilizada.
 
 Depois, a sequência de caracteres especificada como um argumento para a 
 opção @option{-W} é considerada.
-A sequência de caracteres é primeiro dividida utlizando os caracteres na 
+A sequência de caracteres é primeiro dividida utilizando os caracteres na 
 variável especial @env{IFS} como delimitadores.
 O encapsulamento do shell é respeitado.
 Cada palavra é então expandida utilizando a expansão de chave, expansão 
@@ -1866,7 +1866,7 @@ complementações possíveis.
 Após essas coincidências terem sido geradas, qualquer função de shell ou 
 comando especificado com as opções @option{-F} e @option{-C} é invocado.
 Quando o comando ou função é invocada, às variáveis @env{COMP_LINE}, 
-@env{COMP_POINT}, @env{COMP_KEY}, e @env{COMP_TYPE} são atribuidos 
+@env{COMP_POINT}, @env{COMP_KEY}, e @env{COMP_TYPE} são atribuídos 
 valores conforme descrito acima (veja-se @ref{Bash Variables}).
 Se uma função de shell está sendo invocada, as variáveis 
 @env{COMP_WORDS} e @env{COMP_CWORD} também são configuradas.
@@ -1876,7 +1876,7 @@ argumento ($2) é a palavra sendo complementada, e o terceiro argumento
 ($3) é a palavra que precede a palavra sendo complementada na linha de 
 comando atual.
 Não é realizada nenhuma filtragem das complementações geradas contra a 
-palavra sendo complementada; a função ou comando tem libredade completa 
+palavra sendo complementada; a função ou comando tem liberdade completa 
 na geração de coincidências.
 
 Qualquer função especificada com @option{-F} é invocada primeiro.
@@ -1897,7 +1897,7 @@ necessário.
 Após todas as complementações possíveis serem geradas, qualquer filtro 
 especificado com a opção @option{-X} é aplicado à lista.
 O filtro é um modelo como o utilizado para a expansão de nome de 
-caminho; um @samp{&} no modelo é substituido com o texto da palavra 
+caminho; um @samp{&} no modelo é substituído com o texto da palavra 
 sendo complementada.
 Um @samp{&} literal pode ser encapsulado com uma barra invertida; a 
 barra invertida é removida antes da tentativa de coincidência.
@@ -1932,7 +1932,7 @@ são tentadas se a compspec não gerar coincidências.
 Se a opção @option{-o default} foi fornecida a @code{complete} quando a 
 compspec foi definida, então a complementação padrão de Readline será 
 realizada se a compspec (e, se tentada, as complementações padrão de 
-Bash) não gerarem coinciências.
+Bash) não gerarem coincidências.
 
 Quando uma compspec indica que a complementação de nome de diretório é 
 desejada, as funções de complementação programáveis forçam Readline a 
@@ -1941,7 +1941,7 @@ simbólicos a diretórios, sujeitos ao valor da variável de Readline
 @var{mark-directories}, não importando a configuração da variável de 
 Readline @var{mark-symlinked-directories}.
 
-Existe algum suporte para complementações dinâmicamente modificantes.   
+Existe algum suporte para complementações dinamicamente modificantes.   
 Isso é útil geralmente quando utilizado em combinação com uma 
 complementação padrão especificada com @option{-D}.   É possível para 
 funções de shell executadas como manipuladores de complementação para 
@@ -1951,14 +1951,14 @@ compspec associada com o comando sobre o qual a complementação está
 sendo tentada (fornecido como o primeiro argumento quando a função for 
 executada), a complementação programável reinicia do início, com uma 
 tentativa de encontra uma nova compspec para aquele comando.   Isso 
-permite que um conjunto de complementações seja constrído dinâmicamente 
+permite que um conjunto de complementações seja construído dinamicamente 
 conforme a complementação seja tentada, em vez de serem carregadas todas 
 de uma vez.
 
 Por exemplo, presumindo-se que existe uma biblioteca de compspecs, cada 
 uma mantida em um arquivo correspondente ao nome do comando, a seguinte 
 função de complementação padrão carregaria complementações 
-dinâmicamente:
+dinamicamente:
 
 @example
 _completion_loader()
@@ -2171,7 +2171,7 @@ como @option{-v}.
 @end table
 
 @item -C @var{command}
-@var{command} é executado em um ambiente de subshell, e a saída dele é 
+@var{command} é executado em um ambiente de sub-shell, e a saída dele é 
 utilizada como as complementações possíveis.
 
 @item -F @var{function}
@@ -2215,7 +2215,7 @@ qualquer complementação que não coincida com @var{filterpat} é removida.
 O valor de retorno é verdadeiro, a menos que uma opção inválida seja 
 fornecida; outra opção que não @option{-p} ou @option{-r} seja fornecida 
 sem um argumento @var{name}; uma tentativa for feita de remover uma 
-especificação de compementação para um @var{name} para o qual nenhuma 
+especificação de complementação para um @var{name} para o qual nenhuma 
 especificação exista; ou um erro ocorrer quando do adicionamento de uma 
 especificação de complementação.
 
@@ -2253,7 +2253,7 @@ ou um erro de saída ocorra.
 
 A maneira mais comum de obter funcionalidade adicional de 
 complementação, além das ações padrão que @code{complete} e 
-@code{compgen} provêem é utilizar uma função de shell e vinculá-la a um 
+@code{compgen} proveem é utilizar uma função de shell e vinculá-la a um 
 comando em particular utilizando @code{complete -F}.
 
 A função seguinte provê complementações para o comando interno 
@@ -2347,14 +2347,14 @@ complete -o filenames -o nospace -o bashdefault -F _comp_cd cd
 @end example
 
 @noindent
-Dado que nós desejamos que Bash e Readline se encarregem de alguns 
+Dado que nós desejamos que Bash e Readline se encarreguem de alguns 
 outros detalhes para nós, nós utilizamos várias outras opções para 
 informar a Bash e Readline o que fazer.   A opção @option{-o filenames} 
 informa a Readline que as possíveis complementações deveriam ser 
 tratadas como nomes de arquivos, e encapsuladas apropriadamente.   Essa 
 opção também fará com que Readline acrescente ao final uma barra a nomes 
 de arquivo que possa determinar que são diretórios (o que é o motivo 
-pelo qual nós talvez desejemos extender @code{_comp_cd} para acrescentar 
+pelo qual nós talvez desejemos estender @code{_comp_cd} para acrescentar 
 uma barra ao final se nós estivermos utilizando diretórios encontrados 
 via @var{CDPATH}: Readline não pode dizer se tais complementações são 
 diretórios).
