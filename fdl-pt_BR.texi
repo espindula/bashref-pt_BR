@@ -18,7 +18,7 @@ PREÂMBULO
 
 O propósito desta licença é tornar um manual, livro de texto, ou outro 
 documento funcional e útil @dfn{livre} no sentido da liberdade: para 
-assegurar a qualquer pessoa a libredade efetiva para copiar e 
+assegurar a qualquer pessoa a liberdade efetiva para copiar e 
 redistribui-lo, com ou sem modificações, ambos comercialmente ou não 
 comercialmente.
 Secundariamente, esta Licença preserva para o autor e editor uma maneira 
@@ -28,11 +28,11 @@ considerado responsável por modificações feitas por outros.
 Esta Licença é uma espécie de ``copyleft'' (``esquerdos autorais''), o 
 que significa que trabalhos derivados do documento devem necessariamente 
 eles mesmos serem livres no mesmo sentido.   Ela complementa a Licença 
-Pública Geral GNU, a qual é uma lecença de esquerdos autorais projetada 
+Pública Geral GNU, a qual é uma licença de esquerdos autorais projetada 
 para software livre.
 
 Nós projetamos esta Licença para utilizá-la para manuais para software 
-livre, porque softare livre precisa de documentação livre: um programa 
+livre, porque software livre precisa de documentação livre: um programa 
 livre deveria vir com manuais provendo as mesmas liberdades que o 
 software provê.   Porém esta Licença não é limitada a manuais de 
 software; ela pode ser utilizada para qualquer trabalho textual, 
@@ -120,7 +120,7 @@ necessárias para manter, legívelmente, o material que esta Licença exige
 para aparecer na página de título.   Para trabalhos em formatos que não 
 tenham qualquer página de título como tal, ``Página de Título'' 
 significa o texto próximo da mais proeminente aparição do título do 
-trabalho, precendo o início do corpo do texto.
+trabalho, precedendo o início do corpo do texto.
 
 O ``editor'' significa qualquer pessoa ou entidade que distribui cópias 
 do Documento ao público.
@@ -163,16 +163,16 @@ e você pode publicamente exibir cópias.
 CÓPIAS EM QUANTIDADE
 
 Se você publicar cópias impressas (ou cópias em mídia que geralmente tem 
-capas impressas) do Documento, em número mais que cem (100), e a notícia 
-de lecença do Documento exige Textos de Capa, você deve necessariamente 
-encartar as cópias em capas que transportem, claramente e legívelmente, 
-todos estes Textos de Capa: Textos de Primeira Capa na primeira capa, e 
-Textos de Quarta Capa na capa trazeira.   Ambas as capas devem 
-necessariamente também claramente e legívelmente identificar você como o 
-editor dessas cópias.   A capa frontal deve necessariamente apresentar o 
-título completo com todas as palavras do título igualmente proeminentes 
-e visíveis.   Voce pode adicionar outros materiais nas capas 
-adicionalmente.
+capas impressas) do Documento, em número maior que cem (100), e a 
+notícia de licença do Documento exigir Textos de Capa, você deve 
+necessariamente encartar as cópias em capas que transportem, claramente 
+e legívelmente, todos estes Textos de Capa: Textos de Primeira Capa na 
+primeira capa, e Textos de Quarta Capa na capa trazeira.   Ambas as 
+capas devem necessariamente também claramente e legívelmente identificar 
+você como o editor dessas cópias.   A capa frontal deve necessariamente 
+apresentar o título completo com todas as palavras do título igualmente 
+proeminentes e visíveis.   Voce pode adicionar outros materiais nas 
+capas adicionalmente.
 As cópias com modificações limitadas às capas, tanto quanto preservem o 
 título do Documento e satisfaçam essas condições, podem ser tratadas 
 como cópias literais em relação a outros aspectos.
@@ -222,7 +222,7 @@ Documento).   Você pode utilizar o mesmo título que uma versão prévia,
 se o editor original daquela versão conceder permissão.
 
 @item
-Liste no Página de Título, como autores, uma ou mais pessoas ou 
+Liste na Página de Título, como autores, uma ou mais pessoas ou 
 entidades responsáveis pela autoria das modificações na Versão 
 Modificada, junto com ao menos cinco dos autores principais do Documento 
 (todos os autores principais, se tiver menos que cinco), a menos que 
@@ -306,8 +306,8 @@ títulos de seções.
 
 Você pode adicionar uma seção Intitulada ``Patrocínios'', contanto que 
 ela não contenha nada além de patrocínios da sua Versão Modificada por 
-vários patrocinadores---por exemplo, declarações avaliadores ou aquelas 
-de que o texto foi aprovado por uma organização como a definição 
+vários patrocinadores---por exemplo, declarações de avaliadores ou 
+aquelas de que o texto foi aprovado por uma organização como a definição 
 autorizativa de um padrão.
 
 Você pode adicionar uma passagem de até cinco palavras, como um Texto de 
@@ -315,7 +315,7 @@ Primeira Capa, e uma passagem de até vinte e cinco palavras, como um
 Texto de Quarta Capa, ao final da lista dos Textos de Capa na Versão 
 Modificada.   Somente uma passagem de Texto de Primeira Capa e uma de 
 Texto de Quarta Capa podem ser adicionadas por (ou mediante acordos 
-feitos por) qualquer uma entidade.   Se o Documento já inclue um texto 
+feitos por) qualquer uma entidade.   Se o Documento já inclui um texto 
 de capa para a mesma capa, previamente adicionado por você ou por acordo 
 feito pela mesma entidade pela qual você está atuando, você não pode 
 adicionar outro; porém você pode substituir o antigo, na permissão 
