@@ -70,241 +70,260 @@ poderia ser uma questão de conexão histórica com o assunto ou com
 questões relacionadas, ou de posicionamento legal, comercial, 
 filosófico, ético ou político respeitante a eles.
 
+As ``Seções Invariantes'' são certas Seções Secundárias cujos títulos 
+são projetados, como sendo aqueles de Seções Invariantes, na notícia que 
+diz que o Documento é publicado sob esta Licença.   Se uma seção não se 
+encaixa na definição de Secundária acima, então a seção não está 
+autorizada a ser designada como Invariante.   O Documento pode conter 
+zero Seções Invariantes.   Se o Documento não identifica quaisquer 
+Seções Invariantes, então não existe nenhuma.
 
+Os ``Textos de Capa'' são certas passagens curtas de texto que são 
+listadas, como Textos de Primeira Capa ou Textos de Quarta-Capa, na 
+notícia que diz que o Documento é publicado sob esta Licença.   Um Texto 
+de Primeira Capa pode ter no máximo cinco (05) palavras, e um Texto de 
+Quarta Capa pode ter no máximo vinte e cinco (25) palavras.
 
-The ``Invariant Sections'' are certain Secondary Sections whose titles
-are designated, as being those of Invariant Sections, in the notice
-that says that the Document is released under this License.  If a
-section does not fit the above definition of Secondary then it is not
-allowed to be designated as Invariant.  The Document may contain zero
-Invariant Sections.  If the Document does not identify any Invariant
-Sections then there are none.
+Uma cópia ``Transparente'' do Documento significa uma cópia legível por 
+máquina, representada em um formato cuja especificação está disponível 
+para o público em geral, que é adequada para revisar o documento 
+diretamente com editores de texto genéricos ou (para imagens compostas 
+de pixels) programas de pintura genéricos ou (para desenhos) algum 
+editor de desenho disponível amplamente, e que seja adequado para 
+entrada a formatadores de texto ou para tradução automática a uma 
+variedade de formatos próprios para entrada a formatadores de texto.
+Uma cópia feita em um formato de arquivo contrário ao Transparente, cuja 
+linguagem de marcação, ou ausência de linguagem de marcação, tenha sido 
+organizada para frustrar ou desencorajar modificações subsequentes por 
+leitores, não é Transparente.
+Um formato de imagem não é Transparente se utilizado para qualquer 
+quantidade substancial de texto.   Uma cópia que não é ``Transparente'' 
+é chamada ``Opaca''.
 
-The ``Cover Texts'' are certain short passages of text that are listed,
-as Front-Cover Texts or Back-Cover Texts, in the notice that says that
-the Document is released under this License.  A Front-Cover Text may
-be at most 5 words, and a Back-Cover Text may be at most 25 words.
+Exemplos de formatos adequados para cópias Transparentes incluem 
+@sc{ascii} puro sem marcações; formato de entrada Texinfo; formato de 
+entrada La@TeX{}; @acronym{SGML} ou @acronym{XML} utilizando um 
+@acronym{DTD} disponível publicamente; @acronym{HTML} simples 
+conformante com o padrão; PostScript ou @acronym{PDF} projetado para 
+modificação humana.   Exemplos de formatos transparantes de imagens 
+incluem @acronym{PNG}, @acronym{XCF} e @acronym{JPG}.   Formatos opacos 
+incluem formatos proprietários que podem ser lidos e editados somente 
+por processadores proprietários de palavra; @acronym{SGML} ou 
+@acronym{XML} para os quais o @acronym{DTD} e/ou as ferramentas de 
+processamentos não estejam disponíveis genericamente; e o @acronym{HTML} 
+gerado por máquina; PostScript ou @acronym{PDF} produzidos por alguns 
+processadores de palavra apenas para propósitos de saída.
 
-A ``Transparent'' copy of the Document means a machine-readable copy,
-represented in a format whose specification is available to the
-general public, that is suitable for revising the document
-straightforwardly with generic text editors or (for images composed of
-pixels) generic paint programs or (for drawings) some widely available
-drawing editor, and that is suitable for input to text formatters or
-for automatic translation to a variety of formats suitable for input
-to text formatters.  A copy made in an otherwise Transparent file
-format whose markup, or absence of markup, has been arranged to thwart
-or discourage subsequent modification by readers is not Transparent.
-An image format is not Transparent if used for any substantial amount
-of text.  A copy that is not ``Transparent'' is called ``Opaque''.
+A ``Página de Título'' significa, para um livro impresso, a própria 
+página de título, mais tantas páginas seguintes quantas sejam 
+necessárias para manter, legívelmente, o material que esta Licença exige 
+para aparecer na página de título.   Para trabalhos em formatos que não 
+tenham qualquer página de título como tal, ``Página de Título'' 
+significa o texto próximo da mais proeminente aparição do título do 
+trabalho, precendo o início do corpo do texto.
 
-Examples of suitable formats for Transparent copies include plain
-@sc{ascii} without markup, Texinfo input format, La@TeX{} input
-format, @acronym{SGML} or @acronym{XML} using a publicly available
-@acronym{DTD}, and standard-conforming simple @acronym{HTML},
-PostScript or @acronym{PDF} designed for human modification.  Examples
-of transparent image formats include @acronym{PNG}, @acronym{XCF} and
-@acronym{JPG}.  Opaque formats include proprietary formats that can be
-read and edited only by proprietary word processors, @acronym{SGML} or
-@acronym{XML} for which the @acronym{DTD} and/or processing tools are
-not generally available, and the machine-generated @acronym{HTML},
-PostScript or @acronym{PDF} produced by some word processors for
-output purposes only.
+O ``editor'' significa qualquer pessoa ou entidade que distribui cópias 
+do Documento ao público.
 
-The ``Title Page'' means, for a printed book, the title page itself,
-plus such following pages as are needed to hold, legibly, the material
-this License requires to appear in the title page.  For works in
-formats which do not have any title page as such, ``Title Page'' means
-the text near the most prominent appearance of the work's title,
-preceding the beginning of the body of the text.
+Uma seção ``Intitulada XYZ'' significa uma subunidade nomeada do 
+Documento cujo título ou é precisamente XYZ ou contém XYZ entre 
+parênteses seguinte ao texto que traduz XYZ em outra linguagem.  (Aqui 
+XYZ significa um nome específico de seção mencionado abaixo, tais como 
+``Agradecimentos''; ``Dedicatórias''; ``Patrocínios''; ou 
+``Histórico'').   ``Preservar o Título'' de tal seção quando você 
+modificar o Documento significa que ele permanece uma seção ``Intitulada 
+XYZ'' de acordo com essa definição.
 
-The ``publisher'' means any person or entity that distributes copies
-of the Document to the public.
-
-A section ``Entitled XYZ'' means a named subunit of the Document whose
-title either is precisely XYZ or contains XYZ in parentheses following
-text that translates XYZ in another language.  (Here XYZ stands for a
-specific section name mentioned below, such as ``Acknowledgements'',
-``Dedications'', ``Endorsements'', or ``History''.)  To ``Preserve the Title''
-of such a section when you modify the Document means that it remains a
-section ``Entitled XYZ'' according to this definition.
-
-The Document may include Warranty Disclaimers next to the notice which
-states that this License applies to the Document.  These Warranty
-Disclaimers are considered to be included by reference in this
-License, but only as regards disclaiming warranties: any other
-implication that these Warranty Disclaimers may have is void and has
-no effect on the meaning of this License.
-
-@item
-VERBATIM COPYING
-
-You may copy and distribute the Document in any medium, either
-commercially or noncommercially, provided that this License, the
-copyright notices, and the license notice saying this License applies
-to the Document are reproduced in all copies, and that you add no other
-conditions whatsoever to those of this License.  You may not use
-technical measures to obstruct or control the reading or further
-copying of the copies you make or distribute.  However, you may accept
-compensation in exchange for copies.  If you distribute a large enough
-number of copies you must also follow the conditions in section 3.
-
-You may also lend copies, under the same conditions stated above, and
-you may publicly display copies.
+O Documento pode incluir Declarações de Garantia próximas à notícia que 
+declara que esta Licença se aplica ao Documento.   Essas Declarações de 
+Garantia são consideradas como inclusas por referência nesta Licença, 
+porém somente com relação à negação de garantias: qualquer outra 
+implicação que essas Declarações de Garantia possam ter é inválida e não 
+tem efeito sobre o significado desta Licença.
 
 @item
-COPYING IN QUANTITY
+CÓPIA LITERAL
 
-If you publish printed copies (or copies in media that commonly have
-printed covers) of the Document, numbering more than 100, and the
-Document's license notice requires Cover Texts, you must enclose the
-copies in covers that carry, clearly and legibly, all these Cover
-Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on
-the back cover.  Both covers must also clearly and legibly identify
-you as the publisher of these copies.  The front cover must present
-the full title with all words of the title equally prominent and
-visible.  You may add other material on the covers in addition.
-Copying with changes limited to the covers, as long as they preserve
-the title of the Document and satisfy these conditions, can be treated
-as verbatim copying in other respects.
+Você pode copiar e distribuir o Documento em qualquer meio, ambos 
+comercialmente e não comercialmente, contanto que esta Licença, as 
+notícias de direitos autorais, e a notícia de licença dizendo que esta 
+Licença se aplica ao Documento estejam reproduzidas em todas as cópias, 
+e que você não adiciona quaisquer outras condições, quaisquer que sejam, 
+àquelas desta Licença.   Você não pode utilizar medidas técnicas para 
+obstruir ou controlar a leitura ou posteriores cópias das cópias que 
+você fizer ou distribuir.   Entretanto, você pode aceitar remuneração em 
+troca das cópias.   Se você distribui um número de cópias grande o 
+suficiente, você deve necessariamente também seguir as condições na 
+seção três (3).
 
-If the required texts for either cover are too voluminous to fit
-legibly, you should put the first ones listed (as many as fit
-reasonably) on the actual cover, and continue the rest onto adjacent
-pages.
-
-If you publish or distribute Opaque copies of the Document numbering
-more than 100, you must either include a machine-readable Transparent
-copy along with each Opaque copy, or state in or with each Opaque copy
-a computer-network location from which the general network-using
-public has access to download using public-standard network protocols
-a complete Transparent copy of the Document, free of added material.
-If you use the latter option, you must take reasonably prudent steps,
-when you begin distribution of Opaque copies in quantity, to ensure
-that this Transparent copy will remain thus accessible at the stated
-location until at least one year after the last time you distribute an
-Opaque copy (directly or through your agents or retailers) of that
-edition to the public.
-
-It is requested, but not required, that you contact the authors of the
-Document well before redistributing any large number of copies, to give
-them a chance to provide you with an updated version of the Document.
+Você também pode ceder cópias, sob as mesmas condições declaradas acima, 
+e você pode publicamente exibir cópias.
 
 @item
-MODIFICATIONS
+CÓPIAS EM QUANTIDADE
 
-You may copy and distribute a Modified Version of the Document under
-the conditions of sections 2 and 3 above, provided that you release
-the Modified Version under precisely this License, with the Modified
-Version filling the role of the Document, thus licensing distribution
-and modification of the Modified Version to whoever possesses a copy
-of it.  In addition, you must do these things in the Modified Version:
+Se você publicar cópias impressas (ou cópias em mídia que geralmente tem 
+capas impressas) do Documento, em número mais que cem (100), e a notícia 
+de lecença do Documento exige Textos de Capa, você deve necessariamente 
+encartar as cópias em capas que transportem, claramente e legívelmente, 
+todos estes Textos de Capa: Textos de Primeira Capa na primeira capa, e 
+Textos de Quarta Capa na capa trazeira.   Ambas as capas devem 
+necessariamente também claramente e legívelmente identificar você como o 
+editor dessas cópias.   A capa frontal deve necessariamente apresentar o 
+título completo com todas as palavras do título igualmente proeminentes 
+e visíveis.   Voce pode adicionar outros materiais nas capas 
+adicionalmente.
+As cópias com modificações limitadas às capas, tanto quanto preservem o 
+título do Documento e satisfaçam essas condições, podem ser tratadas 
+como cópias literais em relação a outros aspectos.
+
+Se os textos exigidos para ambas as capas forem muito volumosos para 
+caber legívelmente, você deveria colocar os primeiros listados (tantos 
+quantos caibam razoavelmente) na capa atual, e continuar o restante em 
+páginas adjascentes.
+
+Se você publicar ou distribuir cópias Opacas do Documento em número 
+maior que cem (100), você deve necessariamente ou incluir uma cópia 
+Transparente, legível por máquina, junto com cada cópia Opaca, ou 
+declarar, na ou com cada cópia Opaca, uma localização de rede de 
+computador, a partir da qual o público usuário de rede geral tenha 
+acesso para baixar, utilizando protocolos de rede de padrão público, uma 
+cópia Transparente completa do Documento, livre do material adicionado.
+
+Se você se utilizar da última opção, você deve necessariamente adotar 
+razoavelmente passos prudentes, quando você iniciar a distribuição de 
+cópias Opacas em quantidade, para se assegurar que essa cópia 
+Tranparente permanecerá então acessível na localização declarada até 
+pelo menos um ano após a última vez que você distribuiu uma cópia Opaca 
+(diretamente ou por intermédio dos seus agentes ou varejistas) daquela 
+edição ao público.
+
+É pedido, mas não exigido, que você contate os autores do Documento bem 
+antes de redistribuir qualquer número grande de cópias, para dá-los a 
+oportunidade de lhe fornecer uma versão atualizada do Documento.
+
+@item
+MODIFICAÇÕES
+
+Você pode copiar e distribuir uma Versão Modificada do Documento sob as 
+condições das seções dois (2) e três (3) acima, contanto que você 
+publique a Versão Modificada precisamente sob esta Licença, com a Versão 
+Modificada preenchendo a função do Documento, portanto licenciando a 
+distribuição e modificação da Versão Modificada a quem quer que possua 
+uma cópia dela.   Adicionalmente, você deve necessariamente fazer estas 
+coisas na Versão Modificada:
 
 @enumerate A
 @item
-Use in the Title Page (and on the covers, if any) a title distinct
-from that of the Document, and from those of previous versions
-(which should, if there were any, be listed in the History section
-of the Document).  You may use the same title as a previous version
-if the original publisher of that version gives permission.
+Utilize na Página de Título (e nas capas, se existentes) um título 
+distinto daquele do Documento, e daqueles das versões prévias (as quais 
+deveriam, se existiu alguma, serem listadas na seção Histórico do 
+Documento).   Você pode utilizar o mesmo título que uma versão prévia, 
+se o editor original daquela versão conceder permissão.
 
 @item
-List on the Title Page, as authors, one or more persons or entities
-responsible for authorship of the modifications in the Modified
-Version, together with at least five of the principal authors of the
-Document (all of its principal authors, if it has fewer than five),
-unless they release you from this requirement.
+Liste no Página de Título, como autores, uma ou mais pessoas ou 
+entidades responsáveis pela autoria das modificações na Versão 
+Modificada, junto com ao menos cinco dos autores principais do Documento 
+(todos os autores principais, se tiver menos que cinco), a menos que 
+eles liberem você dessa exigência.
 
 @item
-State on the Title page the name of the publisher of the
-Modified Version, as the publisher.
+Declare na Página de Título o nome do editor da Versão Modificada, como 
+o editor.
 
 @item
-Preserve all the copyright notices of the Document.
+Preserve todas as notícias de direitos autorais do Documento.
 
 @item
-Add an appropriate copyright notice for your modifications
-adjacent to the other copyright notices.
+Adicione uma notícia apropriada de direitos autorais para suas 
+modificações, adjascente às outras notícias de direitos autorais.
 
 @item
-Include, immediately after the copyright notices, a license notice
-giving the public permission to use the Modified Version under the
-terms of this License, in the form shown in the Addendum below.
+Inclua, imediatamente após as notícias de direitos autorais, uma notícia 
+de licença concedendo ao público permissão para utilizar a Versão 
+Modificada sob os termos desta Licença, na forma mostrada no Adendo 
+abaixo.
 
 @item
-Preserve in that license notice the full lists of Invariant Sections
-and required Cover Texts given in the Document's license notice.
+Preserve, naquela notícia de licença, as listas completas de Seções 
+Invariantes e Textos de Capa exigidos dados na notícia de licença do 
+Documento.
 
 @item
-Include an unaltered copy of this License.
+Inclua uma cópia inalterada desta Licença.
 
 @item
-Preserve the section Entitled ``History'', Preserve its Title, and add
-to it an item stating at least the title, year, new authors, and
-publisher of the Modified Version as given on the Title Page.  If
-there is no section Entitled ``History'' in the Document, create one
-stating the title, year, authors, and publisher of the Document as
-given on its Title Page, then add an item describing the Modified
-Version as stated in the previous sentence.
+Preserve a seção intitulada ``Histórico'', Preserve seu Título, e 
+adicione a ele um item declarando ao menos o título, ano, novos autores, 
+e editor da Versão Modificada, conforme dado na Página de Título.   Se 
+não existir uma seção intitulada ``Histórico'' no Documento, crie uma 
+declarando o título, ano, autores, e editor do Documento, conforme dado 
+em sua Página de Título, então adicione um item descrevendo a Versão 
+Modificada, conforme declarado na frase prévia.
 
 @item
-Preserve the network location, if any, given in the Document for
-public access to a Transparent copy of the Document, and likewise
-the network locations given in the Document for previous versions
-it was based on.  These may be placed in the ``History'' section.
-You may omit a network location for a work that was published at
-least four years before the Document itself, or if the original
-publisher of the version it refers to gives permission.
+Preserve a localização de rede, se existente, dada no Documento para 
+acesso público a uma cópia Transparente do Documento, e da mesma forma 
+as localizações de rede dadas no Documento para versões prévias nas 
+quais foi baseado.   Essas podem ser colocadas na seção ``Histórico''.
+Você pode omitir uma localização de rede para um trabalho que foi 
+publicado nos últimos quatro anos anteriores à publicação do próprio do 
+Documento, ou se o editor original da versão à qual a localização de 
+rede se refere conceder permissão.
 
 @item
-For any section Entitled ``Acknowledgements'' or ``Dedications'', Preserve
-the Title of the section, and preserve in the section all the
-substance and tone of each of the contributor acknowledgements and/or
-dedications given therein.
+Para cada seção Intitulada ``Agradecimentos'' ou ``Dedicatórias'', 
+Preserve o Título da seção, e preserve na seção toda a substância e 
+tonalidade de cada um dos agradecimentos a contribuidores e/ou 
+dedicatórias dadas nela.
 
 @item
-Preserve all the Invariant Sections of the Document,
-unaltered in their text and in their titles.  Section numbers
-or the equivalent are not considered part of the section titles.
+Preserve todas as Seções Invariantes do Documento, inalteradas em seus 
+textos e em seus títulos.   Os números de Seção ou o equivalente não são 
+considerados parte dos títulos de seção.
 
 @item
-Delete any section Entitled ``Endorsements''.  Such a section
-may not be included in the Modified Version.
+Delete quaisquer seções Intituladas ``Patrocínios''.   Tal seção não 
+pode ser incluida na Versão Modificada.
 
 @item
-Do not retitle any existing section to be Entitled ``Endorsements'' or
-to conflict in title with any Invariant Section.
+Não reintitule qualquer seção existente para Intitulada ``Patrocínios'' 
+ou para conflitar no título com qualquer Seção Invariante.
 
 @item
-Preserve any Warranty Disclaimers.
+Preserve quaisquer Declarações de Garantia.
 @end enumerate
 
-If the Modified Version includes new front-matter sections or
-appendices that qualify as Secondary Sections and contain no material
-copied from the Document, you may at your option designate some or all
-of these sections as invariant.  To do this, add their titles to the
-list of Invariant Sections in the Modified Version's license notice.
-These titles must be distinct from any other section titles.
+Se a Versão Modificada incluir novas seções pré textuais ou apêndices 
+que se qualifiquem como Seções Secundárias e não contenham material 
+copiado a partir do Documento, você pode, a sua escolha, designar 
+algumas ou todas essas seções como Invariantes.   Para fazer isso, 
+adicione seus títulos à lista das Seções Invariantes na notícia de 
+licença da Versão Modificada.
+Esses títulos devem necessariamente serem distintos de quaisquer outros 
+títulos de seções.
 
-You may add a section Entitled ``Endorsements'', provided it contains
-nothing but endorsements of your Modified Version by various
-parties---for example, statements of peer review or that the text has
-been approved by an organization as the authoritative definition of a
-standard.
+Você pode adicionar uma seção Intitulada ``Patrocínios'', contanto que 
+ela não contenha nada além de patrocínios da sua Versão Modificada por 
+vários patrocinadores---por exemplo, declarações avaliadores ou aquelas 
+de que o texto foi aprovado por uma organização como a definição 
+autorizativa de um padrão.
 
-You may add a passage of up to five words as a Front-Cover Text, and a
-passage of up to 25 words as a Back-Cover Text, to the end of the list
-of Cover Texts in the Modified Version.  Only one passage of
-Front-Cover Text and one of Back-Cover Text may be added by (or
-through arrangements made by) any one entity.  If the Document already
-includes a cover text for the same cover, previously added by you or
-by arrangement made by the same entity you are acting on behalf of,
-you may not add another; but you may replace the old one, on explicit
-permission from the previous publisher that added the old one.
+Você pode adicionar uma passagem de até cinco palavras, como um Texto de 
+Primeira Capa, e uma passagem de até vinte e cinco palavras, como um 
+Texto de Quarta Capa, ao final da lista dos Textos de Capa na Versão 
+Modificada.   Somente uma passagem de Texto de Primeira Capa e uma de 
+Texto de Quarta Capa podem ser adicionadas por (ou mediante acordos 
+feitos por) qualquer uma entidade.   Se o Documento já inclue um texto 
+de capa para a mesma capa, previamente adicionado por você ou por acordo 
+feito pela mesma entidade pela qual você está atuando, você não pode 
+adicionar outro; porém você pode substituir o antigo, na permissão 
+explícita do editor prévio que adicionou o antigo.
 
-The author(s) and publisher(s) of the Document do not by this License
-give permission to use their names for publicity for or to assert or
-imply endorsement of any Modified Version.
+O(s) autor(s) e editor(s) do Documento, por esta Licença, não concedem 
+permissão para utilizar seus nomes para publicidade para ou para afirmar 
+ou implicar patrocínio de qualquer Versão Modificada.
 
 @item
 COMBINING DOCUMENTS
