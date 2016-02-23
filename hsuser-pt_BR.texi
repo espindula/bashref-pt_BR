@@ -178,7 +178,7 @@ Na segunda forma, @var{command} é re-executado após cada instância de
 Um apelido útil para se utilizar com o comando @code{fc} é 
 @code{r='fc -s'}, de maneira que digitar @samp{r cc} executa o último 
 comando iniciando com @code{cc} e digitar @samp{r} re-executa o último 
-comando (veja-se @ref{Aliases}).
+comando (veja-se @ref{Apelidos}).
 
 @item history
 @btindex history
@@ -301,7 +301,7 @@ Isso é útil geralmente em conjunção com Readline.
 
 O shell permite controle dos vários caracteres utilizados pelo mecanismo 
 de expansão de histórico com a variável @code{histchars}, conforme 
-explanado acima (veja-se @ref{Bash Variables}).   O shell utiliza o 
+explanado acima (veja-se @ref{Variáveis do Bash}).   O shell utiliza o 
 carácter de comentário de histórico para assinalar marcas temporais 
 quando da escrita do arquivo de histórico.
 @end ifset
