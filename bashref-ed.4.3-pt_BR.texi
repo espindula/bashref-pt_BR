@@ -279,7 +279,7 @@ Também referenciado como um @code{identifier}.
 @item operator
 @cindex operator, shell
 Um @code{control operator} ou um  @code{redirection operator}.
-Veja-se @xref{Redirections}, para uma lista de operadores de 
+Veja-se @ref{Redirections}, para uma lista de operadores de 
 redireção.   Operadores contém ao menos um @code{metacharacter} fora de 
 aspas.
 
@@ -391,37 +391,37 @@ executa um comando.   Basicamente, o shell faz o seguinte:
 
 @enumerate
 @item
-Lê a entrada a partir de um arquivo (@pxref{Shell Scripts}), a 
+Lê a entrada a partir de um arquivo (@ref{Shell Scripts}), a 
 partir de uma cadeia de caracteres fornecida como um argumento para 
-a opção de invocação @option{-c} (@pxref{Invoking Bash}), ou a 
+a opção de invocação @option{-c} (@ref{Invoking Bash}), ou a 
 partir do terminal do usuário.
 
 @item
 Divide a entrada em palavras e operadores, obedecendo às regras de 
 encapsulamento entre aspas descritas em @ref{Quoting}.  Esses tokens 
 são separados por @code{metacharacters}.  A expansão de apelidos é 
-feita por esse passo (@pxref{Aliases}).
+feita por esse passo (@ref{Aliases}).
 
 @item
 Processa os tokens em comandos simples e comandos compostos 
-(@pxref{Shell Commands}).
+(@ref{Shell Commands}).
 
 @item
-Desempenha as várias expansões de shell (@pxref{Shell Expansions}), 
+Desempenha as várias expansões de shell (@ref{Shell Expansions}), 
 dividindo os tokens expandidos em listas de nomes de arquivos 
-(@pxref{Filename Expansion}) e comandos e argumentos.
+(@ref{Filename Expansion}) e comandos e argumentos.
 
 @item
-Desempenha quaisquer redireções necessárias (@pxref{Redirections}) e 
+Desempenha quaisquer redireções necessárias (@ref{Redirections}) e 
 remove os operadores de redireção e seus operandos da lista de 
 argumentos.
 
 @item
-Executa o comando (@pxref{Executing Commands}).
+Executa o comando (@ref{Executing Commands}).
 
 @item
 Opcionalmente aguarda o término da execução do comando e coleta seu 
-status de saída (@pxref{Exit Status}).
+status de saída (@ref{Exit Status}).
 
 @end enumerate
 
@@ -447,13 +447,13 @@ encapsulamento pode ser utilizado para desabilitar o tratamento especial
 para caracteres especiais, prevenir palavras reservadas de serem 
 reconhecidas como tais, e prevenir a expansão de parâmetro.
 
-Cada um dos meta caracteres do shell (@pxref{Definitions}) tem um 
+Cada um dos meta caracteres do shell (@ref{Definitions}) tem um 
 significado especial para o shell e devem ser encapsulados caso devam 
 representar eles mesmos.
 Quando as facilidades da expansão de histórico de comandos estão sendo 
-utilizadas (@pxref{History Interaction}), o carácter de @var{history 
+utilizadas (@ref{History Interaction}), o carácter de @var{history 
 expansion}, em regra @samp{!}, deve ser encapsulado para prevenir a 
-expansão de histórico.   Veja-se @xref{Bash History Facilities}, para 
+expansão de histórico.   Veja-se @ref{Bash History Facilities}, para 
 mais detalhes acerca da expansão de histórico.
 
 Existem três mecanismos de encapsulamento em aspas: o @var{escape 
@@ -484,7 +484,7 @@ literal de todos os caracteres dentro das aspas, com exceção de
 @samp{$}, @samp{`}, @samp{\}, e, quando a expansão de histórico esteja 
 habilitada, @samp{!}.
 Os caracteres @samp{$} e @samp{`} conservam o significado especial deles 
-quando dentro de aspas duplas (@pxref{Shell Expansions}).
+quando dentro de aspas duplas (@ref{Shell Expansions}).
 A barra invertida conserva seu significado especial apenas quando 
 seguida por um dos seguintes caracteres: @samp{$}, @samp{`}, @samp{"}, 
 @samp{\}, ou @code{newline}.
@@ -499,7 +499,7 @@ utilizando-se uma barra invertida.
 A barra invertida que precede um @samp{!} não é removida.
 
 Os parâmetros especiais @samp{*} e @samp{@@} tem significado 
-especial quando estejam entre aspas duplas (@pxref{Shell Parameter 
+especial quando estejam entre aspas duplas (@ref{Shell Parameter 
 Expansion}).
 
 @node ANSI-C Quoting
@@ -588,12 +588,12 @@ de mensagem.   Outros ainda utilizam ambas as variáveis neste desenho:
 
 Em um shell não interativo, ou um shell interativo no qual a opção 
 @code{interactive_comments} para o comando interno @code{shopt} esteja 
-habilitada (@pxref{The Shopt Builtin}), uma palavra iniciando com 
+habilitada (@ref{The Shopt Builtin}), uma palavra iniciando com 
 @samp{#} faz com que essa palavra e todos os caracteres restantes 
 naquela linha sejam ignorados.   Um shell interativo sem a opção 
 @code{interactive_comments} habilitada não permite comentários.   A 
 opção @code{interactive_comments} é habilitada por padrão em shells 
-interativos.   Veja-se @xref{Interactive Shells}, para uma descrição do 
+interativos.   Veja-se @ref{Interactive Shells}, para uma descrição do 
 que torna um shell interativo.
 
 @node Shell Commands
@@ -629,11 +629,11 @@ agrupamento.
 Um comando simples é o tipo de comando encontrado mais frequentemente.   
 Ele é simplesmente uma sequência de palavras separadas por 
 @code{blank}s, terminada por um dos operadores de controle do shell 
-(@pxref{Definitions}).   A primeira palavra geralmente especifica um 
+(@ref{Definitions}).   A primeira palavra geralmente especifica um 
 comando a ser executado, com o restante das palavras sendo os argumentos 
 daquele comando.
 
-O status de retorno (@pxref{Exit Status}) de um comando simples é seu 
+O status de retorno (@ref{Exit Status}) de um comando simples é seu 
 status de saída como fornecido pela função @code{waitpid} definida no 
 padrão @sc{posix} 1003.1, ou 128+@var{n} se o comando foi terminado pelo 
 sinal @var{n}.
@@ -675,19 +675,19 @@ As estatísticas atualmente consistem do tempo (wall-clock) decorrido e
 tempo de usuário e de sistema consumidos pela execução do comando.
 A opção @option{-p} modifica o formato da saída para aquele especificado 
 por @sc{posix}.
-Quando o shell está em modo @sc{posix} (@pxref{Bash POSIX Mode}), ele 
+Quando o shell está em modo @sc{posix} (@ref{Bash POSIX Mode}), ele 
 não reconhece @code{time} como uma palavra reservada se o próximo token 
 inicia com um @samp{-}.
 A variável @env{TIMEFORMAT} pode ser configurada para um formato de 
 cadeia de caracteres que especifique como a informação de temporização 
-deveria ser exibida.   Veja-se @xref{Bash Variables} para uma descrição 
+deveria ser exibida.   Veja-se @ref{Bash Variables} para uma descrição 
 dos formatos disponíveis.
 O uso de @code{time} como uma palavra reservada permite a temporização 
 de comandos internos do shell, de funções do shell, e de canais de 
 comunicação (pipelines).   Um comando @code{time} externo não pode 
 temporizar esses facilmente.
 
-Quando o shell está em modo @sc{posix} (@pxref{Bash POSIX Mode}), 
+Quando o shell está em modo @sc{posix} (@ref{Bash POSIX Mode}), 
 @code{time} deve ser seguido por um newline.   Nesse caso, o shell exibe 
 o tempo de usuário e de sistema total consumido pelo shell e seus 
 filhos.
@@ -695,14 +695,14 @@ A variável @env{TIMEFORMAT} deve ser utilizada para especificar o
 formato da informação de temporização.
 
 Se o canal de comunicação não estiver sendo executado assincronamente 
-(@pxref{Lists}), o shell aguarda que todos os comandos no canal de 
+(@ref{Lists}), o shell aguarda que todos os comandos no canal de 
 comunicação finalizem.
 
 Cada comando em um canal de comunicação é executado em seu próprio 
-sub shell (@pxref{Command Execution Environment}).   O status de saída de 
+sub shell (@ref{Command Execution Environment}).   O status de saída de 
 um canal de comunicação é o status de saída do último comando no canal 
 de comunicação, a menos que a opção @code{pipefail} esteja habilitada 
-(@pxref{The Set Builtin}).
+(@ref{The Set Builtin}).
 Se a opção @code{pipefail} estiver habilitada, o status de retorno do 
 canal de comunicação é o valor do último (mais à direita) comando a sair 
 com um status diferente de zero, ou zero se todos os comandos saírem com 
@@ -733,7 +733,7 @@ executa o comando assincronamente em um sub shell.
 Isso é conhecido como executar o comando no @var{background}.
 O shell não aguarda que o comando finalize a execução, e o status de 
 retorno é 0 (verdadeiro).
-Quando o controle de tarefas não está ativo (@pxref{Job Control}), a 
+Quando o controle de tarefas não está ativo (@ref{Job Control}), a 
 entrada padrão para comandos assíncronos, na ausência de quaisquer 
 redireções explícitas, é redirecionada a partir de @code{/dev/null}.
 
@@ -781,7 +781,7 @@ condicional.
 Comandos de composição são os construtores de programação do shell.
 Cada construtor inicia com uma palavra reservada ou operador de controle 
 e é finalizado pela palavra reservada ou operador correspondentes.
-Quaisquer redireções (@pxref{Redirections}) associadas com um comando de 
+Quaisquer redireções (@ref{Redirections}) associadas com um comando de 
 composição se aplicam a todos os comandos dentro desse comando de 
 composição a menos que explicitamente sobrepostas.
 
@@ -845,7 +845,7 @@ na lista resultante, com @var{name} apontando para o membro atual.
 Se @samp{in @var{words}} não estiver presente, o comando @code{for} 
 executa os @var{commands} uma vez para cada parâmetro posicional que 
 estiver configurado, como se @samp{in "$@@"} tivesse sido especificado 
-(@pxref{Special Parameters}).
+(@ref{Special Parameters}).
 O status de retorno é o status de saída do último comando que executar.
 Se não existirem itens na expansão de @var{words}, nenhum comando é 
 executado, e o status de retorno será igual a zero.
@@ -857,7 +857,7 @@ for (( @var{expr1} ; @var{expr2} ; @var{expr3} )) ; do @var{commands} ; done
 @end example
 
 Primeiro, a expressão aritmética @var{expr1} é calculada de acordo com 
-as regras descritas abaixo (@pxref{Shell Arithmetic}).
+as regras descritas abaixo (@ref{Shell Arithmetic}).
 A expressão aritmética @var{expr2} é então calculada repetidamente até 
 que ela seja igual a zero.
 A cada vez que @var{expr2} seja igual a um valor qualquer diferente de 
@@ -1021,7 +1021,7 @@ done
 @end example
 
 A @var{expression} aritmética é calculada de acordo com as regras 
-descritas abaixo (@pxref{Shell Arithmetic}).
+descritas abaixo (@ref{Shell Arithmetic}).
 Se o valor da expressão for diferente de zero, então o status de retorno 
 é 0; do contrário o status de retorno é 1.   Isso é exatamente 
 equivalente a
@@ -1029,7 +1029,7 @@ equivalente a
 let "@var{expression}"
 @end example
 @noindent
-Veja-se @xref{Bash Builtins}, para uma descrição completa acerca do 
+Veja-se @ref{Bash Builtins}, para uma descrição completa acerca do 
 comando interno @code{let}.
 
 @item [[@dots{}]]
@@ -1203,7 +1203,7 @@ para um fluxo único.
 @end example
 
 Colocar uma lista de comandos entre parênteses faz com que um ambiente 
-de sub shell seja criado (@pxref{Command Execution Environment}), e cada 
+de sub shell seja criado (@ref{Command Execution Environment}), e cada 
 um dos comandos na @var{list} sejam executados nesse sub shell.   Uma vez 
 que a @var{list} seja executada em um sub shell, atribuições à variáveis 
 não permanecem em efeito após a finalização do sub shell.
@@ -1252,11 +1252,11 @@ coproc [@var{NAME}] @var{command} [@var{redirections}]
 Isso cria um co-processo chamado @var{NAME}.
 Se @var{NAME} não for informado, então o nome padrão é @var{COPROC}.
 @var{NAME} deve necessariamente não ser informado se @var{command} for 
-um comando simples (@pxref{Simple Commands}); do contrário, @var{NAME} é 
+um comando simples (@ref{Simple Commands}); do contrário, @var{NAME} é 
 interpretada como sendo a primeira palavra do comando simples.
 
 Quando o co-processo é executado, o shell cria um vetor variável 
-(@pxref{Arrays}) chamado @env{NAME} no contexto do shell em execução.
+(@ref{Arrays}) chamado @env{NAME} no contexto do shell em execução.
 A saída padrão de @var{command} é conectada via tubo ao arquivo 
 descritor no shell em execução, e esse arquivo descritor é atribuído ao 
 primeiro elemento do vetor que é @env{NAME}[0].
@@ -1264,7 +1264,7 @@ A entrada padrão de @var{command} é conectada via tubo ao arquivo
 descritor no shell em execução, e esse arquivo descritor é atribuído ao 
 segundo elemento do vetor que é @env{NAME}[1].
 Esse tubo é estabelecido antes de quaisquer redireções especificadas 
-pelo comando (@pxref{Redirections}).
+pelo comando (@ref{Redirections}).
 Os descritores de arquivo podem ser utilizados como argumentos para 
 redireções e comandos de shell utilizando-se expansões de palavras 
 padrão.
@@ -1441,19 +1441,19 @@ Isso define uma função de shell chamada @var{name}.   A palavra
 reservada @code{function} é opcional.   Se a palavra reservada 
 @code{function} for informada, então os parênteses são opcionais.
 O @var{body} da função é o comando composto @var{compound-command} 
-(@pxref{Compound Commands}).
+(@ref{Compound Commands}).
 Esse comando é em regra uma @var{list} encapsulada entre @{ e @}, porém 
 pode ser qualquer comando composto listado acima.
 @var{compound-command} é executado sempre que @var{name} for 
 especificado como o nome do comando.
-Quando o shell está em modo @sc{posix} (@pxref{Bash POSIX Mode}), 
+Quando o shell está em modo @sc{posix} (@ref{Bash POSIX Mode}), 
 @var{name} pode não ser o mesmo que um dos comandos internos especiais 
-(@pxref{Special Builtins}).
-Quaisquer redireções (@pxref{Redirections}) associadas com a função de 
+(@ref{Special Builtins}).
+Quaisquer redireções (@ref{Redirections}) associadas com a função de 
 shell são feitas quando a função é executada.
 
 Uma definição de função pode ser deletada utilizando-se a opção 
-@option{-f} para o comando interno @code{unset} (@pxref{Bourne Shell 
+@option{-f} para o comando interno @code{unset} (@ref{Bourne Shell 
 Builtins}).
 
 O status de saída de uma definição de função é zero a menos que um erro 
@@ -1473,7 +1473,7 @@ necessariamente ser finalizada por um ponto e vírgula, ou por um
 @samp{&}, ou por um newline.
 
 Quando a função é executada, os argumentos para a função se tornam os 
-parâmetros posicionais durante a execução da função (@pxref{Positional 
+parâmetros posicionais durante a execução da função (@ref{Positional 
 Parameters}).
 O parâmetro especial @samp{#} que é expandido para o número de 
 parâmetros posicionais é atualizado para refletir a mudança.
@@ -1490,7 +1490,7 @@ habilitada com o comando interno @code{set}, (caso no qual todas as
 funções herdam os coletores @env{DEBUG} e @env{RETURN}, o coletor 
 @env{ERR} não é herdado, a menos que a opção de shell @code{-o errtrace} 
 tenha sido habilitada.
-Veja-se @xref{Bourne Shell Builtins}, para a descrição do comando 
+Veja-se @ref{Bourne Shell Builtins}, para a descrição do comando 
 interno @code{trap}.
 
 A variável @env{FUNCNEST}, se configurada para um valor numérico maior 
@@ -1516,13 +1516,13 @@ função e aos comandos que a função invocar.
 
 Os nomes de função e definições podem ser listados com a opção 
 @option{-f} para o comando interno @code{declare} (@code{typeset}) 
-(@pxref{Bash Builtins}).
+(@ref{Bash Builtins}).
 A opção @option{-F} para @code{declare} ou @code{typeset} listará 
 apenas os nomes de funções (e opcionalmente o arquivo fonte e número da 
 linha, se a opção de shell @code{extdebug} estiver habilitada).
 As funções podem ser exportadas, de forma que sub shells automaticamente 
 tenham elas definidas com a opção @option{-f} para o comando interno 
-@code{export} (@pxref{Bourne Shell Builtins}).
+@code{export} (@ref{Bourne Shell Builtins}).
 Perceba que as funções e variáveis de shell com o mesmo nome podem 
 resultar em entradas múltiplas identicamente nomeadas no ambiente 
 passadas para os filhos do shell.
@@ -8460,7 +8460,7 @@ Inclui suporte para o depurador bash (distribuído separadamente).
 
 @item --enable-direxpand-default
 Faz com a opção de shell @code{direxpand} (veja-se 
-@pxref{The Shopt Builtin}) seja habilitada por padrão quando o shell 
+@ref{The Shopt Builtin}) seja habilitada por padrão quando o shell 
 inicializa.
 Essa opção normalmente é desabilitada por padrão.
 
@@ -8504,7 +8504,7 @@ Inclui histórico de comando e os comandos internos @code{fc} e
 
 @item --enable-job-control
 Isso habilita as características de controle de tarefa 
-(@pxref{Job Control}), se o sistema operacional as suporta.
+(@ref{Job Control}), se o sistema operacional as suporta.
 
 @item --enable-multibyte
 Isso habilita suporte a caracteres multi-byte se o sistema operacional 
