@@ -74,7 +74,7 @@ History como um usuário.
 @cindex history list
 
 Quando a opção @option{-o history} ao comando interno @code{set} está 
-habilitada (veja-se @ref{The Set Builtin}), o shell provê acesso ao 
+habilitada (veja-se @ref{O Comando Interno Set}), o shell provê acesso ao 
 @dfn{histórico de comandos}, a lista de comandos previamente digitados.
 O valor da variável de shell @env{HISTSIZE} é utilizada como o número de 
 comandos a salvar em uma lista de histórico.
@@ -94,7 +94,7 @@ Quando um shell com histórico habilitado sai, as últimas @env{$HISTSIZE}
 linhas são copiadas a partir da lista de histórico para o arquivo 
 nominado por @env{$HISTFILE}.
 Se a opção de shell @code{histappend} for configurada 
-(veja-se @ref{Bash Builtins}), então as linhas são acrescentadas ao 
+(veja-se @ref{Comandos Internos ao Bash}), então as linhas são acrescentadas ao 
 final do arquivo de histórico, do contrário o arquivo de histórico é 
 sobrescrito.
 Se @env{HISTFILE} for desconfigurada, ou se o arquivo de histórico 
@@ -131,7 +131,7 @@ preservar a correção sintática.
 A opção de shell @code{lithist} faz com o shell salve o comando com 
 marcadores "newline" embutidos, em vez de ponto e vírgula.
 O comando interno @code{shopt} é utilizado para configurar essas opções.
-Veja-se @ref{Bash Builtins}, para uma descrição de @code{shopt}.
+Veja-se @ref{Comandos Internos ao Bash}, para uma descrição de @code{shopt}.
 
 @node Bash History Builtins
 @section Bash History Builtins
@@ -279,7 +279,7 @@ carácter de expansão de histórico.
 
 @ifset BashFeatures
 Várias opções de shell configuráveis com o comando interno @code{shopt} 
-(veja-se @ref{Bash Builtins}) podem ser utilizados para adaptar o 
+(veja-se @ref{Comandos Internos ao Bash}) podem ser utilizados para adaptar o 
 comportamento da expansão de histórico.   Se a opção de shell 
 @code{histverify} estiver habilitada, e Readline estiver sendo 
 utilizada, então as substituições de histórico não são passadas 
