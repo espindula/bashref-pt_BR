@@ -1739,7 +1739,7 @@ Realiza expansão de histórico sobre a linha atual e insere um espaço
 (veja-se @ref{History Interaction}).
 
 @item alias-expand-line ()
-Realiza expansão de apelido sobre a linha atual (veja-se @ref{Aliases}).
+Realiza expansão de apelido sobre a linha atual (veja-se @ref{Apelidos}).
 
 @item history-and-alias-expand-line ()
 Realiza expansão de apelido e de histórico sobre a linha atual.
@@ -1840,7 +1840,7 @@ completada são retornadas.
 Quando a opção @option{-f} ou a @option{-d} forem utilizadas para 
 complementação de nome de arquivo ou de nome de diretório, a variável de 
 shell @env{FIGNORE} é utilizada para filtrar as coincidências.
-Veja-se @ref{Bash Variables}, para uma descrição de @env{FIGNORE}.
+Veja-se @ref{Variáveis do Bash}, para uma descrição de @env{FIGNORE}.
 
 Quaisquer complementações especificadas por um modelo de expansão de 
 nome de arquivo para a opção @option{-G} são geradas depois.
@@ -1867,7 +1867,7 @@ Após essas coincidências terem sido geradas, qualquer função de shell ou
 comando especificado com as opções @option{-F} e @option{-C} é invocado.
 Quando o comando ou função é invocada, às variáveis @env{COMP_LINE}, 
 @env{COMP_POINT}, @env{COMP_KEY}, e @env{COMP_TYPE} são atribuídos 
-valores conforme descrito acima (veja-se @ref{Bash Variables}).
+valores conforme descrito acima (veja-se @ref{Variáveis do Bash}).
 Se uma função de shell está sendo invocada, as variáveis 
 @env{COMP_WORDS} e @env{COMP_CWORD} também são configuradas.
 Quando a função ou comando é invocado, o primeiro argumento ($1) é o 
@@ -2132,7 +2132,7 @@ Tópicos de ajuda conforme aceitos pelo comando interno @code{help}
 
 @item hostname
 Nomes de máquina, conforme extraídos a partir do arquivo especificado 
-pela variável de shell @env{HOSTFILE} (veja-se @ref{Bash Variables}).
+pela variável de shell @env{HOSTFILE} (veja-se @ref{Variáveis do Bash}).
 
 @item job
 Nomes de tarefa, se o controle de tarefa estiver ativo.   Também pode 
