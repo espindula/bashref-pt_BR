@@ -56,13 +56,13 @@ utilização de um shell interativo, a menos que a opção
 @option{--noediting} seja fornecida na invocação de shell.
 A edição de linha também é utilizada quando da utilização da opção 
 @option{-e} para o comando interno @code{read} 
-(veja-se @ref{Bash Builtins}).
+(veja-se @ref{Comandos Internos ao Bash}).
 Por padrão, os comandos de edição de linha são similares àqueles de 
 Emacs.
 Uma interface de edição de linha ao estilo do vi também está disponível.
 A edição de linha pode ser habilitada a qualquer tempo utilizando-se as 
 opções @option{-o emacs} ou @option{-o vi} para o comando interno 
-@code{set} (veja-se @ref{The Set Builtin}), ou desabilitadas 
+@code{set} (veja-se @ref{O Comando Interno Set}), ou desabilitadas 
 utilizando-se as opções @option{+o emacs} ou @option{+o vi} para 
 @code{set}.
 @end ifset
@@ -448,7 +448,7 @@ desligada.
 
 @ifset BashFeatures
 O comando @w{@code{bind -V}} lista os nomes e valores atuais da variável 
-Readline.   Veja-se @ref{Bash Builtins}.
+Readline.   Veja-se @ref{Comandos Internos ao Bash}.
 @end ifset
 
 Uma grande parte do comportamento em tempo de execução é modificável com 
@@ -788,7 +788,7 @@ for pressionada (uma @var{macro}).
 O comando @w{@code{bind -p}} exibe nomes de função Readline e 
 vinculações em um formato que pode ser colocado diretamente em um 
 arquivo de inicialização.
-veja-se @ref{Bash Builtins}.
+veja-se @ref{Comandos Internos ao Bash}.
 @end ifset
 
 @table @asis
@@ -1105,7 +1105,7 @@ sequências de tecla.
 Você pode listar as suas vinculações de tecla executando
 @w{@code{bind -P}} ou, para um formato mais conciso, adequado para um 
 arquivo @var{inputrc}, @w{@code{bind -p}}.   (veja-se
-@ref{Bash Builtins}).
+@ref{Comandos Internos ao Bash}).
 @end ifset
 Os nomes de comando sem uma sequência de tecla que as acompanhe são 
 desvinculados por padrão.
@@ -1578,7 +1578,7 @@ coincidências de complementação.
 @item complete-into-braces (M-@{)
 Realiza complementação de nome de arquivo e insere a lista das 
 complementações possíveis encapsuladas em chaves, de maneira que a lista 
-esteja disponível para o shell (veja-se @ref{Brace Expansion}).
+esteja disponível para o shell (veja-se @ref{Expansão de Chave}).
 
 @end ifset
 @end ftable
@@ -1729,7 +1729,7 @@ Exibe informação de versão acerca da instância atual de Bash.
 @item shell-expand-line (M-C-e)
 Expande a linha como o shell faz.
 Isso realiza expansão de histórico e de apelido bem como todas as 
-expansões de palavras do shell (veja-se @ref{Shell Expansions}).
+expansões de palavras do shell (veja-se @ref{Expansões de Shell}).
 
 @item history-expand-line (M-^)
 Realiza expansão de histórico sobre a linha atual.
@@ -1784,7 +1784,7 @@ especificado no padrão @sc{posix}.
 @ifset BashFeatures
 Com o objetivo de trocar interativamente entre os modos de edição 
 @code{emacs} e @code{vi}, utilize os comandos @samp{set -o emacs} e 
-@samp{set -o vi} (veja-se @ref{The Set Builtin}).
+@samp{set -o vi} (veja-se @ref{O Comando Interno Set}).
 @end ifset
 @ifclear BashFeatures
 Com o objetivo de trocar interativamente entre os modos de edição 
@@ -1857,9 +1857,9 @@ O encapsulamento do shell é respeitado.
 Cada palavra é então expandida utilizando a expansão de chave, expansão 
 de til, expansão de parâmetro e variável, substituição de comando, e 
 expansão aritmética, conforme descrito abaixo 
-(veja-se @ref{Shell Expansions}).
+(veja-se @ref{Expansões de Shell}).
 Os resultados são divididos utilizando-se as regras descritas acima 
-(veja-se @ref{Word Splitting}).
+(veja-se @ref{Divisão de Palavra}).
 Os resultados da expansão são coincididos no prefixo contra a palavra 
 sendo complementada, e as palavras coincidentes se tornam as 
 complementações possíveis.
@@ -2128,7 +2128,7 @@ Nomes de grupo.   Também pode ser especificada como @option{-g}.
 
 @item helptopic
 Tópicos de ajuda conforme aceitos pelo comando interno @code{help} 
-(veja-se @ref{Bash Builtins}).
+(veja-se @ref{Comandos Internos ao Bash}).
 
 @item hostname
 Nomes de máquina, conforme extraídos a partir do arquivo especificado 
@@ -2150,11 +2150,11 @@ Nomes de serviço.   Também pode ser especificada como @option{-s}.
 
 @item setopt
 Argumentos válidos para a opção @option{-o} ao comando interno 
-@code{set} (veja-se @ref{The Set Builtin}).
+@code{set} (veja-se @ref{O Comando Interno Set}).
 
 @item shopt
 Nomes de opção do shell conforme aceitos pelo comando interno 
-@code{shopt} (veja-se @ref{Bash Builtins}).
+@code{shopt} (veja-se @ref{Comandos Internos ao Bash}).
 
 @item signal
 Nomes de sinal.
@@ -2268,10 +2268,10 @@ vetor @code{COMP_WORDS}; a palavra atual é indexada pela variável
 A função depende dos comandos internos @code{complete} e @code{compgen} 
 para fazer a maioria do trabalho, adicionando somente as coisas que o 
 @code{cd} de Bash faz além de aceitar nomes básicos de diretório:
-Expansão de til (veja-se @ref{Tilde Expansion}); busca por diretórios em 
+Expansão de til (veja-se @ref{Expansão de Til}); busca por diretórios em 
 @var{$CDPATH}; o qual é descrito acima 
-(veja-se @ref{Bourne Shell Builtins}); e suporte básico para a opção de 
-shell @code{cdable_vars} (veja-se @ref{The Shopt Builtin}).
+(veja-se @ref{Comandos Internos do Shell Bourne}); e suporte básico para a opção de 
+shell @code{cdable_vars} (veja-se @ref{O Comando Interno Shopt}).
 @code{_comp_cd} modifica o valor de @var{IFS}, de forma que ela contém 
 apenas um marcador "newline" para acomodar nomes de arquivo que 
 contenham espaços e tabs -- @code{compgen} imprime as complementações 
@@ -2366,7 +2366,7 @@ A opção @option{-o bashdefault} traz o restante das complementações
 padrão de Readline.   Essas incluem coisas como complementação de nome 
 de comando; complementação de variável para palavras iniciando com 
 @samp{@{}; complementações contendo modelos de expansão de nomes de 
-caminho (veja-se @ref{Filename Expansion}); e assim por diante.
+caminho (veja-se @ref{Expansão de Nome de Arquivo}); e assim por diante.
 
 Uma vez instalada utilizando @code{complete}, @code{_comp_cd} será 
 chamada cada vez que nós tentarmos a complementação de palavra para um 
