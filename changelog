@@ -1,3 +1,7 @@
+2016-feb-23	Working on the cross references.
+		Translating all the titles and adjusting the cross 
+		references using GNU Sed and grep tools combined.
+
 2016-feb-22	Translated the following sections and subsections (in 
 		hsuser-pt_BR.texi):
 		9.2 - Bash History Builtins
