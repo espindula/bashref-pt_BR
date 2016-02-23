@@ -33,11 +33,11 @@ intitulada "GNU Free Documentation Licence".
 
 Permission is granted to copy, distribute and/or modify this Bash 
 Reference Manual, edition 4.3, version translated into brazilian 
-portuguese under the terms of the GNU Free Documentation License, 
+portuguese under the terms of the Licença de Documentação Livre GNU, 
 Version 1.3 or any later version published by the Free Software 
 Foundation; with no Invariant Sections, no Front-Cover Texts, and no 
 Back-Cover Texts.   A copy of the license is included in the section 
-entitled ``GNU Free Documentation License''.
+entitled ``Licença de Documentação Livre GNU''.
 @end quotation
 @end copying
 
@@ -110,14 +110,14 @@ como a referência definitiva acerca do comportamento do shell.
 * Utilizando o Histórico Interativamente::	Expansão do Histórico de Comando
 * Instalando o Bash::		Como construir e instalar Bash em 
 				seu sistema.
-* Reporting Bugs::		Como relatar bugs no Bash.
-* Major Differences From The Bourne Shell::	Uma lista concisa entre 
+* Relatando Bugs::		Como relatar bugs no Bash.
+* Maiores Diferenças Para o Shell Bourne::	Uma lista concisa entre 
 						Bash e versões
 						históricas de 
 						/bin/sh.
-* GNU Free Documentation License::	Copiando e compartilhando esta 
+* Licença de Documentação Livre GNU::	Copiando e compartilhando esta 
 					documentação.
-* Indexes::			Vários índices para este manual.
+* Indices::			Vários índices para este manual.
 @end menu
 @end ifnottex
 
@@ -393,14 +393,14 @@ executa um comando.   Basicamente, o shell faz o seguinte:
 @item
 Lê a entrada a partir de um arquivo (@ref{Scripts de Shell}), a 
 partir de uma cadeia de caracteres fornecida como um argumento para 
-a opção de invocação @option{-c} (@ref{Invoking Bash}), ou a 
+a opção de invocação @option{-c} (@ref{Invocando o Bash}), ou a 
 partir do terminal do usuário.
 
 @item
 Divide a entrada em palavras e operadores, obedecendo às regras de 
 encapsulamento entre aspas descritas em @ref{Encapsulamento}.  Esses tokens 
 são separados por @code{metacharacters}.  A expansão de apelidos é 
-feita por esse passo (@ref{Aliases}).
+feita por esse passo (@ref{Apelidos}).
 
 @item
 Processa os tokens em comandos simples e comandos compostos 
@@ -593,7 +593,7 @@ habilitada (@ref{O Comando Interno Shopt}), uma palavra iniciando com
 naquela linha sejam ignorados.   Um shell interativo sem a opção 
 @code{interactive_comments} habilitada não permite comentários.   A 
 opção @code{interactive_comments} é habilitada por padrão em shells 
-interativos.   Veja-se @ref{Interactive Shells}, para uma descrição do 
+interativos.   Veja-se @ref{Shells Interativos}, para uma descrição do 
 que torna um shell interativo.
 
 @node Comandos do Shell
@@ -675,19 +675,19 @@ As estatísticas atualmente consistem do tempo (wall-clock) decorrido e
 tempo de usuário e de sistema consumidos pela execução do comando.
 A opção @option{-p} modifica o formato da saída para aquele especificado 
 por @sc{posix}.
-Quando o shell está em modo @sc{posix} (@ref{Bash POSIX Mode}), ele 
+Quando o shell está em modo @sc{posix} (@ref{O Modo POSIX de Bash}), ele 
 não reconhece @code{time} como uma palavra reservada se o próximo token 
 inicia com um @samp{-}.
 A variável @env{TIMEFORMAT} pode ser configurada para um formato de 
 cadeia de caracteres que especifique como a informação de temporização 
-deveria ser exibida.   Veja-se @ref{Bash Variables} para uma descrição 
+deveria ser exibida.   Veja-se @ref{Variáveis do Bash} para uma descrição 
 dos formatos disponíveis.
 O uso de @code{time} como uma palavra reservada permite a temporização 
 de comandos internos do shell, de funções do shell, e de canais de 
 comunicação (pipelines).   Um comando @code{time} externo não pode 
 temporizar esses facilmente.
 
-Quando o shell está em modo @sc{posix} (@ref{Bash POSIX Mode}), 
+Quando o shell está em modo @sc{posix} (@ref{O Modo POSIX de Bash}), 
 @code{time} deve ser seguido por um newline.   Nesse caso, o shell exibe 
 o tempo de usuário e de sistema total consumido pelo shell e seus 
 filhos.
@@ -857,7 +857,7 @@ for (( @var{expr1} ; @var{expr2} ; @var{expr3} )) ; do @var{commands} ; done
 @end example
 
 Primeiro, a expressão aritmética @var{expr1} é calculada de acordo com 
-as regras descritas abaixo (@ref{Shell Arithmetic}).
+as regras descritas abaixo (@ref{Aritmética de Shell}).
 A expressão aritmética @var{expr2} é então calculada repetidamente até 
 que ela seja igual a zero.
 A cada vez que @var{expr2} seja igual a um valor qualquer diferente de 
@@ -1021,7 +1021,7 @@ done
 @end example
 
 A @var{expression} aritmética é calculada de acordo com as regras 
-descritas abaixo (@ref{Shell Arithmetic}).
+descritas abaixo (@ref{Aritmética de Shell}).
 Se o valor da expressão for diferente de zero, então o status de retorno 
 é 0; do contrário o status de retorno é 1.   Isso é exatamente 
 equivalente a
@@ -1041,8 +1041,8 @@ comando interno @code{let}.
 
 Retorna um status de 0 ou 1 dependendo da avaliação da expressão 
 condicional @var{expression}.
-Expressões são compostas de primários descritos abaixo em @ref{Bash 
-Conditional Expressions}.
+Expressões são compostas de primários descritos abaixo em 
+@ref{Expressões Condicionais de Bash}.
 A divisão de palavras (word splitting) e a expansão de nome de arquivo 
 não são feitas nas palavras contidas entre o @code{[[} e o @code{]]}; 
 expansão de til, expansão de variável e parâmetro, expansão aritmética, 
@@ -1256,7 +1256,7 @@ um comando simples (@ref{Comandos Simples}); do contrário, @var{NAME} é
 interpretada como sendo a primeira palavra do comando simples.
 
 Quando o co-processo é executado, o shell cria um vetor variável 
-(@ref{Arrays}) chamado @env{NAME} no contexto do shell em execução.
+(@ref{Vetores}) chamado @env{NAME} no contexto do shell em execução.
 A saída padrão de @var{command} é conectada via tubo ao arquivo 
 descritor no shell em execução, e esse arquivo descritor é atribuído ao 
 primeiro elemento do vetor que é @env{NAME}[0].
@@ -1446,7 +1446,7 @@ Esse comando é em regra uma @var{list} encapsulada entre @{ e @}, porém
 pode ser qualquer comando composto listado acima.
 @var{compound-command} é executado sempre que @var{name} for 
 especificado como o nome do comando.
-Quando o shell está em modo @sc{posix} (@ref{Bash POSIX Mode}), 
+Quando o shell está em modo @sc{posix} (@ref{O Modo POSIX de Bash}), 
 @var{name} pode não ser o mesmo que um dos comandos internos especiais 
 (@ref{Comandos Internos Especiais}).
 Quaisquer redireções (@ref{Redireções}) associadas com a função de 
@@ -1578,13 +1578,13 @@ Expansão de nome de arquivo não é feita.
 Declarações de atribuição também podem aparecer como argumentos para os 
 comandos internos @code{alias}, @code{declare}, @code{typeset}, 
 @code{export}, @code{readonly}, e @code{local}.
-Quando em modo @sc{posix} (veja-se @ref{Bash POSIX Mode}), esse comandos 
+Quando em modo @sc{posix} (veja-se @ref{O Modo POSIX de Bash}), esse comandos 
 internos podem aparecer em um comando após uma ou mais instâncias do 
 comando interno @code{command} e conservar essas propriedades de 
 declaração de atribuição.
 
 No contexto onde uma declaração de atribuição está atribuindo um valor 
-para uma variável de shell ou índice de vetor (veja-se @ref{Arrays}), o 
+para uma variável de shell ou índice de vetor (veja-se @ref{Vetores}), o 
 operador @samp{+=} pode ser utilizado ou para acrescentar ou para somar 
 ao valor prévio da variável.
 Quando @samp{+=} é aplicado a uma variável para a qual o atributo 
@@ -1592,7 +1592,7 @@ Quando @samp{+=} é aplicado a uma variável para a qual o atributo
 expressão aritmética e adicionado ao valor atual da variável, o qual 
 também é calculado.
 Quando @samp{+=} é aplicado a uma variável de vetor utilizando-se 
-atribuição composta (veja-se @ref{Arrays}), o valor da variável não é 
+atribuição composta (veja-se @ref{Vetores}), o valor da variável não é 
 desconfigurado (como o é ao se utilizar @samp{=}), e novos valores são 
 acrescentados ao vetor iniciando naquele valor maior que o índice máximo 
 do vetor (para vetores indexados), ou somados como pares de valor-chave 
@@ -1733,11 +1733,11 @@ ou utilizando o comando interno @code{bg}
 configurado na inicialização do shell.   Se Bash for invocado com um 
 arquivo de comandos (veja-se @ref{Scripts de Shell}), @code{$0} é 
 configurado para o nome desse arquivo.
-Se Bash for iniciado com a opção @option{-c} (veja-se @ref{Invoking 
-Bash}), então @code{$0} é configurado para o primeiro argumento após a 
-sequência de caracteres ser executada, caso uma esteja presente.   Do 
-contrário, é configurado para o nome do arquivo utilizado para invocar 
-Bash, conforme dado pelo argumento zero.
+Se Bash for iniciado com a opção @option{-c} 
+(veja-se @ref{Invocando o Bash}), então @code{$0} é configurado para o 
+primeiro argumento após a sequência de caracteres ser executada, caso 
+uma esteja presente.   Do contrário, é configurado para o nome do 
+arquivo utilizado para invocar Bash, conforme dado pelo argumento zero.
 
 @item _
 @vindex $_
@@ -1805,7 +1805,7 @@ arquivo podem mudar o número de palavras da expansão; outras expansões
 expandem a palavra única para uma palavra única.
 As únicas exceções a isso são as expansões de @code{"$@@"} 
 (veja-se @ref{Parâmetros Especiais}) e @code{"$@{@var{name}[@@]@}"}
-(veja-se @ref{Arrays}).
+(veja-se @ref{Vetores}).
 
 Após todas as expansões @code{quote removal} 
 (veja-se @ref{Remoção de Aspas}) é realizada.
@@ -1915,7 +1915,7 @@ número @var{N}, opcionalmente prefixado por um @samp{+} ou um @samp{-},
 então o tilde-prefix é substituído com o elemento correspondente 
 originado da pilha de diretório, como se ele pudesse ser exibido pelo 
 comando interno @code{dirs} invocado com os caracteres seguindo til no 
-tilde-prefix como um argumento (veja-se @ref{The Directory Stack}).
+tilde-prefix como um argumento (veja-se @ref{A Pilha de Diretório}).
 Se o tilde-prefix, sem o til, consiste de um número sem um @samp{+} ou 
 @samp{-} iniciais, então @samp{+} é presumido.
 
@@ -1981,7 +1981,7 @@ A forma básica da expansão de parâmetro é $@{@var{parameter}@}.
 O valor de @var{parameter} é substituído.
 O @var{parameter} é um parâmetro de shell conforme descrito acima 
 (veja-se @ref{Parâmetros de Shell}) ou uma referência de vetor 
-(veja-se @ref{Arrays}).
+(veja-se @ref{Vetores}).
 As chaves são obrigatórias quando @var{parameter} é um parâmetro 
 posicional com mais que um dígito, ou quando @var{parameter} for seguido 
 por um carácter que não é para ser interpretado como sendo parte de seu 
@@ -2049,7 +2049,7 @@ Se @var{length} for omitido, expande para a substring do valor de
 @var{parameter} iniciando no carácter especificado por @var{offset} e se 
 estendo até o fim do valor.
 @var{length} e @var{offset} são expressões aritméticas 
-(veja-se @ref{Shell Arithmetic}).
+(veja-se @ref{Aritmética de Shell}).
 
 Se o valor de @var{offset} for calculado para um número menor que zero, 
 o valor é utilizado como um offset em caracteres a partir do fim do 
@@ -2362,7 +2362,7 @@ O resultado é tratado como a expressão aritmética a ser calculada.
 Expansões aritméticas podem ser aninhadas.
 
 O cálculo é realizado de acordo com as regras listadas abaixo 
-(veja-se @ref{Shell Arithmetic}).
+(veja-se @ref{Aritmética de Shell}).
 Se a expressão for inválida, Bash imprime uma mensagem indicando a falha 
 para o descritor de erro padrão e não ocorre substituição.
 
@@ -3041,7 +3041,7 @@ opções habilitadas por @code{shopt} (veja-se @ref{O Comando Interno Shopt})
 
 @item
 apelidos (aliases) de shell definidos com @code{alias} (veja-se 
-@ref{Aliases})
+@ref{Apelidos})
 
 @item
 vários @sc{id}s de processos, incluindo aqueles das tarefas de segundo 
@@ -3224,7 +3224,7 @@ que o coletor é executado.
 Um script de shell é um arquivo de texto contendo comandos de shell.   
 Quando um tal arquivo é utilizado como o primeiro argumento não opção 
 quando da invocação de Bash, e nem a opção @option{-c} nem a @option{-s} 
-for fornecida (veja-se @ref{Invoking Bash}), Bash lê e executa comandos 
+for fornecida (veja-se @ref{Invocando o Bash}), Bash lê e executa comandos 
 a partir do arquivo, e sai.   Tal modo de operação cria um shell não 
 interativo.   O shell primeiro procura pelo arquivo no diretório de 
 trabalho atual, e olha nos diretórios em @env{$PATH} se não for 
@@ -3306,7 +3306,7 @@ foram estendidos no Bash.
 Vários comandos internos são descritos em outros capítulos: comandos 
 internos os quais proveem a interface do Bash para as facilidades de 
 controle de tarefas (veja-se @ref{Comandos Internos do Controle de Tarefa}), a pilha de 
-diretório (veja-se @ref{Directory Stack Builtins}), o histórico de 
+diretório (veja-se @ref{Comandos Internos da Pilha de Diretório}), o histórico de 
 comando (veja-se @ref{Bash History Builtins}), e as facilidades de 
 complementação programável (veja-se @ref{Programmable Completion 
 Builtins}).
@@ -3690,8 +3690,8 @@ test @var{expr}
 Avalia uma expressão condicional @var{expr} e retorna um código 0 
 (verdadeiro) ou 1 (falso).
 Cada operador e operando deve necessariamente ser um argumento separado.
-Expressões são compostas dos primários descritos abaixo em @ref{Bash 
-Conditional Expressions}.
+Expressões são compostas dos primários descritos abaixo em 
+@ref{Expressões Condicionais de Bash}.
 @code{test} não aceita quaisquer opções, nem aceita e ignora um 
 argumento de @option{--} como significando o final das opções.
 
@@ -3735,7 +3735,7 @@ A expressão é verdadeira se e somente se o argumento não nulo.
 Se o primeiro argumento for @samp{!}, então a expressão é verdadeira se 
 e somente se o segundo argumento for nulo.
 Se o primeiro argumento for um dos operadores condicionais unários 
-(veja-se @ref{Bash Conditional Expressions}), então a expressão é 
+(veja-se @ref{Expressões Condicionais de Bash}), então a expressão é 
 verdadeira se o teste unário for verdadeiro.
 Se o primeiro argumento não for um operador unário válido, então a 
 expressão é falsa.
@@ -3743,7 +3743,7 @@ expressão é falsa.
 @item 3 argumentos
 As seguintes condições são aplicadas na ordem listada.
 Se o segundo argumento for um dos operadores condicionais binários 
-(veja-se @ref{Bash Conditional Expressions}), então o resultado da 
+(veja-se @ref{Expressões Condicionais de Bash}), então o resultado da 
 expressão é o resultado do teste binário utilizando-se o primeiro e o 
 terceiro argumentos como operandos.
 Os operadores @samp{-a} e @samp{-o} são considerados operadores binários 
@@ -3907,7 +3907,7 @@ entrada.
 Se argumentos forem fornecidos, um apelido é definido para cada 
 @var{nome} cujo @var{valor} for dado.   Se nenhum @var{valor} for dado, 
 então o nome e valor do apelido é impresso.
-Os apelidos são descritos em @ref{Aliases}.
+Os apelidos são descritos em @ref{Apelidos}.
 
 @item bind
 @btindex bind
@@ -4111,17 +4111,17 @@ variáveis:
 
 @table @code
 @item -a
-Cada @var{nome} é uma variável vetor indexada (veja-se @ref{Arrays}).
+Cada @var{nome} é uma variável vetor indexada (veja-se @ref{Vetores}).
 
 @item -A
-Cada @var{nome} é uma variável vetor associativa (veja-se @ref{Arrays}).
+Cada @var{nome} é uma variável vetor associativa (veja-se @ref{Vetores}).
 
 @item -f
 Utilize apenas nomes de função.
 
 @item -i
 A variável é para ser tratada como sendo um número inteiro; avaliação 
-aritmética (veja-se @ref{Shell Arithmetic}) é implementada quando for 
+aritmética (veja-se @ref{Aritmética de Shell}) é implementada quando for 
 atribuído um valor para a variável.
 
 @item -l
@@ -4176,7 +4176,7 @@ encontrada; uma tentativa for feita para definir a função utilizando
 @samp{-f foo=bar}; uma tentativa for feita para atribuir um valor a uma 
 variável apenas leitura; uma tentativa for feita de atribuir um valor a 
 uma variável vetor sem utilizar a sintaxe de atribuição composta 
-(veja-se @ref{Arrays}); um dos @var{nomes} não for um nome de variável 
+(veja-se @ref{Vetores}); um dos @var{nomes} não for um nome de variável 
 de shell válido; uma tentativa for feita de desligar o estado de somente 
 leitura para uma variável apenas leitura; uma tentativa for feita de 
 desligar o estado de vetor para uma variável vetor; ou uma tentativa for 
@@ -4313,7 +4313,7 @@ let @var{expressão} [@var{expressão} @dots{}]
 
 O comando interno @code{let} permite que operações aritméticas sejam 
 efetuadas sobre variáveis de shell.   Cada @var{expressão} é avaliada de 
-acordo com as regras dadas abaixo em @ref{Shell Arithmetic}.   Se a 
+acordo com as regras dadas abaixo em @ref{Aritmética de Shell}.   Se a 
 última @var{expressão} avaliada resultar em 0, então @code{let} 
 retornará 1; do contrário 0 é retornado.
 
@@ -4734,7 +4734,7 @@ unalias [-a] [@var{name} @dots{} ]
 
 Remove cada @var{name} da lista de apelidos.   Se @option{-a} for 
 fornecida, então todos os apelidos serão removidos.
-Os apelidos são descritos em @ref{Aliases}.
+Os apelidos são descritos em @ref{Apelidos}.
 @end table
 
 @node Modificando o Comportamento do Shell
@@ -4920,8 +4920,8 @@ Essa opção é desabilitada por padrão.
 
 @item posix
 Modifica o comportamento de Bash onde a operação padrão diferir do 
-padrão @sc{posix} para coincidir com o padrão (veja-se @ref{Bash POSIX 
-Mode}).
+padrão @sc{posix} para coincidir com o padrão 
+(veja-se @ref{O Modo POSIX de Bash}).
 Isso é entendido para fazer com que Bash se comporte como um estrito 
 super conjunto daquele padrão.
 
@@ -5236,7 +5236,7 @@ comando interno @code{exec}.   Um shell interativo não sai se
 
 @item expand_aliases
 Se configurado, apelidos são expandidos conforme descrito abaixo sob 
-Apelidos, @ref{Aliases}.
+Apelidos, @ref{Apelidos}.
 Essa opção está habilitada por padrão para shells interativos.
 
 @item extdebug
@@ -5262,7 +5262,7 @@ script de shell executado pelos comandos internos @code{.} ou
 
 @item
 @code{BASH_ARGC} e @code{BASH_ARGV} são atualizados conforme descrito 
-nas descrições deles (veja-se @ref{Bash Variables}).
+nas descrições deles (veja-se @ref{Variáveis do Bash}).
 
 @item
 O rastreamento de função é habilitado: substituição de comando, funções 
@@ -5294,7 +5294,7 @@ durante a expansão de nome de arquivo resultam em um erro de expansão.
 Se configurado, os sufixos especificados pela variável de shell 
 @env{FIGNORE} fazem com que palavras sejam ignoradas quando da 
 realização de completação de palavra ainda que as palavras ignoradas 
-sejam as únicas completações possíveis.   Veja-se @ref{Bash Variables}, 
+sejam as únicas completações possíveis.   Veja-se @ref{Variáveis do Bash}, 
 para uma descrição de @env{FIGNORE}.
 Essa opção está habilitada por padrão.
 
@@ -5362,7 +5362,7 @@ possível.
 
 @item login_shell
 O shell configura essa opção se ele (shell) foi inicializado como um 
-shell de login (veja-se @ref{Invoking Bash}).
+shell de login (veja-se @ref{Invocando o Bash}).
 O valor não pode ser modificado.
 
 @item mailwarn
@@ -5401,12 +5401,12 @@ Essa opção está habilitada por padrão.
 Se configurado, apresenta sequências de caracteres como prompt sujeitas 
 a expansão de parâmetro, substituição de comando, expansão aritmética e 
 remoção de aspas, após ser expandida conforme descrito abaixo 
-(veja-se @ref{Controlling the Prompt}).
+(veja-se @ref{Controlando o Prompt}).
 Essa opção está habilitada por padrão.
 
 @item restricted_shell
 O shell configura essa opção se ele for inicializado em modo restrito 
-(veja-se @ref{The Restricted Shell}).
+(veja-se @ref{O Shell Restrito}).
 O valor não pode ser modificado.
 Isso não é reconfigurado quando os arquivos de inicialização são 
 executados, permitindo que os arquivos de inicialização descubram se o 
@@ -5462,7 +5462,7 @@ ambiente do shell após o comando completar.
 Quando Bash não está executando no modo @sc{posix}, estes comandos 
 internos se comportam sem nenhuma diferença do restante dos comandos 
 internos ao Bash.
-O modo @sc{posix} do Bash está descrito em @ref{Bash POSIX Mode}.
+O modo @sc{posix} do Bash está descrito em @ref{O Modo POSIX de Bash}.
 
 Estes são os comandos internos especiais do @sc{posix}:
 @example
@@ -5474,16 +5474,16 @@ Estes são os comandos internos especiais do @sc{posix}:
 @chapter Variáveis do Shell
 
 @menu
-* Bourne Variáveis do Shell::	Variáveis as quais Bash utiliza da mesma 
+* Variáveis do Shell Bourne::	Variáveis as quais Bash utiliza da mesma 
 				forma que o Shell Bourne.
-* Bash Variables::		Lista de variáveis que existem no Bash.
+* Variáveis do Bash::		Lista de variáveis que existem no Bash.
 @end menu
 
 Este capítulo descreve as variáveis de shell que Bash utiliza.
 Bash automaticamente atribui valores padrão a um número de variáveis.
 
-@node Bourne Variáveis do Shell
-@section Bourne Variáveis do Shell
+@node Variáveis do Shell Bourne
+@section Variáveis do Shell Bourne
 
 Bash utiliza certas variáveis de shell da mesma maneira que o shell 
 Bourne.
@@ -5538,7 +5538,7 @@ ou como uma vírgula inicial ou final.
 
 @item PS1
 A sequência de caracteres primária de prompt.   O valor padrão é 
-@samp{\s-\v\$ }.   Veja-se @ref{Controlling the Prompt}, para a lista 
+@samp{\s-\v\$ }.   Veja-se @ref{Controlando o Prompt}, para a lista 
 completa de sequências de escape que são expandidas antes que @env{PS1} 
 seja exibida.
 
@@ -5548,8 +5548,8 @@ A sequência de caracteres secundária de prompt.   O valor padrão é
 
 @end vtable
 
-@node Bash Variables
-@section Bash Variables
+@node Variáveis do Bash
+@section Variáveis do Bash
 
 Estas variáveis são configuradas ou utilizadas por Bash, porém outros 
 shells normalmente não tratam elas especialmente.
@@ -5643,7 +5643,7 @@ A versão atual também é um valor válido.
 Se essa variável for configurada quando Bash for invocado para executar 
 um script de shell, então o valor dela é expandido e utilizado como o 
 nome de um arquivo de inicialização a ser lido antes de executar o 
-script.   Veja-se @ref{Bash Startup Files}.
+script.   Veja-se @ref{Arquivos de Inicialização do Bash}.
 
 @item BASH_EXECUTION_STRING
 O argumento de comando para a opção de invocação @option{-c}.
@@ -5681,7 +5681,7 @@ quando o shell inicia sua execução dentro daquele ambiente.
 O valor inicial é 0.
 
 @item BASH_VERSINFO
-Uma variável vetor somente leitura (veja-se @ref{Arrays}) cujos membros 
+Uma variável vetor somente leitura (veja-se @ref{Vetores}) cujos membros 
 mantém informação de versão para essa instância de Bash.
 Os valores atribuídos aos membros do vetor são conforme a seguir:
 
@@ -5822,7 +5822,7 @@ buffer de shell Emacs e desabilita a edição de linha.
 
 @item ENV
 Semelhante a @code{BASH_ENV}; utilizado quando o shell for invocado no 
-modo @sc{posix} (veja-se @ref{Bash POSIX Mode}).
+modo @sc{posix} (veja-se @ref{O Modo POSIX de Bash}).
 
 @item EUID
 O id numérico de usuário efetivo do usuário atual.   Essa variável é 
@@ -6087,14 +6087,14 @@ Uma sequência de caracteres descrevendo o sistema operacional no qual
 Bash está em execução.
 
 @item PIPESTATUS
-Uma variável vetor (veja-se @ref{Arrays}) contendo uma lista de valores 
+Uma variável vetor (veja-se @ref{Vetores}) contendo uma lista de valores 
 de códigos de saída originados de processos no canal de comunicação mais 
 recentemente executado em segundo plano (o qual pode conter apenas um 
 comando singular).
 
 @item POSIXLY_CORRECT
 Se essa variável estiver no ambiente quando Bash iniciar, então o shell 
-entra no modo @sc{posix} (veja-se @ref{Bash POSIX Mode}) antes da 
+entra no modo @sc{posix} (veja-se @ref{O Modo POSIX de Bash}) antes da 
 leitura dos arquivos de inicialização, como se a opção de invocação 
 @option{--posix} tivesse sido fornecida.
 Se essa variável for configurada enquanto o shell estiver em execução, 
@@ -6117,7 +6117,7 @@ da impressão de cada prompt primário (@env{$PS1}).
 Se configurada para um número maior que zero, então o valor é utilizado 
 como o número de componentes finais de diretórios a reter quando da 
 expansão dos escapes de sequência de caracteres de prompt @code{\w} e 
-@code{\W} (veja-se @ref{Controlling the Prompt}).
+@code{\W} (veja-se @ref{Controlando o Prompt}).
 Os caracteres removidos são substituídos com uma elipse.
 
 @item PS3
@@ -6257,27 +6257,27 @@ somente leitura.
 Este capítulo descreve características únicas do Bash.
 
 @menu
-* Invoking Bash::		Opções de linha de comando que você pode 
+* Invocando o Bash::		Opções de linha de comando que você pode 
 				dar ao Bash.
-* Bash Startup Files::		Quando e como Bash executa scripts.
-* Interactive Shells::		O que é um shell interativo.
-* Bash Conditional Expressions::	Rudimentos utilizados na 
+* Arquivos de Inicialização do Bash::		Quando e como Bash executa scripts.
+* Shells Interativos::		O que é um shell interativo.
+* Expressões Condicionais de Bash::	Rudimentos utilizados na 
 				composição de expressões para o comando 
 				interno @code{test}.
-* Shell Arithmetic::		Aritmética sobre variáveis de shell.
-* Aliases::			Substituindo um comando por outro.
-* Arrays::			Variáveis vetor.
-* The Directory Stack::		Histórico de diretórios visitados.
-* Controlling the Prompt::	Personalizando as várias sequências de 
+* Aritmética de Shell::		Aritmética sobre variáveis de shell.
+* Apelidos::			Substituindo um comando por outro.
+* Vetores::			Variáveis vetor.
+* A Pilha de Diretório::		Histórico de diretórios visitados.
+* Controlando o Prompt::	Personalizando as várias sequências de 
 				caracteres de prompt.
-* The Restricted Shell::	Um modo mais controlado de execução de 
+* O Shell Restrito::	Um modo mais controlado de execução de 
 				shell.
-* Bash POSIX Mode::		Fazendo o Bash se comportar mais próximo 
+* O Modo POSIX de Bash::		Fazendo o Bash se comportar mais próximo 
 				ao que o padrão POSIX especifica.
 @end menu
 
-@node Invoking Bash
-@section Invoking Bash
+@node Invocando o Bash
+@section Invocando o Bash
 
 @example
 bash [long-opt] [-ir] [-abefhkmnptuvxdBCDHP] [-o @var{option}] [-O @var{shopt_option}] [@var{argument} @dots{}]
@@ -6339,11 +6339,11 @@ interativo.   Isso está ativado por padrão se o shell for invocado como
 Modifica o comportamento de Bash onde a operação padrão diferir do 
 padrão @sc{posix} para coincidir com esse padrão.   Isso é entendido 
 como um modo de fazer com que Bash se comporte como um super conjunto 
-estrito daquele padrão.   Veja-se @ref{Bash POSIX Mode}, para uma 
+estrito daquele padrão.   Veja-se @ref{O Modo POSIX de Bash}, para uma 
 descrição do modo @sc{posix} de Bash.
 
 @item --restricted
-Faz do shell um shell restrito (veja-se @ref{The Restricted Shell}).
+Faz do shell um shell restrito (veja-se @ref{O Shell Restrito}).
 
 @item --verbose
 Equivalente a @option{-v}.   Imprime as linhas de entrada do shell 
@@ -6367,7 +6367,7 @@ posicionais, iniciando com @code{$0}.
 
 @item -i
 Força o shell a executar interativamente.   Os shell interativos estão 
-descritos em @ref{Interactive Shells}.
+descritos em @ref{Shells Interativos}.
 
 @item -l
 Faz com que este shell atue como se ele tivesse sido invocado 
@@ -6377,11 +6377,11 @@ Quando o shell não for interativo, os arquivos de inicialização de shell
 de login serão executados.
 @samp{exec bash -l} ou @samp{exec bash --login} substituirão o shell 
 atual com um shell de login de Bash.
-Veja-se @ref{Bash Startup Files}, para uma descrição do comportamento 
+Veja-se @ref{Arquivos de Inicialização do Bash}, para uma descrição do comportamento 
 especial de um shell de login.
 
 @item -r
-Faz do shell um shell restrito (veja-se @ref{The Restricted Shell}).
+Faz do shell um shell restrito (veja-se @ref{O Shell Restrito}).
 
 @item -s
 Se essa opção estiver presente, ou se nenhum argumento restar após o 
@@ -6424,7 +6424,7 @@ Um shell @emph{interactive} é um iniciado sem argumentos não opção, a
 menos que @option{-s} seja especificado, sem especificar a opção 
 @option{-c}, e cuja saída e entrada são ambas conectadas a terminais 
 (conforme determinado por @code{isatty(3)}), ou um iniciado com a opção 
-@option{-i}.   Veja-se @ref{Interactive Shells}, para mais informação.
+@option{-i}.   Veja-se @ref{Shells Interativos}, para mais informação.
 
 Se restarem argumentos após o processamento de opção, e nem a opção 
 @option{-c} nem a @option{-s} forem fornecidas, então o primeiro 
@@ -6438,8 +6438,8 @@ O código de saída de Bash é o código de saída do último comando
 executado no script.   Se nenhum comando for executado, o código de 
 saída é 0.
 
-@node Bash Startup Files
-@section Bash Startup Files
+@node Arquivos de Inicialização do Bash
+@section Arquivos de Inicialização do Bash
 @cindex startup files
 
 Esta seção descreve como Bash executa seus arquivos de inicialização.
@@ -6448,7 +6448,7 @@ Bash reporta um erro.
 Os sinais de til são expandidos em nomes de arquivos conforme descrito 
 acima sob Expansão de til (veja-se @ref{Expansão de Til}).
 
-Shell interativos são descritos em @ref{Interactive Shells}.
+Shell interativos são descritos em @ref{Shells Interativos}.
 
 @subsubheading Invocado como um shell de login interativo, ou com @option{--login}
 
@@ -6563,20 +6563,20 @@ Se a opção @option{-p} for fornecida na invocação, então o comportamento
 de inicialização é o mesmo, porém o id de usuário efetivo não é 
 reconfigurado.
 
-@node Interactive Shells
-@section Interactive Shells
+@node Shells Interativos
+@section Shells Interativos
 @cindex interactive shell
 @cindex shell, interactive
 
 @menu
-* What is an Interactive Shell?::	O que determina quando um shell 
+* O Que é um Shell Interativo?::	O que determina quando um shell 
 é interativo.
-* Is this Shell Interactive?::	Como dizer se um shell é interativo.
-* Interactive Shell Behavior::	O que muda em um shell interativo?
+* Este Shell é Interativo?::	Como dizer se um shell é interativo.
+* Comportamento de Shell Interativo::	O que muda em um shell interativo?
 @end menu
 
-@node What is an Interactive Shell?
-@subsection What is an Interactive Shell?
+@node O Que é um Shell Interativo?
+@subsection O Que é um Shell Interativo?
 
 Um shell interativo é aquele inicializado sem argumentos não opção, a 
 menos que @option{-s} seja especificada, sem especificar a opção 
@@ -6590,8 +6590,8 @@ de usuário.
 A opção de invocação @option{-s} pode ser utilizada para configurar os 
 parâmetros posicionais quando um shell interativo for inicializado.
 
-@node Is this Shell Interactive?
-@subsection Is this Shell Interactive?
+@node Este Shell é Interativo?
+@subsection Este Shell é Interativo?
 
 Para determinar dentro de um script de inicialização quando ou não Bash 
 está executando interativamente, teste o valor do parâmetro especial 
@@ -6617,8 +6617,8 @@ else
 fi
 @end example
 
-@node Interactive Shell Behavior
-@subsection Interactive Shell Behavior
+@node Comportamento de Shell Interativo
+@subsection Comportamento de Shell Interativo
 
 Quando o shell está executando interativamente, ele modifica o 
 comportamento dele de várias maneiras.
@@ -6626,7 +6626,7 @@ comportamento dele de várias maneiras.
 @enumerate
 @item
 Arquivos de inicialização são lidos e executados conforme descrito em 
-@ref{Bash Startup Files}.
+@ref{Arquivos de Inicialização do Bash}.
 
 @item
 O Controle de Tarefas (veja-se @ref{Controle de Tarefa}) é habilitado por 
@@ -6642,7 +6642,7 @@ subsequentes linhas de um comando multilinha.
 @item
 Bash executa o valor da variável @env{PROMPT_COMMAND} como um comando 
 antes de imprimir o prompt primário, @env{$PS1} (veja-se
-@ref{Bash Variables}).
+@ref{Variáveis do Bash}).
 
 @item
 Readline (veja-se @ref{Edição de Linha de Comando}) é utilizada para ler 
@@ -6661,7 +6661,7 @@ Bash salvará o histórico de comandos no arquivo nomeado por
 @env{$HISTFILE} quando um shell com histórico habilitado sai.
 
 @item
-Expansão de Apelidos (veja-se @ref{Aliases}) é realizado por padrão.
+Expansão de Apelidos (veja-se @ref{Apelidos}) é realizado por padrão.
 
 @item
 Na ausência de quaisquer coletores, Bash ignora @code{SIGTERM}
@@ -6684,7 +6684,7 @@ efeito (veja-se @ref{O Comando Interno Set}).
 @item
 Bash verificará a correspondência periodicamente, dependendo dos valores 
 das variáveis de shell @env{MAIL}, @env{MAILPATH}, e @env{MAILCHECK}
-(veja-se @ref{Bash Variables}).
+(veja-se @ref{Variáveis do Bash}).
 
 @item
 Os erros de expansão, devido a referências a variáveis de shell não 
@@ -6703,7 +6703,7 @@ com que o shell saia.
 @item
 Quando em execução no modo @sc{posix}, um comando interno especial que 
 retornar um código de erro não fará com que o shell saia
-(veja-se @ref{Bash POSIX Mode}).
+(veja-se @ref{O Modo POSIX de Bash}).
 
 @item
 Um @code{exec} falho não fará com que o shell saia
@@ -6721,12 +6721,12 @@ em @ref{O Comando Interno Shopt}).
 @item
 O shell verificará o valor da variável @env{TMOUT} e sai se um comando 
 não for lido dentro do número especificado de segundos após a impressão 
-de @env{$PS1} (veja-se @ref{Bash Variables}).
+de @env{$PS1} (veja-se @ref{Variáveis do Bash}).
 
 @end enumerate
 
-@node Bash Conditional Expressions
-@section Bash Conditional Expressions
+@node Expressões Condicionais de Bash
+@section Expressões Condicionais de Bash
 @cindex expressions, conditional
 
 Expressões condicionais são utilizadas pelo comando composto @code{[[} e 
@@ -6886,8 +6886,8 @@ ou maior que ou igual a @var{arg2}, respectivamente.   @var{Arg1} and
 @var{arg2} podem ser número inteiros positivos ou negativos.
 @end table
 
-@node Shell Arithmetic
-@section Shell Arithmetic
+@node Aritmética de Shell
+@section Aritmética de Shell
 @cindex arithmetic, shell
 @cindex shell arithmetic
 @cindex expressions, arithmetic
@@ -6997,11 +6997,11 @@ Os operadores são avaliados na ordem de precedência.   Sub-expressões
 entre parênteses são avaliadas primeiro e podem substituir as regras de 
 precedência acima.
 
-@node Aliases
-@section Aliases
+@node Apelidos
+@section Apelidos
 @cindex alias expansion
 
-Apelidos @var{Aliases} permitem que uma sequência de caracteres seja 
+Apelidos @var{Apelidos} permitem que uma sequência de caracteres seja 
 substituída por uma palavra quando forem utilizados como a primeira 
 palavra de um comando simples.
 
@@ -7058,8 +7058,8 @@ e não utilize @code{alias} em comandos compostos.
 Para quase todos os propósitos, as funções de shell são preferidas a 
 apelidos.
 
-@node Arrays
-@section Arrays
+@node Vetores
+@section Vetores
 @cindex arrays
 
 Bash provê variáveis vetor indexado unidimensional e associativo.
@@ -7068,7 +7068,7 @@ interno @code{declare} explicitamente declarará um vetor.
 Não existe limite máximo para o tamanho de um vetor, nem qualquer 
 exigência de que os membros sejam indexados ou atribuídos contiguamente.
 Os vetores indexados são referenciados utilizando-se números inteiros 
-(incluindo expressões aritméticas (veja-se @ref{Shell Arithmetic}) e são 
+(incluindo expressões aritméticas (veja-se @ref{Aritmética de Shell}) e são 
 baseados em zero; vetores associativos utilizam sequências de caracteres 
 arbitrárias.
 A menos que informado do contrário, os índices de vetor indexado devem 
@@ -7192,12 +7192,12 @@ individuais do vetor.   Os comandos internos @code{set} e @code{declare}
 exibem valores do vetor de uma forma que permite que se possa 
 reutilizá-los como entrada.
 
-@node The Directory Stack
-@section The Directory Stack
+@node A Pilha de Diretório
+@section A Pilha de Diretório
 @cindex directory stack
 
 @menu
-* Directory Stack Builtins::		Comandos internos do Bash para 
+* Comandos Internos da Pilha de Diretório::		Comandos internos do Bash para 
 					manipular a pilha de diretório.
 @end menu
 
@@ -7211,8 +7211,8 @@ pilha de diretório.
 O conteúdo da pilha de diretório também é visível como o valor da 
 variável de shell @env{DIRSTACK}.
 
-@node Directory Stack Builtins
-@subsection Directory Stack Builtins
+@node Comandos Internos da Pilha de Diretório
+@subsection Comandos Internos da Pilha de Diretório
 
 @table @code
 
@@ -7303,8 +7303,8 @@ fornecido como um argumento para o comando interno @code{cd}.
 @end table
 @end table
 
-@node Controlling the Prompt
-@section Controlling the Prompt
+@node Controlando o Prompt
+@section Controlando o Prompt
 @cindex prompting
 
 O valor da variável @env{PROMPT_COMMAND} é examinado um pouco antes que 
@@ -7392,8 +7392,8 @@ parâmetro, substituição de comando, expansão aritmética, e remoção de
 aspas, sujeito ao valor da opção de shell @code{promptvars}
 (veja-se @ref{Comandos Internos ao Bash}).
 
-@node The Restricted Shell
-@section The Restricted Shell
+@node O Shell Restrito
+@section O Shell Restrito
 @cindex restricted shell
 
 Se Bash for inicializado com o nome @code{rbash}, ou a opção 
@@ -7449,8 +7449,8 @@ Quando um comando que for encontrado como sendo um script de shell é
 executado (veja-se @ref{Scripts de Shell}), @code{rbash} desliga quaisquer 
 restrições no shell gerado para executar o script.
 
-@node Bash POSIX Mode
-@section Bash POSIX Mode
+@node O Modo POSIX de Bash
+@section O Modo POSIX de Bash
 @cindex POSIX Mode
 
 Inicializar Bash com a opção de linha de comando @option{--posix}, ou 
@@ -7741,7 +7741,7 @@ conformante.
 
 Bash pode ser configurado para ser conformante com @sc{posix} por 
 padrão, especificando-se @option{--enable-strict-posix-default} para 
-@code{configure} quando da construção (veja-se @ref{Optional Features}).
+@code{configure} quando da construção (veja-se @ref{Características Opcionais}).
 
 @node Controle de Tarefa
 @chapter Controle de Tarefa
@@ -8063,27 +8063,27 @@ Outras portagens independentes existem para @sc{ms-dos}, @sc{os/2}, e
 plataformas Windows.
 
 @menu
-* Basic Installation::	Instruções de instalação.
-* Compilers and Options::	Como configurar opções especiais para 
+* Instalação Básica::	Instruções de instalação.
+* Compiladores e Opções::	Como configurar opções especiais para 
 				vários sistemas.
-* Compiling For Multiple Architectures::	Como compilar Bash para 
+* Compilando Para Múltiplas Arquiteturas::	Como compilar Bash para 
 						mais que um tipo de 
 						sistema a partir da 
 						mesma árvore de fonte.
-* Installation Names::	Como configurar os vários caminhos utilizados 
+* Nomes de Instalação::	Como configurar os vários caminhos utilizados 
 			pela instalação.
-* Specifying the System Type::	Como configurar Bash para um sistema 
+* Especificando o Tipo do Sistema::	Como configurar Bash para um sistema 
 				particular.
-* Sharing Defaults::	Como compartilhar valores padrão de configuração 
+* Compartilhando Padrões::	Como compartilhar valores padrão de configuração 
 			entre programas GNU.
-* Operation Controls::	Opções reconhecidas pelo programa de 
+* Controles de Operação::	Opções reconhecidas pelo programa de 
 			configuração.
-* Optional Features::	Como habilitar e desabilitar características 
+* Características Opcionais::	Como habilitar e desabilitar características 
 			opcionais quando da construção de Bash.
 @end menu
 
-@node Basic Installation
-@section Basic Installation
+@node Instalação Básica
+@section Instalação Básica
 @cindex installation
 @cindex configuration
 @cindex Bash installation
@@ -8163,8 +8163,8 @@ também os arquivos que @code{configure} criou (de forma que você pode
 compilar Bash para um tipo diferente de computador), digite
 @samp{make distclean}.
 
-@node Compilers and Options
-@section Compilers and Options
+@node Compiladores e Opções
+@section Compiladores e Opções
 
 Alguns sistemas exigem opções não usuais para compilação ou lincagem que 
 o script @code{configure} não conhece.   Você pode dar a 
@@ -8185,8 +8185,8 @@ env CPPFLAGS=-I/usr/local/include LDFLAGS=-s ./configure
 O processo de configuração utiliza GCC para construir Bash se GCC 
 estiver disponível.
 
-@node Compiling For Multiple Architectures
-@section Compiling For Multiple Architectures
+@node Compilando Para Múltiplas Arquiteturas
+@section Compilando Para Múltiplas Arquiteturas
 
 Você pode compilar Bash para mais que uma espécie de computador ao mesmo 
 tempo, colocando os arquivos objeto para cada arquitetura em seus 
@@ -8222,8 +8222,8 @@ O script @code{mkclone} exige Bash, assim você deve necessariamente já
 ter construído Bash para pelo menos uma arquitetura antes que você possa 
 criar diretórios de construção para outras arquiteturas.
 
-@node Installation Names
-@section Installation Names
+@node Nomes de Instalação
+@section Nomes de Instalação
 
 Por padrão, @samp{make install} instalará em @file{/usr/local/bin}, 
 @file{/usr/local/man}, etc.   Você pode especificar um outro prefixo de 
@@ -8240,8 +8240,8 @@ Se você der a @code{configure} a opção
 Documentação e outros arquivos de dados ainda utilizarão o prefixo 
 regular.
 
-@node Specifying the System Type
-@section Specifying the System Type
+@node Especificando o Tipo do Sistema
+@section Especificando o Tipo do Sistema
 
 Talvez existam algumas características que @code{configure} não pode 
 compreender automaticamente, porém precisa determinar pelo tipo de 
@@ -8256,8 +8256,8 @@ campos: @samp{CPU-COMPANY-SYSTEM}
 Veja-se o arquivo @file{support/config.sub} para os valores possíveis de 
 cada campo.
 
-@node Sharing Defaults
-@section Sharing Defaults
+@node Compartilhando Padrões
+@section Compartilhando Padrões
 
 Se você desejar configurar valor padrão para os scripts @code{configure} 
 para compartilhar, você pode criar um script local de shell chamado 
@@ -8268,8 +8268,8 @@ configurar a variável de ambiente @code{CONFIG_SITE} para a localização
 do script local.   Um alerta: O @code{configure} de Bash procura por um 
 script local, porém nem todos os scripts @code{configure} o fazem.
 
-@node Operation Controls
-@section Operation Controls
+@node Controles de Operação
+@section Controles de Operação
 
 @code{configure} reconhece as seguintes opções para controlar como ele 
 opera.
@@ -8302,8 +8302,8 @@ Imprime a versão de Autoconf utilizada para gerar o script
 utilizadas, opções clichê.   @samp{configure --help} imprime a lista 
 completa.
 
-@node Optional Features
-@section Optional Features
+@node Características Opcionais
+@section Características Opcionais
 
 O @code{configure} de Bash tem um número de opções 
 @option{--enable-@var{feature}}, onde @var{feature} indica uma parte 
@@ -8405,7 +8405,7 @@ necessário.
 @table @code
 @item --enable-alias
 Permite a expansão de apelido e inclui os comandos internos @code{alias} 
-e @code{unalias} (veja-se @ref{Aliases}).
+e @code{unalias} (veja-se @ref{Apelidos}).
 
 @item --enable-arith-for-command
 Inclui suporte para o formato alternativo do comando @code{for} que se 
@@ -8414,7 +8414,7 @@ comporta como a declaração @code{for} da linguagem C (veja-se
 
 @item --enable-array-variables
 Inclui suporte para variáveis de shell vetor unidimensional 
-(veja-se @ref{Arrays}).
+(veja-se @ref{Vetores}).
 
 @item --enable-bang-history
 Inclui suporte para a substituição de histórico no estilo @code{csh} 
@@ -8467,7 +8467,7 @@ Essa opção normalmente é desabilitada por padrão.
 @item --enable-directory-stack
 Inclui suporte para a pilha de diretório ao estilo @code{csh} e os 
 comandos internos @code{pushd}, @code{popd}, e @code{dirs}
-(veja-se @ref{The Directory Stack}).
+(veja-se @ref{A Pilha de Diretório}).
 
 @item --enable-disabled-builtins
 Permite que os comandos internos sejam invocados via @samp{builtin xxx} 
@@ -8530,7 +8530,7 @@ Se Readline não estiver habilitada, então essa opção não tem efeito.
 Liga a interpretação de um número de caracteres encapsulados por barras 
 invertidas nas sequências de caracteres de prompt @env{$PS1}, 
 @env{$PS2}, @env{$PS3}, e @env{$PS4}.   Veja-se 
-@ref{Controlling the Prompt}, para uma lista completa das sequências de 
+@ref{Controlando o Prompt}, para uma lista completa das sequências de 
 encapsulamento de sequências de caracteres de prompt.
 
 @item --enable-readline
@@ -8540,7 +8540,7 @@ versão Bash da biblioteca Readline (veja-se @ref{Edição de Linha de Comando})
 @item --enable-restricted
 Inclui suporte para a @dfn{restricted shell}.   Se isso estiver 
 habilitado, então Bash, quando chamado como @code{rbash}, entra em um 
-modo restrito.   Veja-se @ref{The Restricted Shell}, para uma descrição 
+modo restrito.   Veja-se @ref{O Shell Restrito}, para uma descrição 
 do modo restrito.
 
 @item --enable-select
@@ -8560,7 +8560,7 @@ com literais de sequências de caracteres longa demais.
 
 @item --enable-strict-posix-default
 Faz com Bash fique conformante com o padrão @sc{posix} por padrão 
-(veja-se @ref{Bash POSIX Mode}).
+(veja-se @ref{O Modo POSIX de Bash}).
 
 @item --enable-usg-echo-default
 Um sinônimo para @code{--enable-xpg-echo-default}.
@@ -8584,8 +8584,8 @@ cuidado com as consequências se você modificar.
 Leia os comentários associados com cada definição para mais informações 
 sobre seus efeitos.
 
-@node Reporting Bugs
-@appendix Reporting Bugs
+@node Relatando Bugs
+@appendix Relatando Bugs
 
 Por favor, relate todos os bugs que você encontrar no Bash.
 Mas primeiro, você deveria ter certeza que é realmente um bug, e que 
@@ -8622,8 +8622,8 @@ que fornece para preenchimento de um relatório de bug.
 Por favor, envie todos os relatórios relativos a este manual para
 @email{bug-bash@@gnu.org}.
 
-@node Major Differences From The Bourne Shell
-@appendix Major Differences From The Bourne Shell
+@node Maiores Diferenças Para o Shell Bourne
+@appendix Maiores Diferenças Para o Shell Bourne
 
 Bash implementa essencialmente a mesma gramática, expansão de parâmetro 
 e variável, redireção, e encapsulamento entre aspas que o Bourne Shell.
@@ -8640,11 +8640,11 @@ versão do histórico shell Bourne) como a referência inicial.
 @item
 Bash é conformante com @sc{posix}, mesmo onde a especificação @sc{posix} 
 difere do comportamento do @code{sh} tradicional 
-(veja-se @ref{Bash POSIX Mode}).
+(veja-se @ref{O Modo POSIX de Bash}).
 
 @item
 Bash tem opções de invocação multi-carácter 
-(veja-se @ref{Invoking Bash}).
+(veja-se @ref{Invocando o Bash}).
 
 @item
 Bash tem edição de linha de comando (veja-se @ref{Edição de Linha de Comando}) 
@@ -8666,7 +8666,7 @@ Bash implementa a expansão de histórico ao estilo @code{csh}
 (veja-se @ref{History Interaction}).
 
 @item
-Bash tem variáveis vetor unidimensional (veja-se @ref{Arrays}), e as 
+Bash tem variáveis vetor unidimensional (veja-se @ref{Vetores}), e as 
 apropriadas expansões de variável e sintaxe de atribuição para 
 utilizá-las.   Vários dos comandos internos do Bash tem opções para 
 atuar sobre os vetores.   Bash provê um número de variáveis vetor 
@@ -8725,12 +8725,12 @@ expansão de til (veja-se @ref{Expansão de Til}).
 
 @item
 Bash implementa apelidos de comando e os comandos internos @code{alias} 
-e @code{unalias} (veja-se @ref{Aliases}).
+e @code{unalias} (veja-se @ref{Apelidos}).
 
 @item
 Bash provê aritmética de shell, o comando composto @code{((} 
 (veja-se @ref{Construtores Condicionais}), e a expansão aritmética 
-(veja-se @ref{Shell Arithmetic}).
+(veja-se @ref{Aritmética de Shell}).
 
 @item
 As variáveis presentes no ambiente inicial do shell são automaticamente 
@@ -8793,7 +8793,7 @@ sobre o usuário atual (@env{UID}, @env{EUID}, e @env{GROUPS}); a máquina
 atual (@env{HOSTTYPE}, @env{OSTYPE}, @env{MACHTYPE}, e @env{HOSTNAME}); 
 e a instância de Bash que está em execução (@env{BASH}, 
 @env{BASH_VERSION}, e @env{BASH_VERSINFO}).   Veja-se 
-@ref{Bash Variables}, para detalhes.
+@ref{Variáveis do Bash}, para detalhes.
 
 @item
 A variável @env{IFS} é utilizada para dividir somente os resultados da 
@@ -8947,7 +8947,7 @@ execução de scripts executados com os comandos internos @code{.} ou
 Bash inclui o comando interno @code{shopt}, para controle mais apurado 
 das capacidades opcionais de shell (veja-se @ref{O Comando Interno Shopt}), e 
 permite que essas opções sejam configuradas ou desconfiguradas na 
-invocação de shell (veja-se @ref{Invoking Bash}).
+invocação de shell (veja-se @ref{Invocando o Bash}).
 
 @item
 Bash tem muito mais comportamento opcional controlável com o comando 
@@ -9014,18 +9014,18 @@ reutilizado como entrada (veja-se @ref{Comandos Internos do Shell Bourne}).
 @item
 Bash implementa uma pilha de diretório ao estilo @code{csh}, e provê os 
 comandos internos @code{pushd}, @code{popd}, e @code{dirs} para 
-manipulá-la (veja-se @ref{The Directory Stack}).
+manipulá-la (veja-se @ref{A Pilha de Diretório}).
 Bash também torna a pilha de diretório visível como um valor da variável 
 de shell @env{DIRSTACK}.
 
 @item
 Bash interpreta caracteres especiais encapsulados por barra invertida 
 nas sequências de caracteres de prompt, quando interativo 
-(veja-se @ref{Controlling the Prompt}).
+(veja-se @ref{Controlando o Prompt}).
 
 @item
 O modo restrito de Bash é mais útil
-(veja-se @ref{The Restricted Shell}); o modo restrito do shell SVR4.2 é 
+(veja-se @ref{O Shell Restrito}); o modo restrito do shell SVR4.2 é 
 limitado demais.
 
 @item
@@ -9121,43 +9121,43 @@ O shell SVR4.2 se comporta diferentemente quando invocado como
 @code{jsh} (ele liga o controle de tarefa).
 @end itemize
 
-@node GNU Free Documentation License
-@appendix GNU Free Documentation License
+@node Licença de Documentação Livre GNU
+@appendix Licença de Documentação Livre GNU
 
 @include fdl-pt_BR.texi
 
-@node Indexes
-@appendix Indexes
+@node Indices
+@appendix Indices
 
 @menu
-* Builtin Index::		Índice dos comandos internos de Bash.
-* Reserved Word Index::		Índice das palavras reservadas de Bash.
-* Variable Index::		Referência rápida ajuda você a encontrar 
+* Indice dos Comandos Internos::		Índice dos comandos internos de Bash.
+* Indice das Palavras Reservadas::		Índice das palavras reservadas de Bash.
+* Indice das Variáveis::		Referência rápida ajuda você a encontrar 
 a variável que deseja.
-* Function Index::		Índice das funções de Readline 
+* Indice das Funções::		Índice das funções de Readline 
 vinculáveis.
-* Concept Index::		Índice geral para conceitos descritos 
+* Indice dos Conceitos::		Índice geral para conceitos descritos 
 neste manual.
 @end menu
 
-@node Builtin Index
+@node Indice dos Comandos Internos
 @appendixsec Index of Comandos Internos ao Shell
 @printindex bt
 
-@node Reserved Word Index
+@node Indice das Palavras Reservadas
 @appendixsec Index of Shell Reserved Words
 @printindex rw
 
-@node Variable Index
-@appendixsec Parameter and Variable Index
+@node Indice das Variáveis
+@appendixsec Parameter and Indice das Variáveis
 @printindex vr
 
-@node Function Index
-@appendixsec Function Index
+@node Indice das Funções
+@appendixsec Indice das Funções
 @printindex fn
 
-@node Concept Index
-@appendixsec Concept Index
+@node Indice dos Conceitos
+@appendixsec Indice dos Conceitos
 @printindex cp
 
 @bye
