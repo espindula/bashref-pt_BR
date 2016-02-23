@@ -28,8 +28,8 @@ distribuído sob os termos de uma notícia de permissão idêntica a esta.
 outra língua, sob as condições acima para versões modificadas.
 @end ignore
 
-@node Using History Interactively
-@chapter Using History Interactively
+@node Utilizando o Histórico Interativamente
+@chapter Utilizando o Histórico Interativamente
 
 @ifclear BashFeatures
 @defcodeindex bt
