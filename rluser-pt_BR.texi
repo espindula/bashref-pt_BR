@@ -43,8 +43,8 @@ outra língua, sob as condições acima para versões modificadas.
 @defcodeindex bt
 @end ifclear
 
-@node Command Line Editing
-@chapter Command Line Editing
+@node Edição de Linha de Comando
+@chapter Edição de Linha de Comando
 
 Este capítulo descreve as características básicas da interface de edição 
 de linha de comando @sc{gnu}.
