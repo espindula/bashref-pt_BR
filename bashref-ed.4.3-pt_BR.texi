@@ -69,7 +69,7 @@ entitled ``GNU Free Documentation License''.
 @contents
 
 @ifnottex
-@node Top, Introduction, (dir), (dir)
+@node Top, Introdução, (dir), (dir)
 @top Características do Bash
 
 Este texto é uma breve descrição das características que estão presentes 
@@ -93,22 +93,22 @@ encontradas no Bash.   A página de manual do Bash deveria ser utilizada
 como a referência definitiva acerca do comportamento do shell.
 
 @menu
-* Introduction::		Uma introdução ao shell.
-* Definitions::			Algumas definições utilizadas no 
+* Introdução::		Uma introdução ao shell.
+* Definições::			Algumas definições utilizadas no 
 				restante deste manual.
-* Basic Shell Features::	Os "blocos de construção" do shell.
-* Shell Builtin Commands::	Comandos que são uma parte do shell.
-* Shell Variables::		Variáveis utilizadas ou 
+* Características Básicas do Shell::	Os "blocos de construção" do shell.
+* Comandos Internos ao Shell::	Comandos que são uma parte do shell.
+* Variáveis do Shell::		Variáveis utilizadas ou 
 				configuradas por Bash.
-* Bash Features::		Características encontradas apenas no 
+* Características de Bash::		Características encontradas apenas no 
 				Bash.
-* Job Control::			O que é controle de tarefa e como 
+* Controle de Tarefa::			O que é controle de tarefa e como 
 				Bash permite que você o utilize.
-* Command Line Editing::	Capítulo descrevendo as 
+* Edição de Linha de Comando::	Capítulo descrevendo as 
 				características de edição de linha de 
 				comando.
-* Using History Interactively::	Expansão do Histórico de Comando
-* Installing Bash::		Como construir e instalar Bash em 
+* Utilizando o Histórico Interativamente::	Expansão do Histórico de Comando
+* Instalando o Bash::		Como construir e instalar Bash em 
 				seu sistema.
 * Reporting Bugs::		Como relatar bugs no Bash.
 * Major Differences From The Bourne Shell::	Uma lista concisa entre 
@@ -121,8 +121,8 @@ como a referência definitiva acerca do comportamento do shell.
 @end menu
 @end ifnottex
 
-@node Introduction
-@chapter Introduction
+@node Introdução
+@chapter Introdução
 @menu
 * What is Bash?::		Uma breve descrição do Bash.
 * What is a shell?::		Uma breve introdução aos shells.
@@ -209,8 +209,8 @@ interativas incluem controle de tarefa, edição de linha de comando,
 histórico de comando e apelidos.   Cada uma dessas características está 
 descrita neste manual.
 
-@node Definitions
-@chapter Definitions
+@node Definições
+@chapter Definições
 Estas definições são utilizadas em todo o restante deste manual.
 
 @table @code
@@ -324,8 +324,8 @@ Uma sequência de caracteres tratada como uma unidade pelo shell.
 Palavras não podem incluir @code{metacharacters} fora de aspas.
 @end table
 
-@node Basic Shell Features
-@chapter Basic Shell Features
+@node Características Básicas do Shell
+@chapter Características Básicas do Shell
 @cindex Bourne shell
 
 Bash é um acrônimo para @samp{Bourne-Again SHell}.   O shell Bourne é o 
@@ -447,7 +447,7 @@ encapsulamento pode ser utilizado para desabilitar o tratamento especial
 para caracteres especiais, prevenir palavras reservadas de serem 
 reconhecidas como tais, e prevenir a expansão de parâmetro.
 
-Cada um dos meta caracteres do shell (@ref{Definitions}) tem um 
+Cada um dos meta caracteres do shell (@ref{Definições}) tem um 
 significado especial para o shell e devem ser encapsulados caso devam 
 representar eles mesmos.
 Quando as facilidades da expansão de histórico de comandos estão sendo 
@@ -629,7 +629,7 @@ agrupamento.
 Um comando simples é o tipo de comando encontrado mais frequentemente.   
 Ele é simplesmente uma sequência de palavras separadas por 
 @code{blank}s, terminada por um dos operadores de controle do shell 
-(@ref{Definitions}).   A primeira palavra geralmente especifica um 
+(@ref{Definições}).   A primeira palavra geralmente especifica um 
 comando a ser executado, com o restante das palavras sendo os argumentos 
 daquele comando.
 
@@ -733,7 +733,7 @@ executa o comando assincronamente em um sub shell.
 Isso é conhecido como executar o comando no @var{background}.
 O shell não aguarda que o comando finalize a execução, e o status de 
 retorno é 0 (verdadeiro).
-Quando o controle de tarefas não está ativo (@ref{Job Control}), a 
+Quando o controle de tarefas não está ativo (@ref{Controle de Tarefa}), a 
 entrada padrão para comandos assíncronos, na ausência de quaisquer 
 redireções explícitas, é redirecionada a partir de @code{/dev/null}.
 
@@ -1651,8 +1651,8 @@ O parâmetro posicional @code{N} pode ser referenciado como
 Parâmetros posicionais não podem ser atribuídos com declarações de 
 atribuição.
 Os comandos internos @code{set} e @code{shift} são utilizados para 
-configurar e desconfigurar os parâmetros posicionais (veja-se @ref{Shell 
-Builtin Commands}).
+configurar e desconfigurar os parâmetros posicionais 
+(veja-se @ref{Comandos Internos ao Shell}).
 Os parâmetros posicionais são substituídos temporariamente quando uma 
 função de shell é executada (veja-se @ref{Shell Functions}).
 
@@ -1724,7 +1724,7 @@ invoca, não o do sub shell.
 @vindex $!
 ($!) Expande para o @sc{id} de processo da tarefa colocada mais 
 recentemente em segundo plano, seja executada como um comando assíncrono 
-ou utilizando o comando interno @code{bg} (veja-se @ref{Job Control 
+ou utilizando o comando interno @code{bg} (veja-se @ref{Controle de Tarefa 
 Builtins}).
 
 @item 0
@@ -3182,7 +3182,7 @@ interativo), e @code{SIGINT} é capturado e manipulado (de forma que o
 comando interno @code{wait} pode ser interrompido).   Quando Bash recebe 
 um @code{SIGINT}, ele se liberta de quaisquer loops em execução.   Em 
 todos os casos, Bash ignora @code{SIGQUIT}.   Se o controle de tarefa 
-estiver em efeito (veja-se @ref{Job Control}), Bash ignora 
+estiver em efeito (veja-se @ref{Controle de Tarefa}), Bash ignora 
 @code{SIGTTIN}, @code{SIGTTOU}, e @code{SIGTSTP}.
 
 Os comandos não internos iniciados por Bash tem manipuladores de sinal 
@@ -3199,7 +3199,7 @@ em execução ou paradas.   Para as tarefas paradas é enviado
 @code{SIGCONT} para se assegurar que elas receberam o @code{SIGHUP}.
 Para prevenir que o shell envie o sinal @code{SIGHUP} para uma tarefa em 
 particular, tal tarefa deveria ser removida da tabela com o comando 
-interno @code{disown} (veja-se @ref{Job Control Builtins}) ou 
+interno @code{disown} (veja-se @ref{Controle de Tarefa Builtins}) ou 
 assinaladas para não receber @code{SIGHUP} utilizando-se @code{disown 
 -h}.
 
@@ -3277,8 +3277,8 @@ Os scripts de Bash frequentemente começam com @code{#! /bin/bash}
 assegura que Bash será utilizado para interpretar o script, mesmo que o 
 script seja executado sob um outro shell.
 
-@node Shell Builtin Commands
-@chapter Shell Builtin Commands
+@node Comandos Internos ao Shell
+@chapter Comandos Internos ao Shell
 
 @menu
 * Bourne Shell Builtins::	Comandos internos herdados do Shell 
@@ -3305,7 +3305,7 @@ foram estendidos no Bash.
 
 Vários comandos internos são descritos em outros capítulos: comandos 
 internos os quais proveem a interface do Bash para as facilidades de 
-controle de tarefas (veja-se @ref{Job Control Builtins}), a pilha de 
+controle de tarefas (veja-se @ref{Controle de Tarefa Builtins}), a pilha de 
 diretório (veja-se @ref{Directory Stack Builtins}), o histórico de 
 comando (veja-se @ref{Bash History Builtins}), e as facilidades de 
 complementação programável (veja-se @ref{Programmable Completion 
@@ -3920,9 +3920,9 @@ bind [-m @var{keymap}] @var{keyseq:function-name}
 bind @var{readline-command}
 @end example
 
-Exibir os vínculos Readline de função e tecla (veja-se @ref{Command Line 
-Editing}), vincula uma sequência de tecla a uma função Readline ou 
-macro, ou configura uma variável Readline.
+Exibir os vínculos Readline de função e tecla 
+(veja-se @ref{Edição de Linha de Comando}), vincula uma sequência de tecla a 
+uma função Readline ou macro, ou configura uma variável Readline.
 Cada argumento que não seja uma opção é um comando conforme tal comando 
 apareceria em um arquivo de inicialização Readline (veja-se 
 @ref{Readline Init File}), porém cada vinculação ou comando deve 
@@ -4493,7 +4493,7 @@ O primeiro carácter de @var{delim} é utilizado para terminar a linha de
 entrada, ao invés do marcador newline.
 
 @item -e
-Readline (veja-se @ref{Command Line Editing}) é utilizado para se obter 
+Readline (veja-se @ref{Edição de Linha de Comando}) é utilizado para se obter 
 a linha.
 Readline utiliza as configurações de edição atuais (ou a padrão, se a 
 edição de linha não foi previamente ativada).
@@ -4832,7 +4832,7 @@ no ambiente para um comando, não apenas aqueles que precedem o nome do
 comando.
 
 @item -m
-Controle de tarefas é habilitado (veja-se @ref{Job Control}).
+Controle de tarefas é habilitado (veja-se @ref{Controle de Tarefa}).
 Todos os processos executam em um grupo de processos separado.
 Quando uma tarefa de segundo plano completa, o shell imprime uma linha 
 contendo o código de saída dela.
@@ -4855,7 +4855,7 @@ O mesmo que @code{-B}.
 
 @item emacs
 Utiliza uma interface de edição de linha de comando estilo @code{emacs} 
-(veja-se @ref{Command Line Editing}).
+(veja-se @ref{Edição de Linha de Comando}).
 Isso também afeta a interface de edição utilizada para @code{read -e}.
 
 @item errexit
@@ -5144,7 +5144,7 @@ Se configurada, Bash lista o estado de quaisquer tarefas paradas e em
 execução antes de sair de um shell interativo.   Se quaisquer tarefas 
 estão em execução, isso faz com que a saída seja adiada até que uma 
 segunda saída seja tentada sem um comando interveniente (veja-se 
-@ref{Job Control}).
+@ref{Controle de Tarefa}).
 O shell sempre adia a saída se quaisquer tarefas estiverem paradas.
 
 @item checkwinsize
@@ -5470,11 +5470,11 @@ Estes são os comandos internos especiais do @sc{posix}:
 @w{shift trap unset}
 @end example
 
-@node Shell Variables
-@chapter Shell Variables
+@node Variáveis do Shell
+@chapter Variáveis do Shell
 
 @menu
-* Bourne Shell Variables::	Variáveis as quais Bash utiliza da mesma 
+* Bourne Variáveis do Shell::	Variáveis as quais Bash utiliza da mesma 
 				forma que o Shell Bourne.
 * Bash Variables::		Lista de variáveis que existem no Bash.
 @end menu
@@ -5482,8 +5482,8 @@ Estes são os comandos internos especiais do @sc{posix}:
 Este capítulo descreve as variáveis de shell que Bash utiliza.
 Bash automaticamente atribui valores padrão a um número de variáveis.
 
-@node Bourne Shell Variables
-@section Bourne Shell Variables
+@node Bourne Variáveis do Shell
+@section Bourne Variáveis do Shell
 
 Bash utiliza certas variáveis de shell da mesma maneira que o shell 
 Bourne.
@@ -5556,7 +5556,7 @@ shells normalmente não tratam elas especialmente.
 
 Umas poucas variáveis utilizadas por Bash estão descritas em diferentes 
 capítulos: variáveis para controlar as facilidades de controle de 
-tarefas (veja-se @ref{Job Control Variables}).
+tarefas (veja-se @ref{Controle de Tarefa Variables}).
 
 @vtable @code
 
@@ -6251,8 +6251,8 @@ somente leitura.
 
 @end vtable
 
-@node Bash Features
-@chapter Bash Features
+@node Características de Bash
+@chapter Características de Bash
 
 Este capítulo descreve características únicas do Bash.
 
@@ -6321,7 +6321,7 @@ Equivalente a @option{-l}.
 
 @item --noediting
 Não utilizar a biblioteca @sc{gnu} Readline
-(veja-se @ref{Command Line Editing}) para ler linhas de comando quando o 
+(veja-se @ref{Edição de Linha de Comando}) para ler linhas de comando quando o 
 shell for interativo.
 
 @item --noprofile
@@ -6629,7 +6629,7 @@ Arquivos de inicialização são lidos e executados conforme descrito em
 @ref{Bash Startup Files}.
 
 @item
-O Controle de Tarefas (veja-se @ref{Job Control}) é habilitado por 
+O Controle de Tarefas (veja-se @ref{Controle de Tarefa}) é habilitado por 
 padrão.   Quando o controle de tarefa está em efeito, Bash ignora os 
 sinais de controle de tarefa gerados via teclado @code{SIGTTIN}, 
 @code{SIGTTOU}, e @code{SIGTSTP}.
@@ -6645,7 +6645,7 @@ antes de imprimir o prompt primário, @env{$PS1} (veja-se
 @ref{Bash Variables}).
 
 @item
-Readline (veja-se @ref{Command Line Editing}) é utilizada para ler 
+Readline (veja-se @ref{Edição de Linha de Comando}) é utilizada para ler 
 comandos a partir do terminal do usuário.
 
 @item
@@ -7743,23 +7743,23 @@ Bash pode ser configurado para ser conformante com @sc{posix} por
 padrão, especificando-se @option{--enable-strict-posix-default} para 
 @code{configure} quando da construção (veja-se @ref{Optional Features}).
 
-@node Job Control
-@chapter Job Control
+@node Controle de Tarefa
+@chapter Controle de Tarefa
 
 Este capítulo discute o que é o controle de tarefas, como ele funciona, 
 e como Bash te permite acessar as facilidades desse controle.
 
 @menu
-* Job Control Basics::		Como o controle de tarefas funciona.
-* Job Control Builtins::	Os comandos internos do Bash utilizados 
+* Controle de Tarefa Basics::		Como o controle de tarefas funciona.
+* Controle de Tarefa Builtins::	Os comandos internos do Bash utilizados 
 				para interagir com o controle de 
 				tarefas.
-* Job Control Variables::	Variáveis que o Bash utiliza para 
+* Controle de Tarefa Variables::	Variáveis que o Bash utiliza para 
 				personalizar o controle de tarefas.
 @end menu
 
-@node Job Control Basics
-@section Job Control Basics
+@node Controle de Tarefa Basics
+@section Controle de Tarefa Basics
 @cindex job control
 @cindex foreground
 @cindex background
@@ -7865,8 +7865,8 @@ Se uma segunda tentativa de sair for feita, sem um comando
 interveniente, então Bash não imprime outro alerta, e quaisquer tarefas 
 paradas são terminadas.
 
-@node Job Control Builtins
-@section Job Control Builtins
+@node Controle de Tarefa Builtins
+@section Controle de Tarefa Builtins
 
 @table @code
 
@@ -8014,8 +8014,8 @@ Quando o controle de tarefa não está ativo, os comandos internos
 @code{kill} e @code{wait} não aceitam argumentos @var{jobspec}.   Eles 
 devem necessariamente ser alimentados com @sc{id}s de processos.
 
-@node Job Control Variables
-@section Job Control Variables
+@node Controle de Tarefa Variables
+@section Controle de Tarefa Variables
 
 @vtable @code
 
@@ -8035,7 +8035,7 @@ configurada para @samp{substring}, então a sequência de caracteres
 fornecida precisa coincidir com uma parte da sequência de caracteres do 
 nome de uma tarefa parada.   O valor de @samp{substring}, provê 
 funcionalidade análoga para o @sc{id} de tarefa @samp{%?}
-(veja-se @ref{Job Control Basics}).
+(veja-se @ref{Controle de Tarefa Basics}).
 Se configurada para qualquer outro valor, então a sequência de 
 caracteres fornecida deve necessariamente ser um prefixo de um nome da 
 tarefa parada; isso provê funcionalidade análoga para o @sc{id} de 
@@ -8052,8 +8052,8 @@ tarefa @samp{%}.
 @clear readline-appendix
 @clear history-appendix
 
-@node Installing Bash
-@chapter Installing Bash
+@node Instalando o Bash
+@chapter Instalando o Bash
 
 Este capítulo provê instruções básicas para a instalação de Bash nas 
 várias plataformas suportadas.   A distribuição suporta os sistemas 
@@ -8504,7 +8504,7 @@ Inclui histórico de comando e os comandos internos @code{fc} e
 
 @item --enable-job-control
 Isso habilita as características de controle de tarefa 
-(@ref{Job Control}), se o sistema operacional as suporta.
+(@ref{Controle de Tarefa}), se o sistema operacional as suporta.
 
 @item --enable-multibyte
 Isso habilita suporte a caracteres multi-byte se o sistema operacional 
@@ -8535,7 +8535,7 @@ encapsulamento de sequências de caracteres de prompt.
 
 @item --enable-readline
 Inclui suporte para a edição de linha de comando e histórico com a 
-versão Bash da biblioteca Readline (veja-se @ref{Command Line Editing}).
+versão Bash da biblioteca Readline (veja-se @ref{Edição de Linha de Comando}).
 
 @item --enable-restricted
 Inclui suporte para a @dfn{restricted shell}.   Se isso estiver 
@@ -8647,7 +8647,7 @@ Bash tem opções de invocação multi-carácter
 (veja-se @ref{Invoking Bash}).
 
 @item
-Bash tem edição de linha de comando (veja-se @ref{Command Line Editing}) 
+Bash tem edição de linha de comando (veja-se @ref{Edição de Linha de Comando}) 
 e o comando interno @code{bind}.
 
 @item
@@ -9030,7 +9030,7 @@ limitado demais.
 
 @item
 O comando interno @code{disown} pode remover uma tarefa da tabela 
-interna de tarefa de shell (veja-se @ref{Job Control Builtins}) ou 
+interna de tarefa de shell (veja-se @ref{Controle de Tarefa Builtins}) ou 
 suprimir o envio de @code{SIGHUP} para uma tarefa quando o shell sai 
 como o resultado de um @code{SIGHUP}.
 
@@ -9057,7 +9057,7 @@ O @code{sh} SVR4.2 utiliza uma variável @env{TIMEOUT} como Bash utiliza
 
 @noindent
 Mais características únicas a Bash podem ser encontradas em 
-@ref{Bash Features}.
+@ref{Características de Bash}.
 
 
 @appendixsec Implementation Differences From The SVR4.2 Shell
@@ -9141,7 +9141,7 @@ neste manual.
 @end menu
 
 @node Builtin Index
-@appendixsec Index of Shell Builtin Commands
+@appendixsec Index of Comandos Internos ao Shell
 @printindex bt
 
 @node Reserved Word Index
