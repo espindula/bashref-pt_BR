@@ -124,12 +124,12 @@ como a referência definitiva acerca do comportamento do shell.
 @node Introdução
 @chapter Introdução
 @menu
-* What is Bash?::		Uma breve descrição do Bash.
-* What is a shell?::		Uma breve introdução aos shells.
+* O Que é Bash?::		Uma breve descrição do Bash.
+* O Que um shell?::		Uma breve introdução aos shells.
 @end menu
 
-@node What is Bash?
-@section What is Bash?
+@node O Que é Bash?
+@section O Que é Bash?
 
 Bash é o shell, ou interpretador de linguagem de comando, para o sistema 
 operacional @sc{gnu}.
@@ -154,8 +154,8 @@ atualmente roda em quase todas as versões de Unix e alguns outros
 sistemas operacionais @minus{} existem implementações independentemente 
 suportadas para @sc{ms-dos}, @sc{os/2}, e plataformas Windows.
 
-@node What is a shell?
-@section What is a shell?
+@node O Que um shell?
+@section O Que um shell?
 
 Na base, um shell é simplesmente um processador de macro que executa 
 comandos.   O termo processador de macro significa funcionalidade onde 
@@ -279,7 +279,7 @@ Também referenciado como um @code{identifier}.
 @item operator
 @cindex operator, shell
 Um @code{control operator} ou um  @code{redirection operator}.
-Veja-se @ref{Redirections}, para uma lista de operadores de 
+Veja-se @ref{Redireções}, para uma lista de operadores de 
 redireção.   Operadores contém ao menos um @code{metacharacter} fora de 
 aspas.
 
@@ -341,29 +341,29 @@ direcionar entrada e saída de e para arquivos nomeados, e como o shell
 executa comandos.
 
 @menu
-* Shell Syntax::		O que sua entrada significa para o 
+* Sintaxe do Shell::		O que sua entrada significa para o 
 				shell.
-* Shell Commands::		Os tipos de comandos que você pode 
+* Comandos do Shell::		Os tipos de comandos que você pode 
 				utilizar.
-* Shell Functions::		Agrupando comandos pelo nome.
-* Shell Parameters::		Como o shell armazena valores.
-* Shell Expansions::		Como Bash expande parâmetros e as 
+* Funções de Shell::		Agrupando comandos pelo nome.
+* Parâmetros de Shell::		Como o shell armazena valores.
+* Expansões de Shell::		Como Bash expande parâmetros e as 
 				várias expansões disponíveis.
-* Redirections::		Uma forma de controlar para aonde vai 
+* Redireções::		Uma forma de controlar para aonde vai 
 				entrada e saída.
-* Executing Commands::		O que acontece quando você executa 
+* Execução de Comandos::		O que acontece quando você executa 
 				um comando.
-* Shell Scripts::		Executando arquivos de comandos do 
+* Scripts de Shell::		Executando arquivos de comandos do 
 				shell.
 @end menu
 
-@node Shell Syntax
-@section Shell Syntax
+@node Sintaxe do Shell
+@section Sintaxe do Shell
 @menu
-* Shell Operation::	A operação básica do shell.
-* Quoting::		Como remover o significado especial dos 
+* Operação do Shell::	A operação básica do shell.
+* Encapsulamento::		Como remover o significado especial dos 
 			caracteres.
-* Comments::		Como especificar comentários.
+* Comentários::		Como especificar comentários.
 @end menu
 
 Quando o shell lê entrada, ele percorre uma sequência de operações.   Se 
@@ -383,61 +383,61 @@ esse status de saída disponível para inspeção posterior ou
 processamento.
 
 
-@node Shell Operation
-@subsection Shell Operation
+@node Operação do Shell
+@subsection Operação do Shell
 
 O seguinte é uma breve descrição da operação do shell quando ele lê e 
 executa um comando.   Basicamente, o shell faz o seguinte:
 
 @enumerate
 @item
-Lê a entrada a partir de um arquivo (@ref{Shell Scripts}), a 
+Lê a entrada a partir de um arquivo (@ref{Scripts de Shell}), a 
 partir de uma cadeia de caracteres fornecida como um argumento para 
 a opção de invocação @option{-c} (@ref{Invoking Bash}), ou a 
 partir do terminal do usuário.
 
 @item
 Divide a entrada em palavras e operadores, obedecendo às regras de 
-encapsulamento entre aspas descritas em @ref{Quoting}.  Esses tokens 
+encapsulamento entre aspas descritas em @ref{Encapsulamento}.  Esses tokens 
 são separados por @code{metacharacters}.  A expansão de apelidos é 
 feita por esse passo (@ref{Aliases}).
 
 @item
 Processa os tokens em comandos simples e comandos compostos 
-(@ref{Shell Commands}).
+(@ref{Comandos do Shell}).
 
 @item
-Desempenha as várias expansões de shell (@ref{Shell Expansions}), 
+Desempenha as várias expansões de shell (@ref{Expansões de Shell}), 
 dividindo os tokens expandidos em listas de nomes de arquivos 
-(@ref{Filename Expansion}) e comandos e argumentos.
+(@ref{Expansão de Nome de Arquivo}) e comandos e argumentos.
 
 @item
-Desempenha quaisquer redireções necessárias (@ref{Redirections}) e 
+Desempenha quaisquer redireções necessárias (@ref{Redireções}) e 
 remove os operadores de redireção e seus operandos da lista de 
 argumentos.
 
 @item
-Executa o comando (@ref{Executing Commands}).
+Executa o comando (@ref{Execução de Comandos}).
 
 @item
 Opcionalmente aguarda o término da execução do comando e coleta seu 
-status de saída (@ref{Exit Status}).
+status de saída (@ref{Situação de Saída}).
 
 @end enumerate
 
-@node Quoting
-@subsection Quoting
+@node Encapsulamento
+@subsection Encapsulamento
 @cindex quoting
 @menu
-* Escape Character::	Como remover o significado especial de um 
+* Carácter de Escape::	Como remover o significado especial de um 
 			carácter único.
-* Single Quotes::	Como inibir toda a interpretação de uma 
+* Aspas Simples::	Como inibir toda a interpretação de uma 
 			sequência de caracteres.
-* Double Quotes::	Como suprimir a maior parte da interpretação 
+* Aspas Duplas::	Como suprimir a maior parte da interpretação 
 			de uma sequencia de caracteres.
-* ANSI-C Quoting::	Como expandir sequências ANSI-C em cadeias de 
+* Encapsulamento ANSI-C::	Como expandir sequências ANSI-C em cadeias de 
 			caracteres encapsuladas entre aspas.
-* Locale Translation::	Como traduzir cadeias de caracteres em 
+* Tradução do Locale::	Como traduzir cadeias de caracteres em 
 			idiomas diferentes.
 @end menu
 
@@ -459,8 +459,8 @@ mais detalhes acerca da expansão de histórico.
 Existem três mecanismos de encapsulamento em aspas: o @var{escape 
 character}, encapsulamento simples, e encapsulamento duplo.
 
-@node Escape Character
-@subsubsection Escape Character
+@node Carácter de Escape
+@subsubsection Carácter de Escape
 Uma barra invertida não encapsulada @samp{\} é o carácter de escape do 
 Bash.   Esse carácter preserva o valor literal do próximo carácter que 
 se segue, com exceção do @code{newline}.   Se um par @code{\newline} 
@@ -468,23 +468,23 @@ aparece, e a própria barra invertida não estiver encapsulada entre
 aspas, o @code{\newline} é tratado como uma continuação de linha (isto 
 é, ele é removido do fluxo de entrada e efetivamente ignorado).
 
-@node Single Quotes
-@subsubsection Single Quotes
+@node Aspas Simples
+@subsubsection Aspas Simples
 
 Encapsular caracteres em aspas simples (@samp{'}) preserva o valor 
 literal de cada carácter dentro do encapsulamento.   Um encapsulamento 
 simples não deve ocorrer entre aspas simples, ainda que precedido por 
 uma barra invertida.
 
-@node Double Quotes
-@subsubsection Double Quotes
+@node Aspas Duplas
+@subsubsection Aspas Duplas
 
 Encapsular caracteres em aspas duplas (@samp{"}) preserva o valor 
 literal de todos os caracteres dentro das aspas, com exceção de 
 @samp{$}, @samp{`}, @samp{\}, e, quando a expansão de histórico esteja 
 habilitada, @samp{!}.
 Os caracteres @samp{$} e @samp{`} conservam o significado especial deles 
-quando dentro de aspas duplas (@ref{Shell Expansions}).
+quando dentro de aspas duplas (@ref{Expansões de Shell}).
 A barra invertida conserva seu significado especial apenas quando 
 seguida por um dos seguintes caracteres: @samp{$}, @samp{`}, @samp{"}, 
 @samp{\}, ou @code{newline}.
@@ -499,11 +499,11 @@ utilizando-se uma barra invertida.
 A barra invertida que precede um @samp{!} não é removida.
 
 Os parâmetros especiais @samp{*} e @samp{@@} tem significado 
-especial quando estejam entre aspas duplas (@ref{Shell Parameter 
-Expansion}).
+especial quando estejam entre aspas duplas 
+(@ref{Expansão de Parâmetro de Shell}).
 
-@node ANSI-C Quoting
-@subsubsection ANSI-C Quoting
+@node Encapsulamento ANSI-C
+@subsubsection Encapsulamento ANSI-C
 @cindex quoting, ANSI
 
 Palavras da forma @code{$'@var{string}'} são tratadas especialmente.   A 
@@ -556,7 +556,7 @@ um carácter control-@var{x}
 O resultado expandido é encapsulado entre aspas simples, como se o sinal 
 de dólar não estivesse presente.
 
-@node Locale Translation
+@node Tradução do Locale
 @subsubsection Locale-Specific Translation
 @cindex localization
 @cindex internationalization
@@ -582,13 +582,13 @@ variável @env{TEXTDOMAINDIR} para a localização dos arquivos de catálogo
 de mensagem.   Outros ainda utilizam ambas as variáveis neste desenho:
 @env{TEXTDOMAINDIR}/@env{LC_MESSAGES}/LC_MESSAGES/@env{TEXTDOMAIN}.mo.
 
-@node Comments
-@subsection Comments
+@node Comentários
+@subsection Comentários
 @cindex comments, shell
 
 Em um shell não interativo, ou um shell interativo no qual a opção 
 @code{interactive_comments} para o comando interno @code{shopt} esteja 
-habilitada (@ref{The Shopt Builtin}), uma palavra iniciando com 
+habilitada (@ref{O Comando Interno Shopt}), uma palavra iniciando com 
 @samp{#} faz com que essa palavra e todos os caracteres restantes 
 naquela linha sejam ignorados.   Um shell interativo sem a opção 
 @code{interactive_comments} habilitada não permite comentários.   A 
@@ -596,8 +596,8 @@ opção @code{interactive_comments} é habilitada por padrão em shells
 interativos.   Veja-se @ref{Interactive Shells}, para uma descrição do 
 que torna um shell interativo.
 
-@node Shell Commands
-@section Shell Commands
+@node Comandos do Shell
+@section Comandos do Shell
 @cindex commands, shell
 
 Um comando de shell simples como @code{echo a b c} consiste do próprio 
@@ -610,20 +610,20 @@ de um segundo, em um loop ou construção condicional, ou em algum outro
 agrupamento.
 
 @menu
-* Simple Commands::		O tipo de comando mais comum.
-* Pipelines::			Conectando a entrada e saída de 
+* Comandos Simples::		O tipo de comando mais comum.
+* Canais de Comunicação::			Conectando a entrada e saída de 
 				vários comandos.
-* Lists::			Como executar comandos 
+* Listas::			Como executar comandos 
 				sequencialmente.
-* Compound Commands::		Comandos de shell para controlar 
+* Comandos Compostos::		Comandos de shell para controlar 
 				fluxo.
-* Coprocesses::			Comunicação de duas vias entre 
+* Coprocessos::			Comunicação de duas vias entre 
 				comandos.
 * GNU Parallel::		Executando comandos em paralelo.
 @end menu
 
-@node Simple Commands
-@subsection Simple Commands
+@node Comandos Simples
+@subsection Comandos Simples
 @cindex commands, simple
 
 Um comando simples é o tipo de comando encontrado mais frequentemente.   
@@ -633,13 +633,13 @@ Ele é simplesmente uma sequência de palavras separadas por
 comando a ser executado, com o restante das palavras sendo os argumentos 
 daquele comando.
 
-O status de retorno (@ref{Exit Status}) de um comando simples é seu 
+O status de retorno (@ref{Situação de Saída}) de um comando simples é seu 
 status de saída como fornecido pela função @code{waitpid} definida no 
 padrão @sc{posix} 1003.1, ou 128+@var{n} se o comando foi terminado pelo 
 sinal @var{n}.
 
-@node Pipelines
-@subsection Pipelines
+@node Canais de Comunicação
+@subsection Canais de Comunicação
 @cindex pipeline
 @cindex commands, pipelines
 
@@ -695,14 +695,14 @@ A variável @env{TIMEFORMAT} deve ser utilizada para especificar o
 formato da informação de temporização.
 
 Se o canal de comunicação não estiver sendo executado assincronamente 
-(@ref{Lists}), o shell aguarda que todos os comandos no canal de 
+(@ref{Listas}), o shell aguarda que todos os comandos no canal de 
 comunicação finalizem.
 
 Cada comando em um canal de comunicação é executado em seu próprio 
-sub shell (@ref{Command Execution Environment}).   O status de saída de 
+sub shell (@ref{Ambiente de Execução de Comando}).   O status de saída de 
 um canal de comunicação é o status de saída do último comando no canal 
 de comunicação, a menos que a opção @code{pipefail} esteja habilitada 
-(@ref{The Set Builtin}).
+(@ref{O Comando Interno Set}).
 Se a opção @code{pipefail} estiver habilitada, o status de retorno do 
 canal de comunicação é o valor do último (mais à direita) comando a sair 
 com um status diferente de zero, ou zero se todos os comandos saírem com 
@@ -713,8 +713,8 @@ acima.
 O shell aguarda que todos os comandos no canal de comunicação terminem 
 antes de retornar um valor.
 
-@node Lists
-@subsection Lists of Commands
+@node Listas
+@subsection Listas of Commands
 @cindex commands, lists
 
 Uma @code{list} é uma sequência de um os mais canais de comunicação 
@@ -767,21 +767,21 @@ retorna um status de saída qualquer diferente de zero.
 O status de retorno das listas @sc{and} e @sc{or} é o status de saída do 
 último comando executado na lista.
 
-@node Compound Commands
-@subsection Compound Commands
+@node Comandos Compostos
+@subsection Comandos Compostos
 @cindex commands, compound
 
 @menu
-* Looping Constructs::		Comandos de shell para ação interativa.
-* Conditional Constructs::	Comandos de shell para execução 
+* Construtores de Ciclos::		Comandos de shell para ação interativa.
+* Construtores Condicionais::	Comandos de shell para execução 
 condicional.
-* Command Grouping::		Maneiras de agrupar comandos.
+* Agrupamento de Comandos::		Maneiras de agrupar comandos.
 @end menu
 
 Comandos de composição são os construtores de programação do shell.
 Cada construtor inicia com uma palavra reservada ou operador de controle 
 e é finalizado pela palavra reservada ou operador correspondentes.
-Quaisquer redireções (@ref{Redirections}) associadas com um comando de 
+Quaisquer redireções (@ref{Redireções}) associadas com um comando de 
 composição se aplicam a todos os comandos dentro desse comando de 
 composição a menos que explicitamente sobrepostas.
 
@@ -793,8 +793,8 @@ vírgula.
 Bash disponibiliza construtores de loops, comandos condicionais e 
 mecanismos para agrupar comandos e executá-los como uma unidade.
 
-@node Looping Constructs
-@subsubsection Looping Constructs
+@node Construtores de Ciclos
+@subsubsection Construtores de Ciclos
 @cindex commands, looping
 
 Bash suporta os seguintes construtores de loops.
@@ -845,7 +845,7 @@ na lista resultante, com @var{name} apontando para o membro atual.
 Se @samp{in @var{words}} não estiver presente, o comando @code{for} 
 executa os @var{commands} uma vez para cada parâmetro posicional que 
 estiver configurado, como se @samp{in "$@@"} tivesse sido especificado 
-(@ref{Special Parameters}).
+(@ref{Parâmetros Especiais}).
 O status de retorno é o status de saída do último comando que executar.
 Se não existirem itens na expansão de @var{words}, nenhum comando é 
 executado, e o status de retorno será igual a zero.
@@ -873,8 +873,8 @@ for inválida.
 Os comandos internos @code{break} e @code{continue} podem ser utilizados 
 para controlar a execução do loop.
 
-@node Conditional Constructs
-@subsubsection Conditional Constructs
+@node Construtores Condicionais
+@subsubsection Construtores Condicionais
 @cindex commands, conditional
 
 @table @code
@@ -921,7 +921,7 @@ case @var{word} in [ [(] @var{pattern} [| @var{pattern}]@dots{}) @var{command-li
 @code{case} seletivamente executará a @var{command-list} correspondente 
 à primeira variável @var{pattern} que coincidir com a variável @var{word}.
 Se a opção de shell @code{nocasematch} (veja-se a descrição de 
-@code{shopt} em @ref{The Shopt Builtin}) estiver habilitada, então a 
+@code{shopt} em @ref{O Comando Interno Shopt}) estiver habilitada, então a 
 coincidência é testada sem considerar maiúsculas e minúsculas.
 O carácter @samp{|} é utilizado para separar múltiplas variáveis 
 @var{pattern}, e o operador @samp{)} finaliza a lista de variáveis.
@@ -1029,7 +1029,7 @@ equivalente a
 let "@var{expression}"
 @end example
 @noindent
-Veja-se @ref{Bash Builtins}, para uma descrição completa acerca do 
+Veja-se @ref{Comandos Internos ao Bash}, para uma descrição completa acerca do 
 comando interno @code{let}.
 
 @item [[@dots{}]]
@@ -1057,11 +1057,11 @@ ordenam lexicograficamente utilizando o locale atual.
 Quando os operadores @samp{==} e @samp{!=} são utilizados, a sequência 
 de caracteres à direita do operador é considerada um padrão e uma 
 coincidência é tentada de acordo com as regras descritas abaixo em 
-@ref{Pattern Matching}, como se a opção de shell @code{extglob} 
+@ref{Coincidência de Modelo}, como se a opção de shell @code{extglob} 
 estivesse habilitada.
 O operador @samp{=} é idêntico ao @samp{==}.
 Se a opção de shell @code{nocasematch} (veja-se a descrição de 
-@code{shopt} em @ref{The Shopt Builtin}) estiver habilitada, então a 
+@code{shopt} em @ref{O Comando Interno Shopt}) estiver habilitada, então a 
 coincidência é feita sem levar em consideração maiúsculas e minúsculas.
 O valor de retorno é 0 se a sequência de caracteres coincidir 
 (@samp{==}) ou não coincidir (@samp{!=}) com o padrão, e 1 nos outros 
@@ -1079,7 +1079,7 @@ padrão, e 1 caso contrário.
 Se a expressão regular estiver sintaticamente incorreta, o valor de 
 retorno da expressão condicional é igual a 2.
 Se a opção de shell @code{nocasematch} (veja-se a descrição de 
-@code{shopt} em @ref{The Shopt Builtin}) estiver habilitada, a 
+@code{shopt} em @ref{O Comando Interno Shopt}) estiver habilitada, a 
 coincidência é tentada sem levar em consideração maiúsculas e 
 minúsculas.
 Qualquer parte do padrão pode ser colocado entre aspas para forçar que 
@@ -1186,7 +1186,7 @@ valor de @var{expression1} for suficiente para determinar o valor de
 retorno da expressão condicional inteira.
 @end table
 
-@node Command Grouping
+@node Agrupamento de Comandos
 @subsubsection Grouping Commands
 @cindex commands, grouping
 
@@ -1203,7 +1203,7 @@ para um fluxo único.
 @end example
 
 Colocar uma lista de comandos entre parênteses faz com que um ambiente 
-de sub shell seja criado (@ref{Command Execution Environment}), e cada 
+de sub shell seja criado (@ref{Ambiente de Execução de Comando}), e cada 
 um dos comandos na @var{list} sejam executados nesse sub shell.   Uma vez 
 que a @var{list} seja executada em um sub shell, atribuições à variáveis 
 não permanecem em efeito após a finalização do sub shell.
@@ -1232,8 +1232,8 @@ espaços em branco.
 O status de saída de ambas dessas construções é o status de saída de 
 @var{list}.
 
-@node Coprocesses
-@subsection Coprocesses
+@node Coprocessos
+@subsection Coprocessos
 @cindex coprocess
 
 Um @code{coprocess} é um comando de shell precedido pela palavra 
@@ -1252,7 +1252,7 @@ coproc [@var{NAME}] @var{command} [@var{redirections}]
 Isso cria um co-processo chamado @var{NAME}.
 Se @var{NAME} não for informado, então o nome padrão é @var{COPROC}.
 @var{NAME} deve necessariamente não ser informado se @var{command} for 
-um comando simples (@ref{Simple Commands}); do contrário, @var{NAME} é 
+um comando simples (@ref{Comandos Simples}); do contrário, @var{NAME} é 
 interpretada como sendo a primeira palavra do comando simples.
 
 Quando o co-processo é executado, o shell cria um vetor variável 
@@ -1264,7 +1264,7 @@ A entrada padrão de @var{command} é conectada via tubo ao arquivo
 descritor no shell em execução, e esse arquivo descritor é atribuído ao 
 segundo elemento do vetor que é @env{NAME}[1].
 Esse tubo é estabelecido antes de quaisquer redireções especificadas 
-pelo comando (@ref{Redirections}).
+pelo comando (@ref{Redireções}).
 Os descritores de arquivo podem ser utilizados como argumentos para 
 redireções e comandos de shell utilizando-se expansões de palavras 
 padrão.
@@ -1410,8 +1410,8 @@ irá avaliar os comandos utilizando o shell (dado que nenhum comando
 explícito é fornecido como um argumento), em blocos de dez (10) tarefas 
 de shell por vez.
 
-@node Shell Functions
-@section Shell Functions
+@node Funções de Shell
+@section Funções de Shell
 @cindex shell function
 @cindex functions, shell
 
@@ -1441,20 +1441,20 @@ Isso define uma função de shell chamada @var{name}.   A palavra
 reservada @code{function} é opcional.   Se a palavra reservada 
 @code{function} for informada, então os parênteses são opcionais.
 O @var{body} da função é o comando composto @var{compound-command} 
-(@ref{Compound Commands}).
+(@ref{Comandos Compostos}).
 Esse comando é em regra uma @var{list} encapsulada entre @{ e @}, porém 
 pode ser qualquer comando composto listado acima.
 @var{compound-command} é executado sempre que @var{name} for 
 especificado como o nome do comando.
 Quando o shell está em modo @sc{posix} (@ref{Bash POSIX Mode}), 
 @var{name} pode não ser o mesmo que um dos comandos internos especiais 
-(@ref{Special Builtins}).
-Quaisquer redireções (@ref{Redirections}) associadas com a função de 
+(@ref{Comandos Internos Especiais}).
+Quaisquer redireções (@ref{Redireções}) associadas com a função de 
 shell são feitas quando a função é executada.
 
 Uma definição de função pode ser deletada utilizando-se a opção 
-@option{-f} para o comando interno @code{unset} (@ref{Bourne Shell 
-Builtins}).
+@option{-f} para o comando interno @code{unset} 
+(@ref{Comandos Internos do Shell Bourne}).
 
 O status de saída de uma definição de função é zero a menos que um erro 
 de sintaxe ocorra ou uma função somente leitura com o mesmo nome já 
@@ -1473,8 +1473,8 @@ necessariamente ser finalizada por um ponto e vírgula, ou por um
 @samp{&}, ou por um newline.
 
 Quando a função é executada, os argumentos para a função se tornam os 
-parâmetros posicionais durante a execução da função (@ref{Positional 
-Parameters}).
+parâmetros posicionais durante a execução da função 
+(@ref{Parâmetros Posicionais}).
 O parâmetro especial @samp{#} que é expandido para o número de 
 parâmetros posicionais é atualizado para refletir a mudança.
 O parâmetro especial @code{0} fica imodificado.
@@ -1490,7 +1490,7 @@ habilitada com o comando interno @code{set}, (caso no qual todas as
 funções herdam os coletores @env{DEBUG} e @env{RETURN}, o coletor 
 @env{ERR} não é herdado, a menos que a opção de shell @code{-o errtrace} 
 tenha sido habilitada.
-Veja-se @ref{Bourne Shell Builtins}, para a descrição do comando 
+Veja-se @ref{Comandos Internos do Shell Bourne}, para a descrição do comando 
 interno @code{trap}.
 
 A variável @env{FUNCNEST}, se configurada para um valor numérico maior 
@@ -1516,13 +1516,13 @@ função e aos comandos que a função invocar.
 
 Os nomes de função e definições podem ser listados com a opção 
 @option{-f} para o comando interno @code{declare} (@code{typeset}) 
-(@ref{Bash Builtins}).
+(@ref{Comandos Internos ao Bash}).
 A opção @option{-F} para @code{declare} ou @code{typeset} listará 
 apenas os nomes de funções (e opcionalmente o arquivo fonte e número da 
 linha, se a opção de shell @code{extdebug} estiver habilitada).
 As funções podem ser exportadas, de forma que sub shells automaticamente 
 tenham elas definidas com a opção @option{-f} para o comando interno 
-@code{export} (@ref{Bourne Shell Builtins}).
+@code{export} (@ref{Comandos Internos do Shell Bourne}).
 Perceba que as funções e variáveis de shell com o mesmo nome podem 
 resultar em entradas múltiplas identicamente nomeadas no ambiente 
 passadas para os filhos do shell.
@@ -1534,16 +1534,16 @@ profundidade da pilha de chamada da função e restringir o número de
 invocações de função.
 Por padrão, nenhum limite é colocado no número de chamadas recursivas.
 
-@node Shell Parameters
-@section Shell Parameters
+@node Parâmetros de Shell
+@section Parâmetros de Shell
 @cindex parameters
 @cindex variable, shell
 @cindex shell variable
 
 @menu
-* Positional Parameters::	Os argumentos de linha de comando do 
+* Parâmetros Posicionais::	Os argumentos de linha de comando do 
 shell.
-* Special Parameters::		Parâmetros denotados por caracteres 
+* Parâmetros Especiais::		Parâmetros denotados por caracteres 
 especiais.
 @end menu
 
@@ -1552,8 +1552,8 @@ Um @var{parameter} é uma entidade que armazena valores.   Pode ser um
 Uma @var{variable} é um parâmetro denotado por um @code{name}.
 Uma variável tem um @var{value} e zero ou mais @var{attributes}.
 Atributos são atribuídos utilizando-se o comando interno @code{declare} 
-(veja-se a descrição do comando interno @code{declare} em @ref{Bash 
-Builtins}).
+(veja-se a descrição do comando interno @code{declare} em 
+@ref{Comandos Internos ao Bash}).
 
 Um parâmetro é configurado se a ele foi atribuído um valor.   A frase 
 null é um valor válido.   Uma vez que uma variável for configurada, ela 
@@ -1571,7 +1571,7 @@ parâmetro e variável, substituição de comando, expansão aritmética e
 remoção de aspas (detalhadas abaixo).   Se a variável tiver seu atributo 
 @code{integer} configurado, então @var{value} é calculado como uma 
 expressão aritmética mesmo se a expansão @code{$((@dots{}))} não for 
-utilizada (veja-se @ref{Arithmetic Expansion}).
+utilizada (veja-se @ref{Expansão Aritmética}).
 Divisão de palavra não é feita, com a exceção de @code{"$@@"} conforme 
 abaixo exposto.
 Expansão de nome de arquivo não é feita.
@@ -1602,7 +1602,7 @@ Quando aplicado a uma variável de valor de sequência de caracteres,
 
 O atributo @var{nameref} de uma variável pode ser atribuído 
 utilizando-se a opção @option{-n} para os comandos internos 
-\fBdeclare\fP ou \fBlocal\fP (veja-se @ref{Bash Builtins}) para criar 
+\fBdeclare\fP ou \fBlocal\fP (veja-se @ref{Comandos Internos ao Bash}) para criar 
 uma @var{nameref}, ou uma referência a uma outra variável.
 Isso permite que variáveis sejam manipuladas indiretamente.
 Sempre que a variável nameref é referenciada ou é atribuída, a operação 
@@ -1630,14 +1630,14 @@ sequência, quando o loop é executado.
 Entretanto, variáveis nameref podem referenciar variáveis de vetor e 
 variáveis de vetor subscritas.
 Os nameref podem ser desconfigurados utilizando-se a opção @option{-n} 
-para o comando interno @code{unset} (veja-se @ref{Bourne Shell 
-Builtins}).
+para o comando interno @code{unset} 
+(veja-se @ref{Comandos Internos do Shell Bourne}).
 Do contrário, se @code{unset} for executado com o nome de uma variável 
 nameref como um argumento, a variável referenciada pela variável nameref 
 será desconfigurada.
 
-@node Positional Parameters
-@subsection Positional Parameters
+@node Parâmetros Posicionais
+@subsection Parâmetros Posicionais
 @cindex parameters, positional
 
 Um @var{positional parameter} é um parâmetro denotado por um ou mais 
@@ -1654,13 +1654,13 @@ Os comandos internos @code{set} e @code{shift} são utilizados para
 configurar e desconfigurar os parâmetros posicionais 
 (veja-se @ref{Comandos Internos ao Shell}).
 Os parâmetros posicionais são substituídos temporariamente quando uma 
-função de shell é executada (veja-se @ref{Shell Functions}).
+função de shell é executada (veja-se @ref{Funções de Shell}).
 
 Quando um parâmetro posicional consistindo de mais que um dígito único é 
 expandido, ele deve necessariamente estar contido entre chaves.
 
-@node Special Parameters
-@subsection Special Parameters
+@node Parâmetros Especiais
+@subsection Parâmetros Especiais
 @cindex parameters, special
 
 O shell trata diversos parâmetros especialmente.   Tais parâmetros 
@@ -1724,14 +1724,14 @@ invoca, não o do sub shell.
 @vindex $!
 ($!) Expande para o @sc{id} de processo da tarefa colocada mais 
 recentemente em segundo plano, seja executada como um comando assíncrono 
-ou utilizando o comando interno @code{bg} (veja-se @ref{Controle de Tarefa 
-Builtins}).
+ou utilizando o comando interno @code{bg} 
+(veja-se @ref{Comandos Internos do Controle de Tarefa}).
 
 @item 0
 @vindex $0
 ($0) Expande para o nome do shell ou o do script de shell.   Isso é 
 configurado na inicialização do shell.   Se Bash for invocado com um 
-arquivo de comandos (veja-se @ref{Shell Scripts}), @code{$0} é 
+arquivo de comandos (veja-se @ref{Scripts de Shell}), @code{$0} é 
 configurado para o nome desse arquivo.
 Se Bash for iniciado com a opção @option{-c} (veja-se @ref{Invoking 
 Bash}), então @code{$0} é configurado para o primeiro argumento após a 
@@ -1754,8 +1754,8 @@ Quando da verificação de mensagem, esse parâmetro mantém o nome do
 arquivo de mensagem.
 @end vtable
 
-@node Shell Expansions
-@section Shell Expansions
+@node Expansões de Shell
+@section Expansões de Shell
 @cindex expansion
 
 A expansão é realizada na linha de comando após ela ter sido dividida em 
@@ -1772,21 +1772,21 @@ A expansão é realizada na linha de comando após ela ter sido dividida em
 @end itemize
 
 @menu
-* Brace Expansion::		Expansão de expressões dentro de chaves.
-* Tilde Expansion::		Expansão do carácter ~.
-* Shell Parameter Expansion::	Como Bash expande variáveis para seus 
+* Expansão de Chave::		Expansão de expressões dentro de chaves.
+* Expansão de Til::		Expansão do carácter ~.
+* Expansão de Parâmetro de Shell::	Como Bash expande variáveis para seus 
 				valores.
-* Command Substitution::	Utilizando a saída de um comando como um 
+* Substituição de Comando::	Utilizando a saída de um comando como um 
 				argumento.
-* Arithmetic Expansion::	Como utilizar aritmética em expansões de 
+* Expansão Aritmética::	Como utilizar aritmética em expansões de 
 				shell.
-* Process Substitution::	Uma maneira de escrever e ler para e de 
+* Substituição de Processo::	Uma maneira de escrever e ler para e de 
 				um comando.
-* Word Splitting::	Como os resultados da expansão são divididos em 
+* Divisão de Palavra::	Como os resultados da expansão são divididos em 
 			argumentos separados.
-* Filename Expansion::	Uma abreviação para especificar nomes de 
+* Expansão de Nome de Arquivo::	Uma abreviação para especificar nomes de 
 			arquivos que conferem com padrões.
-* Quote Removal::	Como e quando caracteres de aspas são removidos 
+* Remoção de Aspas::	Como e quando caracteres de aspas são removidos 
 			de palavras.
 @end menu
 
@@ -1804,21 +1804,21 @@ Apenas a expansão de chave, divisão de palavra e expansão de nome de
 arquivo podem mudar o número de palavras da expansão; outras expansões 
 expandem a palavra única para uma palavra única.
 As únicas exceções a isso são as expansões de @code{"$@@"} 
-(veja-se @ref{Special Parameters}) e @code{"$@{@var{name}[@@]@}"}
+(veja-se @ref{Parâmetros Especiais}) e @code{"$@{@var{name}[@@]@}"}
 (veja-se @ref{Arrays}).
 
-Após todas as expansões @code{quote removal} (veja-se @ref{Quote 
-Removal}) é realizada.
+Após todas as expansões @code{quote removal} 
+(veja-se @ref{Remoção de Aspas}) é realizada.
 
-@node Brace Expansion
-@subsection Brace Expansion
+@node Expansão de Chave
+@subsection Expansão de Chave
 @cindex brace expansion
 @cindex expansion, brace
 
 Expansão de chave é um mecanismo pelo qual sequências de caracteres 
 arbitrárias podem ser geradas.
 Esse mecanismo é similar a @var{filename expansion} 
-(veja-se @ref{Filename Expansion}), porém os nomes de arquivo gerados 
+(veja-se @ref{Expansão de Nome de Arquivo}), porém os nomes de arquivo gerados 
 não podem existir.
 Padrões para serem expandidos de chave assumem a forma de um 
 @var{preamble} opcional, seguido de ou uma série de sequências de 
@@ -1886,8 +1886,8 @@ ou
 chown root /usr/@{ucb/@{ex,edit@},lib/@{ex?.?*,how_ex@}@}
 @end example
 
-@node Tilde Expansion
-@subsection Tilde Expansion
+@node Expansão de Til
+@subsection Expansão de Til
 @cindex tilde expansion
 @cindex expansion, tilde
 
@@ -1959,8 +1959,8 @@ A sequência de caracteres que poderia ser exibida por @samp{dirs
 -@var{N}}
 @end table
 
-@node Shell Parameter Expansion
-@subsection Shell Parameter Expansion
+@node Expansão de Parâmetro de Shell
+@subsection Expansão de Parâmetro de Shell
 @cindex parameter expansion
 @cindex expansion, parameter
 
@@ -1980,7 +1980,7 @@ parâmetro.
 A forma básica da expansão de parâmetro é $@{@var{parameter}@}.
 O valor de @var{parameter} é substituído.
 O @var{parameter} é um parâmetro de shell conforme descrito acima 
-(veja-se @ref{Shell Parameters}) ou uma referência de vetor 
+(veja-se @ref{Parâmetros de Shell}) ou uma referência de vetor 
 (veja-se @ref{Arrays}).
 As chaves são obrigatórias quando @var{parameter} é um parâmetro 
 posicional com mais que um dígito, ou quando @var{parameter} for seguido 
@@ -2221,7 +2221,7 @@ elemento.
 @item $@{@var{parameter}#@var{word}@}
 @itemx $@{@var{parameter}##@var{word}@}
 A @var{word} é expandida para produzir um padrão exatamente como em 
-expansão de nome de arquivo (veja-se @ref{Filename Expansion}).   Se o 
+expansão de nome de arquivo (veja-se @ref{Expansão de Nome de Arquivo}).   Se o 
 padrão coincidir com o inicio do valor expandido de @var{parameter}, 
 então o resultado da expansão é o valor expandido de @var{parameter} com 
 o padrão mais curto que coincidir (o caso do @samp{#}) ou o padrão mais 
@@ -2300,8 +2300,8 @@ Se @var{parameter} for uma variável de vetor subscrito com @samp{@@} ou
 vetor em sequência, e a expansão é a lista resultante.
 @end table
 
-@node Command Substitution
-@subsection Command Substitution
+@node Substituição de Comando
+@subsection Substituição de Comando
 @cindex command substitution
 
 A substituição de comando permite que a saída de um comando substitua o 
@@ -2342,8 +2342,8 @@ internas com barras invertidas.
 Se a substituição aparece dentro de aspas duplas, divisão de palavra e 
 expansão de nome de arquivo não são realizadas sobre os resultados.
 
-@node Arithmetic Expansion
-@subsection Arithmetic Expansion
+@node Expansão Aritmética
+@subsection Expansão Aritmética
 @cindex expansion, arithmetic
 @cindex arithmetic expansion
 
@@ -2366,8 +2366,8 @@ O cálculo é realizado de acordo com as regras listadas abaixo
 Se a expressão for inválida, Bash imprime uma mensagem indicando a falha 
 para o descritor de erro padrão e não ocorre substituição.
 
-@node Process Substitution
-@subsection Process Substitution
+@node Substituição de Processo
+@subsection Substituição de Processo
 @cindex process substitution
 
 A substituição de processo é suportada em sistemas que suportam tubos 
@@ -2398,8 +2398,8 @@ Quando disponível, a substituição de processo é realizada
 simultaneamente com a expansão de parâmetro e variável, substituição de 
 comando, e expansão aritmética.
 
-@node Word Splitting
-@subsection Word Splitting
+@node Divisão de Palavra
+@subsection Divisão de Palavra
 @cindex word splitting
 
 O shell escaneia os resultados da expansão de parâmetro, substituição de 
@@ -2434,10 +2434,10 @@ argumento "null" resulta e é mantido.
 
 Note-se que se não ocorrer expansão, divisão não é realizada.
 
-@node Filename Expansion
-@subsection Filename Expansion
+@node Expansão de Nome de Arquivo
+@subsection Expansão de Nome de Arquivo
 @menu
-* Pattern Matching::	Como o shell combina padrões.
+* Coincidência de Modelo::	Como o shell combina padrões.
 @end menu
 @cindex expansion, filename
 @cindex expansion, pathname
@@ -2445,12 +2445,12 @@ Note-se que se não ocorrer expansão, divisão não é realizada.
 @cindex pathname expansion
 
 Após a divisão de palavra, a menos que a opção @option{-f} tenha sido 
-configurada (veja-se @ref{The Set Builtin}), Bash escaneia cada palavra 
+configurada (veja-se @ref{O Comando Interno Set}), Bash escaneia cada palavra 
 a procura dos caracteres @samp{*}, @samp{?}, e @samp{[}.
 Se um desses caracteres aparece, então a palavra é considerada como 
 sendo um @var{pattern}, e substituída com uma lista de nomes de arquivos 
-ordenada alfabeticamente coincidindo com o padrão (veja-se @ref{Pattern 
-Matching}).
+ordenada alfabeticamente coincidindo com o padrão 
+(veja-se @ref{Coincidência de Modelo}).
 Se nomes de arquivo que coincidam não forem encontrados, e a opção de 
 shell @code{nullglob} estiver desabilitada, então a palavra é deixada 
 imodificada.
@@ -2470,7 +2470,7 @@ Quando da coincidência de um nome de arquivo, o carácter barra deve
 necessariamente sempre ser coincidido explicitamente.
 Em outros casos, o carácter @samp{.} não é tratado especialmente.
 
-Veja-se a descrição de @code{shopt} na @ref{The Shopt Builtin}, para uma 
+Veja-se a descrição de @code{shopt} na @ref{O Comando Interno Shopt}, para uma 
 descrição das opções @code{nocaseglob}, @code{nullglob}, 
 @code{failglob}, e @code{dotglob}.
 
@@ -2491,8 +2491,8 @@ iniciando com um @samp{.}, torne-se @samp{.*} um dos padrões em
 A opção @code{dotglob} é desabilitada quando @env{GLOBIGNORE} estiver 
 desconfigurada.
 
-@node Pattern Matching
-@subsubsection Pattern Matching
+@node Coincidência de Modelo
+@subsubsection Coincidência de Modelo
 @cindex pattern matching
 @cindex matching, pattern
 
@@ -2588,15 +2588,15 @@ Coincide com um dos padrões dados.
 Coincide com qualquer coisa, exceto um dos padrões dados.
 @end table
 
-@node Quote Removal
-@subsection Quote Removal
+@node Remoção de Aspas
+@subsection Remoção de Aspas
 
 Após as expansões precedentes, todas as ocorrências não aspeadas dos 
 caracteres @samp{\}, @samp{'}, e @samp{"} que não resultaram de uma das 
 expansões acima são removidos.
 
-@node Redirections
-@section Redirections
+@node Redireções
+@section Redireções
 @cindex redirection
 
 Antes que um comando seja executado, a entrada e a saída dele podem ser 
@@ -2878,26 +2878,26 @@ tanto para leitura quanto para escrita no descritor de arquivo @var{n},
 ou no descritor de arquivo zero (0) se @var{n} não for especificado.   
 Se o arquivo não existir, ele é criado.
 
-@node Executing Commands
-@section Executing Commands
+@node Execução de Comandos
+@section Execução de Comandos
 
 @menu
-* Simple Command Expansion::	Como Bash expande comandos simples antes 
+* Expansão de Comando Simples::	Como Bash expande comandos simples antes 
 				de executá-los.
-* Command Search and Execution::	Como Bash encontra comandos e os 
+* Busca de Comando e Execução::	Como Bash encontra comandos e os 
 					executa.
-* Command Execution Environment::	O ambiente no qual Bash executa 
+* Ambiente de Execução de Comando::	O ambiente no qual Bash executa 
 					comandos que não são comandos 
 					internos ao shell.
-* Environment::		O ambiente dado a um comando.
-* Exit Status::		O status retornado por comandos e como Bash os 
+* Ambiente::		O ambiente dado a um comando.
+* Situação de Saída::		O status retornado por comandos e como Bash os 
 			interpreta.
-* Signals::		O que acontece quando Bash ou um comando que ele 
+* Sinais::		O que acontece quando Bash ou um comando que ele 
 			executa recebe um sinal.
 @end menu
 
-@node Simple Command Expansion
-@subsection Simple Command Expansion
+@node Expansão de Comando Simples
+@subsection Expansão de Comando Simples
 @cindex command expansion
 
 Quando um comando simples é executado, o shell executa as seguintes 
@@ -2911,14 +2911,14 @@ processamento posterior.
 
 @item
 As palavras que não são atribuições de variável ou redireções são 
-expandidas (@ref{Shell Expansions}).
+expandidas (@ref{Expansões de Shell}).
 Se quaisquer palavras permanecerem após a expansão, a primeira palavra é 
 considerada como sendo o nome do comando e as palavras restantes são os 
 argumentos.
 
 @item
 As redireções são implementadas conforme descrito acima 
-(@ref{Redirections}).
+(@ref{Redireções}).
 
 @item
 O texto após o sinal @samp{=} em cada atribuição de variável está 
@@ -2946,8 +2946,8 @@ saída do comando é o código de saída da última substituição
 implementada.   Se não houve substituições de comandos, o comando sai 
 com um código de saída igual a zero.
 
-@node Command Search and Execution
-@subsection Command Search and Execution
+@node Busca de Comando e Execução
+@subsection Busca de Comando e Execução
 @cindex command execution
 @cindex command search
 
@@ -2959,7 +2959,7 @@ são tomadas.
 @item
 Se o nome do comando não contiver barras, então o shell tenta 
 localizá-lo.   Se existir uma função de shell para aquele nome, então 
-aquela função é invocada conforme descrito em @ref{Shell Functions}.
+aquela função é invocada conforme descrito em @ref{Funções de Shell}.
 
 @item
 Se o nome não coincidir com o de uma função, então o shell busca por ele 
@@ -2972,8 +2972,8 @@ contiver barras, então Bash pesquisa em cada elemento de @env{$PATH}
 procurando por um diretório que contenha um arquivo executável para 
 aquele nome.   O Bash utiliza uma tabela de hash para lembrar os nomes 
 completos de caminhos dos arquivos executáveis para evitar múltiplas 
-buscas no @env{$PATH} (veja-se a descrição de @code{hash} em @ref{Bourne 
-Shell Builtins}).   Uma pesquisa completa dos diretórios em @env{$PATH} 
+buscas no @env{$PATH} (veja-se a descrição de @code{hash} em 
+@ref{Comandos Internos do Shell Bourne}).   Uma pesquisa completa dos diretórios em @env{$PATH} 
 é implementada apenas se o comando não for encontrado na tabela hash.   
 Se a busca não tiver sucesso, então o shell busca uma função de shell 
 definida chamada @code{command_not_found_handle}.   Se tal função 
@@ -2993,8 +2993,8 @@ fornecidos, se existir algum.
 @item
 Se tal execução falhar pelo fato de o arquivo não estar em formato 
 executável, e o arquivo não for um diretório, então é presumido ser um 
-@var{shell script} e o shell o executa conforme descrito em @ref{Shell 
-Scripts}.
+@var{shell script} e o shell o executa conforme descrito em 
+@ref{Scripts de Shell}.
 
 @item
 Se o comando não foi iniciado assincronamente, então o shell aguarda que 
@@ -3002,8 +3002,8 @@ o comando termine sua execução e coleta o código de saída dele.
 
 @end enumerate
 
-@node Command Execution Environment
-@subsection Command Execution Environment
+@node Ambiente de Execução de Comando
+@subsection Ambiente de Execução de Comando
 @cindex execution environment
 
 O shell tem um @var{execution environment}, o qual consiste do seguinte:
@@ -3037,7 +3037,7 @@ opções habilitadas quando da invocação (ou por padrão ou com argumentos
 de linha de comando) ou por @code{set}
 
 @item
-opções habilitadas por @code{shopt} (veja-se @ref{The Shopt Builtin})
+opções habilitadas por @code{shopt} (veja-se @ref{O Comando Interno Shopt})
 
 @item
 apelidos (aliases) de shell definidos com @code{alias} (veja-se 
@@ -3045,7 +3045,7 @@ apelidos (aliases) de shell definidos com @code{alias} (veja-se
 
 @item
 vários @sc{id}s de processos, incluindo aqueles das tarefas de segundo 
-plano (veja-se @ref{Lists}), o valor de @code{$$}, e o valor de 
+plano (veja-se @ref{Listas}), o valor de @code{$$}, e o valor de 
 @env{$PPID}
 
 @end itemize
@@ -3069,7 +3069,7 @@ a máscara de modo de criação de arquivo
 @item
 funções e variáveis de shell marcadas para exportar, juntamente com 
 variáveis exportadas pelo comando, passadas no ambiente 
-(veja-se @ref{Environment})
+(veja-se @ref{Ambiente})
 
 @item
 coletores capturados pelo shell são reconfigurados para os valores 
@@ -3099,8 +3099,8 @@ para o comando é o arquivo vazio @file{/dev/null}.   Do contrário, o
 comando invocado herda os descritores de arquivo do shell invocante 
 conforme modificado pelas redireções.
 
-@node Environment
-@subsection Environment
+@node Ambiente
+@subsection Ambiente
 @cindex environment
 
 Quando um aplicativo é invocado, um vetor de sequência de caracteres é 
@@ -3123,10 +3123,10 @@ adições via comandos @code{export} e @samp{declare -x}.
 
 O ambiente para qualquer comando simples ou função pode ser aumentado 
 temporariamente prefixando tal ambiente com atribuições de parâmetros, 
-conforme descrito em @ref{Shell Parameters}.   Tais declarações de 
+conforme descrito em @ref{Parâmetros de Shell}.   Tais declarações de 
 atribuição afetam apenas o ambiente visto pelo comando.
 
-Se a opção @option{-k} for configurada (veja-se @ref{The Set Builtin}), 
+Se a opção @option{-k} for configurada (veja-se @ref{O Comando Interno Set}), 
 então todas as atribuições de parâmetro são colocadas no ambiente para 
 um comando, não apenas aquelas que precedem o nome do comando.
 
@@ -3134,8 +3134,8 @@ Quando Bash invoca um comando externo, a variável @samp{$_} é
 configurada para o nome de caminho completo do comando e passada para 
 aquele comando dentro do ambiente dele.
 
-@node Exit Status
-@subsection Exit Status
+@node Situação de Saída
+@subsection Situação de Saída
 @cindex exit status
 
 O código de saída de um comando executado é o valor retornado pela 
@@ -3163,8 +3163,8 @@ Se um comando falha por causa de um erro durante a operação de expansão
 ou a de redireção, então e código de saída é um maior que zero.
 
 O código de saída é utilizado pelos comandos condicionais de Bash 
-(veja-se @ref{Conditional Constructs}) e por alguns dos construtores de 
-lista (veja-se @ref{Lists}).
+(veja-se @ref{Construtores Condicionais}) e por alguns dos construtores de 
+lista (veja-se @ref{Listas}).
 
 Todos os comandos internos ao Bash retornam um código de saída de zero 
 se forem bem sucedidos e um código de saída diferente de zero na falha, 
@@ -3172,8 +3172,8 @@ de forma que tais códigos de saída podem ser utilizados pelos
 construtores de lista e condicional.   Todos os comandos internos 
 retornam um código de saída de 2 para indicar utilização incorreta.
 
-@node Signals
-@subsection Signals
+@node Sinais
+@subsection Sinais
 @cindex signal handling
 
 Quando Bash está em modo interativo, na ausência de qualquer coletor, 
@@ -3199,12 +3199,12 @@ em execução ou paradas.   Para as tarefas paradas é enviado
 @code{SIGCONT} para se assegurar que elas receberam o @code{SIGHUP}.
 Para prevenir que o shell envie o sinal @code{SIGHUP} para uma tarefa em 
 particular, tal tarefa deveria ser removida da tabela com o comando 
-interno @code{disown} (veja-se @ref{Controle de Tarefa Builtins}) ou 
+interno @code{disown} (veja-se @ref{Comandos Internos do Controle de Tarefa}) ou 
 assinaladas para não receber @code{SIGHUP} utilizando-se @code{disown 
 -h}.
 
 Se a opção de shell @code{huponexit} tiver sido configurada com 
-@code{shopt} (veja-se @ref{The Shopt Builtin}), então Bash envia um 
+@code{shopt} (veja-se @ref{O Comando Interno Shopt}), então Bash envia um 
 @code{SIGHUP} a todas as tarefas quando um shell de login interativo 
 sai.
 
@@ -3217,8 +3217,8 @@ configurado fará com que o comando interno @code{wait} retorne
 imediatamente com um código de saída maior que 128, imediatamente após o 
 que o coletor é executado.
 
-@node Shell Scripts
-@section Shell Scripts
+@node Scripts de Shell
+@section Scripts de Shell
 @cindex shell script
 
 Um script de shell é um arquivo de texto contendo comandos de shell.   
@@ -3253,7 +3253,7 @@ Se @code{nome_arquivo} for um script de shell executável.
 Tal sub-shell reinicializa a si próprio, de maneira que o efeito é como 
 se um shell novo tivesse sido invocado para interpretar o script, com a 
 exceção de que as localizações dos comandos relembradas pelo pai 
-(veja-se a descrição de @code{hash} em @ref{Bourne Shell Builtins}) são 
+(veja-se a descrição de @code{hash} em @ref{Comandos Internos do Shell Bourne}) são 
 mantidas pelo filho.
 
 A maioria das versões de Unix faz disso uma parte do mecanismo de 
@@ -3281,20 +3281,20 @@ script seja executado sob um outro shell.
 @chapter Comandos Internos ao Shell
 
 @menu
-* Bourne Shell Builtins::	Comandos internos herdados do Shell 
+* Comandos Internos do Shell Bourne::	Comandos internos herdados do Shell 
 				Bourne.
-* Bash Builtins::		Tabela de comandos internos específicos 
+* Comandos Internos ao Bash::		Tabela de comandos internos específicos 
 				ao Bash.
-* Modifying Shell Behavior::	Comandos internos para modificar 
+* Modificando o Comportamento do Shell::	Comandos internos para modificar 
 				atributos do shell e comportamento 
 				opcional.
-* Special Builtins::		Comandos internos classificados 
+* Comandos Internos Especiais::		Comandos internos classificados 
 				especialmente por POSIX.
 @end menu
 
 Comandos internos são contidos no próprio shell.   Quando o nome de um 
 comando interno é utilizado como a primeira palavra de um comando 
-simples (veja-se @ref{Simple Commands}), o shell executa o comando 
+simples (veja-se @ref{Comandos Simples}), o shell executa o comando 
 diretamente, sem invocar outro programa.   Comandos internos são 
 necessários para implementar funcionalidade impossível ou inconveniente 
 de se obter com utilitários separados.
@@ -3305,7 +3305,7 @@ foram estendidos no Bash.
 
 Vários comandos internos são descritos em outros capítulos: comandos 
 internos os quais proveem a interface do Bash para as facilidades de 
-controle de tarefas (veja-se @ref{Controle de Tarefa Builtins}), a pilha de 
+controle de tarefas (veja-se @ref{Comandos Internos do Controle de Tarefa}), a pilha de 
 diretório (veja-se @ref{Directory Stack Builtins}), o histórico de 
 comando (veja-se @ref{Bash History Builtins}), e as facilidades de 
 complementação programável (veja-se @ref{Programmable Completion 
@@ -3326,8 +3326,8 @@ especificados como aceitantes de opções, interpretam argumentos
 começando com @samp{-} como opções inválidas e exigem @samp{--} para 
 prevenir tal interpretação.
 
-@node Bourne Shell Builtins
-@section Bourne Shell Builtins
+@node Comandos Internos do Shell Bourne
+@section Comandos Internos do Shell Bourne
 
 Os comandos internos de shell seguintes são herdados do Shell Bourne.
 Estes comandos são implementados conforme especificado pelo padrão 
@@ -3812,7 +3812,7 @@ executado antes de cada comando simples, comando @code{for}, comando
 @code{case}, comando @code{select}, cada comando @code{for} aritmético, 
 e antes que o primeiro comando execute em uma função de shell.
 Consulte-se a descrição da opção @code{extdebug} para o comando interno 
-@code{shopt} (veja-se @ref{The Shopt Builtin}) para detalhes de seu 
+@code{shopt} (veja-se @ref{O Comando Interno Shopt}) para detalhes de seu 
 efeito sobre o coletor @code{DEBUG}.
 Se um @var{sigspec} for @code{RETURN}, então o comando @var{arg} é 
 executado a cada vez que uma função de shell ou um script executado com 
@@ -3886,7 +3886,7 @@ O código de retorno é zero, a menos que um argumento @var{nome} seja
 apenas leitura.
 @end table
 
-@node Bash Builtins
+@node Comandos Internos ao Bash
 @section Bash Builtin Commands
 
 Esta seção descreve comandos internos ao shell os quais são únicos para 
@@ -4095,7 +4095,7 @@ shell.   A opção @option{-f} restringirá a exibição a funções de shell.
 A opção @option{-F} inibe a exibição de definições de função; apenas o 
 nome da função e atributos são impressos.
 Se a opção de shell @code{extdebug} estiver habilitada utilizando-se o 
-comando interno ao shell @code{shopt} (veja-se @ref{The Shopt Builtin}), 
+comando interno ao shell @code{shopt} (veja-se @ref{O Comando Interno Shopt}), 
 então o nome do arquivo fonte e número da linha onde a função está 
 definida são exibidos também.
 @option{-F} implica @option{-f}.
@@ -4273,7 +4273,7 @@ Se não existirem opções, então uma lista dos comandos internos ao shell
 A opção @option{-s} restringe @code{enable} aos comandos internos 
 especiais do padrão @sc{posix}.   Se @option{-s} for utilizada com 
 @option{-f},, então o novo comando interno se torna um comando interno 
-especial (veja-se @ref{Special Builtins}).
+especial (veja-se @ref{Comandos Internos Especiais}).
 
 O código de retorno é zero a menos que um @var{nome} não seja um comando 
 interno ao shell ou exista um erro ao carregar um novo comando interno a 
@@ -4466,7 +4466,7 @@ Se existirem palavras menores que os nomes, lidas do fluxo de entrada,
 então aos nomes remanescentes serão atribuídos valores vazios.
 Os caracteres no valor da variável @env{IFS} são utilizados para dividir 
 a linha em palavras utilizando-se as mesmas regras que o shell utiliza 
-para expansão (descrita acima em @ref{Word Splitting}).
+para expansão (descrita acima em @ref{Divisão de Palavra}).
 O carácter "barra invertida" @samp{\} pode ser utilizado para remover 
 qualquer significado especial do próximo carácter lido e para 
 continuação de linha.
@@ -4573,7 +4573,7 @@ Lê linha a partir da entrada padrão para a variável vetor indexada
 source @var{filename}
 @end example
 
-Um sinônimo para @code{.} (veja-se @ref{Bourne Shell Builtins}).
+Um sinônimo para @code{.} (veja-se @ref{Comandos Internos do Shell Bourne}).
 
 @item type
 @btindex type
@@ -4737,18 +4737,18 @@ fornecida, então todos os apelidos serão removidos.
 Os apelidos são descritos em @ref{Aliases}.
 @end table
 
-@node Modifying Shell Behavior
-@section Modifying Shell Behavior
+@node Modificando o Comportamento do Shell
+@section Modificando o Comportamento do Shell
 
 @menu
-* The Set Builtin::		Modifica os valores dos atributos 
+* O Comando Interno Set::		Modifica os valores dos atributos 
 				de shell e dos parâmetros posicionais.
-* The Shopt Builtin::		Modifica o comportamento opcional 
+* O Comando Interno Shopt::		Modifica o comportamento opcional 
 				do shell.
 @end menu
 
-@node The Set Builtin
-@subsection The Set Builtin
+@node O Comando Interno Set
+@subsection O Comando Interno Set
 
 Esse comando interno é tão complicado que ele merece sua própria seção.   
 @code{set} te permite modificar os valores das opções de shell e 
@@ -4786,10 +4786,10 @@ relatado imediatamente, ao invés de imprimir antes do próximo prompt
 primário.
 
 @item -e
-Sai imediatamente se um canal de comunicação (veja-se @ref{Pipelines}), 
-o qual pode consistir de um único comando simples (veja-se @ref{Simple 
-Commands}), uma lista (veja-se @ref{Lists}), ou um comando composto 
-(veja-se @ref{Compound Commands}) retorna um código diferente de zero.
+Sai imediatamente se um canal de comunicação (veja-se @ref{Canais de Comunicação}), 
+o qual pode consistir de um único comando simples 
+(veja-se @ref{Comandos Simples}), uma lista (veja-se @ref{Listas}), ou um comando composto 
+(veja-se @ref{Comandos Compostos}) retorna um código diferente de zero.
 O shell não sai se o comando que falhar for parte de uma lista de 
 comandos imediatamente seguinte a uma palavra chave @code{while} ou 
 @code{until}, parte de um teste em uma declaração @code{if}, parte de 
@@ -4804,7 +4804,7 @@ Um coletor sobre @code{ERR}, se configurado, é executado antes que o
 shell saia.
 
 Essa opção se aplica ao ambiente de shell e a cada ambiente de sub-shell 
-separadamente (veja-se @ref{Command Execution Environment}), e pode 
+separadamente (veja-se @ref{Ambiente de Execução de Comando}), e pode 
 fazer com que sub-shells saiam antes de executar todos os comandos no 
 sub-shell.
 
@@ -4976,7 +4976,7 @@ expandidas e antes de elas serem executadas.   O valor da variável
 dos argumentos expandidos dele.
 
 @item -B
-O shell realizará uma expansão de chave (veja-se @ref{Brace Expansion}).
+O shell realizará uma expansão de chave (veja-se @ref{Expansão de Chave}).
 Essa opção está ligada por padrão.
 
 @item -C
@@ -5053,8 +5053,8 @@ O código de retorno sempre é zero a menos que uma opção inválida seja
 fornecida.
 @end table
 
-@node The Shopt Builtin
-@subsection The Shopt Builtin
+@node O Comando Interno Shopt
+@subsection O Comando Interno Shopt
 
 Esse comando interno permite modificar o comportamento opcional 
 adicional do shell.
@@ -5071,7 +5071,7 @@ Permuta os valores das configurações que controlam o comportamento
 opcional do shell.   As configurações podem ser ou aquelas listadas 
 abaixo, ou, se a opção @option{-o} for utilizada, aquelas disponíveis 
 com a opção @option{-o} para o comando interno @code{set} 
-(veja-se @ref{The Set Builtin}).
+(veja-se @ref{O Comando Interno Set}).
 Sem opções, ou com a opção @option{-p}, uma lista de todas as opções 
 configuráveis é exibida, com uma indicação de se ou não cada está 
 configurada.
@@ -5095,8 +5095,8 @@ habilitados; diferente de zero do contrário.
 
 @item -o
 Restringe os valores de @var{optname} àqueles definidos para a opção 
-@option{-o} para o comando interno @code{set} (veja-se @ref{The Set 
-Builtin}).
+@option{-o} para o comando interno @code{set} 
+(veja-se @ref{O Comando Interno Set}).
 @end table
 
 Se ou @option{-s} ou @option{-u} forem utilizadas sem argumentos 
@@ -5246,7 +5246,7 @@ habilitado:
 @enumerate
 @item
 A opção @option{-F} para o comando interno @code{declare} 
-(veja-se @ref{Bash Builtins}) exibe o nome do arquivo fonte e o número 
+(veja-se @ref{Comandos Internos ao Bash}) exibe o nome do arquivo fonte e o número 
 da linha correspondente a cada nome de função fornecida como um 
 argumento.
 
@@ -5278,7 +5278,7 @@ coletor @code{ERR}.
 @item extglob
 
 Se configurado, as características de coincidência estendida de padrões 
-descritas acima (veja-se @ref{Pattern Matching}) são habilitadas.
+descritas acima (veja-se @ref{Coincidência de Modelo}) são habilitadas.
 
 @item extquote
 Se configurado, o encapsulamento de aspas @code{$'@var{string}'} e 
@@ -5300,7 +5300,7 @@ Essa opção está habilitada por padrão.
 
 @item globasciiranges
 Se configurado, as expressões de intervalo utilizadas em expressões de 
-suporte de coincidência de padrão (veja-se @ref{Pattern Matching}) se 
+suporte de coincidência de padrão (veja-se @ref{Coincidência de Modelo}) se 
 comportam como se estivesse no local C tradicional quando da realização 
 de comparações.   Isto é, a sequência de colação de local atual não é 
 levado em consideração, de forma que @samp{b} não cotejará entre 
@@ -5341,7 +5341,7 @@ Completion}).   Essa opção está habilitada por padrão.
 
 @item huponexit
 Se configurado, Bash enviará @code{SIGHUP} a todas as tarefas quando um 
-shell de login interativo sair (veja-se @ref{Signals}).
+shell de login interativo sair (veja-se @ref{Sinais}).
 
 @item interactive_comments
 Permite uma palavra iniciando com @samp{#}, fazendo com que essa palavra 
@@ -5436,8 +5436,8 @@ Quando configurando ou desconfigurando opções, o código de retorno é
 zero a menos que um @var{optname} não seja uma opção de shell válida.
 @end table
 
-@node Special Builtins
-@section Special Builtins
+@node Comandos Internos Especiais
+@section Comandos Internos Especiais
 @cindex special builtin
 
 Por razões históricas, o padrão @sc{posix} classificou vários comandos 
@@ -5499,7 +5499,7 @@ de pesquisa para o comando interno @code{cd}.
 O diretório home do usuário atual; o padrão para o comando interno 
 @code{cd}.
 O valor dessa variável também é utilizado pela expansão de til 
-(veja-se @ref{Tilde Expansion}).
+(veja-se @ref{Expansão de Til}).
 
 @item IFS
 Uma lista de caracteres que separam campos; utilizada quando o shell 
@@ -5556,7 +5556,7 @@ shells normalmente não tratam elas especialmente.
 
 Umas poucas variáveis utilizadas por Bash estão descritas em diferentes 
 capítulos: variáveis para controlar as facilidades de controle de 
-tarefas (veja-se @ref{Controle de Tarefa Variables}).
+tarefas (veja-se @ref{Variáveis do Controle de Tarefa}).
 
 @vtable @code
 
@@ -5566,7 +5566,7 @@ O caminho completo utilizado para executar a instância atual de Bash.
 @item BASHOPTS
 Uma lista separada por vírgula das opções habilitadas de shell.   Cada 
 palavra na lista é um argumento válido para a opção @option{-s} ao 
-comando interno @code{shopt} (veja-se @ref{The Shopt Builtin}).
+comando interno @code{shopt} (veja-se @ref{O Comando Interno Shopt}).
 As opções que aparecem em @env{BASHOPTS} são aquelas relatadas como 
 @samp{on} por @samp{shopt}.
 Se essa variável estiver no ambiente quando Bash inicializar, então cada 
@@ -5581,7 +5581,7 @@ que não exigem que Bash seja reinicializado.
 @item BASH_ALIASES
 Uma variável de vetor associativo cujos membros correspondem à lista 
 interna de apelidos conforme mantida pelo comando interno @code{alias}.
-(veja-se @ref{Bourne Shell Builtins}).
+(veja-se @ref{Comandos Internos do Shell Bourne}).
 Os elementos adicionados a esse vetor aparecem na lista de apelidos; 
 desconfigurar elementos do vetor faz com que os apelidos sejam removidos 
 da lista de apelidos.
@@ -5594,7 +5594,7 @@ com @code{.} ou @code{source}) está no topo da pilha.   Quando uma
 sub-rotina é executada, o número de parâmetros passado é empurrado em 
 @code{BASH_ARGC}.
 O shell configura @code{BASH_ARGC} somente quando estiver em modo de 
-depuração estendido (veja-se @ref{The Shopt Builtin} para uma descrição 
+depuração estendido (veja-se @ref{O Comando Interno Shopt} para uma descrição 
 da opção @code{extdebug} para o comando interno @code{shopt}).
 
 @item BASH_ARGV
@@ -5604,13 +5604,13 @@ sub-rotina está no topo da pilha; o primeiro parâmetro da chamada inicial
 está embaixo.   Quando uma sub-rotina é executada, os parâmetros 
 fornecidos são empurrados em @code{BASH_ARGV}.
 O shell configura @code{BASH_ARGV} somente quando estiver em modo de 
-depuração estendido (veja-se @ref{The Shopt Builtin} para uma descrição 
+depuração estendido (veja-se @ref{O Comando Interno Shopt} para uma descrição 
 da opção @code{extdebug} para o comando interno @code{shopt}).
 
 @item BASH_CMDS
 Uma variável vetor associativo cujos membros correspondem à tabela de 
 comandos do hash interno conforme mantida pelo comando interno 
-@code{hash} (veja-se @ref{Bourne Shell Builtins}).
+@code{hash} (veja-se @ref{Comandos Internos do Shell Bourne}).
 Os elementos adicionados a esse vetor aparecem na tabela de hash; 
 desconfigurar elementos do vetor faz com que comandos sejam removidos da 
 tabela de hash.
@@ -5622,7 +5622,7 @@ caso no qual é o comando em execução ao tempo do coletor.
 
 @item BASH_COMPAT
 O valor é utilizado para configurar o nível de compatibilidade do shell.
-Veja-se @ref{The Shopt Builtin}, para uma descrição dos vários níveis de 
+Veja-se @ref{O Comando Interno Shopt}, para uma descrição dos vários níveis de 
 compatibilidade e os efeitos deles.
 O valor pode ser um número decimal (por exemplo, 4.2) ou um inteiro (por 
 exemplo, 42) correspondente ao nível de compatibilidade desejado.
@@ -5660,7 +5660,7 @@ Utilize @code{LINENO} para obter o número de linha atual.
 @item BASH_REMATCH
 Uma variável vetor cujos membros são atribuídos pelo operador binário 
 @samp{=~} para o comando condicional @code{[[}
-(veja-se @ref{Conditional Constructs}).
+(veja-se @ref{Construtores Condicionais}).
 O elemento com índice 0 é a porção da sequência de caracteres que 
 coincide com a expressão regular inteira.
 O elemento com índice @var{n} é a porção da sequência de caracteres que 
@@ -5736,7 +5736,7 @@ O valor minimo é dependente de sistema.
 Utilizado pelo comando @code{select} para determinar a largura do 
 terminal quando da impressão de listas de seleção.
 Automaticamente configurado se a opção @code{checkwinsize} for 
-habilitada (veja-se @ref{The Shopt Builtin}), ou em um shell interativo 
+habilitada (veja-se @ref{O Comando Interno Shopt}), ou em um shell interativo 
 quando do recebimento de um @code{SIGWINCH}.
 
 @item COMP_CWORD
@@ -5801,7 +5801,7 @@ Cada elemento do vetor contém uma possível completação.
 @item COPROC
 Uma variável vetor criada para manter os descritores de arquivo para 
 saída de e entrada para um co-processo não nomeado 
-(veja-se @ref{Coprocesses}).
+(veja-se @ref{Coprocessos}).
 
 @item DIRSTACK
 Uma variável vetor contendo o conteúdo atual da pilha de diretório.
@@ -6029,17 +6029,17 @@ Essa variável determina a ordem de colação utilizada quando da ordenação
 dos resultados da expansão de nome de arquivo, e determina o 
 comportamento de expressões de intervalo, classes de equivalência, e 
 sequência de colacionamento dentro de expansão de nome de arquivo e 
-coincidências de padrão (veja-se @ref{Filename Expansion}).
+coincidências de padrão (veja-se @ref{Expansão de Nome de Arquivo}).
 
 @item LC_CTYPE
 Essa variável determina a interpretação de caracteres e o comportamento 
 de classes de caracteres dentro da expansão de nome de arquivo e 
-coincidências de padrão (veja-se @ref{Filename Expansion}).
+coincidências de padrão (veja-se @ref{Expansão de Nome de Arquivo}).
 
 @item LC_MESSAGES
 Essa variável determina o local utilizado para traduzir sequências de 
 caracteres encapsuladas entre aspas duplas precedidas por um @samp{$} 
-(veja-se @ref{Locale Translation}).
+(veja-se @ref{Tradução do Locale}).
 
 @item LC_NUMERIC
 Essa variável determina a categoria de local utilizada para formatação 
@@ -6052,7 +6052,7 @@ O número da linha no script ou função de shell atualmente em execução.
 Utilizada pelo comando @code{select} para determinar a largura da coluna 
 para imprimir listas de seleção.
 Automaticamente configurada se a opção @code{checkwinsize} estiver 
-habilitada (veja-se @ref{The Shopt Builtin}), ou em um shell interativo 
+habilitada (veja-se @ref{O Comando Interno Shopt}), ou em um shell interativo 
 quando do recebimento de um @code{SIGWINCH}.
 
 @item MACHTYPE
@@ -6128,7 +6128,7 @@ comando @code{select} sinaliza com @samp{#? }
 @item PS4
 O valor é o prompt impresso antes que a linha de comando seja ecoada 
 quando a opção @option{-x} for configurada (veja-se
-@ref{The Set Builtin}).
+@ref{O Comando Interno Set}).
 O primeiro carácter de @env{PS4} é replicado múltiplas vezes, conforme 
 necessário, para indicar níveis múltiplos de sentido.
 O padrão é @samp{+ }.
@@ -6144,11 +6144,11 @@ gerador de número aleatórios.
 
 @item READLINE_LINE
 O conteúdo da memória intermediária de linha do Readline, para uso com 
-@samp{bind -x} (veja-se @ref{Bash Builtins}).
+@samp{bind -x} (veja-se @ref{Comandos Internos ao Bash}).
 
 @item READLINE_POINT
 A posição do ponto de inserção na memória intermediária de linha do 
-Readline, para uso com @samp{bind -x} (veja-se @ref{Bash Builtins}).
+Readline, para uso com @samp{bind -x} (veja-se @ref{Comandos Internos ao Bash}).
 
 @item REPLY
 A variável padrão para o comando interno @code{read}.
@@ -6168,7 +6168,7 @@ para ela o nome de caminho completo do shell de login do usuário atual.
 @item SHELLOPTS
 Uma lista separada por vírgula das opções habilitadas de shell.   Cada 
 palavra na lista é um argumento válido para a opção @option{-o} para o 
-comando interno @code{set} (veja-se @ref{The Set Builtin}).
+comando interno @code{set} (veja-se @ref{O Comando Interno Set}).
 As opções que aparecem em @env{SHELLOPTS} são aquelas relatadas como 
 @samp{on} por @samp{set -o}.
 Se essa variável estiver no ambiente quando Bash inicializar, então cada 
@@ -6230,8 +6230,8 @@ caracteres de formato for exibida.
 @item TMOUT
 Se configurada para um valor maior que zero, então @code{TMOUT} é 
 tratada como o intervalo de tempo padrão para o comando interno 
-@code{read} (veja-se @ref{Bash Builtins}).
-O comando @code{select} (veja-se @ref{Conditional Constructs}) termina 
+@code{read} (veja-se @ref{Comandos Internos ao Bash}).
+O comando @code{select} (veja-se @ref{Construtores Condicionais}) termina 
 se a entrada não chegar após @code{TMOUT} segundos, quando a entrada 
 estiver vindo de um terminal.
 
@@ -6286,7 +6286,7 @@ bash [long-opt] -s [-abefhkmnptuvxdBCDHP] [-o @var{option}] [-O @var{shopt_optio
 @end example
 
 Todas as opções de carácter simples utilizadas com o comando interno 
-@code{set} (veja-se @ref{The Set Builtin}) podem ser utilizadas como 
+@code{set} (veja-se @ref{O Comando Interno Set}) podem ser utilizadas como 
 opções quando o shell for invocado.
 Adicionalmente, existem várias opções multi-carácter que você pode 
 utilizar.   Essas opções devem necessariamente aparecer na linha de 
@@ -6296,7 +6296,7 @@ comando antes das opções de carácter simples serem reconhecidas.
 @item --debugger
 Organiza para que o perfil de depurador seja executado antes que o shell 
 inicialize.   Liga o modo estendido de depuração (veja-se
-@ref{The Shopt Builtin} para uma descrição da opção @code{extdebug} para 
+@ref{O Comando Interno Shopt} para uma descrição da opção @code{extdebug} para 
 o comando interno @code{shopt}.
 
 @item --dump-po-strings
@@ -6395,12 +6395,12 @@ Uma lista de todas as sequências de caracteres encapsuladas em aspas
 duplas precedida por @samp{$} é impressa na saída padrão.
 Essas são as sequências de caracteres que são objeto de tradução de 
 linguagem quando o local atual não for @code{C} ou @code{POSIX} 
-(veja-se @ref{Locale Translation}).
+(veja-se @ref{Tradução do Locale}).
 Isso implica a opção @option{-n}; nenhum comando será executado.
 
 @item [-+]O [@var{shopt_option}]
 @var{shopt_option} é uma das opções de shell aceitas pelo comando 
-interno @code{shopt} (veja-se @ref{The Shopt Builtin}).
+interno @code{shopt} (veja-se @ref{O Comando Interno Shopt}).
 Se @var{shopt_option} estiver presente, então @option{-O} configura o 
 valor dessa opção; @option{+O} desconfigura.
 Se @var{shopt_option} não for fornecida, então os nomes e valores das 
@@ -6429,7 +6429,7 @@ menos que @option{-s} seja especificado, sem especificar a opção
 Se restarem argumentos após o processamento de opção, e nem a opção 
 @option{-c} nem a @option{-s} forem fornecidas, então o primeiro 
 argumento é presumido que seja o nome de um arquivo contendo comandos de 
-shell (veja-se @ref{Shell Scripts}).
+shell (veja-se @ref{Scripts de Shell}).
 Quando Bash for invocado dessa forma, @code{$0} é configurado para o 
 nome do arquivo, e os parâmetros posicionais são configurados para os 
 argumentos restantes.
@@ -6446,7 +6446,7 @@ Esta seção descreve como Bash executa seus arquivos de inicialização.
 Se quaisquer dos arquivos existirem, porém não puderem ser lidos, então 
 Bash reporta um erro.
 Os sinais de til são expandidos em nomes de arquivos conforme descrito 
-acima sob Expansão de til (veja-se @ref{Tilde Expansion}).
+acima sob Expansão de til (veja-se @ref{Expansão de Til}).
 
 Shell interativos são descritos em @ref{Interactive Shells}.
 
@@ -6651,7 +6651,7 @@ comandos a partir do terminal do usuário.
 @item
 Bash inspeciona o valor da opção @code{ignoreeof} para @code{set -o} ao 
 invés de sair imediatamente quando receber um @code{EOF} na sua entrada 
-padrão quando da leitura de um comando (veja-se @ref{The Set Builtin}).
+padrão quando da leitura de um comando (veja-se @ref{O Comando Interno Set}).
 
 @item
 Histórico de Comandos (veja-se @ref{Bash History Facilities}) e expansão 
@@ -6665,21 +6665,21 @@ Expansão de Apelidos (veja-se @ref{Aliases}) é realizado por padrão.
 
 @item
 Na ausência de quaisquer coletores, Bash ignora @code{SIGTERM}
-(veja-se @ref{Signals}).
+(veja-se @ref{Sinais}).
 
 @item
 Na ausência de quaisquer coletores, @code{SIGINT} é capturada e 
-manuseada (veja-se @ref{Signals}).
+manuseada (veja-se @ref{Sinais}).
 @code{SIGINT} interromperá alguns comandos internos do shell.
 
 @item
 Um shell de login interativo envia um @code{SIGHUP} a todas as tarefas 
 na saída se a opção de shell @code{huponexit} tiver sido habilitada
-(veja-se @ref{Signals}).
+(veja-se @ref{Sinais}).
 
 @item
 A opção de invocação @option{-n} é ignorada, e @samp{set -n} não tem 
-efeito (veja-se @ref{The Set Builtin}).
+efeito (veja-se @ref{O Comando Interno Set}).
 
 @item
 Bash verificará a correspondência periodicamente, dependendo dos valores 
@@ -6689,12 +6689,12 @@ das variáveis de shell @env{MAIL}, @env{MAILPATH}, e @env{MAILCHECK}
 @item
 Os erros de expansão, devido a referências a variáveis de shell não 
 checadas após @samp{set -u} tiver sido habilitado, não fazem com que o 
-shell saia (veja-se @ref{The Set Builtin}).
+shell saia (veja-se @ref{O Comando Interno Set}).
 
 @item
 O shell não sairá em erros de expansão causados por @var{var} sendo 
 desconfigurada ou nula nas expansões @code{$@{@var{var}:?@var{word}@}}
-(veja-se @ref{Shell Parameter Expansion}).
+(veja-se @ref{Expansão de Parâmetro de Shell}).
 
 @item
 Erros de redireção encontrados por comandos internos ao shell não farão 
@@ -6707,7 +6707,7 @@ retornar um código de erro não fará com que o shell saia
 
 @item
 Um @code{exec} falho não fará com que o shell saia
-(veja-se @ref{Bourne Shell Builtins}).
+(veja-se @ref{Comandos Internos do Shell Bourne}).
 
 @item
 Erros de sintaxe de analisador não fazem com que o shell saia.
@@ -6716,7 +6716,7 @@ Erros de sintaxe de analisador não fazem com que o shell saia.
 Correções ortográficas simples para argumentos de diretório para o 
 comando interno @code{cd} estão habilitados por padrão (veja-se a 
 descrição da opção @code{cdspell} para o comando interno @code{shopt} 
-em @ref{The Shopt Builtin}).
+em @ref{O Comando Interno Shopt}).
 
 @item
 O shell verificará o valor da variável @env{TMOUT} e sai se um comando 
@@ -6839,7 +6839,7 @@ Verdadeiro se @var{file1} for mais antigo que @var{file2}, ou se
 @item -o @var{optname}
 Verdadeiro se a opção de shell @var{optname} estiver habilitada.
 A lista de opções aparece na descrição da opção @option{-o} para o 
-comando interno @code{set} (veja-se @ref{The Set Builtin}).
+comando interno @code{set} (veja-se @ref{O Comando Interno Set}).
 
 @item -v @var{varname}
 Verdadeiro se a variável de shell @var{varname} estiver configurada 
@@ -6860,7 +6860,7 @@ Verdadeiro se o comprimento de @var{string} for diferente de zero.
 @itemx @var{string1} = @var{string2}
 Verdadeiro se as sequências de caracteres forem iguais.
 Quando utilizado com o comando @code{[[}, isso realiza a coincidência de 
-padrão conforme descrito acima (veja-se @ref{Conditional Constructs}).
+padrão conforme descrito acima (veja-se @ref{Construtores Condicionais}).
 
 @samp{=} deveria ser utilizado com o comando @code{test} para 
 conformação com o padrão @sc{posix}.
@@ -7032,11 +7032,11 @@ removidos com o comando @code{unalias}.
 Não existe um mecanismo para se utilizar argumentos em um texto de 
 substituição, como em @code{csh}.
 Se argumentos forem necessários, então uma função de shell deveria ser 
-utilizada (veja-se @ref{Shell Functions}).
+utilizada (veja-se @ref{Funções de Shell}).
 
 Os apelidos não são expandidos quando o shell não é interativo, a menos 
 que a opção de shell @code{expand_aliases} seja configurada utilizando 
-@code{shopt} (veja-se @ref{The Shopt Builtin}).
+@code{shopt} (veja-se @ref{O Comando Interno Shopt}).
 
 As regras relativas à definição e uso de apelidos são de alguma maneira 
 confusas.   Bash sempre lê pelo menos uma linha completa de entrada 
@@ -7390,7 +7390,7 @@ a atual sessão do shell.
 Após a string ser decodificada, ela é expandida via expansão de 
 parâmetro, substituição de comando, expansão aritmética, e remoção de 
 aspas, sujeito ao valor da opção de shell @code{promptvars}
-(veja-se @ref{Bash Builtins}).
+(veja-se @ref{Comandos Internos ao Bash}).
 
 @node The Restricted Shell
 @section The Restricted Shell
@@ -7446,7 +7446,7 @@ Essas restrições são aplicadas após quaisquer arquivos de inicialização
 serem lidos.
 
 Quando um comando que for encontrado como sendo um script de shell é 
-executado (veja-se @ref{Shell Scripts}), @code{rbash} desliga quaisquer 
+executado (veja-se @ref{Scripts de Shell}), @code{rbash} desliga quaisquer 
 restrições no shell gerado para executar o script.
 
 @node Bash POSIX Mode
@@ -7750,16 +7750,16 @@ Este capítulo discute o que é o controle de tarefas, como ele funciona,
 e como Bash te permite acessar as facilidades desse controle.
 
 @menu
-* Controle de Tarefa Basics::		Como o controle de tarefas funciona.
-* Controle de Tarefa Builtins::	Os comandos internos do Bash utilizados 
+* Fundamentos do Controle de Tarefa::		Como o controle de tarefas funciona.
+* Comandos Internos do Controle de Tarefa::	Os comandos internos do Bash utilizados 
 				para interagir com o controle de 
 				tarefas.
-* Controle de Tarefa Variables::	Variáveis que o Bash utiliza para 
+* Variáveis do Controle de Tarefa::	Variáveis que o Bash utiliza para 
 				personalizar o controle de tarefas.
 @end menu
 
-@node Controle de Tarefa Basics
-@section Controle de Tarefa Basics
+@node Fundamentos do Controle de Tarefa
+@section Fundamentos do Controle de Tarefa
 @cindex job control
 @cindex foreground
 @cindex background
@@ -7849,13 +7849,13 @@ antes de reportar modificações em um estado da tarefa, de forma a não
 interromper qualquer outra entrada.
 Se a opção @option{-b} para o comando interno @code{set} estiver 
 habilitada, então reporta tais modificações imediatamente
-(veja-se @ref{The Set Builtin}).
+(veja-se @ref{O Comando Interno Set}).
 Qualquer coletor sobre @code{SIGCHLD} é executado para cada processo 
 filho que sai.
 
 Se uma tentativa de sair de Bash for feita enquanto tarefas estão 
 paradas, (ou em execução, se a opção @code{checkjobs} estiver habilitada 
--- veja-se @ref{The Shopt Builtin}), então o shell imprime uma mensagem 
+-- veja-se @ref{O Comando Interno Shopt}), então o shell imprime uma mensagem 
 de alerta, e se a opção @code{checkjobs} estiver habilitada, lista as 
 tarefas e suas situações.
 
@@ -7865,8 +7865,8 @@ Se uma segunda tentativa de sair for feita, sem um comando
 interveniente, então Bash não imprime outro alerta, e quaisquer tarefas 
 paradas são terminadas.
 
-@node Controle de Tarefa Builtins
-@section Controle de Tarefa Builtins
+@node Comandos Internos do Controle de Tarefa
+@section Comandos Internos do Controle de Tarefa
 
 @table @code
 
@@ -8014,8 +8014,8 @@ Quando o controle de tarefa não está ativo, os comandos internos
 @code{kill} e @code{wait} não aceitam argumentos @var{jobspec}.   Eles 
 devem necessariamente ser alimentados com @sc{id}s de processos.
 
-@node Controle de Tarefa Variables
-@section Controle de Tarefa Variables
+@node Variáveis do Controle de Tarefa
+@section Variáveis do Controle de Tarefa
 
 @vtable @code
 
@@ -8035,7 +8035,7 @@ configurada para @samp{substring}, então a sequência de caracteres
 fornecida precisa coincidir com uma parte da sequência de caracteres do 
 nome de uma tarefa parada.   O valor de @samp{substring}, provê 
 funcionalidade análoga para o @sc{id} de tarefa @samp{%?}
-(veja-se @ref{Controle de Tarefa Basics}).
+(veja-se @ref{Fundamentos do Controle de Tarefa}).
 Se configurada para qualquer outro valor, então a sequência de 
 caracteres fornecida deve necessariamente ser um prefixo de um nome da 
 tarefa parada; isso provê funcionalidade análoga para o @sc{id} de 
@@ -8410,7 +8410,7 @@ e @code{unalias} (veja-se @ref{Aliases}).
 @item --enable-arith-for-command
 Inclui suporte para o formato alternativo do comando @code{for} que se 
 comporta como a declaração @code{for} da linguagem C (veja-se 
-@ref{Looping Constructs}).
+@ref{Construtores de Ciclos}).
 
 @item --enable-array-variables
 Inclui suporte para variáveis de shell vetor unidimensional 
@@ -8423,7 +8423,7 @@ Inclui suporte para a substituição de histórico no estilo @code{csh}
 @item --enable-brace-expansion
 Inclui a expansão de chave ao estilo @code{csh}
 ( @code{b@{a,b@}c} @expansion{} @code{bac bbc} ).
-Veja-se @ref{Brace Expansion}, para uma descrição completa.
+Veja-se @ref{Expansão de Chave}, para uma descrição completa.
 
 @item --enable-casemod-attributes
 Inclui suporte para os atributos de modificação de caso no comando 
@@ -8437,30 +8437,30 @@ Inclui suporte para as expansões de palavra de modificação de caso.
 @item --enable-command-timing
 Inclui suporte para o reconhecimento de @code{time} como sendo uma 
 palavra reservada e para a exibição de estatísticas de temporização para 
-o canal de comunicação seguinte a @code{time} (veja-se @ref{Pipelines}).
+o canal de comunicação seguinte a @code{time} (veja-se @ref{Canais de Comunicação}).
 Isso permite que os canais de comunicação bem como as funções e comandos 
 internos de shell sejam temporizados.
 
 @item --enable-cond-command
 Inclui suporte para o comando condicional @code{[[}.
-(veja-se @ref{Conditional Constructs}).
+(veja-se @ref{Construtores Condicionais}).
 
 @item --enable-cond-regexp
 Inclui suporte para se coincidir as expressões regulares @sc{posix} 
 utilizando-se o operador binário @samp{=~} no comando condicional 
 @code{[[}.
-(veja-se @ref{Conditional Constructs}).
+(veja-se @ref{Construtores Condicionais}).
 
 @item --enable-coprocesses
 Inclui suporte para co-processos e a palavra reservada @code{coproc} 
-(veja-se @ref{Pipelines}).
+(veja-se @ref{Canais de Comunicação}).
 
 @item --enable-debugger
 Inclui suporte para o depurador bash (distribuído separadamente).
 
 @item --enable-direxpand-default
 Faz com a opção de shell @code{direxpand} (veja-se 
-@ref{The Shopt Builtin}) seja habilitada por padrão quando o shell 
+@ref{O Comando Interno Shopt}) seja habilitada por padrão quando o shell 
 inicializa.
 Essa opção normalmente é desabilitada por padrão.
 
@@ -8473,30 +8473,30 @@ comandos internos @code{pushd}, @code{popd}, e @code{dirs}
 Permite que os comandos internos sejam invocados via @samp{builtin xxx} 
 mesmo após @code{xxx} tiver sido desabilitado utilizando-se 
 @samp{enable -n xxx}.
-Veja-se @ref{Bash Builtins}, para detalhes dos comandos internos 
+Veja-se @ref{Comandos Internos ao Bash}, para detalhes dos comandos internos 
 @code{builtin} e @code{enable}.
 
 @item --enable-dparen-arithmetic
 Inclui suporte para o comando @code{((@dots{}))} 
-(veja-se @ref{Conditional Constructs}).
+(veja-se @ref{Construtores Condicionais}).
 
 @item --enable-extended-glob
 Inclui suporte para as características de coincidência de padrão 
-estendidas descritas acima sob @ref{Pattern Matching}.
+estendidas descritas acima sob @ref{Coincidência de Modelo}.
 
 @item --enable-extended-glob-default
 Configura o valor padrão da opção de shell @var{extglob}, descrita acima 
-sob @ref{The Shopt Builtin}, para ser habilitada.
+sob @ref{O Comando Interno Shopt}, para ser habilitada.
 
 @item --enable-glob-asciirange-default
 Configura o valor padrão da opção de shell @var{globasciiranges}, 
-descrita acima sob @ref{The Shopt Builtin}, para ser habilitada.
+descrita acima sob @ref{O Comando Interno Shopt}, para ser habilitada.
 Isso controla o comportamento dos intervalos de caracteres utilizados 
 nas expressões de chave de coincidência de padrão.
 
 @item --enable-help-builtin
 Inclui o comando interno @code{help}, o qual exibe ajuda sobre os 
-comandos internos do shell e variáveis (veja-se @ref{Bash Builtins}).
+comandos internos do shell e variáveis (veja-se @ref{Comandos Internos ao Bash}).
 
 @item --enable-history
 Inclui histórico de comando e os comandos internos @code{fc} e 
@@ -8514,11 +8514,11 @@ provê o necessário suporte.
 Isso habilita a manipulação especial de nomes de arquivo da forma
 @code{/dev/tcp/@var{host}/@var{port}} e
 @code{/dev/udp/@var{host}/@var{port}}
-quando utilizados nas redireções (veja-se @ref{Redirections}).
+quando utilizados nas redireções (veja-se @ref{Redireções}).
 
 @item --enable-process-substitution
 Isso habilita a substituição de processo (veja-se 
-@ref{Process Substitution}) se o sistema operacional provê o necessário 
+@ref{Substituição de Processo}) se o sistema operacional provê o necessário 
 suporte.
 
 @item --enable-progcomp
@@ -8545,7 +8545,7 @@ do modo restrito.
 
 @item --enable-select
 Inclui o comando composto @code{select}, o qual permite a geração de 
-menus simples (veja-se @ref{Conditional Constructs}).
+menus simples (veja-se @ref{Construtores Condicionais}).
 
 @item --enable-separate-helpfiles
 Utiliza arquivos externos para a documentação exibida pelo comando 
@@ -8572,7 +8572,7 @@ encapsulados por barra invertida por padrão, sem exigir a opção
 Isso configura o valor padrão da opção de shell @code{xpg_echo} para 
 @code{on}, o qual faz com que @code{echo} do Bash se comporte mais como 
 a versão especificada na Single Unix Specification, versão 3.
-Veja-se @ref{Bash Builtins}, para uma descrição das sequências de 
+Veja-se @ref{Comandos Internos ao Bash}, para uma descrição das sequências de 
 encapsulamento que @code{echo} reconhece.
 @end table
 
@@ -8676,7 +8676,7 @@ internas.
 A sintaxe de encapsulamento em aspas @code{$'@dots{}'}, o qual expande 
 os caracteres encapsulados por barra invertida do ANSI-C presentes no 
 texto entre as aspas simples, é suportada (veja-se 
-@ref{ANSI-C Quoting}).
+@ref{Encapsulamento ANSI-C}).
 
 @item
 Bash suporta a sintaxe de encapsulamento em aspas @code{$"@dots{}"} para 
@@ -8684,11 +8684,11 @@ fazer a tradução, ao estilo específico do local, dos caracteres entre as
 aspas duplas.   As opções de invocação @option{-D}, 
 @option{--dump-strings}, e @option{--dump-po-strings} listam as 
 sequências de caracteres traduzíveis encontradas em um script 
-(veja-se @ref{Locale Translation}).
+(veja-se @ref{Tradução do Locale}).
 
 @item
 Bash implementa a palavra chave @code{!} para negar o valor de retorno 
-de um canal de comunicação (veja-se @ref{Pipelines}).
+de um canal de comunicação (veja-se @ref{Canais de Comunicação}).
 Muito útil quando uma declaração @code{if} precisa atuar somente se um 
 teste falha.
 A opção de Bash @samp{-o pipefail} para @code{set} fará com que um canal 
@@ -8696,23 +8696,23 @@ de comunicação retorne um estado de falha se qualquer comando falha.
 
 @item
 Bash tem a palavra reservada @code{time} e temporizador de comando 
-(veja-se @ref{Pipelines}).
+(veja-se @ref{Canais de Comunicação}).
 A exibição das estatísticas de temporização pode ser controlada com a 
 variável @env{TIMEFORMAT}.
 
 @item
 Bash implementa a aritmética 
 @code{for (( @var{expr1} ; @var{expr2} ; @var{expr3} ))} para comando, 
-similar a linguagem C (veja-se @ref{Looping Constructs}).
+similar a linguagem C (veja-se @ref{Construtores de Ciclos}).
 
 @item
 Bash inclui o comando composto @code{select}, o qual permite a geração 
-de menus simples (veja-se @ref{Conditional Constructs}).
+de menus simples (veja-se @ref{Construtores Condicionais}).
 
 @item
 Bash inclui o comando composto @code{[[}, o qual torna o teste 
 condicional parte da gramática do shell 
-(veja-se @ref{Conditional Constructs}), incluindo a coincidência de 
+(veja-se @ref{Construtores Condicionais}), incluindo a coincidência de 
 expressão regular opcional.
 
 @item
@@ -8720,8 +8720,8 @@ Bash provê a coincidência opcional sem distinção entre maiúsculas e
 minúsculas para os construtores @code{case} e @code{[[}.
 
 @item
-Bash inclui a expansão de chave (veja-se @ref{Brace Expansion}) e 
-expansão de til (veja-se @ref{Tilde Expansion}).
+Bash inclui a expansão de chave (veja-se @ref{Expansão de Chave}) e 
+expansão de til (veja-se @ref{Expansão de Til}).
 
 @item
 Bash implementa apelidos de comando e os comandos internos @code{alias} 
@@ -8729,7 +8729,7 @@ e @code{unalias} (veja-se @ref{Aliases}).
 
 @item
 Bash provê aritmética de shell, o comando composto @code{((} 
-(veja-se @ref{Conditional Constructs}), e a expansão aritmética 
+(veja-se @ref{Construtores Condicionais}), e a expansão aritmética 
 (veja-se @ref{Shell Arithmetic}).
 
 @item
@@ -8746,33 +8746,33 @@ valor da variável nominada no lado esquerdo.
 Bash inclui as expansões @sc{posix} de remoção de padrão @samp{%}, 
 @samp{#}, @samp{%%} e @samp{##} para remover sequências de caracteres 
 iniciais ou finais dos valores das variáveis 
-(veja-se @ref{Shell Parameter Expansion}).
+(veja-se @ref{Expansão de Parâmetro de Shell}).
 
 @item
 A expansão @code{$@{#xx@}}, a qual retorna o comprimento de 
-@code{$@{xx@}}, é suportado (veja-se @ref{Shell Parameter Expansion}).
+@code{$@{xx@}}, é suportado (veja-se @ref{Expansão de Parâmetro de Shell}).
 
 @item
 A expansão @code{$@{var:}@var{offset}@code{[:}@var{length}@code{]@}}, a 
 qual expande para a subsequência de caracteres do valor de @code{var} do 
 comprimento @var{length}, iniciando em @var{offset}, está presente
-(veja-se @ref{Shell Parameter Expansion}).
+(veja-se @ref{Expansão de Parâmetro de Shell}).
 
 @item
 A expansão
 @code{$@{var/[/]}@var{pattern}@code{[/}@var{replacement}@code{]@}},
 a qual coincide com @var{pattern} e a substitui com @var{replacement} no 
 valor de @code{var}, está disponível 
-(veja-se @ref{Shell Parameter Expansion}).
+(veja-se @ref{Expansão de Parâmetro de Shell}).
 
 @item
 A expansão @code{$@{!@var{prefix}*@}} expansão, a qual expande para os 
 nomes de todas as variáveis de shell cujos os nomes se iniciam com 
-@var{prefix}, está disponível (veja-se @ref{Shell Parameter Expansion}).
+@var{prefix}, está disponível (veja-se @ref{Expansão de Parâmetro de Shell}).
 
 @item
 Bash tem expansão de variável @var{indireta} utilizando @code{$@{!word@}}
-(veja-se @ref{Shell Parameter Expansion}).
+(veja-se @ref{Expansão de Parâmetro de Shell}).
 
 @item
 Bash pode expandir parâmetros posicionais além de @code{$9} utilizando
@@ -8780,12 +8780,12 @@ Bash pode expandir parâmetros posicionais além de @code{$9} utilizando
 
 @item
 A forma @sc{posix} @code{$()} de substituição de comando está 
-implementada (veja-se @ref{Command Substitution}), e é preferida a 
+implementada (veja-se @ref{Substituição de Comando}), e é preferida a 
 @code{``} do shell Bourne (a qual também está implementada para 
 compatibilidade com versões anteriores).
 
 @item
-Bash tem substituição de processo (veja-se @ref{Process Substitution}).
+Bash tem substituição de processo (veja-se @ref{Substituição de Processo}).
 
 @item
 Bash atribui valores automaticamente às variáveis que proveem informação 
@@ -8797,7 +8797,7 @@ e a instância de Bash que está em execução (@env{BASH},
 
 @item
 A variável @env{IFS} é utilizada para dividir somente os resultados da 
-expansão, e não todas as palavras (veja-se @ref{Word Splitting}).
+expansão, e não todas as palavras (veja-se @ref{Divisão de Palavra}).
 Isso fecha uma brecha de segurança do shell de longa data.
 
 @item
@@ -8808,12 +8808,12 @@ O shell Bourne utiliza somente @samp{!}.
 @item
 Bash implementa o conjunto completo de operadores de expansão de nome de 
 arquivo @sc{posix}, incluindo @var{character classes}, @var{equivalence 
-classes}, e @var{collating symbols} (veja-se @ref{Filename Expansion}).
+classes}, e @var{collating symbols} (veja-se @ref{Expansão de Nome de Arquivo}).
 
 @item
 Bash implementa características de coincidência de padrão estendidas 
 quando a opções de shell @code{extglob} está habilitada 
-(veja-se @ref{Pattern Matching}).
+(veja-se @ref{Coincidência de Modelo}).
 
 @item
 É possível ter uma variável e uma função com o mesmo nome; @code{sh} não 
@@ -8822,11 +8822,11 @@ separa os dois espaços de nomes.
 @item
 É permitido às funções do Bash  ter variáveis locais utilizando o 
 comando interno @code{local}, e assim funções recursivas úteis podem ser 
-escritas (veja-se @ref{Bash Builtins}).
+escritas (veja-se @ref{Comandos Internos ao Bash}).
 
 @item
 As atribuições a variáveis precedendo a comandos afetam somente aquele 
-comando, mesmo comandos internos e funções (veja-se @ref{Environment}).
+comando, mesmo comandos internos e funções (veja-se @ref{Ambiente}).
 No @code{sh}, todas as atribuições a variáveis precedendo a comandos são 
 globais, a menos que o comando seja executado a partir do sistema de 
 arquivo.
@@ -8834,13 +8834,13 @@ arquivo.
 @item
 Bash realiza expansão de nome de arquivo sobre nomes de arquivo 
 especificados como operandos para operadores de redireção de entrada e 
-saída (veja-se @ref{Redirections}).
+saída (veja-se @ref{Redireções}).
 
 @item
 Bash contém o operador de redireção @samp{<>}, permitindo que um arquivo 
 seja aberto tanto para leitura quanto para escrita, e o operador de 
 redireção @samp{&>}, para direcionamento da saída padrão e do erro 
-padrão para o mesmo arquivo (veja-se @ref{Redirections}).
+padrão para o mesmo arquivo (veja-se @ref{Redireções}).
 
 @item
 Bash inclui o operador de redireção @samp{<<<}, permitindo que uma 
@@ -8854,49 +8854,49 @@ outro.
 
 @item
 Bash trata um número de nomes de arquivo especialmente quando eles estão 
-sendo utilizados em operadores de redireção (veja-se @ref{Redirections}).
+sendo utilizados em operadores de redireção (veja-se @ref{Redireções}).
 
 @item
 Bash pode abrir conexões de rede para máquinas arbitrárias e serviços 
-com os operadores de redireção (veja-se @ref{Redirections}).
+com os operadores de redireção (veja-se @ref{Redireções}).
 
 @item
 A opção @code{noclobber} está disponível para evitar a sobrescrita de 
 arquivos existentes com a redireção de saída 
-(veja-se @ref{The Set Builtin}).
+(veja-se @ref{O Comando Interno Set}).
 O operador de redireção @samp{>|} pode ser utilizado para substituir 
 @code{noclobber}.
 
 @item
 Os comandos internos @code{cd} e @code{pwd} 
-(veja-se @ref{Bourne Shell Builtins}) cada tomam as opções @option{-L} e 
+(veja-se @ref{Comandos Internos do Shell Bourne}) cada tomam as opções @option{-L} e 
 @option{-P} para permutar entre os modos lógico e físico.
 
 @item
 Bash permite que uma função neutralize um comando interno com o mesmo 
 nome, e provê acesso àquela funcionalidade do comando interno dentro da 
 função via comandos internos @code{builtin} e @code{command} 
-(veja-se @ref{Bash Builtins}).
+(veja-se @ref{Comandos Internos ao Bash}).
 
 @item
 O comando interno @code{command} permite a desabilitação seletiva de 
 funções quando uma pesquisa de comando é realizada 
-(veja-se @ref{Bash Builtins}).
+(veja-se @ref{Comandos Internos ao Bash}).
 
 @item
 Comandos internos individuais podem ser habilitados ou desabilitados 
 utilizando o comando interno @code{enable} 
-(veja-se @ref{Bash Builtins}).
+(veja-se @ref{Comandos Internos ao Bash}).
 
 @item
 O comando interno @code{exec} toma opções adicionais que permitem que 
 usuários controlem o conteúdo do ambiente passado para o comando 
 executado, e o que o argumento zero para o comando é para ser
-(veja-se @ref{Bourne Shell Builtins}).
+(veja-se @ref{Comandos Internos do Shell Bourne}).
 
 @item
 As funções de shell podem ser exportadas aos filhos via ambiente 
-utilizando-se @code{export -f} (veja-se @ref{Shell Functions}).
+utilizando-se @code{export -f} (veja-se @ref{Funções de Shell}).
 
 @item
 Os comandos internos de Bash @code{export}, @code{readonly}, e 
@@ -8911,18 +8911,18 @@ valores de variáveis simultaneamente.
 O comando interno @code{hash} permite que um nome seja associado com um 
 nome arbitrário de arquivo, mesmo quando esse nome de arquivo não pode 
 ser encontrado pesquisando-se o @env{$PATH}, utilizando-se 
-@samp{hash -p} (veja-se @ref{Bourne Shell Builtins}).
+@samp{hash -p} (veja-se @ref{Comandos Internos do Shell Bourne}).
 
 @item
 Bash inclui um comando interno @code{help} para referência rápida às 
-facilidades de shell (veja-se @ref{Bash Builtins}).
+facilidades de shell (veja-se @ref{Comandos Internos ao Bash}).
 
 @item
 O comando interno @code{printf} está disponível para exibir saída 
-formatada (veja-se @ref{Bash Builtins}).
+formatada (veja-se @ref{Comandos Internos ao Bash}).
 
 @item
-O comando interno @code{read} (veja-se @ref{Bash Builtins}) lerá uma 
+O comando interno @code{read} (veja-se @ref{Comandos Internos ao Bash}) lerá uma 
 linha terminando em @samp{\} com a opção @option{-r}, e utilizará a 
 variável @env{REPLY} como um padrão se nenhum argumento não opção for 
 fornecido.
@@ -8941,25 +8941,25 @@ de um marcador de nova linha.
 @item
 O comando interno @code{return} pode ser utilizado para abortar a 
 execução de scripts executados com os comandos internos @code{.} ou 
-@code{source} (veja-se @ref{Bourne Shell Builtins}).
+@code{source} (veja-se @ref{Comandos Internos do Shell Bourne}).
 
 @item
 Bash inclui o comando interno @code{shopt}, para controle mais apurado 
-das capacidades opcionais de shell (veja-se @ref{The Shopt Builtin}), e 
+das capacidades opcionais de shell (veja-se @ref{O Comando Interno Shopt}), e 
 permite que essas opções sejam configuradas ou desconfiguradas na 
 invocação de shell (veja-se @ref{Invoking Bash}).
 
 @item
 Bash tem muito mais comportamento opcional controlável com o comando 
-interno @code{set} (veja-se @ref{The Set Builtin}).
+interno @code{set} (veja-se @ref{O Comando Interno Set}).
 
 @item
 A opção @samp{-x} (@option{xtrace}) exibe comandos outros que não os 
 comandos simples quando realizando um rastreamento de execução
-(veja-se @ref{The Set Builtin}).
+(veja-se @ref{O Comando Interno Set}).
 
 @item
-O comando interno @code{test} (veja-se @ref{Bourne Shell Builtins}) é 
+O comando interno @code{test} (veja-se @ref{Comandos Internos do Shell Bourne}) é 
 ligeiramente diferente, dado que ele implementa o algoritmo @sc{posix}, 
 o qual especifica o comportamento baseado em um número de argumentos.
 
@@ -8970,7 +8970,7 @@ executado com os comandos internos @code{.} ou @code{source}).   Isso
 suporta o depurador de bash.
 
 @item
-O comando interno @code{trap} (veja-se @ref{Bourne Shell Builtins}) 
+O comando interno @code{trap} (veja-se @ref{Comandos Internos do Shell Bourne}) 
 permite uma especificação de pseudo-sinal @code{DEBUG}, similar a 
 @code{EXIT}.   Os comandos especificados com um coletor @code{DEBUG} são 
 executados antes de cada comando simples, comando @code{for}, comando 
@@ -8982,7 +8982,7 @@ tenha sido habilitada utilizando o comando interno @code{shopt}.
 A opção de shell @code{extdebug} tem efeitos adicionais sobre o coletor 
 @code{DEBUG}.
 
-O comando interno @code{trap} (veja-se @ref{Bourne Shell Builtins}) 
+O comando interno @code{trap} (veja-se @ref{Comandos Internos do Shell Bourne}) 
 permite uma especificação de pseudo-sinal @code{ERR}, similar a 
 @code{EXIT} e @code{DEBUG}.
 Os comandos especificados com um coletor @code{ERR} são executados após 
@@ -8991,7 +8991,7 @@ O coletor @code{ERR} não é herdado pelas funções de shell, a menos que a
 opção @code{-o errtrace} para o comando interno @code{set} esteja 
 habilitada.
 
-O comando interno @code{trap} (veja-se @ref{Bourne Shell Builtins}) 
+O comando interno @code{trap} (veja-se @ref{Comandos Internos do Shell Bourne}) 
 permite uma especificação de pseudo-sinal @code{RETURN}, similar a 
 @code{EXIT} e @code{DEBUG}.
 Os comandos especificados com um coletor @code{RETURN} são executados 
@@ -9004,12 +9004,12 @@ que a função tenha dado o atributo @code{trace} ou a opção
 
 @item
 O comando interno @code{type} é mais extensivo e dá mais informação 
-acerca dos nomes que ele encontra (veja-se @ref{Bash Builtins}).
+acerca dos nomes que ele encontra (veja-se @ref{Comandos Internos ao Bash}).
 
 @item
 O comando interno @code{umask} permite à opção @option{-p} fazer com que 
 a saída seja exibida na forma de um comando @code{umask} que pode ser 
-reutilizado como entrada (veja-se @ref{Bourne Shell Builtins}).
+reutilizado como entrada (veja-se @ref{Comandos Internos do Shell Bourne}).
 
 @item
 Bash implementa uma pilha de diretório ao estilo @code{csh}, e provê os 
@@ -9030,7 +9030,7 @@ limitado demais.
 
 @item
 O comando interno @code{disown} pode remover uma tarefa da tabela 
-interna de tarefa de shell (veja-se @ref{Controle de Tarefa Builtins}) ou 
+interna de tarefa de shell (veja-se @ref{Comandos Internos do Controle de Tarefa}) ou 
 suprimir o envio de @code{SIGHUP} para uma tarefa quando o shell sai 
 como o resultado de um @code{SIGHUP}.
 
