@@ -69,29 +69,29 @@ utilizando-se as opções @option{+o emacs} ou @option{+o vi} para
 
 @menu
 * Introduction and Notation::	Notação utilizada neste texto.
-* Readline Interaction::	O conjunto minimo de comandos para se 
+* Interação com Readline::	O conjunto minimo de comandos para se 
 				editar uma linha.
-* Readline Init File::		Personalizando Readine a partir da visão 
+* Arquivo Init de Readline::		Personalizando Readine a partir da visão 
 				do usuário.
-* Bindable Readline Commands::	Uma descrição da maioria dos comandos de 
+* Comandos de Readline Vinculáveis::	Uma descrição da maioria dos comandos de 
 				Readline disponíveis para vinculação.
-* Readline vi Mode::		Uma descrição curta de como fazer com 
+* Modo vi de Readline::		Uma descrição curta de como fazer com 
 				que Readline se comporte como o editor 
 				vi.
 @ifset BashFeatures
-* Programmable Completion::	Como especificar as completações 
+* Complementação Programável::	Como especificar as completações 
 				possíveis para um comando específico.
-* Programmable Completion Builtins::	Comandos internos para 
+* Comandos Internos à Complementação Programável::	Comandos internos para 
 					especificar como completar 
 					argumentos para um comando 
 					particular.
-* A Programmable Completion Example::	Uma função de shell exemplo para 
+* Um Exemplo de Complementação Programável::	Uma função de shell exemplo para 
 					gerar possíveis completações.
 @end ifset
 @end menu
 
 @node Introduction and Notation
-@section Introduction to Line Editing
+@section Introdução à Edição de Linha
 
 Os parágrafos seguintes descrevem a notação utilizada para representar 
 toques de tecla.
@@ -124,14 +124,14 @@ produzido por @dfn{metafying} @kbd{C-k}.
 Adicionalmente, várias teclas tem seus próprios nomes.   
 Especificamente, @key{DEL}, @key{ESC}, @key{LFD}, @key{SPC}, @key{RET}, 
 e @key{TAB} todas significam elas mesmas quando vistas neste texto, ou 
-em um arquivo init (veja-se @ref{Readline Init File}).
+em um arquivo init (veja-se @ref{Arquivo Init de Readline}).
 Se no seu teclado falta uma tecla @key{LFD}, a digitação de @key{C-j} 
 produzirá o carácter desejado.
 A tecla @key{RET} pode ser rotulada como @key{Return} ou @key{Enter} em 
 alguns teclados.
 
-@node Readline Interaction
-@section Readline Interaction
+@node Interação com Readline
+@section Interação com Readline
 @cindex interaction, readline
 
 Frequentemente, durante uma sessão interativa, você digita uma linha 
@@ -147,18 +147,19 @@ estar ao final da linha para pressionar @key{RET}.; a linha inteira é
 aceita independentemente da localização do cursor dentro da linha.
 
 @menu
-* Readline Bare Essentials::	O mínimo que você precisa saber sobre 
+* Mínimo Essencial sobre Readline::	O mínimo que você precisa saber sobre 
 				Readline.
-* Readline Movement Commands::	Movimentando-se ao longo da linha de 
+* Comandos de Movimento em Readline::	Movimentando-se ao longo da linha de 
 				entrada.
-* Readline Killing Commands::	Como deletar texto, e como resgatá-lo.
-* Readline Arguments::		Dando argumentos numéricos a comandos.
+* Comandos Readline para Killing (``Recortar'')::	Como deletar 
+texto, e como resgatá-lo.
+* Argumentos em Readline::		Dando argumentos numéricos a comandos.
 * Searching::			Procurando ao longo das linhas 
 				anteriores.
 @end menu
 
-@node Readline Bare Essentials
-@subsection Readline Bare Essentials
+@node Mínimo Essencial sobre Readline
+@subsection Mínimo Essencial sobre Readline
 @cindex notation, readline
 @cindex command editing
 @cindex editing command lines
@@ -205,8 +206,8 @@ configurada para apagar o carácter a esquerda do cursor e a tecla
 @key{DEL} configurada para apagar o carácter embaixo do cursor, como 
 @kbd{C-d}, em vez do carácter a esquerda do cursor).
 
-@node Readline Movement Commands
-@subsection Readline Movement Commands
+@node Comandos de Movimento em Readline
+@subsection Comandos de Movimento em Readline
 
 
 A tabela acima descreve os toques mais básicos que você precisa com o 
@@ -235,8 +236,8 @@ uma convenção não escrita que o pressionamento de teclas de controle
 opera sobre caracteres enquanto que o pressionamento de tecla meta opera 
 sobre palavras.
 
-@node Readline Killing Commands
-@subsection Readline Killing Commands
+@node Comandos Readline para Killing (``Recortar'')
+@subsection Comandos Readline para Killing (``Recortar'')
 
 @cindex killing text
 @cindex yanking text
@@ -297,8 +298,8 @@ Rotaciona o "kill-ring", e "yank" o novo topo.   Você somente pode fazer
 isso se o comando anterior for @kbd{C-y} ou @kbd{M-y}.
 @end table
 
-@node Readline Arguments
-@subsection Readline Arguments
+@node Argumentos em Readline
+@subsection Argumentos em Readline
 
 Você pode passar argumentos numéricos aos comandos Readline.   Algumas 
 vezes o argumento atua como um contador de repetição, outras é o 
@@ -318,11 +319,11 @@ digitar @samp{M-1 0 C-d},, o qual deletaria os próximos dez caracteres
 na linha de entrada.
 
 @node Searching
-@subsection Searching for Commands in the History
+@subsection Buscando Comandos no Histórico
 
 Readline provê comandos para a busca ao longo do histórico de comando
 @ifset BashFeatures
-(veja-se @ref{Bash History Facilities})
+(veja-se @ref{Facilidades do Histórico de Bash})
 @end ifset
 por linhas contendo a sequência de caracteres especificada.
 Existem dois modos @dfn{incremental} e @dfn{não-incremental}.
@@ -370,8 +371,8 @@ inteira antes de iniciar a busca por linhas de histórico coincidentes.
 A sequência de caracteres de busca pode ser digitada pelo usuário ou ser 
 parte do conteúdo da linha atual.
 
-@node Readline Init File
-@section Readline Init File
+@node Arquivo Init de Readline
+@section Arquivo Init de Readline
 @cindex initialization file, readline
 
 Apesar que a biblioteca Readline vem com um conjunto de vínculos de 
@@ -399,21 +400,21 @@ incorporando quaisquer modificações que você eventualmente possa ter
 feito nele.
 
 @menu
-* Readline Init File Syntax::	Sintaxe para os comandos no arquivo 
+* Sintaxe do Arquivo Init de Readline::	Sintaxe para os comandos no arquivo 
 				inputrc.
-* Conditional Init Constructs::	Vinculações de tecla condicionais no 
+* Construtores Condicionais Init::	Vinculações de tecla condicionais no 
 				arquivo inputrc.
-* Sample Init File::		Um arquivo inputrc de exemplo.
+* Arquivo Init de Exemplo::		Um arquivo inputrc de exemplo.
 @end menu
 
-@node Readline Init File Syntax
-@subsection Readline Init File Syntax
+@node Sintaxe do Arquivo Init de Readline
+@subsection Sintaxe do Arquivo Init de Readline
 
 Existem somente umas poucas construções básicas permitidas no arquivo 
 init de Readline.   As linhas em branco são ignoradas.
 As linhas iniciando com um @samp{#} são comentários.
 As linhas começando com um @samp{$} indicam construções condicionais 
-(veja-se @ref{Conditional Init Constructs}).   Outras linhas denotam 
+(veja-se @ref{Construtores Condicionais Init}).   Outras linhas denotam 
 configurações de variáveis e vinculações de teclas.
 
 @table @asis
@@ -904,8 +905,8 @@ insira uma única @samp{\} na linha:
 
 @end table
 
-@node Conditional Init Constructs
-@subsection Conditional Init Constructs
+@node Construtores Condicionais Init
+@subsection Construtores Condicionais Init
 
 Readline implementa uma facilidade similar em espírito às 
 características de compilação condicional do preprocessador C, o qual 
@@ -972,8 +973,8 @@ $include /etc/inputrc
 @end example
 @end table
 
-@node Sample Init File
-@subsection Sample Init File
+@node Arquivo Init de Exemplo
+@subsection Arquivo Init de Exemplo
 
 Eis aqui um exemplo de um arquivo @var{inputrc}.   Isso ilustra 
 vinculação de tecla, atribuição de variável e sintaxe condicional.
@@ -1082,11 +1083,11 @@ $if Ftp
 $endif
 @end example
 
-@node Bindable Readline Commands
-@section Bindable Readline Commands
+@node Comandos de Readline Vinculáveis
+@section Comandos de Readline Vinculáveis
 
 @menu
-* Commands For Moving::		Movendo-se ao longo da linha.
+*Comandos Para Movimentação::		Movendo-se ao longo da linha.
 * Commands For History::	Posicionando-se em linhas anteriores.
 * Commands For Text::		Comandos para modificação de texto.
 * Commands For Killing::	Comandos para killing e yanking.
@@ -1094,7 +1095,8 @@ $endif
 contadores de repetição.
 * Commands For Completion::	Fazendo com que Readline faça a 
 digitação para você.
-* Keyboard Macros::		Salvando e re-executando caracteres 
+* Macros (``Sequências de Comandos'') de Teclado::		Salvando 
+e re-executando caracteres 
 digitados.
 * Miscellaneous Commands::	Outros comandos em geral.
 @end menu
@@ -1116,8 +1118,8 @@ cursor, e @dfn{mark} se refere à posição do cursor salva pelo comando
 O testo entre o ponto e a marca é referenciado como sendo a 
 @dfn{region}.
 
-@node Commands For Moving
-@subsection Commands For Moving
+@node Comandos Para Movimentação
+@subsection Comandos Para Movimentação
 @ftable @code
 @item beginning-of-line (C-a)
 Move para o início da linha atual.
@@ -1159,7 +1161,7 @@ Atualiza a linha atual.   Por padrão, isso é desvinculado.
 @end ftable
 
 @node Commands For History
-@subsection Commands For Manipulating The History
+@subsection Comandos Para Manipular O Histórico
 
 @ftable @code
 @item accept-line (Newline or Return)
@@ -1276,7 +1278,7 @@ especificada.
 @end ftable
 
 @node Commands For Text
-@subsection Commands For Changing Text
+@subsection Comandos Para Modificação de Texto
 
 @ftable @code
 
@@ -1358,7 +1360,7 @@ Por padrão, esse comando é desvinculado.
 @end ftable
 
 @node Commands For Killing
-@subsection Killing And Yanking
+@subsection Killing (``Recortando'') And Yanking (``Colando'')
 
 @ftable @code
 
@@ -1442,7 +1444,7 @@ somente pode fazer isso se o comando prévio for @code{yank} ou
 @end ftable
 
 @node Numeric Arguments
-@subsection Specifying Numeric Arguments
+@subsection Especificando Argumentos Numéricos
 @ftable @code
 
 @item digit-argument (@kbd{M-0}, @kbd{M-1}, @dots{} @kbd{M--})
@@ -1467,7 +1469,7 @@ Por padrão, isso não é vinculado a uma tecla.
 @end ftable
 
 @node Commands For Completion
-@subsection Letting Readline Type For You
+@subsection Deixando Readline Digitar Por Você
 
 @ftable @code
 @item complete (@key{TAB})
@@ -1583,8 +1585,8 @@ esteja disponível para o shell (veja-se @ref{Expansão de Chave}).
 @end ifset
 @end ftable
 
-@node Keyboard Macros
-@subsection Keyboard Macros
+@node Macros (``Sequências de Comandos'') de Teclado
+@subsection Macros (``Sequências de Comandos'') de Teclado
 @ftable @code
 
 @item start-kbd-macro (C-x ()
@@ -1605,7 +1607,7 @@ o arquivo @var{inputrc}.
 @end ftable
 
 @node Miscellaneous Commands
-@subsection Some Miscellaneous Commands
+@subsection Alguns Comandos Variados
 @ftable @code
 
 @item re-read-init-file (C-x C-r)
@@ -1773,8 +1775,8 @@ de edição @code{vi}.
 
 @end ftable
 
-@node Readline vi Mode
-@section Readline vi Mode
+@node Modo vi de Readline
+@section Modo vi de Readline
 
 Enquanto a biblioteca Readline não tem um conjunto completo de funções 
 de edição @code{vi}, ela contém o suficiente para permitir a edição 
@@ -1802,14 +1804,14 @@ pode editar o texto da linha com as teclas de movimento padrão do
 linhas subsequentes com @samp{j}, e assim por diante.
 
 @ifset BashFeatures
-@node Programmable Completion
-@section Programmable Completion
+@node Complementação Programável
+@section Complementação Programável
 @cindex programmable completion
 
 Quando a complementação de palavra for tentada para um argumento a um 
 comando para o qual uma especificação de complementação (uma 
 @var{compspec}) tiver sido definida utilizando-se o comando interno 
-@code{complete} (veja-se @ref{Programmable Completion Builtins}), as 
+@code{complete} (veja-se @ref{Comandos Internos à Complementação Programável}), as 
 facilidades de complementação programáveis são invocadas.
 
 Primeiro, o nome do comando é identificado.
@@ -1882,7 +1884,7 @@ na geração de coincidências.
 Qualquer função especificada com @option{-F} é invocada primeiro.
 A função pode utilizar quaisquer das facilidades de shell, incluindo os 
 comandos internos @code{compgen} e @code{compopt} descritos abaixo 
-(veja-se @ref{Programmable Completion Builtins}), para gerar as 
+(veja-se @ref{Comandos Internos à Complementação Programável}), para gerar as 
 coincidências.
 É necessário colocar as complementações possíveis na variável de vetor 
 @env{COMPREPLY}, uma por elemento do vetor.
@@ -1968,8 +1970,8 @@ _completion_loader()
 complete -D -F _completion_loader -o bashdefault -o default
 @end example
 
-@node Programmable Completion Builtins
-@section Programmable Completion Builtins
+@node Comandos Internos à Complementação Programável
+@section Comandos Internos à Complementação Programável
 @cindex completion builtins
 
 Três comandos internos estão disponíveis para manipular as facilidades 
@@ -2028,7 +2030,7 @@ tentada sobre uma linha em branco.
 
 O processo de aplicação dessas especificações de complementação quando a 
 complementação de palavra é tentada está descrita acima 
-(veja-se @ref{Programmable Completion}).   A opção @option{-D} tem 
+(veja-se @ref{Complementação Programável}).   A opção @option{-D} tem 
 precedência sobre @option{-E}.
 
 Outras opções, se especificadas, tem os seguintes significados.
@@ -2095,7 +2097,7 @@ Nomes de variáveis vetor.
 
 @item binding
 Nomes de vinculação de tecla de Readline 
-(veja-se @ref{Bindable Readline Commands}).
+(veja-se @ref{Comandos de Readline Vinculáveis}).
 
 @item builtin
 Nomes de comandos internos ao shell.   Também pode ser especificada como 
@@ -2179,7 +2181,7 @@ A função de shell @var{function} é executada no ambiente atual de shell.
 Quando ela é executada, $1 é o nome do comando cujos argumentos estão 
 sendo complementados; $2 é a palavra sendo complementada; e $3 é a 
 palavra que precede a palavra sendo complementada, conforme descrito 
-acima (veja-se @ref{Programmable Completion}).
+acima (veja-se @ref{Complementação Programável}).
 Quando ela finaliza, as possíveis complementações são resgatadas do 
 valor da variável de vetor @env{COMPREPLY}.
 
@@ -2248,8 +2250,8 @@ ou um erro de saída ocorra.
 
 @end table
 
-@node A Programmable Completion Example
-@section A Programmable Completion Example
+@node Um Exemplo de Complementação Programável
+@section Um Exemplo de Complementação Programável
 
 A maneira mais comum de obter funcionalidade adicional de 
 complementação, além das ações padrão que @code{complete} e 
