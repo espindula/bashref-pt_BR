@@ -1,0 +1,1 @@
+Manual de Referência do Bash, edição 4.3 - versão 4.3, de 02 de fevereiro de 2014.
