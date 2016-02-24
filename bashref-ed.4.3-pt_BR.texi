@@ -22,6 +22,14 @@ o português do Brasil: Jamenson Ferreira Espindula de Almeida Melo.
 Direitos autorais @copyright{} 1988--2014 da versão original escrita em 
 inglês: Free Software Foundation, Inc.
 
+Na produção deste documento, buscou-se obter o máximo de qualidade 
+possível, em respeito ao leitor.   Entretanto, apesar de perseguida, a 
+perfeição é algo difícil de ser alcançada.   Por esse motivo, erros 
+podem ter passado despercebidos.   Qualquer ajuda no sentido de 
+identificá-los é muito bem vinda, porém o leitor deveria estar 
+consciente de que este documento é distribuido 
+@samp{sem qualquer garantia}, implícita e/ou explícita.
+
 @quotation
 É concedida permissão para copiar, distribuir e/ou modificar este Manual 
 de Referência do Bash, edição 4.3, versão traduzida para a língua 
@@ -247,7 +255,7 @@ O valor retornado por um comando para quem o executou.   O valor é
 restrito a oito bits, de forma que o valor máximo é 255.
 
 @item field
-@cindex campo
+@cindex campo, conceito de
 Uma unidade de texto que é o resultado de uma das expansões de shell.   
 Após a expansão, quando da execução de um comando, os campos resultantes 
 são utilizados como o nome do comando e argumentos.
@@ -257,7 +265,7 @@ são utilizados como o nome do comando e argumentos.
 Uma sequência de caracteres utilizada para identificar um arquivo.
 
 @item job
-@cindex tarefa
+@cindex tarefa, conceito de
 Um conjunto de tarefas compreendendo um canal de comunicação (pipeline), 
 e quaisquer processos que descendam dele, os quais estão todos no mesmo 
 grupo de processos.
@@ -275,7 +283,7 @@ Um carácter que, sem aspas, separa palavras.   Um meta carácter é um
 @samp{;}, @samp{(}, @samp{)}, @samp{<}, ou @samp{>}.
 
 @item name
-@cindex nome
+@cindex nome, conceito de
 @cindex identificador
 @cindex identificador de nome
 Uma @code{word} consistindo apenas de letras, números, e sublinhados, e 
@@ -330,7 +338,7 @@ Uma sequência de caracteres considerada como sendo uma unidade simples
 pelo shell.   Essa sequência é ou uma @code{word} ou um @code{operator}.
 
 @item word
-@cindex palavra
+@cindex palavra, conceito de
 @cindex unidade, palavra
 Uma sequência de caracteres tratada como uma unidade pelo shell.   
 Palavras não podem incluir @code{metacharacters} fora de aspas.
@@ -1430,7 +1438,6 @@ de shell por vez.
 @node Funções de Shell
 @section Funções de Shell
 @cindex função de shell
-@cindex funções, shell
 
 Funções de shell são uma maneira de agrupar comandos para execução 
 posterior utilizando um nome único para o grupo.   Elas são executadas 
@@ -1554,7 +1561,6 @@ Por padrão, nenhum limite é colocado no número de chamadas recursivas.
 @node Parâmetros de Shell
 @section Parâmetros de Shell
 @cindex parâmetros
-@cindex variável, shell
 @cindex variável de shell
 
 @menu
@@ -2514,7 +2520,6 @@ desconfigurada.
 @node Coincidência de Modelo
 @subsubsection Coincidência de Modelo
 @cindex coincidência de modelo
-@cindex coincidência, modelo
 
 Qualquer carácter que apareça em um padrão, que não os caracteres 
 especiais de padrão descritos abaixo, coincidem com eles próprios.
@@ -6596,7 +6601,7 @@ reconfigurado.
 @node Shells Interativos
 @section Shells Interativos
 @cindex shell interativo
-@cindex interativ, shell
+@cindex interativo, shell
 
 @menu
 * O Que é um Shell Interativo?::	O que determina quando um shell 
@@ -6922,7 +6927,6 @@ ou maior que ou igual a @var{arg2}, respectivamente.   @var{Arg1} and
 @cindex aritmética, shell
 @cindex aritmética de shell
 @cindex expressões, aritmética
-@cindex avaliação, aritmética
 @cindex avaliação aritmética
 
 O shell permite que expressões aritméticas sejam avaliadas, como uma das 
@@ -7485,7 +7489,7 @@ restrições no shell gerado para executar o script.
 
 @node O Modo POSIX de Bash
 @section O Modo POSIX de Bash
-@cindex Mode POSIX
+@cindex Modo POSIX
 
 Inicializar Bash com a opção de linha de comando @option{--posix}, ou 
 executar @samp{set -o posix} enquanto Bash estiver em execução, fará com 
