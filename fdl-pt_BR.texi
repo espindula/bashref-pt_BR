@@ -540,3 +540,13 @@ Geral GNU, para permitir seu uso em software livre.
 @c ispell-local-pdict: "ispell-dict"
 @c End:
 
+@ignore
+Jamenson Ferreira Espindula de Almeida Melo
+Usuário GNU/Linux nº 166197
+https://linuxcounter.net/cert/166197.png
+
+Impressão digital da chave:
+234D 1914 4224 7C53 BD13  6855 2AE0 25C0 08A8 6180
+@end ignore
+
+
