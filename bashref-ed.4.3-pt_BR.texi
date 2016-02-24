@@ -127,6 +127,8 @@ como a referência definitiva acerca do comportamento do shell.
 						/bin/sh.
 * Licença de Documentação Livre GNU::	Copiando e compartilhando esta 
 					documentação.
+* GNU Free Documentation License::	Texto original, em inglês, da 
+licença aplicável a este documento.
 * Índices::			Vários índices para este manual.
 @end menu
 @end ifnottex
