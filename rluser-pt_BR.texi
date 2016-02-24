@@ -1089,7 +1089,7 @@ $endif
 @section Comandos de Readline Vinculáveis
 
 @menu
-*Comandos Para Movimentação::		Movendo-se ao longo da linha.
+* Comandos Para Movimentação::		Movendo-se ao longo da linha.
 * Commands For History::	Posicionando-se em linhas anteriores.
 * Commands For Text::		Comandos para modificação de texto.
 * Commands For Killing::	Comandos para killing e yanking.
