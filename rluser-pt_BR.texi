@@ -132,7 +132,7 @@ alguns teclados.
 
 @node Interação com Readline
 @section Interação com Readline
-@cindex interaction, readline
+@cindex interação, readline
 
 Frequentemente, durante uma sessão interativa, você digita uma linha 
 longa de texto, apenas para se dar conta de que a primeira palavra 
@@ -160,9 +160,9 @@ texto, e como resgatá-lo.
 
 @node Mínimo Essencial sobre Readline
 @subsection Mínimo Essencial sobre Readline
-@cindex notation, readline
-@cindex command editing
-@cindex editing command lines
+@cindex notação, readline
+@cindex edição de comando
+@cindex editando linhas de comando
 
 Para colocar caracteres em uma linha, simplesmente digite-os.   O 
 carácter digitado aparece onde o cursor estava, e então o cursor se 
@@ -239,12 +239,12 @@ sobre palavras.
 @node Comandos Readline para Killing (``Recortar'')
 @subsection Comandos Readline para Killing (``Recortar'')
 
-@cindex killing text
-@cindex yanking text
+@cindex killing (``recortando'') texto
+@cindex yanking (``colando'') texto
 
 @dfn{Killing} texto significa retirar o texto da linha, porém 
 salvá-lo fora para uso posterior, usualmente com @dfn{yanking} 
-(reinserir) o texto de volta na linha.
+(reinserir) o texto na linha.
 ("Recortar" e "colar" são jargão mais recente para `kill' e `yank').
 
 Se a descrição para um comando diz que ele `kills' texto, então você 
@@ -258,28 +258,30 @@ obtém o texto todo.   O "kill ring" não é específico de linha; o texto
 que você "matou" em uma linha digitada previamente está disponível para 
 ser "arrancado" de volta mais tarde, quando você estiver digitando outra 
 linha.
-@cindex kill ring
+@cindex kill ring (``área de transferência'')
+@cindex área de transferência (``kill ring'')
 
-Aqui está a lista de comandos para matar "killing" texto.
+Aqui está a lista de comandos para recortar "killing" texto.
 
 @table @kbd
 @item C-k
-Mata o texto a partir da posição atual do cursor até o final da linha.
+Recorta o texto a partir da posição atual do cursor até o final da 
+linha.
 
 @item M-d
-Mata a partir do cursor até o final da palavra atual, ou, se entre 
+Recorta a partir do cursor até o final da palavra atual, ou, se entre 
 palavras, até o final da próxima palavra.
 Os limites de palavra são os mesmos que aqueles utilizados por 
 @kbd{M-f}.
 
 @item M-@key{DEL}
-Mata a partir do cursor o início da palavra atual, ou, se entre 
+Recorta a partir do cursor o início da palavra atual, ou, se entre 
 palavras, até o início da palavra anterior.
 Os limites de palavra são os mesmos que aqueles utilizados por 
 @kbd{M-b}.
 
 @item C-w
-Mata a partir do cursor até o espaço em braco anterior.   Isso é 
+Recorta a partir do cursor até o espaço em braco anterior.   Isso é 
 diferente de @kbd{M-@key{DEL}}, pois os limites de palavra diferem.
 
 @end table
@@ -373,7 +375,7 @@ parte do conteúdo da linha atual.
 
 @node Arquivo Init de Readline
 @section Arquivo Init de Readline
-@cindex initialization file, readline
+@cindex arquivo de inicialização, readline
 
 Apesar que a biblioteca Readline vem com um conjunto de vínculos de 
 tecla estilo Emacs instalado por padrão, é possível se utilizar um 
@@ -455,7 +457,7 @@ Readline.   Veja-se @ref{Comandos Internos ao Bash}.
 Uma grande parte do comportamento em tempo de execução é modificável com 
 as seguintes variáveis.
 
-@cindex variables, readline
+@cindex variáveis, readline
 @table @code
 
 @item bell-style
@@ -1806,7 +1808,7 @@ linhas subsequentes com @samp{j}, e assim por diante.
 @ifset BashFeatures
 @node Complementação Programável
 @section Complementação Programável
-@cindex programmable completion
+@cindex complementação programável
 
 Quando a complementação de palavra for tentada para um argumento a um 
 comando para o qual uma especificação de complementação (uma 
@@ -1972,7 +1974,7 @@ complete -D -F _completion_loader -o bashdefault -o default
 
 @node Comandos Internos à Complementação Programável
 @section Comandos Internos à Complementação Programável
-@cindex completion builtins
+@cindex comandos internos a complementação
 
 Três comandos internos estão disponíveis para manipular as facilidades 
 de complementação programáveis: uma para especificar como os argumentos 
