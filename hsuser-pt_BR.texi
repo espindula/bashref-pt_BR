@@ -70,8 +70,8 @@ History como um usuário.
 @ifset BashFeatures
 @node Facilidades do Histórico de Bash
 @section Facilidades do Histórico de Bash
-@cindex command history
-@cindex history list
+@cindex histórico de comando
+@cindex lista de histórico
 
 Quando a opção @option{-o history} ao comando interno @code{set} está 
 habilitada (veja-se @ref{O Comando Interno Set}), o shell provê acesso ao 
@@ -135,7 +135,7 @@ Veja-se @ref{Comandos Internos ao Bash}, para uma descrição de @code{shopt}.
 
 @node Comandos Internos ao Histórico de Bash
 @section Comandos Internos ao Histórico de Bash
-@cindex history builtins
+@cindex comandos internos ao histórico
 
 Bash provê dois comandos internos os quais manipulam a lista de 
 histórico e o arquivo de histórico.
@@ -249,7 +249,7 @@ variável @env{HISTFILE} é utilizada.
 
 @node History Interaction
 @section Expansão de Histórico
-@cindex history expansion
+@cindex expansão de histórico
 
 A biblioteca History provê uma característica de expansão de histórico 
 que é semelhante à expansão de histórico provida por @code{csh}.   Esta 
@@ -309,19 +309,19 @@ quando da escrita do arquivo de histórico.
 @menu
 * Designadores de Evento::	Como especificar qual linha de histórico 
 utilizar.
-* Word Designators::	Especificando quais palavras são de interesse.
+* Designadores de Palavra::	Especificando quais palavras são de interesse.
 * Modificadores::		Modificando os resultados da substituição.
 @end menu
 
 @node Designadores de Evento
 @subsection Designadores de Evento
-@cindex event designators
+@cindex designadores de evento
 
 Um designador de evento é uma referência a uma entrada de linha de 
 comando na lista de histórico.
 A menos que a referência seja absoluta, os eventos são relativos à 
 posição atual na lista de histórico.
-@cindex history events
+@cindex eventos de histórico
 
 @table @asis
 
@@ -366,8 +366,8 @@ A linha de comando inteira digitada longe.
 
 @end table
 
-@node Word Designators
-@subsection Word Designators
+@node Designadores de Palavra
+@subsection Designadores de Palavra
 
 Os designadores de palavra são utilizados para selecionar palavras 
 desejadas a partir do evento.
