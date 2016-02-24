@@ -2,6 +2,7 @@
 @c %**start of header
 @setfilename bashref-pt_BR.info
 @documentencoding UTF-8
+@documentlanguage pt_BR
 @settitle Manual de Referência do Bash
 
 @include version-pt_BR.texi
@@ -226,108 +227,118 @@ concernente primariamente com a porção de Shell e Utilitários do padrão
 Um carácter tab ou espaço.
 
 @item builtin
-@cindex builtin
+@cindex builtin, comando interno
+@cindex comando interno, builtin
 Um comando que é implementado internamente pelo próprio shell, ao invés 
 de o ser por algum programa executável em algum lugar no sistema de 
 arquivo.
 
 @item control operator
-@cindex control operator
+@cindex controle, operador de
+@cindex operador de controle
 Um @code{token} que desempenha uma função de controle.   Ele é um 
 @code{newline} ou um dos seguintes: @samp{||}, @samp{&&}, @samp{&}, 
 @samp{;}, @samp{;;}, @samp{|}, @samp{|&}, @samp{(}, or @samp{)}.
 
 @item exit status
-@cindex exit status
+@cindex saída, situação de
+@cindex situação de saída
 O valor retornado por um comando para quem o executou.   O valor é 
 restrito a oito bits, de forma que o valor máximo é 255.
 
 @item field
-@cindex field
+@cindex campo
 Uma unidade de texto que é o resultado de uma das expansões de shell.   
 Após a expansão, quando da execução de um comando, os campos resultantes 
 são utilizados como o nome do comando e argumentos.
 
 @item filename
-@cindex filename
+@cindex nome de arquivo
 Uma sequência de caracteres utilizada para identificar um arquivo.
 
 @item job
-@cindex job
+@cindex tarefa
 Um conjunto de tarefas compreendendo um canal de comunicação (pipeline), 
 e quaisquer processos que descendam dele, os quais estão todos no mesmo 
 grupo de processos.
 
 @item job control
-@cindex job control
+@cindex controle de tarefa
+@cindex tarefa, controle de
 Um mecanismo pelo qual usuários podem seletivamente parar (suspend) e 
 reiniciar (resume) a execução de processos.
 
 @item metacharacter
-@cindex metacharacter
+@cindex metacarácter
 Um carácter que, sem aspas, separa palavras.   Um meta carácter é um 
 @code{blank} ou um dos caracteres seguintes: @samp{|}, @samp{&}, 
 @samp{;}, @samp{(}, @samp{)}, @samp{<}, ou @samp{>}.
 
 @item name
-@cindex name
-@cindex identifier
+@cindex nome
+@cindex identificador
+@cindex identificador de nome
 Uma @code{word} consistindo apenas de letras, números, e sublinhados, e 
 iniciando com uma letra ou sublinhado.  @code{Name}s são utilizados 
 como variáveis de shell e como nomes de função.
 Também referenciado como um @code{identifier}.
 
 @item operator
-@cindex operator, shell
+@cindex operador, shell
 Um @code{control operator} ou um  @code{redirection operator}.
 Veja-se @ref{Redireções}, para uma lista de operadores de 
 redireção.   Operadores contém ao menos um @code{metacharacter} fora de 
 aspas.
 
 @item process group
-@cindex process group
+@cindex grupo de processo
+@cindex processo, grupo de
 Uma coleção de processos relacionados cada qual tendo o mesmo @sc{id} de 
 grupo de processo.
 
 @item process group ID
-@cindex process group ID
+@cindex ID de grupo de processo
+@cindex processo, ID de grupo de
 Um identificador único que representa um @code{process group} durante 
 seu tempo de vida.
 
 @item reserved word
-@cindex reserved word
+@cindex palavra reservada
 Uma @code{word} que tem um significado especial para o shell.   A maior 
 parte das palavras reservadas introduz construções de controle de fluxo 
 do shell, tais como @code{for} e @code{while}.
 
 @item return status
-@cindex return status
+@cindex situação de retorno
+@cindex retorno, situação de
 Um sinônimo para @code{exit status}.
 
 @item signal
-@cindex signal
+@cindex sinal
 Um mecanismo pelo qual um processo pode ser notificado de um evento 
 ocorrente no sistema pelo kernel.
 
 @item special builtin
-@cindex special builtin
+@cindex comando interno especial
 Um comando interno de shell o qual foi classificado como especial pelo 
 padrão @sc{posix}.
 
 @item token
 @cindex token
+@cindex unidade simples, token
 Uma sequência de caracteres considerada como sendo uma unidade simples 
 pelo shell.   Essa sequência é ou uma @code{word} ou um @code{operator}.
 
 @item word
-@cindex word
+@cindex palavra
+@cindex unidade, palavra
 Uma sequência de caracteres tratada como uma unidade pelo shell.   
 Palavras não podem incluir @code{metacharacters} fora de aspas.
 @end table
 
 @node Características Básicas do Shell
 @chapter Características Básicas do Shell
-@cindex Bourne shell
+@cindex shell Bourne
 
 Bash é um acrônimo para @samp{Bourne-Again SHell}.   O shell Bourne é o 
 shell Unix tradicional originalmente escrito por Stephen Bourne.   Todos 
@@ -428,7 +439,8 @@ status de saída (@ref{Situação de Saída}).
 
 @node Encapsulamento
 @subsection Encapsulamento
-@cindex quoting
+@cindex encapsulamento, quoting
+@cindex quoting, encapsulamento
 @menu
 * Carácter de Escape::	Como remover o significado especial de um 
 			carácter único.
@@ -505,7 +517,7 @@ especial quando estejam entre aspas duplas
 
 @node Encapsulamento ANSI-C
 @subsubsection Encapsulamento ANSI-C
-@cindex quoting, ANSI
+@cindex encapsulamento, ANSI
 
 Palavras da forma @code{$'@var{string}'} são tratadas especialmente.   A 
 palavra expande para @var{string}, com caracteres encapsulados por 
@@ -559,10 +571,10 @@ de dólar não estivesse presente.
 
 @node Tradução do Locale
 @subsubsection Tradução Específica por Locale
-@cindex localization
-@cindex internationalization
-@cindex native languages
-@cindex translation, native languages
+@cindex localização
+@cindex internacionalização
+@cindex linguagens nativas
+@cindex tradução, linguagens nativas
 
 Uma cadeia de caracteres dentro de um encapsulamento em aspas duplas 
 precedido por um sinal de dólar (@samp{$}) fará com que a cadeia de 
@@ -585,7 +597,7 @@ de mensagem.   Outros ainda utilizam ambas as variáveis neste desenho:
 
 @node Comentários
 @subsection Comentários
-@cindex comments, shell
+@cindex comentários, shell
 
 Em um shell não interativo, ou um shell interativo no qual a opção 
 @code{interactive_comments} para o comando interno @code{shopt} esteja 
@@ -599,7 +611,7 @@ que torna um shell interativo.
 
 @node Comandos do Shell
 @section Comandos do Shell
-@cindex commands, shell
+@cindex comandos, shell
 
 Um comando de shell simples como @code{echo a b c} consiste do próprio 
 comando seguido por argumentos, separados por espaços.
@@ -625,7 +637,7 @@ agrupamento.
 
 @node Comandos Simples
 @subsection Comandos Simples
-@cindex commands, simple
+@cindex comandos, simples
 
 Um comando simples é o tipo de comando encontrado mais frequentemente.   
 Ele é simplesmente uma sequência de palavras separadas por 
@@ -641,8 +653,10 @@ sinal @var{n}.
 
 @node Canais de Comunicação
 @subsection Canais de Comunicação
-@cindex pipeline
-@cindex commands, pipelines
+@cindex pipeline, canal de comunicação
+@cindex canal de comunicação, pipeline
+@cindex comandos, pipelines
+@cindex comandos, canal de comunicação
 
 Um canal de comunicação (@code{pipeline}) é uma sequência de comandos 
 simples separada por um dos operadores de controle @samp{|} ou 
@@ -650,7 +664,8 @@ simples separada por um dos operadores de controle @samp{|} ou
 
 @rwindex time
 @rwindex !
-@cindex command timing
+@cindex temporização de comando
+@cindex comando, temporização de
 O formato de um tubo é
 @example
 [time [-p]] [!] @var{command1} [ | or |& @var{command2} ] @dots{}
@@ -716,7 +731,7 @@ antes de retornar um valor.
 
 @node Listas
 @subsection Listas de Comandos
-@cindex commands, lists
+@cindex comandos, listas
 
 Uma @code{list} é uma sequência de um os mais canais de comunicação 
 separados por um dos operadores @samp{;}, @samp{&}, @samp{&&}, ou 
@@ -770,7 +785,7 @@ O status de retorno das listas @sc{and} e @sc{or} é o status de saída do
 
 @node Comandos Compostos
 @subsection Comandos Compostos
-@cindex commands, compound
+@cindex comandos, compostos
 
 @menu
 * Construtores de Ciclos::		Comandos de shell para ação interativa.
@@ -796,7 +811,7 @@ mecanismos para agrupar comandos e executá-los como uma unidade.
 
 @node Construtores de Ciclos
 @subsubsection Construtores de Ciclos
-@cindex commands, looping
+@cindex comandos, looping
 
 Bash suporta os seguintes construtores de loops.
 
@@ -876,7 +891,7 @@ para controlar a execução do loop.
 
 @node Construtores Condicionais
 @subsubsection Construtores Condicionais
-@cindex commands, conditional
+@cindex comandos, condicionais
 
 @table @code
 @item if
@@ -1189,7 +1204,8 @@ retorno da expressão condicional inteira.
 
 @node Agrupamento de Comandos
 @subsubsection Agrupando Comandos
-@cindex commands, grouping
+@cindex comandos, agrupamento
+@cindex agrupamento de comandos
 
 Bash provê duas maneiras de agrupar uma lista de comandos a serem 
 executados como uma unidade.   Quando comandos são agrupados, as 
@@ -1235,7 +1251,7 @@ O status de saída de ambas dessas construções é o status de saída de
 
 @node Coprocessos
 @subsection Coprocessos
-@cindex coprocess
+@cindex coprocesso
 
 Um @code{coprocess} é um comando de shell precedido pela palavra 
 reservada @code{coproc}.
@@ -1413,8 +1429,8 @@ de shell por vez.
 
 @node Funções de Shell
 @section Funções de Shell
-@cindex shell function
-@cindex functions, shell
+@cindex função de shell
+@cindex funções, shell
 
 Funções de shell são uma maneira de agrupar comandos para execução 
 posterior utilizando um nome único para o grupo.   Elas são executadas 
@@ -1537,9 +1553,9 @@ Por padrão, nenhum limite é colocado no número de chamadas recursivas.
 
 @node Parâmetros de Shell
 @section Parâmetros de Shell
-@cindex parameters
-@cindex variable, shell
-@cindex shell variable
+@cindex parâmetros
+@cindex variável, shell
+@cindex variável de shell
 
 @menu
 * Parâmetros Posicionais::	Os argumentos de linha de comando do 
@@ -1639,7 +1655,7 @@ será desconfigurada.
 
 @node Parâmetros Posicionais
 @subsection Parâmetros Posicionais
-@cindex parameters, positional
+@cindex parâmetros, posicionais
 
 Um @var{positional parameter} é um parâmetro denotado por um ou mais 
 dígitos, qualquer outro diferente do dígito único @code{0}.   Parâmetros 
@@ -1662,7 +1678,7 @@ expandido, ele deve necessariamente estar contido entre chaves.
 
 @node Parâmetros Especiais
 @subsection Parâmetros Especiais
-@cindex parameters, special
+@cindex parâmetros, especiais
 
 O shell trata diversos parâmetros especialmente.   Tais parâmetros 
 apenas podem ser referenciados; atribuição a eles não é permitida.
@@ -1757,7 +1773,7 @@ arquivo de mensagem.
 
 @node Expansões de Shell
 @section Expansões de Shell
-@cindex expansion
+@cindex expansão
 
 A expansão é realizada na linha de comando após ela ter sido dividida em 
 @code{token}s.   Existem sete tipos de expansão realizadas:
@@ -1813,8 +1829,8 @@ Após todas as expansões @code{quote removal}
 
 @node Expansão de Chave
 @subsection Expansão de Chave
-@cindex brace expansion
-@cindex expansion, brace
+@cindex expansão de chave
+@cindex expansão, chave
 
 Expansão de chave é um mecanismo pelo qual sequências de caracteres 
 arbitrárias podem ser geradas.
@@ -1889,8 +1905,8 @@ chown root /usr/@{ucb/@{ex,edit@},lib/@{ex?.?*,how_ex@}@}
 
 @node Expansão de Til
 @subsection Expansão de Til
-@cindex tilde expansion
-@cindex expansion, tilde
+@cindex expansão de til
+@cindex expansão, til
 
 Se uma palavra se inicia com um carácter til fora de aspas (@samp{~}), 
 todos os caracteres até a primeira barra fora de aspas (ou todos os 
@@ -1962,8 +1978,8 @@ A sequência de caracteres que poderia ser exibida por @samp{dirs
 
 @node Expansão de Parâmetro de Shell
 @subsection Expansão de Parâmetro de Shell
-@cindex parameter expansion
-@cindex expansion, parameter
+@cindex expansão de parâmetro
+@cindex expansão, parâmetro
 
 O carácter @samp{$} introduz a expansão de parâmetro, substituição de 
 comando, ou expansão aritmética.   O nome de parâmetro ou símbolo a ser 
@@ -2303,7 +2319,8 @@ vetor em sequência, e a expansão é a lista resultante.
 
 @node Substituição de Comando
 @subsection Substituição de Comando
-@cindex command substitution
+@cindex substituição de comando
+@cindex comando, substituição
 
 A substituição de comando permite que a saída de um comando substitua o 
 próprio comando.
@@ -2345,8 +2362,8 @@ expansão de nome de arquivo não são realizadas sobre os resultados.
 
 @node Expansão Aritmética
 @subsection Expansão Aritmética
-@cindex expansion, arithmetic
-@cindex arithmetic expansion
+@cindex expansão, aritmética
+@cindex aritmética, expansão
 
 A expansão aritmética permite o cálculo de uma expressão aritmética e a 
 substituição do resultado.   O formato para expansão aritmética é:
@@ -2369,7 +2386,8 @@ para o descritor de erro padrão e não ocorre substituição.
 
 @node Substituição de Processo
 @subsection Substituição de Processo
-@cindex process substitution
+@cindex substituição de processo
+@cindex processo, substituição de
 
 A substituição de processo é suportada em sistemas que suportam tubos 
 nomeados (@sc{fifo}s) ou o método @file{/dev/fd} de nomear arquivos 
@@ -2401,7 +2419,8 @@ comando, e expansão aritmética.
 
 @node Divisão de Palavra
 @subsection Divisão de Palavra
-@cindex word splitting
+@cindex divisão de palavra
+@cindex palavra, divisão de
 
 O shell escaneia os resultados da expansão de parâmetro, substituição de 
 comando, e expansão aritmética que não ocorreu dentro de aspas duplas 
@@ -2440,10 +2459,10 @@ Note-se que se não ocorrer expansão, divisão não é realizada.
 @menu
 * Coincidência de Modelo::	Como o shell combina padrões.
 @end menu
-@cindex expansion, filename
-@cindex expansion, pathname
-@cindex filename expansion
-@cindex pathname expansion
+@cindex expansão, nome de arquivo
+@cindex expansão, nome de caminho
+@cindex nome de arquivo, expansão
+@cindex nome de caminho, expansão
 
 Após a divisão de palavra, a menos que a opção @option{-f} tenha sido 
 configurada (veja-se @ref{O Comando Interno Set}), Bash escaneia cada palavra 
@@ -2494,8 +2513,8 @@ desconfigurada.
 
 @node Coincidência de Modelo
 @subsubsection Coincidência de Modelo
-@cindex pattern matching
-@cindex matching, pattern
+@cindex coincidência de modelo
+@cindex coincidência, modelo
 
 Qualquer carácter que apareça em um padrão, que não os caracteres 
 especiais de padrão descritos abaixo, coincidem com eles próprios.
@@ -2598,7 +2617,7 @@ expansões acima são removidos.
 
 @node Redireções
 @section Redireções
-@cindex redirection
+@cindex redireção
 
 Antes que um comando seja executado, a entrada e a saída dele podem ser 
 @var{redirected} utilizando-se uma notação especial interpretada pelo 
@@ -2800,7 +2819,7 @@ Se o operador de redireção for @samp{<<-}, então todos os caracteres tab
 iniciais são retirados das linhas de entrada e da linha que contém o 
 @var{delimiter}.
 Isso permite que documentos-aqui dentro de shell scripts sejam 
-indentados em uma forma natural.
+endentados em uma forma natural.
 
 @subsection Sequências de Caracteres Here
 Uma variante dos documentos aqui, o formato é:
@@ -2899,7 +2918,8 @@ Se o arquivo não existir, ele é criado.
 
 @node Expansão de Comando Simples
 @subsection Expansão de Comando Simples
-@cindex command expansion
+@cindex expansão de comando
+@cindex comando, expansão de
 
 Quando um comando simples é executado, o shell executa as seguintes 
 expansões, atribuições, e redireções, da esquerda para a direita.
@@ -2949,8 +2969,9 @@ com um código de saída igual a zero.
 
 @node Busca de Comando e Execução
 @subsection Busca de Comando e Execução
-@cindex command execution
-@cindex command search
+@cindex execução de comando
+@cindex busca de comando
+@cindex comando, busca de
 
 Após um comando ter sido dividido em palavras, se ele resultar em um 
 comando simples e uma lista opcional de argumentos, as seguintes ações 
@@ -3005,7 +3026,8 @@ o comando termine sua execução e coleta o código de saída dele.
 
 @node Ambiente de Execução de Comando
 @subsection Ambiente de Execução de Comando
-@cindex execution environment
+@cindex ambiente de execução
+@cindex execução, ambiente de
 
 O shell tem um @var{execution environment}, o qual consiste do seguinte:
 
@@ -3102,7 +3124,7 @@ conforme modificado pelas redireções.
 
 @node Ambiente
 @subsection Ambiente
-@cindex environment
+@cindex ambiente
 
 Quando um aplicativo é invocado, um vetor de sequência de caracteres é 
 dado a tal aplicativo, vetor esse chamado de @var{environment}.
@@ -3137,7 +3159,10 @@ aquele comando dentro do ambiente dele.
 
 @node Situação de Saída
 @subsection Situação de Saída
-@cindex exit status
+@cindex código de saída
+@cindex saída, código de
+@cindex situação de saída
+@cindex saída, situação de
 
 O código de saída de um comando executado é o valor retornado pela 
 chamada de sistema @var{waitpid} ou função equivalente.   Os códigos de 
@@ -3175,7 +3200,8 @@ retornam um código de saída de 2 para indicar utilização incorreta.
 
 @node Sinais
 @subsection Sinais
-@cindex signal handling
+@cindex manipulação de sinal
+@cindex sinal, manipulação de
 
 Quando Bash está em modo interativo, na ausência de qualquer coletor, 
 ele ignora @code{SIGTERM} (de forma que @samp{kill 0} não mata um shell 
@@ -3888,7 +3914,7 @@ apenas leitura.
 @end table
 
 @node Comandos Internos ao Bash
-@section Bash Builtin Commands
+@section Comandos Internos ao Bash
 
 Esta seção descreve comandos internos ao shell os quais são únicos para 
 ou foram ampliados no Bash.
@@ -5439,7 +5465,7 @@ zero a menos que um @var{optname} não seja uma opção de shell válida.
 
 @node Comandos Internos Especiais
 @section Comandos Internos Especiais
-@cindex special builtin
+@cindex comandos internos especiais
 
 Por razões históricas, o padrão @sc{posix} classificou vários comandos 
 internos como @emph{special}.
@@ -6416,11 +6442,13 @@ Quaisquer argumentos após o @code{--} são tratados como nomes de
 arquivos e argumentos.
 @end table
 
-@cindex login shell
+@cindex shell de login
+@cindex login, shell de
 Um shell de @emph{login} é um cujo primeiro carácter do argumento zero é 
 @samp{-}, ou um invocado com a opção @option{--login}.
 
-@cindex interactive shell
+@cindex shell interativo
+@cindex interativo, shell
 Um shell @emph{interactive} é um iniciado sem argumentos não opção, a 
 menos que @option{-s} seja especificado, sem especificar a opção 
 @option{-c}, e cuja saída e entrada são ambas conectadas a terminais 
@@ -6441,7 +6469,8 @@ saída é 0.
 
 @node Arquivos de Inicialização do Bash
 @section Arquivos de Inicialização do Bash
-@cindex startup files
+@cindex arquivos de inicialização
+@cindex inicialização, arquivos de
 
 Esta seção descreve como Bash executa seus arquivos de inicialização.
 Se quaisquer dos arquivos existirem, porém não puderem ser lidos, então 
@@ -6566,8 +6595,8 @@ reconfigurado.
 
 @node Shells Interativos
 @section Shells Interativos
-@cindex interactive shell
-@cindex shell, interactive
+@cindex shell interativo
+@cindex interativ, shell
 
 @menu
 * O Que é um Shell Interativo?::	O que determina quando um shell 
@@ -6728,7 +6757,8 @@ de @env{$PS1} (veja-se @ref{Variáveis do Bash}).
 
 @node Expressões Condicionais de Bash
 @section Expressões Condicionais de Bash
-@cindex expressions, conditional
+@cindex expressões, condicionais
+@cindex condicionais, expressões
 
 Expressões condicionais são utilizadas pelo comando composto @code{[[} e 
 pelos comandos internos @code{test} e @code{[}.
@@ -6889,11 +6919,11 @@ ou maior que ou igual a @var{arg2}, respectivamente.   @var{Arg1} and
 
 @node Aritmética de Shell
 @section Aritmética de Shell
-@cindex arithmetic, shell
-@cindex shell arithmetic
-@cindex expressions, arithmetic
-@cindex evaluation, arithmetic
-@cindex arithmetic evaluation
+@cindex aritmética, shell
+@cindex aritmética de shell
+@cindex expressões, aritmética
+@cindex avaliação, aritmética
+@cindex avaliação aritmética
 
 O shell permite que expressões aritméticas sejam avaliadas, como uma das 
 expansões de shell ou pelo @code{let} e a opção @option{-i} para os 
@@ -7000,7 +7030,8 @@ precedência acima.
 
 @node Apelidos
 @section Apelidos
-@cindex alias expansion
+@cindex expansão de apelido
+@cindex apelido, expansão de
 
 Apelidos @var{Apelidos} permitem que uma sequência de caracteres seja 
 substituída por uma palavra quando forem utilizados como a primeira 
@@ -7061,7 +7092,7 @@ apelidos.
 
 @node Vetores
 @section Vetores
-@cindex arrays
+@cindex vetores
 
 Bash provê variáveis vetor indexado unidimensional e associativo.
 Qualquer variável pode ser utilizada como um vetor indexado; o comando 
@@ -7195,7 +7226,8 @@ reutilizá-los como entrada.
 
 @node A Pilha de Diretório
 @section A Pilha de Diretório
-@cindex directory stack
+@cindex pilha de diretório
+@cindex diretório, pilha de
 
 @menu
 * Comandos Internos da Pilha de Diretório::		Comandos internos do Bash para 
@@ -7307,6 +7339,7 @@ fornecido como um argumento para o comando interno @code{cd}.
 @node Controlando o Prompt
 @section Controlando o Prompt
 @cindex prompting
+@cindex comando, prompt de
 
 O valor da variável @env{PROMPT_COMMAND} é examinado um pouco antes que 
 Bash imprima cada prompt primário.   Se @env{PROMPT_COMMAND} estiver 
@@ -7395,7 +7428,7 @@ aspas, sujeito ao valor da opção de shell @code{promptvars}
 
 @node O Shell Restrito
 @section O Shell Restrito
-@cindex restricted shell
+@cindex shell restrito
 
 Se Bash for inicializado com o nome @code{rbash}, ou a opção 
 @option{--restricted} ou @option{-r} for fornecida na invocação, então o 
@@ -7452,7 +7485,7 @@ restrições no shell gerado para executar o script.
 
 @node O Modo POSIX de Bash
 @section O Modo POSIX de Bash
-@cindex POSIX Mode
+@cindex Mode POSIX
 
 Inicializar Bash com a opção de linha de comando @option{--posix}, ou 
 executar @samp{set -o posix} enquanto Bash estiver em execução, fará com 
@@ -7761,10 +7794,12 @@ e como Bash te permite acessar as facilidades desse controle.
 
 @node Fundamentos do Controle de Tarefa
 @section Fundamentos do Controle de Tarefa
-@cindex job control
-@cindex foreground
-@cindex background
-@cindex suspending jobs
+@cindex controle de tarefa
+@cindex tarefa, controle de
+@cindex primeiro plano
+@cindex segundo plano
+@cindex suspendendo tarefas
+@cindex tarefas, suspendendo
 
 O controle de tarefas se refere à habilidade de parar (suspender) 
 seletivamente a execução de processos e continuar (resumir) a execução 
@@ -8046,9 +8081,9 @@ tarefa @samp{%}.
 
 @set readline-appendix
 @set history-appendix
-@cindex Readline, how to use
+@cindex Readline, como usar
 @include rluser-pt_BR.texi
-@cindex History, how to use
+@cindex Histórico, como usar
 @include hsuser-pt_BR.texi
 @clear readline-appendix
 @clear history-appendix
@@ -8085,10 +8120,10 @@ plataformas Windows.
 
 @node Instalação Básica
 @section Instalação Básica
-@cindex installation
-@cindex configuration
-@cindex Bash installation
-@cindex Bash configuration
+@cindex instalação
+@cindex configuração
+@cindex instalação do Bash
+@cindex configuração do Bash
 
 Estas são instruções de instalação para Bash.
 
@@ -9127,13 +9162,18 @@ O shell SVR4.2 se comporta diferentemente quando invocado como
 
 @include fdl-pt_BR.texi
 
+@node GNU Free Documentation License
+@appendix GNU Free Documentation License
+
+@include fdl.texi
+
 @node Índices
 @appendix Índices
 
 @menu
-* Indice dos Comandos Internos::		Índice dos comandos internos de Bash.
-* Indice das Palavras Reservadas::		Índice das palavras reservadas de Bash.
-* Indice das Variáveis::		Referência rápida ajuda você a encontrar 
+* Índice dos Comandos Internos::		Índice dos comandos internos de Bash.
+* Índice das Palavras Reservadas::		Índice das palavras reservadas de Bash.
+* Índice das Variáveis::		Referência rápida ajuda você a encontrar 
 a variável que deseja.
 * Índice das Funções::		Índice das funções de Readline 
 vinculáveis.
@@ -9141,15 +9181,15 @@ vinculáveis.
 neste manual.
 @end menu
 
-@node Indice dos Comandos Internos
+@node Índice dos Comandos Internos
 @appendixsec Índice dos Comandos Internos ao Shell
 @printindex bt
 
-@node Indice das Palavras Reservadas
+@node Índice das Palavras Reservadas
 @appendixsec Índice das Palavras Reservadas do Shell
 @printindex rw
 
-@node Indice das Variáveis
+@node Índice das Variáveis
 @appendixsec Índice dos Parâmetros e Variáveis
 @printindex vr
 
