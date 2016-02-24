@@ -52,9 +52,9 @@ da Biblioteca @sc{gnu} History em seus próprios programas, veja-se
 
 @ifset BashFeatures
 @menu
-* Bash History Facilities::	Como Bash te permite manipular seu 
+* Facilidades do Histórico de Bash::	Como Bash te permite manipular seu 
 histórico de comando.
-* Bash History Builtins::	Os comandos internos de Bash que 
+* Comandos Internos ao Histórico de Bash::	Os comandos internos de Bash que 
 manipulam o histórico de comando.
 * History Interaction::		Qual é o sentimento ao se utilizar 
 History como um usuário.
@@ -68,8 +68,8 @@ History como um usuário.
 @end ifclear
 
 @ifset BashFeatures
-@node Bash History Facilities
-@section Bash History Facilities
+@node Facilidades do Histórico de Bash
+@section Facilidades do Histórico de Bash
 @cindex command history
 @cindex history list
 
@@ -133,8 +133,8 @@ marcadores "newline" embutidos, em vez de ponto e vírgula.
 O comando interno @code{shopt} é utilizado para configurar essas opções.
 Veja-se @ref{Comandos Internos ao Bash}, para uma descrição de @code{shopt}.
 
-@node Bash History Builtins
-@section Bash History Builtins
+@node Comandos Internos ao Histórico de Bash
+@section Comandos Internos ao Histórico de Bash
 @cindex history builtins
 
 Bash provê dois comandos internos os quais manipulam a lista de 
@@ -248,7 +248,7 @@ variável @env{HISTFILE} é utilizada.
 @end ifset
 
 @node History Interaction
-@section History Expansion
+@section Expansão de Histórico
 @cindex history expansion
 
 A biblioteca History provê uma característica de expansão de histórico 
@@ -307,14 +307,14 @@ quando da escrita do arquivo de histórico.
 @end ifset
 
 @menu
-* Event Designators::	Como especificar qual linha de histórico 
+* Designadores de Evento::	Como especificar qual linha de histórico 
 utilizar.
 * Word Designators::	Especificando quais palavras são de interesse.
-* Modifiers::		Modificando os resultados da substituição.
+* Modificadores::		Modificando os resultados da substituição.
 @end menu
 
-@node Event Designators
-@subsection Event Designators
+@node Designadores de Evento
+@subsection Designadores de Evento
 @cindex event designators
 
 Um designador de evento é uma referência a uma entrada de linha de 
@@ -436,8 +436,8 @@ palavra.
 Se um designador de palavra for fornecido sem uma especificação de 
 evento, então o comando prévio é utilizado como o evento.
 
-@node Modifiers
-@subsection Modifiers
+@node Modificadores
+@subsection Modificadores
 
 Após o designador opcional de palavra, você pode adicionar uma sequência 
 de um ou mais dos seguintes modificadores, cada um precedido por 
