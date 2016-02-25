@@ -1,6 +1,4 @@
-
-Projeto de Tradução do Manual de Referência do Bash, edição 4.3, para o 
-idioma português do Brasil.
+# Projeto de Tradução do Manual de Referência do Bash, edição 4.3, para o idioma português do Brasil.
 
 Translation project of the Bash Reference Manual, edition 4.3, into 
 brazilian portuguese.
