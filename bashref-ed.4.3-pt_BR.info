@@ -1,0 +1,187 @@
+This is bashref-ed.4.3-pt_BR.info, produced by texi2any version 5.2 from
+bashref-ed.4.3-pt_BR.texi.
+
+Este texto é uma breve descrição das características que estão presentes
+no shell Bash (versão 4.3, 02 de fevereiro de 2014).
+
+   Esta é a Edição 4.3, mais recentemente atualizada em 02 de fevereiro
+de 2014, do ‘The GNU Bash Reference Manual’, para ‘Bash’, Versão 4.3.
+
+   Direitos autorais © 2015 da versão modificada traduzida para o
+português do Brasil: Jamenson Ferreira Espindula de Almeida Melo.
+
+   Direitos autorais © 1988–2014 da versão original escrita em inglês:
+Free Software Foundation, Inc.
+
+   Na produção deste documento, buscou-se obter o máximo de qualidade
+possível, em respeito ao leitor.  Entretanto, apesar de perseguida, a
+perfeição é algo difícil de ser alcançada.  Por esse motivo, erros podem
+ter passado despercebidos.  Qualquer ajuda no sentido de identificá-los
+é muito bem vinda, porém o leitor deveria estar consciente de que este
+documento é distribuido ‘sem qualquer garantia’, implícita e/ou
+explícita.
+
+     É concedida permissão para copiar, distribuir e/ou modificar este
+     Manual de Referência do Bash, edição 4.3, versão traduzida para a
+     língua portuguesa sob os termos da Licença de Documentação Livre
+     GNU, versão 1.3 ou qualquer versão posterior publicada pela Free
+     Software Foundation; sem Seções Invariantes, sem Textos de Capa
+     Frontal e sem Textos de Quarta Capa.  Uma cópia da licença está
+     incluída na seção intitulada “Licença de Documentação Livre GNU”.
+
+     Permission is granted to copy, distribute and/or modify this Bash
+     Reference Manual, edition 4.3, version translated into brazilian
+     portuguese under the terms of the Licença de Documentação Livre
+     GNU, Version 1.3 or any later version published by the Free
+     Software Foundation; with no Invariant Sections, no Front-Cover
+     Texts, and no Back-Cover Texts.  A copy of the license is included
+     in the section entitled “GNU Free Documentation Licence”.
+INFO-DIR-SECTION Basics
+START-INFO-DIR-ENTRY
+* Bash: (bash).                     The GNU Bourne-Again SHell.
+END-INFO-DIR-ENTRY
+
+
+Indirect:
+bashref-ed.4.3-pt_BR.info-1: 2218
+bashref-ed.4.3-pt_BR.info-2: 305234
+
+Tag Table:
+(Indirect)
+Node: Top2218
+Node: Introdução4606
+Node: O Que é Bash?4839
+Node: O Que um shell?6081
+Node: Definições8994
+Node: Características Básicas do Shell12510
+Node: Sintaxe do Shell13964
+Node: Operação do Shell15135
+Node: Encapsulamento16635
+Node: Carácter de Escape18256
+Node: Aspas Simples18840
+Node: Aspas Duplas19242
+Node: Encapsulamento ANSI-C20609
+Node: Tradução do Locale22142
+Node: Comentários23281
+Node: Comandos do Shell24008
+Node: Comandos Simples25025
+Node: Canais de Comunicação25776
+Node: Listas29195
+Node: Comandos Compostos31212
+Node: Construtores de Ciclos32374
+Node: Construtores Condicionais35118
+Node: Agrupamento de Comandos48208
+Node: Coprocessos49874
+Node: GNU Parallel51989
+Node: Funções de Shell56661
+Node: Parâmetros de Shell62668
+Node: Parâmetros Posicionais67607
+Node: Parâmetros Especiais68756
+Node: Expansões de Shell72727
+Node: Expansão de Chave74974
+Node: Expansão de Til78199
+Node: Expansão de Parâmetro de Shell80971
+Node: Substituição de Comando94922
+Node: Expansão Aritmética96545
+Node: Substituição de Processo97584
+Node: Divisão de Palavra98813
+Node: Expansão de Nome de Arquivo100793
+Node: Coincidência de Modelo103648
+Node: Remoção de Aspas108078
+Node: Redireções108429
+Node: Execução de Comandos119127
+Node: Expansão de Comando Simples119871
+Node: Busca de Comando e Execução122103
+Node: Ambiente de Execução de Comando124839
+Node: Ambiente128353
+Node: Situação de Saída130260
+Node: Sinais132324
+Node: Scripts de Shell134797
+Node: Comandos Internos ao Shell137692
+Node: Comandos Internos do Shell Bourne140166
+Node: Comandos Internos ao Bash163978
+Node: Modificando o Comportamento do Shell197634
+Node: O Comando Interno Set198092
+Node: O Comando Interno Shopt210623
+Node: Comandos Internos Especiais229005
+Node: Variáveis do Shell230163
+Node: Variáveis do Shell Bourne230666
+Node: Variáveis do Bash233166
+Node: Características de Bash265751
+Node: Invocando o Bash266837
+Node: Arquivos de Inicialização do Bash273738
+Node: Shells Interativos279601
+Node: O Que é um Shell Interativo?280058
+Node: Este Shell é Interativo?280806
+Node: Comportamento de Shell Interativo281705
+Node: Expressões Condicionais de Bash285739
+Node: Aritmética de Shell290758
+Node: Apelidos293988
+Node: Vetores297124
+Node: A Pilha de Diretório305234
+Node: Comandos Internos da Pilha de Diretório306036
+Node: Controlando o Prompt309358
+Node: O Shell Restrito312610
+Node: O Modo POSIX de Bash314815
+Node: Controle de Tarefa326198
+Node: Fundamentos do Controle de Tarefa326852
+Node: Comandos Internos do Controle de Tarefa332307
+Node: Variáveis do Controle de Tarefa337780
+Node: Edição de Linha de Comando339357
+Node: Introduction and Notation341493
+Node: Interação com Readline343404
+Node: Mínimo Essencial sobre Readline344815
+Node: Comandos de Movimento em Readline346822
+Node: Comandos Readline para Killing (``Recortar'')348048
+Node: Argumentos em Readline350397
+Node: Searching351595
+Node: Arquivo Init de Readline354316
+Node: Sintaxe do Arquivo Init de Readline355711
+Node: Construtores Condicionais Init376721
+Node: Arquivo Init de Exemplo379705
+Node: Comandos de Readline Vinculáveis383220
+Node: Comandos Para Movimentação384675
+Node: Commands For History385973
+Node: Commands For Text390958
+Node: Commands For Killing394328
+Node: Numeric Arguments397544
+Node: Commands For Completion398904
+Node: Macros (``Sequências de Comandos'') de Teclado403926
+Node: Miscellaneous Commands404775
+Node: Modo vi de Readline411457
+Node: Complementação Programável412569
+Node: Comandos Internos à Complementação Programável421445
+Node: Um Exemplo de Complementação Programável433506
+Node: Utilizando o Histórico Interativamente439730
+Node: Facilidades do Histórico de Bash440578
+Node: Comandos Internos ao Histórico de Bash444338
+Node: History Interaction449059
+Node: Designadores de Evento452390
+Node: Designadores de Palavra453826
+Node: Modificadores455767
+Node: Instalando o Bash457488
+Node: Instalação Básica458804
+Node: Compiladores e Opções462055
+Node: Compilando Para Múltiplas Arquiteturas462880
+Node: Nomes de Instalação464818
+Node: Especificando o Tipo do Sistema465801
+Node: Compartilhando Padrões466675
+Node: Controles de Operação467447
+Node: Características Opcionais468589
+Node: Relatando Bugs480772
+Node: Maiores Diferenças Para o Shell Bourne482170
+Node: Licença de Documentação Livre GNU503079
+Node: GNU Free Documentation License531830
+Node: Índices557217
+Node: Índice dos Comandos Internos557771
+Node: Índice das Palavras Reservadas566734
+Node: Índice das Variáveis569877
+Node: Índice das Funções585736
+Node: Índice dos Conceitos599954
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:
