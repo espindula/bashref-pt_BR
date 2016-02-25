@@ -1,6 +1,6 @@
 \input texinfo.tex @c -*- texinfo -*-
 @c %**start of header
-@setfilename bashref-pt_BR.info
+@setfilename bashref-ed.4.3-pt_BR.info
 @documentencoding UTF-8
 @documentlanguage pt_BR
 @settitle Manual de Referência do Bash
