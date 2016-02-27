@@ -48,7 +48,7 @@ Almeida Melo.
 								       
 1. Manual de Referência do Bash (Bash Reference Manual); e
 
-2. Manual de Comandos Gerais (General Commands Manual).
+2. Página Manual (Man Page).
 
 
  Além desses, o GNU Bash faz uso das seguintes bibliotecas (as quais 
